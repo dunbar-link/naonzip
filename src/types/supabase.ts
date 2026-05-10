@@ -1,0 +1,61 @@
+/**
+ * Supabase DB 행 타입 (snake_case — DB 컬럼명 그대로)
+ */
+export type RestaurantRow = {
+  id: string
+  slug: string
+  name: string
+  area: string
+  address: string
+  lat: number
+  lng: number
+  category: string
+  main_menu: string
+  price_text: string
+  phone: string | null
+  thumbnail: string | null
+  creator_name: string | null
+  program_name: string | null
+  episode_title: string | null
+  broadcast_date: string | null // ISO date 'YYYY-MM-DD'
+  description: string | null
+  video_url: string | null
+  kakao_map_url: string | null
+  naver_map_url: string | null
+  tmap_url: string | null
+  source_type: 'youtube' | 'tv' | 'sns'
+  source_title: string
+  is_published: boolean
+  created_at: string
+}
+
+/**
+ * Supabase 전체 DB 스키마 타입
+ * createClient<Database>() 에 제네릭으로 사용
+ */
+export type Database = {
+  public: {
+    Tables: {
+      restaurants: {
+        Row: RestaurantRow
+        Insert: Omit<RestaurantRow, 'id' | 'created_at'> & {
+          id?: string
+          created_at?: string
+        }
+        Update: Partial<Omit<RestaurantRow, 'id' | 'created_at'>>
+      }
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
+}

@@ -1,0 +1,33 @@
+'use client'
+
+import { useState, useMemo } from 'react'
+import { mockRestaurants } from '@/data/mock-restaurants'
+import { AreaType } from '@/types/restaurant'
+import AreaFilter from '@/components/home/AreaFilter'
+import RestaurantCard from '@/components/restaurant/RestaurantCard'
+
+export default function RestaurantsPage() {
+  const [selectedArea, setSelectedArea] = useState<AreaType | '전체'>('전체')
+
+  const published = mockRestaurants.filter((r) => r.isPublished)
+
+  const filtered = useMemo(() => {
+    if (selectedArea === '전체') return published
+    return published.filter((r) => r.area === selectedArea)
+  }, [published, selectedArea])
+
+  return (
+    <main className="pt-14 pb-20">
+      <div className="px-4 py-4">
+        <h1 className="text-lg font-bold text-gray-900">부산 방송맛집 목록</h1>
+        <p className="text-xs text-gray-400 mt-0.5">총 {filtered.length}개</p>
+      </div>
+      <AreaFilter selected={selectedArea} onChange={setSelectedArea} />
+      <div className="mt-4 px-4 flex flex-col gap-3">
+        {filtered.map((r) => (
+          <RestaurantCard key={r.id} restaurant={r} variant="vertical" />
+        ))}
+      </div>
+    </main>
+  )
+}
