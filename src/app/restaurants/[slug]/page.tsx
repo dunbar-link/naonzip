@@ -1,11 +1,12 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { headers } from 'next/headers'
 import type { Metadata } from 'next'
 import { getRestaurantBySlug, getRestaurantSlugs } from '@/lib/restaurants'
 import type { Restaurant } from '@/types/restaurant'
 import ShareButtons from '@/components/restaurant/ShareButtons'
 import SaveButton from '@/components/restaurant/SaveButton'
+
+const SITE_URL = 'https://naonzip.vercel.app'
 
 export const revalidate = 3600
 
@@ -105,10 +106,7 @@ export default async function RestaurantDetailPage({ params }: Props) {
 
   if (!restaurant) notFound()
 
-  const headersList = await headers()
-  const host = headersList.get('host') ?? 'naonzip.vercel.app'
-  const protocol = host.startsWith('localhost') ? 'http' : 'https'
-  const pageUrl = `${protocol}://${host}/restaurants/${restaurant.slug}`
+  const pageUrl = `${SITE_URL}/restaurants/${restaurant.slug}`
 
   return (
     <main className="pt-14 pb-24">
