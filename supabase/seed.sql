@@ -14,7 +14,7 @@ INSERT INTO public.restaurants (
 
 -- 1. 쌍둥이돼지국밥
 (
-  'ssangdung-i-dwaeji-gukbap',
+  'saengdal-ssangdungyi-doejigukbap',
   '쌍둥이돼지국밥', '서면', '부산 부산진구 서면문화로 27',
   35.1579, 129.0597,
   '돼지국밥', '돼지국밥', '1인 9,000원', '051-123-4567',
@@ -27,7 +27,7 @@ INSERT INTO public.restaurants (
 
 -- 2. 해운대 암소갈비집
 (
-  'haeundae-amso-galbi',
+  'hibab-haeundae-amsogalbi',
   '해운대 암소갈비집', '해운대', '부산 해운대구 구남로 30',
   35.1628, 129.1635,
   '고기', '암소갈비', '1인분 25,000원', '051-234-5678',
@@ -40,7 +40,7 @@ INSERT INTO public.restaurants (
 
 -- 3. 부산진시장 양곱창
 (
-  'busanjin-yanggopchang',
+  'sungsik-seomyeon-yanggopchang',
   '부산진시장 양곱창', '서면', '부산 부산진구 지게골로 75',
   35.1601, 129.0571,
   '한식', '양곱창', '200g 16,000원', '051-345-0001',
@@ -53,7 +53,7 @@ INSERT INTO public.restaurants (
 
 -- 4. 개금 밀면 본점
 (
-  'gaegeum-milmyeon',
+  'sungsik-gaegeum-milmyeon',
   '개금 밀면 본점', '서면', '부산 부산진구 가야대로 784',
   35.1543, 129.0541,
   '밀면', '물밀면', '1인 8,000원', '051-345-6789',
@@ -66,7 +66,7 @@ INSERT INTO public.restaurants (
 
 -- 5. 기장 대게찜 본점
 (
-  'gijang-daege-jjim',
+  'matnyuk-gijang-daege-jjim',
   '기장 대게찜 본점', '기장', '부산 기장군 기장읍 기장대로 664',
   35.2443, 129.2224,
   '해산물', '대게찜', '1마리 45,000원~', '051-456-7890',
@@ -79,7 +79,7 @@ INSERT INTO public.restaurants (
 
 -- 6. 남포동 씨앗호떡
 (
-  'nampo-dong-ssiat-hotteok',
+  'tzuyang-nampo-ssiat-hotteok',
   '남포동 씨앗호떡', '남포동', '부산 중구 광복로 56',
   35.0981, 129.0307,
   '분식/길거리', '씨앗호떡', '1개 1,500원', NULL,
@@ -92,7 +92,7 @@ INSERT INTO public.restaurants (
 
 -- 7. 동래 파전 원조
 (
-  'dongrae-pajeon-wonjong',
+  'baekban-dongnae-pajeon',
   '동래 파전 원조', '동래', '부산 동래구 낙민동 180',
   35.2045, 129.0817,
   '한식', '동래파전', '1판 18,000원', '051-567-8901',
@@ -105,7 +105,7 @@ INSERT INTO public.restaurants (
 
 -- 8. 청사포 회센터
 (
-  'cheongsapo-hoe-center',
+  'hibab-cheongsa-hoe-center',
   '청사포 회센터', '해운대', '부산 해운대구 청사포로 55',
   35.1597, 129.1754,
   '회', '광어회', '소 45,000원~', '051-678-9012',
@@ -118,7 +118,7 @@ INSERT INTO public.restaurants (
 
 -- 9. 서면 소금구이 명가
 (
-  'seomyeon-sogeum-gui',
+  'sungsik-seomyeon-sogeumgui',
   '서면 소금구이 명가', '서면', '부산 부산진구 서전로 55',
   35.1598, 129.0583,
   '고기', '소금구이', '200g 18,000원', '051-789-0123',
@@ -131,7 +131,7 @@ INSERT INTO public.restaurants (
 
 -- 10. 기장 멸치쌈밥
 (
-  'gijang-myeolchi-ssambap',
+  'samdae-gijang-myeolchi-ssambap',
   '기장 멸치쌈밥', '기장', '부산 기장군 일광읍 이천로 45',
   35.2789, 129.2191,
   '한식', '멸치쌈밥', '1인 12,000원', '051-890-1234',
@@ -144,7 +144,7 @@ INSERT INTO public.restaurants (
 
 -- 11. 광안리 낙곱새
 (
-  'gwangalli-nakgopsae',
+  'matnyuk-gwangalli-nakgopsae',
   '광안리 낙곱새', '광안리', '부산 수영구 수영로 521',
   35.1562, 129.1201,
   '한식', '낙곱새', '1인 14,000원', '051-901-2345',
@@ -157,7 +157,7 @@ INSERT INTO public.restaurants (
 
 -- 12. 남포동 씨앗빵 본점
 (
-  'nampo-dong-ssiatbbang',
+  'pani-nampo-ssiat-ppang',
   '남포동 씨앗빵 본점', '남포동', '부산 중구 보수대로 14',
   35.0998, 129.0289,
   '베이커리/디저트', '씨앗빵', '1개 2,500원', NULL,
@@ -170,7 +170,7 @@ INSERT INTO public.restaurants (
 
 -- 13. 사상 돼지갈비 원조
 (
-  'sasang-dwaeji-galbi',
+  'matnyuk-sasang-doejigalbi',
   '사상 돼지갈비 원조', '사상', '부산 사상구 괘법동 549',
   35.1544, 128.9921,
   '고기', '돼지갈비', '1인분 13,000원', '051-012-3456',
@@ -183,7 +183,7 @@ INSERT INTO public.restaurants (
 
 -- 14. 해운대 수제버거
 (
-  'haeundae-handmade-burger',
+  'tzuyang-haeundae-sujeburger',
   '해운대 수제버거', '해운대', '부산 해운대구 중동1로 35',
   35.1611, 129.1612,
   '버거/양식', '수제버거', '1인 12,000원~', NULL,
@@ -196,7 +196,7 @@ INSERT INTO public.restaurants (
 
 -- 15. 동래 곱창전골
 (
-  'dongrae-gopchang-jeongol',
+  'saengdal-dongnae-gopchang-jungol',
   '동래 곱창전골', '동래', '부산 동래구 명장동 345',
   35.2101, 129.0936,
   '한식', '곱창전골', '2인 30,000원', '051-123-9876',
@@ -209,7 +209,7 @@ INSERT INTO public.restaurants (
 
 -- 16. 광안리 참치회
 (
-  'gwangalli-chamchi-hoe',
+  'hibab-gwangalli-chamchi-hoe',
   '광안리 참치회', '광안리', '부산 수영구 광안해변로 219',
   35.1521, 129.1172,
   '회', '참치회', '소 55,000원~', '051-234-8765',
@@ -222,7 +222,7 @@ INSERT INTO public.restaurants (
 
 -- 17. 전포 베트남쌀국수
 (
-  'jeonpo-vietnam-salguksu',
+  'jeonhyun-jeonpo-vietnam-ssal-guksu',
   '전포 베트남쌀국수', '서면', '부산 부산진구 전포대로 173',
   35.1567, 129.0572,
   '아시안', '쌀국수', '1인 10,000원', NULL,
@@ -235,7 +235,7 @@ INSERT INTO public.restaurants (
 
 -- 18. 기장 전복죽
 (
-  'gijang-jeonbok-juk',
+  'baekban-gijang-jeonbok-juk',
   '기장 전복죽', '기장', '부산 기장군 기장읍 차성로 149',
   35.2421, 129.2198,
   '해산물', '전복죽', '1인 15,000원', '051-567-2345',
@@ -248,7 +248,7 @@ INSERT INTO public.restaurants (
 
 -- 19. 자갈치 비빔당면
 (
-  'jagalchi-bibim-dangmyeon',
+  'tzuyang-jagalchi-bibim-dangmyeon',
   '자갈치 비빔당면', '남포동', '부산 중구 자갈치로 52',
   35.0968, 129.0283,
   '분식/길거리', '비빔당면', '1인 5,000원', NULL,
@@ -261,7 +261,7 @@ INSERT INTO public.restaurants (
 
 -- 20. 해운대 해물파전
 (
-  'haeundae-haemul-pajeon',
+  'samdae-haeundae-haemul-pajeon',
   '해운대 해물파전', '해운대', '부산 해운대구 해운대해변로 298',
   35.1588, 129.1601,
   '한식', '해물파전', '1판 20,000원', '051-678-3456',
@@ -274,7 +274,7 @@ INSERT INTO public.restaurants (
 
 -- 21. 범어사 산채비빔밥
 (
-  'beomeosa-sanchae-bibimbap',
+  'baekban-beomeosa-sanche-bibimbap',
   '범어사 산채비빔밥', '동래', '부산 금정구 청룡동 546',
   35.2789, 129.0847,
   '한식', '산채비빔밥', '1인 11,000원', '051-508-7777',
@@ -287,7 +287,7 @@ INSERT INTO public.restaurants (
 
 -- 22. 광안리 조개구이 포차
 (
-  'gwangalli-jogaegui-pocha',
+  'hibab-gwangalli-jogae-gui-pocha',
   '광안리 조개구이 포차', '광안리', '부산 수영구 광안해변로 190',
   35.1534, 129.1185,
   '해산물', '모둠조개구이', '2인 35,000원', NULL,
