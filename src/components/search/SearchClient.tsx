@@ -2,7 +2,6 @@
 
 import { useState, useMemo, useEffect, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { mockRestaurants } from '@/data/mock-restaurants'
 import { Restaurant } from '@/types/restaurant'
 import RestaurantCard from '@/components/restaurant/RestaurantCard'
 
@@ -12,15 +11,13 @@ const SUGGESTED_QUERIES = [
   '돼지국밥', '밀면', '해운대', '광안리',
 ]
 
-const published = mockRestaurants.filter((r) => r.isPublished)
-
-function searchRestaurants(query: string): Restaurant[] {
+function searchRestaurants(query: string, restaurants: Restaurant[]): Restaurant[] {
   const q = query.trim().toLowerCase()
   if (!q) return []
 
   const tokens = q.split(/\s+/)
 
-  return published.filter((r) => {
+  return restaurants.filter((r) => {
     const haystack = [
       r.name,
       r.area,
@@ -40,7 +37,11 @@ function searchRestaurants(query: string): Restaurant[] {
   })
 }
 
-export default function SearchClient() {
+type Props = {
+  restaurants: Restaurant[]
+}
+
+export default function SearchClient({ restaurants }: Props) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -48,7 +49,7 @@ export default function SearchClient() {
   const [query, setQuery] = useState(initialQuery)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const results = useMemo(() => searchRestaurants(query), [query])
+  const results = useMemo(() => searchRestaurants(query, restaurants), [query, restaurants])
 
   // URL query parameter 동기화
   useEffect(() => {
