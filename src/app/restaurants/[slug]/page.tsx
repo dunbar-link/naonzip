@@ -7,6 +7,8 @@ import type { Restaurant } from '@/types/restaurant'
 import ShareButtons from '@/components/restaurant/ShareButtons'
 import SaveButton from '@/components/restaurant/SaveButton'
 
+export const revalidate = 3600
+
 function getContentLabel(r: { creatorName?: string; programName?: string; sourceTitle: string }): string {
   return r.creatorName ?? r.programName ?? r.sourceTitle
 }

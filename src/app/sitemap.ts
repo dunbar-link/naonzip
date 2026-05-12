@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next'
 import { getRestaurantSlugs } from '@/lib/restaurants'
 
+export const revalidate = 3600
+
 const BASE_URL = 'https://naonzip.vercel.app'
 
 /**
