@@ -1,7 +1,9 @@
-import { mockRestaurants } from '@/data/mock-restaurants'
+import { getRestaurants } from '@/lib/restaurants'
 import HomeClient from '@/components/home/HomeClient'
 
-export default function HomePage() {
-  const published = mockRestaurants.filter((r) => r.isPublished)
-  return <HomeClient restaurants={published} />
+export const revalidate = 3600
+
+export default async function HomePage() {
+  const restaurants = await getRestaurants()
+  return <HomeClient restaurants={restaurants} />
 }
