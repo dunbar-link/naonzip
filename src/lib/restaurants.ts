@@ -86,6 +86,40 @@ export async function getRestaurantBySlug(slug: string): Promise<Restaurant | nu
 }
 
 // ─────────────────────────────────────────────
+// 게시된 맛집 전체 목록
+// ─────────────────────────────────────────────
+
+/**
+ * 게시된 맛집 전체 목록 반환
+ *
+ * Supabase 미설정  → mock fallback
+ * Supabase 오류   → mock fallback
+ * 데이터 없음     → mock fallback
+ */
+export async function getRestaurants(): Promise<Restaurant[]> {
+  if (!isSupabaseConfigured()) {
+    return mockRestaurants.filter((r) => r.isPublished)
+  }
+
+  try {
+    const supabase = getSupabaseClient()
+    const { data, error } = await supabase
+      .from('restaurants')
+      .select('*')
+      .eq('is_published', true)
+
+    if (error || !data || data.length === 0) {
+      return mockRestaurants.filter((r) => r.isPublished)
+    }
+
+    return (data as RestaurantRow[]).map(rowToRestaurant)
+  } catch (err) {
+    console.error('[restaurants] getRestaurants 예외, mock fallback:', err)
+    return mockRestaurants.filter((r) => r.isPublished)
+  }
+}
+
+// ─────────────────────────────────────────────
 // generateStaticParams 전용 — slug 목록
 // ─────────────────────────────────────────────
 
