@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { mockRestaurants } from '@/data/mock-restaurants'
 import { Restaurant, AreaType } from '@/types/restaurant'
 
 const BUSAN_LAT = 35.1796
@@ -15,11 +14,9 @@ const AREA_FILTERS: AreaFilter[] = [
   '전체', '해운대', '서면', '광안리', '남포동', '기장', '동래', '사상', '기타',
 ]
 
-const published = mockRestaurants.filter((r) => r.isPublished)
-
-function getAreaCount(area: AreaFilter): number {
-  if (area === '전체') return published.length
-  return published.filter((r) => r.area === area).length
+function getAreaCount(area: AreaFilter, restaurants: Restaurant[]): number {
+  if (area === '전체') return restaurants.length
+  return restaurants.filter((r) => r.area === area).length
 }
 
 function getAreaCenter(area: AreaFilter, restaurants: Restaurant[]): { lat: number; lng: number; level: number } {
@@ -53,7 +50,11 @@ type MarkerEntry = {
   restaurant: Restaurant
 }
 
-export default function KakaoMapView() {
+type Props = {
+  restaurants: Restaurant[]
+}
+
+export default function KakaoMapView({ restaurants }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<KakaoMap | null>(null)
   const markersRef = useRef<MarkerEntry[]>([])
@@ -83,7 +84,7 @@ export default function KakaoMapView() {
       })
       mapRef.current = map
 
-      const entries: MarkerEntry[] = published.map((restaurant) => {
+      const entries: MarkerEntry[] = restaurants.map((restaurant) => {
         const marker = new Marker({
           position: new LatLng(restaurant.lat, restaurant.lng),
           map,
@@ -111,7 +112,7 @@ export default function KakaoMapView() {
     document.head.appendChild(script)
 
     return () => { mounted = false }
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // 지역 필터 변경 → 마커 on/off + 지도 이동
   useEffect(() => {
@@ -150,7 +151,7 @@ export default function KakaoMapView() {
         <div className="absolute top-3 left-0 right-0 z-10 px-3">
           <div className="flex gap-2 overflow-x-auto scrollbar-hide bg-white/90 backdrop-blur-sm rounded-2xl shadow-md px-3 py-2 border border-gray-100">
             {AREA_FILTERS.map((area) => {
-              const count = getAreaCount(area)
+              const count = getAreaCount(area, restaurants)
               const active = selectedArea === area
               if (count === 0 && area !== '전체') return null
               return (
