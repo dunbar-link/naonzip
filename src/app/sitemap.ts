@@ -8,7 +8,7 @@ const BASE_URL = 'https://naonzip.vercel.app'
 /**
  * /sitemap.xml 자동 생성
  *
- * - 정적 경로: /, /restaurants, /map, /search, /saved
+ * - 정적 경로: /, /restaurants, /map, /search
  * - 동적 경로: /restaurants/[slug] × 전체 공개 맛집 수
  *
  * getRestaurantSlugs()는 Supabase 미설정/오류 시 mock 22개로 자동 fallback.
@@ -40,12 +40,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/saved`,
-      lastModified: new Date(),
-      changeFrequency: 'never',
-      priority: 0.3,
     },
   ]
 
