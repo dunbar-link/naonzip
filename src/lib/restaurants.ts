@@ -13,6 +13,30 @@ import { mockRestaurants } from '@/data/mock-restaurants'
 import { isSupabaseConfigured, getSupabaseClient } from '@/lib/supabase'
 
 // ─────────────────────────────────────────────
+// 정렬 정책 (전역 안정 정렬)
+//   1순위: 방송일 broadcastDate 내림차순 (없으면 뒤)
+//   2순위: slug 오름차순 (tie-breaker, 안정성 확보)
+//   * Supabase 쿼리에서는 추가로 created_at desc 를 2순위에 끼워넣어
+//     실데이터 양이 늘어났을 때도 일관성을 유지한다.
+// ─────────────────────────────────────────────
+
+function compareForList(a: Restaurant, b: Restaurant): number {
+  const aDate = a.broadcastDate ?? ''
+  const bDate = b.broadcastDate ?? ''
+  // 방송일이 있는 데이터가 항상 앞으로
+  if (aDate && !bDate) return -1
+  if (!aDate && bDate) return 1
+  // 둘 다 있으면 최신순(내림차순)
+  if (aDate !== bDate) return aDate < bDate ? 1 : -1
+  // tie-breaker: slug 오름차순
+  return a.slug.localeCompare(b.slug)
+}
+
+function sortRestaurants(list: Restaurant[]): Restaurant[] {
+  return [...list].sort(compareForList)
+}
+
+// ─────────────────────────────────────────────
 // DB 행 → 앱 타입 변환
 // ─────────────────────────────────────────────
 
@@ -98,7 +122,7 @@ export async function getRestaurantBySlug(slug: string): Promise<Restaurant | nu
  */
 export async function getRestaurants(): Promise<Restaurant[]> {
   if (!isSupabaseConfigured()) {
-    return mockRestaurants.filter((r) => r.isPublished)
+    return sortRestaurants(mockRestaurants.filter((r) => r.isPublished))
   }
 
   try {
@@ -107,15 +131,18 @@ export async function getRestaurants(): Promise<Restaurant[]> {
       .from('restaurants')
       .select('*')
       .eq('is_published', true)
+      .order('broadcast_date', { ascending: false, nullsFirst: false })
+      .order('created_at', { ascending: false })
+      .order('slug', { ascending: true })
 
     if (error || !data || data.length === 0) {
-      return mockRestaurants.filter((r) => r.isPublished)
+      return sortRestaurants(mockRestaurants.filter((r) => r.isPublished))
     }
 
     return (data as RestaurantRow[]).map(rowToRestaurant)
   } catch (err) {
     console.error('[restaurants] getRestaurants 예외, mock fallback:', err)
-    return mockRestaurants.filter((r) => r.isPublished)
+    return sortRestaurants(mockRestaurants.filter((r) => r.isPublished))
   }
 }
 
@@ -129,7 +156,7 @@ export async function getRestaurants(): Promise<Restaurant[]> {
  */
 export async function getRestaurantSlugs(): Promise<string[]> {
   if (!isSupabaseConfigured()) {
-    return mockRestaurants.filter((r) => r.isPublished).map((r) => r.slug)
+    return sortRestaurants(mockRestaurants.filter((r) => r.isPublished)).map((r) => r.slug)
   }
 
   try {
@@ -138,13 +165,16 @@ export async function getRestaurantSlugs(): Promise<string[]> {
       .from('restaurants')
       .select('*')
       .eq('is_published', true)
+      .order('broadcast_date', { ascending: false, nullsFirst: false })
+      .order('created_at', { ascending: false })
+      .order('slug', { ascending: true })
 
     if (error || !data || data.length === 0) {
-      return mockRestaurants.filter((r) => r.isPublished).map((r) => r.slug)
+      return sortRestaurants(mockRestaurants.filter((r) => r.isPublished)).map((r) => r.slug)
     }
 
     return (data as RestaurantRow[]).map((r) => r.slug)
   } catch {
-    return mockRestaurants.filter((r) => r.isPublished).map((r) => r.slug)
+    return sortRestaurants(mockRestaurants.filter((r) => r.isPublished)).map((r) => r.slug)
   }
 }
