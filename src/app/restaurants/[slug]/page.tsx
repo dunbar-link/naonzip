@@ -54,6 +54,82 @@ function buildDescription(r: Restaurant): string {
 }
 
 // ─────────────────────────────────────────────
+// JSON-LD (schema.org Restaurant)
+//   - undefined/null/빈 문자열은 포함하지 않는다.
+//   - geo 는 lat/lng 가 유효한 숫자일 때만 포함한다.
+//   - sameAs / subjectOf 등 부가 필드는 데이터가 있을 때만 포함한다.
+// ─────────────────────────────────────────────
+
+function toAbsoluteUrl(value: string): string {
+  if (/^https?:\/\//i.test(value)) return value
+  return `${SITE_URL}${value.startsWith('/') ? '' : '/'}${value}`
+}
+
+function buildRestaurantJsonLd(r: Restaurant): Record<string, unknown> {
+  const url = `${SITE_URL}/restaurants/${r.slug}`
+  const description = buildDescription(r)
+
+  const servesCuisine = Array.from(
+    new Set([r.category, r.mainMenu].filter((v): v is string => Boolean(v))),
+  )
+
+  const sameAs = [r.kakaoMapUrl, r.naverMapUrl, r.videoUrl].filter(
+    (v): v is string => typeof v === 'string' && v.length > 0,
+  )
+
+  const hasGeo =
+    Number.isFinite(r.lat) &&
+    Number.isFinite(r.lng) &&
+    !(r.lat === 0 && r.lng === 0)
+
+  let subjectOf: Record<string, unknown> | undefined
+  if (r.videoUrl) {
+    subjectOf = {
+      '@type': 'VideoObject',
+      name:
+        r.episodeTitle ?? r.programName ?? r.creatorName ?? r.sourceTitle,
+      url: r.videoUrl,
+      ...(r.broadcastDate && { uploadDate: r.broadcastDate }),
+    }
+  } else if (r.programName || r.episodeTitle || r.broadcastDate) {
+    subjectOf = {
+      '@type': 'CreativeWork',
+      name: r.episodeTitle ?? r.programName ?? r.sourceTitle,
+      ...(r.broadcastDate && { datePublished: r.broadcastDate }),
+    }
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Restaurant',
+    '@id': `${url}#restaurant`,
+    name: r.name,
+    description,
+    url,
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'KR',
+      addressLocality: '부산',
+      addressRegion: r.area,
+      streetAddress: r.address,
+    },
+    ...(hasGeo && {
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: r.lat,
+        longitude: r.lng,
+      },
+    }),
+    ...(servesCuisine.length > 0 && { servesCuisine }),
+    ...(r.priceText && { priceRange: r.priceText }),
+    ...(r.phone && { telephone: r.phone }),
+    ...(r.thumbnail && { image: toAbsoluteUrl(r.thumbnail) }),
+    ...(sameAs.length > 0 && { sameAs }),
+    ...(subjectOf && { subjectOf }),
+  }
+}
+
+// ─────────────────────────────────────────────
 // generateMetadata
 // ─────────────────────────────────────────────
 
@@ -107,9 +183,14 @@ export default async function RestaurantDetailPage({ params }: Props) {
   if (!restaurant) notFound()
 
   const pageUrl = `${SITE_URL}/restaurants/${restaurant.slug}`
+  const jsonLd = buildRestaurantJsonLd(restaurant)
 
   return (
     <main className="pt-14 pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* 상단 이미지 영역 */}
       <div className="relative h-52 bg-gradient-to-br from-orange-50 to-amber-100 flex items-center justify-center">
         <span className="text-7xl">{getCategoryEmoji(restaurant.category)}</span>
