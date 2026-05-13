@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
   },
+  verification: {
+    google: 'xUhwiPlVHa7nKSQWcImWkQvd2jd69ikMfzgEAl0LwOs',
+  },
 }
 
 export const viewport: Viewport = {
