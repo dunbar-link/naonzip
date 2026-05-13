@@ -33,7 +33,7 @@ export default function RestaurantCard({ restaurant, variant = 'vertical' }: Pro
 
   if (variant === 'horizontal') {
     return (
-      <Link href={`/restaurants/${restaurant.slug}`} className="block min-w-[160px] w-40">
+      <Link href={`/restaurants/${restaurant.slug}`} className="block shrink-0 min-w-[160px] w-40">
         <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm active:scale-95 transition-transform">
           <div className="relative h-28 bg-gradient-to-br from-orange-50 to-amber-50 flex items-center justify-center">
             <span className="text-4xl">{getCategoryEmoji(restaurant.category)}</span>

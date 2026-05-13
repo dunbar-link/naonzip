@@ -14,6 +14,7 @@ export default function SaveButton({ id, size = 'sm' }: Props) {
 
   return (
     <button
+      type="button"
       onClick={(e) => {
         e.preventDefault()
         e.stopPropagation()

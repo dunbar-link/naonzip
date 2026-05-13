@@ -19,13 +19,26 @@ function getAreaCount(area: AreaFilter, restaurants: Restaurant[]): number {
   return restaurants.filter((r) => r.area === area).length
 }
 
+function toCoord(value: unknown): number | null {
+  const num = typeof value === 'number' ? value : Number(value)
+  if (!Number.isFinite(num)) return null
+  if (num === 0) return null
+  return num
+}
+
 function getAreaCenter(area: AreaFilter, restaurants: Restaurant[]): { lat: number; lng: number; level: number } {
   if (area === '전체' || restaurants.length === 0) {
     return { lat: BUSAN_LAT, lng: BUSAN_LNG, level: 8 }
   }
-  const lat = restaurants.reduce((s, r) => s + r.lat, 0) / restaurants.length
-  const lng = restaurants.reduce((s, r) => s + r.lng, 0) / restaurants.length
-  return { lat, lng, level: restaurants.length === 1 ? 4 : 6 }
+  const validCoords = restaurants
+    .map((r) => ({ lat: toCoord(r.lat), lng: toCoord(r.lng) }))
+    .filter((c): c is { lat: number; lng: number } => c.lat !== null && c.lng !== null)
+  if (validCoords.length === 0) {
+    return { lat: BUSAN_LAT, lng: BUSAN_LNG, level: 8 }
+  }
+  const lat = validCoords.reduce((s, c) => s + c.lat, 0) / validCoords.length
+  const lng = validCoords.reduce((s, c) => s + c.lng, 0) / validCoords.length
+  return { lat, lng, level: validCoords.length === 1 ? 4 : 6 }
 }
 
 function getContentLabel(r: Restaurant): string {
@@ -84,16 +97,24 @@ export default function KakaoMapView({ restaurants }: Props) {
       })
       mapRef.current = map
 
-      const entries: MarkerEntry[] = restaurants.map((restaurant) => {
-        const marker = new Marker({
-          position: new LatLng(restaurant.lat, restaurant.lng),
-          map,
-          title: restaurant.name,
-        })
-        event.addListener(marker, 'click', () => {
-          if (mounted) setSelected(restaurant)
-        })
-        return { marker, restaurant }
+      const entries: MarkerEntry[] = []
+      restaurants.forEach((restaurant) => {
+        const lat = toCoord(restaurant.lat)
+        const lng = toCoord(restaurant.lng)
+        if (lat === null || lng === null) return
+        try {
+          const marker = new Marker({
+            position: new LatLng(lat, lng),
+            map,
+            title: restaurant.name,
+          })
+          event.addListener(marker, 'click', () => {
+            if (mounted) setSelected(restaurant)
+          })
+          entries.push({ marker, restaurant })
+        } catch {
+          // 단일 마커 생성 실패는 전체 지도 실패로 만들지 않는다
+        }
       })
       markersRef.current = entries
 
