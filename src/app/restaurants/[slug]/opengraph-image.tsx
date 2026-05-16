@@ -58,9 +58,9 @@ export default async function Image({ params }: ImageProps) {
             style={{
               display: 'flex',
               fontSize: 36,
-              color: '#6B7280',
+              color: '#475569',
               marginTop: 16,
-              fontWeight: 600,
+              fontWeight: 700,
             }}
           >
             부산 방송맛집
@@ -141,7 +141,7 @@ export default async function Image({ params }: ImageProps) {
             style={{
               display: 'flex',
               fontSize: 30,
-              color: '#9CA3AF',
+              color: '#475569',
               fontWeight: 700,
               letterSpacing: 1,
             }}
@@ -201,9 +201,9 @@ export default async function Image({ params }: ImageProps) {
                 style={{
                   display: 'flex',
                   fontSize: 22,
-                  color: '#6B7280',
+                  color: '#475569',
                   marginTop: 6,
-                  fontWeight: 500,
+                  fontWeight: 600,
                 }}
               >
                 {restaurant.episodeTitle}
@@ -236,8 +236,8 @@ export default async function Image({ params }: ImageProps) {
             style={{
               display: 'flex',
               fontSize: 22,
-              color: '#6B7280',
-              fontWeight: 600,
+              color: '#475569',
+              fontWeight: 700,
             }}
           >
             부산 방송맛집
