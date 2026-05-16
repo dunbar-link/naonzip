@@ -35,10 +35,18 @@ function buildNaverUrl(info: MapInfo): string {
   return `https://map.naver.com/v5/search/${query}`
 }
 
-function buildTmapUrl(info: MapInfo): string {
-  if (info.tmapUrl) return info.tmapUrl
+function buildTmapUrl(info: MapInfo): string | null {
+  // 데이터에 들어온 tmap 링크 사용 (단, SK OpenAPI 서버 URL은 인증키 필요 → 사용 금지)
+  if (info.tmapUrl && !/openapi\.sk\.com/i.test(info.tmapUrl)) {
+    return info.tmapUrl
+  }
+  const lat = Number(info.lat)
+  const lng = Number(info.lng)
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null
+  if (lat === 0 && lng === 0) return null
   const name = encodeURIComponent(info.name)
-  return `https://apis.openapi.sk.com/tmap/app/routes?goalname=${name}&goalx=${info.lng}&goaly=${info.lat}`
+  // T맵 앱 URL scheme — goalx=경도(lng), goaly=위도(lat)
+  return `tmap://route?goalname=${name}&goalx=${lng}&goaly=${lat}`
 }
 
 function buildShareText(info: ShareInfo): string {
@@ -47,6 +55,7 @@ function buildShareText(info: ShareInfo): string {
 
 export default function ShareButtons({ mapInfo, shareInfo }: Props) {
   const [copyDone, setCopyDone] = useState(false)
+  const tmapHref = buildTmapUrl(mapInfo)
 
   async function handleShare() {
     const text = buildShareText(shareInfo)
@@ -97,15 +106,23 @@ export default function ShareButtons({ mapInfo, shareInfo }: Props) {
             <span className="text-lg">🧭</span>
             <span className="text-xs font-semibold text-green-700">네이버지도</span>
           </a>
-          <a
-            href={buildTmapUrl(mapInfo)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center gap-1.5 py-3 rounded-xl bg-blue-50 border border-blue-200 active:scale-95 transition-transform"
-          >
-            <span className="text-lg">📍</span>
-            <span className="text-xs font-semibold text-blue-700">티맵</span>
-          </a>
+          {tmapHref ? (
+            <a
+              href={tmapHref}
+              className="flex flex-col items-center gap-1.5 py-3 rounded-xl bg-blue-50 border border-blue-200 active:scale-95 transition-transform"
+            >
+              <span className="text-lg">📍</span>
+              <span className="text-xs font-semibold text-blue-700">티맵</span>
+            </a>
+          ) : (
+            <span
+              aria-disabled="true"
+              className="flex flex-col items-center gap-1.5 py-3 rounded-xl bg-gray-50 border border-gray-200 opacity-50 cursor-not-allowed"
+            >
+              <span className="text-lg">📍</span>
+              <span className="text-xs font-semibold text-gray-500">티맵</span>
+            </span>
+          )}
         </div>
       </section>
 
