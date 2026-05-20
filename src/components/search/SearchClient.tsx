@@ -11,30 +11,142 @@ const SUGGESTED_QUERIES = [
   '돼지국밥', '밀면', '해운대', '광안리',
 ]
 
+// 검색 동의어 맵 — 토큰이 key와 정확히 일치하면 expansion 배열로 OR 매칭한다.
+// 데이터에 직접 등장하지 않는 일반 단어("빵집", "노포" 등)를 흡수하기 위함.
+const SYNONYMS: Record<string, string[]> = {
+  '빵집': ['빵집', '베이커리', '디저트', '빵'],
+  '베이커리': ['베이커리', '디저트', '빵'],
+  '국밥': ['국밥', '돼지국밥'],
+  '노포': ['노포', '전통', '원조', '40년', '50년', '60년'],
+  '또간집': ['또간집', '풍자'],
+  '횟집': ['횟집', '회', '회센터'],
+  '회': ['회', '회센터', '횟집'],
+  '분식': ['분식', '떡볶이', '김밥', '순대'],
+  '갈비집': ['갈비', '돼지갈비', '소갈비'],
+  '카페': ['카페', '커피', '디저트'],
+}
+
+type SearchableField =
+  | 'name'
+  | 'mainMenu'
+  | 'category'
+  | 'area'
+  | 'creatorName'
+  | 'programName'
+  | 'episodeTitle'
+  | 'address'
+  | 'sourceTitle'
+  | 'description'
+
+// 필드 가중치 — 정확매칭 우선순위를 결정한다.
+const FIELD_WEIGHTS: Record<SearchableField, number> = {
+  name: 10,
+  mainMenu: 6,
+  category: 6,
+  area: 5,
+  creatorName: 5,
+  programName: 5,
+  episodeTitle: 3,
+  address: 2,
+  sourceTitle: 1,
+  description: 1,
+}
+
+// description/sourceTitle/address/episodeTitle 단독 매칭만으로는 결과 노출 금지.
+// row 안에서 최소 1개 토큰이 아래 핵심 필드에 매칭되어야 한다.
+const CORE_FIELDS: ReadonlySet<SearchableField> = new Set([
+  'name',
+  'category',
+  'mainMenu',
+  'area',
+  'creatorName',
+  'programName',
+])
+
+const SEARCHABLE_FIELDS = Object.keys(FIELD_WEIGHTS) as SearchableField[]
+
+function normalize(value: string | undefined | null): string {
+  return (value ?? '').toString().toLowerCase().normalize('NFC')
+}
+
+function expandToken(token: string): string[] {
+  return SYNONYMS[token] ?? [token]
+}
+
 function searchRestaurants(query: string, restaurants: Restaurant[]): Restaurant[] {
-  const q = query.trim().toLowerCase()
+  const q = query.trim().toLowerCase().normalize('NFC')
   if (!q) return []
 
-  const tokens = q.split(/\s+/)
+  const tokens = q.split(/\s+/).filter(Boolean)
+  if (tokens.length === 0) return []
 
-  return restaurants.filter((r) => {
-    const haystack = [
-      r.name,
-      r.area,
-      r.category,
-      r.mainMenu,
-      r.address,
-      r.creatorName ?? '',
-      r.programName ?? '',
-      r.episodeTitle ?? '',
-      r.description ?? '',
-      r.sourceTitle,
-    ]
-      .join(' ')
-      .toLowerCase()
+  type Scored = { restaurant: Restaurant; score: number; index: number }
 
-    return tokens.every((token) => haystack.includes(token))
+  const scored: Scored[] = []
+
+  restaurants.forEach((r, index) => {
+    const fieldValues: Record<SearchableField, string> = {
+      name: normalize(r.name),
+      mainMenu: normalize(r.mainMenu),
+      category: normalize(r.category),
+      area: normalize(r.area),
+      creatorName: normalize(r.creatorName),
+      programName: normalize(r.programName),
+      episodeTitle: normalize(r.episodeTitle),
+      address: normalize(r.address),
+      sourceTitle: normalize(r.sourceTitle),
+      description: normalize(r.description),
+    }
+
+    let totalScore = 0
+    let coreFieldMatched = false
+    let allTokensMatched = true
+
+    for (const token of tokens) {
+      const variants = expandToken(token)
+      let bestScore = 0
+      let bestField: SearchableField | null = null
+
+      for (const field of SEARCHABLE_FIELDS) {
+        const value = fieldValues[field]
+        if (!value) continue
+        const hit = variants.some((v) => value.includes(v))
+        if (!hit) continue
+        const weight = FIELD_WEIGHTS[field]
+        if (weight > bestScore) {
+          bestScore = weight
+          bestField = field
+        }
+      }
+
+      if (bestScore === 0) {
+        allTokensMatched = false
+        break
+      }
+
+      totalScore += bestScore
+      if (bestField && CORE_FIELDS.has(bestField)) {
+        coreFieldMatched = true
+      }
+    }
+
+    // 모든 토큰이 어딘가에 매칭되어야 하고(AND),
+    // row 단위로 최소 1개 토큰은 핵심 필드에 매칭되어야 함(noise 차단).
+    // 모든 core 필드 가중치(5+)는 모든 non-core 가중치(3 이하)보다 높으므로,
+    // 토큰의 best field가 non-core라는 것은 그 토큰이 core 필드에서는 매칭되지 않았다는 뜻이다.
+    if (!allTokensMatched) return
+    if (!coreFieldMatched) return
+
+    scored.push({ restaurant: r, score: totalScore, index })
   })
+
+  // 점수 desc, 동률은 원본 index asc (broadcastDate desc 정렬을 안정적으로 유지).
+  scored.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score
+    return a.index - b.index
+  })
+
+  return scored.map((s) => s.restaurant)
 }
 
 type Props = {
