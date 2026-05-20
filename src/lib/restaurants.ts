@@ -11,6 +11,10 @@ import type { RestaurantRow } from '@/types/supabase'
 import type { Restaurant } from '@/types/restaurant'
 import { mockRestaurants } from '@/data/mock-restaurants'
 import { isSupabaseConfigured, getSupabaseClient } from '@/lib/supabase'
+import {
+  getProgramSlugFromName,
+  getProgramNameFromSlug,
+} from '@/lib/programs'
 
 // ─────────────────────────────────────────────
 // 정렬 정책 (전역 안정 정렬)
@@ -177,4 +181,72 @@ export async function getRestaurantSlugs(): Promise<string[]> {
   } catch {
     return sortRestaurants(mockRestaurants.filter((r) => r.isPublished)).map((r) => r.slug)
   }
+}
+
+// ─────────────────────────────────────────────
+// program landing — slug 목록
+// ─────────────────────────────────────────────
+
+/**
+ * 공개된 맛집 전체에서 등장하는 program slug 목록 반환.
+ *
+ * 각 row의 sourceTitle / programName / creatorName 중 매핑 가능한 값을
+ * 영어 slug로 변환한 뒤 중복 제거. PROGRAM_NAMES에 없는 raw 값은 제외된다.
+ * /program/[slug] 의 generateStaticParams 와 sitemap에서 사용.
+ *
+ * getRestaurants() 를 그대로 활용하므로 Supabase/mock fallback 동작도 자동 승계.
+ */
+export async function getProgramSlugs(): Promise<string[]> {
+  const restaurants = await getRestaurants()
+  const slugSet = new Set<string>()
+
+  for (const r of restaurants) {
+    const candidates: Array<string | undefined> = [
+      r.sourceTitle,
+      r.programName,
+      r.creatorName,
+    ]
+    for (const candidate of candidates) {
+      const slug = getProgramSlugFromName(candidate)
+      if (slug) slugSet.add(slug)
+    }
+  }
+
+  return Array.from(slugSet).sort()
+}
+
+// ─────────────────────────────────────────────
+// program landing — slug 기반 맛집 조회
+// ─────────────────────────────────────────────
+
+/**
+ * 주어진 program slug에 매칭되는 공개 맛집 목록 반환.
+ *
+ * 매칭 규칙: row 의 sourceTitle / programName / creatorName 중 하나라도
+ * 정규화 후 해당 slug에 매핑되면 포함.
+ *
+ * 정렬은 getRestaurants() 에서 이미 broadcast_date desc 정책이 적용되어 있으므로
+ * filter 가 정렬을 흐트러뜨리지 않는다.
+ *
+ * PROGRAM_NAMES 에 없는 slug → { name: null, restaurants: [] }.
+ * 매칭 결과가 비어 있어도 name 은 유지되며 (landing page 가 notFound 처리).
+ */
+export async function getRestaurantsByProgramSlug(
+  slug: string,
+): Promise<{ name: string | null; restaurants: Restaurant[] }> {
+  const name = getProgramNameFromSlug(slug)
+  if (!name) return { name: null, restaurants: [] }
+
+  const all = await getRestaurants()
+  const matched = all.filter((r) => {
+    const fromSource = getProgramSlugFromName(r.sourceTitle)
+    if (fromSource === slug) return true
+    const fromProgram = getProgramSlugFromName(r.programName)
+    if (fromProgram === slug) return true
+    const fromCreator = getProgramSlugFromName(r.creatorName)
+    if (fromCreator === slug) return true
+    return false
+  })
+
+  return { name, restaurants: matched }
 }
