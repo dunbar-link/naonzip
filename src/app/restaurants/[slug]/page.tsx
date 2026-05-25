@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getRestaurantBySlug, getRestaurantSlugs } from '@/lib/restaurants'
+import { getProgramSlugFromName } from '@/lib/programs'
 import type { Restaurant } from '@/types/restaurant'
 import ShareButtons from '@/components/restaurant/ShareButtons'
 import SaveButton from '@/components/restaurant/SaveButton'
@@ -184,6 +185,11 @@ export default async function RestaurantDetailPage({ params }: Props) {
 
   const pageUrl = `${SITE_URL}/restaurants/${restaurant.slug}`
   const jsonLd = buildRestaurantJsonLd(restaurant)
+  const programSlug =
+    getProgramSlugFromName(restaurant.creatorName) ??
+    getProgramSlugFromName(restaurant.programName) ??
+    getProgramSlugFromName(restaurant.sourceTitle)
+  const programHref = programSlug ? `/program/${programSlug}` : null
 
   return (
     <main className="pt-14 pb-24">
@@ -207,9 +213,15 @@ export default async function RestaurantDetailPage({ params }: Props) {
             <h1 className="text-xl font-bold text-gray-900 mt-0.5">{restaurant.name}</h1>
             <p className="text-sm text-gray-500 mt-1">{restaurant.mainMenu}</p>
           </div>
-          <span className={`flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full ${getContentBadgeColor(restaurant.sourceType)}`}>
-            {getContentLabel(restaurant)}
-          </span>
+          {programHref ? (
+            <Link href={programHref} className={`flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full hover:opacity-75 transition-opacity ${getContentBadgeColor(restaurant.sourceType)}`}>
+              {getContentLabel(restaurant)}
+            </Link>
+          ) : (
+            <span className={`flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full ${getContentBadgeColor(restaurant.sourceType)}`}>
+              {getContentLabel(restaurant)}
+            </span>
+          )}
         </div>
 
         <div className="mt-3">
@@ -233,7 +245,13 @@ export default async function RestaurantDetailPage({ params }: Props) {
           </span>
           <div className="min-w-0">
             <p className="text-base font-bold text-gray-900 truncate">
-              {restaurant.creatorName ?? restaurant.programName ?? restaurant.sourceTitle}
+              {programHref ? (
+                <Link href={programHref} className="hover:underline">
+                  {restaurant.creatorName ?? restaurant.programName ?? restaurant.sourceTitle}
+                </Link>
+              ) : (
+                restaurant.creatorName ?? restaurant.programName ?? restaurant.sourceTitle
+              )}
             </p>
             {restaurant.creatorName && restaurant.programName && (
               <p className="text-xs text-gray-500 mt-0.5">{restaurant.programName}</p>

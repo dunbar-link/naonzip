@@ -1,8 +1,10 @@
 'use client'
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Restaurant } from '@/types/restaurant'
 import SaveButton from '@/components/restaurant/SaveButton'
+import { getProgramSlugFromName } from '@/lib/programs'
 
 function getContentLabel(r: Restaurant): string {
   return r.creatorName ?? r.programName ?? r.sourceTitle
@@ -27,9 +29,15 @@ type Props = {
 }
 
 export default function RestaurantCard({ restaurant, variant = 'vertical' }: Props) {
+  const router = useRouter()
   const label = getContentLabel(restaurant)
   const badgeColor = getContentBadgeColor(restaurant)
   const dateText = formatBroadcastDate(restaurant.broadcastDate ?? restaurant.appearedAt)
+  const programSlug =
+    getProgramSlugFromName(restaurant.creatorName) ??
+    getProgramSlugFromName(restaurant.programName) ??
+    getProgramSlugFromName(restaurant.sourceTitle)
+  const programHref = programSlug ? `/program/${programSlug}` : null
 
   if (variant === 'horizontal') {
     return (
@@ -45,7 +53,10 @@ export default function RestaurantCard({ restaurant, variant = 'vertical' }: Pro
             <p className="text-xs font-medium text-gray-400 truncate">{restaurant.area}</p>
             <p className="text-sm font-bold text-gray-900 mt-0.5 truncate">{restaurant.name}</p>
             <p className="text-xs text-gray-500 mt-0.5 truncate">{restaurant.mainMenu}</p>
-            <span className={`inline-block mt-2 text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeColor}`}>
+            <span
+              className={`inline-block mt-2 text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeColor}${programHref ? ' cursor-pointer hover:opacity-75' : ''}`}
+              onClick={programHref ? (e) => { e.stopPropagation(); router.push(programHref) } : undefined}
+            >
               {label}
             </span>
           </div>
@@ -69,7 +80,10 @@ export default function RestaurantCard({ restaurant, variant = 'vertical' }: Pro
             </div>
             <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
               <SaveButton id={restaurant.id} size="sm" />
-              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeColor}`}>
+              <span
+                className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeColor}${programHref ? ' cursor-pointer hover:opacity-75' : ''}`}
+                onClick={programHref ? (e) => { e.stopPropagation(); router.push(programHref) } : undefined}
+              >
                 {label}
               </span>
             </div>
