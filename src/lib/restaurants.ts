@@ -304,3 +304,116 @@ export async function getRestaurantsByAreaSlug(
 
   return { name: areaName, restaurants: matched }
 }
+
+// ─────────────────────────────────────────────
+// creator landing — slug 목록
+// ─────────────────────────────────────────────
+
+/**
+ * 공개된 맛집 중 sourceType==='youtube' 이고 creatorName이 있는 레코드를
+ * 대상으로 한 creator slug 목록.
+ *
+ * slug 은 기존 PROGRAM_SLUGS 매핑(getProgramSlugFromName)을 그대로 재사용한다.
+ * PROGRAM_NAMES에 없는 creatorName은 자동 제외.
+ *
+ * /creator/[slug] 의 generateStaticParams 와 sitemap에서 사용.
+ */
+export async function getCreatorSlugs(): Promise<string[]> {
+  const restaurants = await getRestaurants()
+  const slugSet = new Set<string>()
+
+  for (const r of restaurants) {
+    if (r.sourceType !== 'youtube') continue
+    if (!r.creatorName) continue
+    const slug = getProgramSlugFromName(r.creatorName)
+    if (slug) slugSet.add(slug)
+  }
+
+  return Array.from(slugSet).sort()
+}
+
+// ─────────────────────────────────────────────
+// creator landing — slug 기반 맛집 조회
+// ─────────────────────────────────────────────
+
+/**
+ * 주어진 creator slug에 매칭되는 공개 유튜브 맛집 목록 반환.
+ *
+ * - 필터: sourceType==='youtube' && getProgramSlugFromName(creatorName) === slug
+ * - 표시명: getProgramNameFromSlug(slug)를 우선 사용,
+ *   매칭이 없으면 첫 매칭 레코드의 creatorName fallback.
+ * - 매칭 0건 → { name: null, restaurants: [] } (landing page가 notFound 처리)
+ *
+ * 정렬은 getRestaurants() 의 broadcast_date desc 정책 그대로 승계.
+ */
+export async function getRestaurantsByCreatorSlug(
+  slug: string,
+): Promise<{ name: string | null; restaurants: Restaurant[] }> {
+  const all = await getRestaurants()
+  const matched = all.filter(
+    (r) =>
+      r.sourceType === 'youtube' &&
+      r.creatorName &&
+      getProgramSlugFromName(r.creatorName) === slug,
+  )
+
+  if (matched.length === 0) return { name: null, restaurants: [] }
+
+  const name =
+    getProgramNameFromSlug(slug) ?? matched[0].creatorName ?? null
+
+  return { name, restaurants: matched }
+}
+
+// ─────────────────────────────────────────────
+// 관련 맛집 추천
+// ─────────────────────────────────────────────
+
+/**
+ * 현재 식당과 관련된 맛집을 점수 기반으로 추천한다.
+ * - 같은 area +5, 같은 program +4, 같은 category +3
+ * - 자기 자신 제외, score 0 제외
+ * - score desc → broadcastDate desc 정렬
+ */
+export async function getRelatedRestaurants(
+  current: Restaurant,
+  limit = 6,
+): Promise<Restaurant[]> {
+  const all = await getRestaurants()
+
+  const currentProgramSlug =
+    getProgramSlugFromName(current.creatorName) ??
+    getProgramSlugFromName(current.programName) ??
+    getProgramSlugFromName(current.sourceTitle)
+
+  type Scored = { restaurant: Restaurant; score: number }
+  const scored: Scored[] = []
+
+  for (const r of all) {
+    if (r.id === current.id) continue
+
+    let score = 0
+    if (r.area === current.area) score += 5
+
+    const rProgramSlug =
+      getProgramSlugFromName(r.creatorName) ??
+      getProgramSlugFromName(r.programName) ??
+      getProgramSlugFromName(r.sourceTitle)
+    if (currentProgramSlug && rProgramSlug && currentProgramSlug === rProgramSlug) score += 4
+
+    if (r.category === current.category) score += 3
+
+    if (score > 0) scored.push({ restaurant: r, score })
+  }
+
+  scored.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score
+    const aDate = a.restaurant.broadcastDate ?? ''
+    const bDate = b.restaurant.broadcastDate ?? ''
+    if (aDate && !bDate) return -1
+    if (!aDate && bDate) return 1
+    return bDate.localeCompare(aDate)
+  })
+
+  return scored.slice(0, limit).map((s) => s.restaurant)
+}

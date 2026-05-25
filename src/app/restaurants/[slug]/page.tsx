@@ -1,12 +1,13 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { getRestaurantBySlug, getRestaurantSlugs } from '@/lib/restaurants'
+import { getRestaurantBySlug, getRestaurantSlugs, getRelatedRestaurants } from '@/lib/restaurants'
 import { getProgramSlugFromName } from '@/lib/programs'
 import { getAreaSlugFromName } from '@/lib/areas'
 import type { Restaurant } from '@/types/restaurant'
 import ShareButtons from '@/components/restaurant/ShareButtons'
 import SaveButton from '@/components/restaurant/SaveButton'
+import RestaurantCard from '@/components/restaurant/RestaurantCard'
 
 const SITE_URL = 'https://naonzip.vercel.app'
 
@@ -212,13 +213,24 @@ export default async function RestaurantDetailPage({ params }: Props) {
 
   if (!restaurant) notFound()
 
+  const related = await getRelatedRestaurants(restaurant)
+
   const pageUrl = `${SITE_URL}/restaurants/${restaurant.slug}`
   const jsonLd = buildRestaurantJsonLd(restaurant)
+  const isYoutubeCreator =
+    restaurant.sourceType === 'youtube' && !!restaurant.creatorName
+  const creatorSlug = isYoutubeCreator
+    ? getProgramSlugFromName(restaurant.creatorName)
+    : null
   const programSlug =
     getProgramSlugFromName(restaurant.creatorName) ??
     getProgramSlugFromName(restaurant.programName) ??
     getProgramSlugFromName(restaurant.sourceTitle)
-  const programHref = programSlug ? `/program/${programSlug}` : null
+  const programHref = creatorSlug
+    ? `/creator/${creatorSlug}`
+    : programSlug
+      ? `/program/${programSlug}`
+      : null
   const areaSlug = getAreaSlugFromName(restaurant.area)
   const areaHref = areaSlug ? `/area/${areaSlug}` : null
 
@@ -401,6 +413,21 @@ export default async function RestaurantDetailPage({ params }: Props) {
           pageUrl,
         }}
       />
+
+      {/* 관련 맛집 */}
+      {related.length > 0 && (
+        <>
+          <div className="h-2 bg-gray-50" />
+          <section className="px-4 py-5 bg-white">
+            <h2 className="text-sm font-bold text-gray-900 mb-3">이런 맛집도 있어요</h2>
+            <div className="flex flex-col gap-3">
+              {related.map((r) => (
+                <RestaurantCard key={r.id} restaurant={r} variant="vertical" />
+              ))}
+            </div>
+          </section>
+        </>
+      )}
 
       {/* 뒤로가기 */}
       <div className="px-4 mt-2 mb-4">

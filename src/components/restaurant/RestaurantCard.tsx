@@ -34,11 +34,20 @@ export default function RestaurantCard({ restaurant, variant = 'vertical' }: Pro
   const label = getContentLabel(restaurant)
   const badgeColor = getContentBadgeColor(restaurant)
   const dateText = formatBroadcastDate(restaurant.broadcastDate ?? restaurant.appearedAt)
+  const isYoutubeCreator =
+    restaurant.sourceType === 'youtube' && !!restaurant.creatorName
+  const creatorSlug = isYoutubeCreator
+    ? getProgramSlugFromName(restaurant.creatorName)
+    : null
   const programSlug =
     getProgramSlugFromName(restaurant.creatorName) ??
     getProgramSlugFromName(restaurant.programName) ??
     getProgramSlugFromName(restaurant.sourceTitle)
-  const programHref = programSlug ? `/program/${programSlug}` : null
+  const programHref = creatorSlug
+    ? `/creator/${creatorSlug}`
+    : programSlug
+      ? `/program/${programSlug}`
+      : null
   const areaSlug = getAreaSlugFromName(restaurant.area)
   const areaHref = areaSlug ? `/area/${areaSlug}` : null
 

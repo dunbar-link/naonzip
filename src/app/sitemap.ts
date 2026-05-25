@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { getRestaurantSlugs, getProgramSlugs, getAreaSlugs } from '@/lib/restaurants'
+import { getRestaurantSlugs, getProgramSlugs, getAreaSlugs, getCreatorSlugs } from '@/lib/restaurants'
 
 export const revalidate = 3600
 
@@ -16,10 +16,11 @@ const BASE_URL = 'https://naonzip.vercel.app'
  * mock 데이터로 자동 fallback.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [slugs, programSlugs, areaSlugs] = await Promise.all([
+  const [slugs, programSlugs, areaSlugs, creatorSlugs] = await Promise.all([
     getRestaurantSlugs(),
     getProgramSlugs(),
     getAreaSlugs(),
+    getCreatorSlugs(),
   ])
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -70,5 +71,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
-  return [...staticRoutes, ...restaurantRoutes, ...programRoutes, ...areaRoutes]
+  const creatorRoutes: MetadataRoute.Sitemap = creatorSlugs.map((slug) => ({
+    url: `${BASE_URL}/creator/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }))
+
+  return [
+    ...staticRoutes,
+    ...restaurantRoutes,
+    ...programRoutes,
+    ...areaRoutes,
+    ...creatorRoutes,
+  ]
 }
