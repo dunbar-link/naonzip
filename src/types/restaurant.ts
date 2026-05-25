@@ -6,6 +6,9 @@ export type AreaType =
   | '기장'
   | '동래'
   | '사상'
+  | '영도'
+  | '남구'
+  | '연제'
   | '기타'
 
 export type SourceType = 'youtube' | 'tv' | 'sns'

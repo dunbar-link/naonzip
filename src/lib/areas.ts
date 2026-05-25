@@ -23,6 +23,9 @@ export const AREA_SLUGS: Record<AreaType, string> = {
   '기장': 'gijang',
   '동래': 'dongrae',
   '사상': 'sasang',
+  '영도': 'yeongdo',
+  '남구': 'namgu',
+  '연제': 'yeonje',
   '기타': 'etc',
 }
 
@@ -38,6 +41,9 @@ export const AREA_NAMES: Record<string, AreaType> = {
   'gijang': '기장',
   'dongrae': '동래',
   'sasang': '사상',
+  'yeongdo': '영도',
+  'namgu': '남구',
+  'yeonje': '연제',
   'etc': '기타',
 }
 
