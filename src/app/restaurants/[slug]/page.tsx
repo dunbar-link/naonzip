@@ -247,7 +247,7 @@ export default async function RestaurantDetailPage({ params }: Props) {
             <>
               <li aria-hidden="true">/</li>
               <li>
-                <Link href={programHref} className="hover:text-gray-600 max-w-[80px] truncate inline-block align-bottom">
+                <Link href={programHref} className="hover:text-gray-600 max-w-[120px] truncate inline-block align-bottom">
                   {restaurant.creatorName ?? restaurant.programName ?? restaurant.sourceTitle}
                 </Link>
               </li>
