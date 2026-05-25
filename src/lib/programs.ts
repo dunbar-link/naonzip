@@ -44,10 +44,12 @@ const RAW_PROGRAM_SLUGS: Record<string, string> = {
   '성시경의 먹을텐데': 'sungsik',
   '성시경 먹을텐데': 'sungsik',
   '먹을텐데': 'sungsik',
+  '성시경': 'sungsik',
 
   // 풍자 또간집 (유튜브)
   '또간집': 'ddoganjip',
   '풍자 또간집': 'ddoganjip',
+  '풍자': 'ddoganjip',
 
   // 전현무계획 (예능)
   '전현무계획': 'jeonhyun-plan',
