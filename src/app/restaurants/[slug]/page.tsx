@@ -215,6 +215,14 @@ export default async function RestaurantDetailPage({ params }: Props) {
 
   const related = await getRelatedRestaurants(restaurant)
 
+  const reportFormUrl = (() => {
+    const tpl = process.env.NEXT_PUBLIC_REPORT_FORM_URL
+    if (!tpl) return null
+    return tpl.includes('{slug}')
+      ? tpl.replace('{slug}', encodeURIComponent(restaurant.slug))
+      : tpl
+  })()
+
   const pageUrl = `${SITE_URL}/restaurants/${restaurant.slug}`
   const jsonLd = buildRestaurantJsonLd(restaurant)
   const isYoutubeCreator =
@@ -427,6 +435,20 @@ export default async function RestaurantDetailPage({ params }: Props) {
             </div>
           </section>
         </>
+      )}
+
+      {/* 정보 수정 제보 */}
+      {reportFormUrl && (
+        <div className="px-4 mt-4 text-center">
+          <a
+            href={reportFormUrl}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            className="text-xs text-gray-400 underline underline-offset-2 hover:text-gray-600"
+          >
+            정보가 다르다면 알려주세요
+          </a>
+        </div>
       )}
 
       {/* 뒤로가기 */}
