@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 import { Restaurant } from '@/types/restaurant'
 import RestaurantCard from '@/components/restaurant/RestaurantCard'
 
@@ -24,6 +25,9 @@ const SYNONYMS: Record<string, string[]> = {
   '분식': ['분식', '떡볶이', '김밥', '순대'],
   '갈비집': ['갈비', '돼지갈비', '소갈비'],
   '카페': ['카페', '커피', '디저트'],
+  '센텀': ['해운대', '센텀'],
+  '남포': ['남포동'],
+  '곱창전골': ['곱창', '양곱창'],
 }
 
 type SearchableField =
@@ -273,7 +277,7 @@ export default function SearchClient({ restaurants }: Props) {
                   &ldquo;{query.trim()}&rdquo; 결과가 없어요
                 </p>
                 <p className="text-sm text-gray-400 mt-1">
-                  다른 키워드로 검색해보세요
+                  아직 등록 안 된 식당이거나 다른 키워드를 써보세요
                 </p>
               </div>
               <div className="flex flex-wrap justify-center gap-2 mt-2">
@@ -286,6 +290,47 @@ export default function SearchClient({ restaurants }: Props) {
                     {q}
                   </button>
                 ))}
+              </div>
+
+              <div className="w-full mt-2 px-2">
+                <p className="text-xs font-semibold text-gray-500 mb-2">지역으로 찾기</p>
+                <div className="flex flex-wrap gap-2">
+                  {([
+                    { label: '해운대', href: '/area/haeundae' },
+                    { label: '서면', href: '/area/seomyeon' },
+                    { label: '광안리', href: '/area/gwangalli' },
+                    { label: '남포동', href: '/area/nampodong' },
+                    { label: '기장', href: '/area/gijang' },
+                  ] as const).map(({ label, href }) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      className="text-xs px-3 py-1.5 rounded-full border border-blue-100 text-blue-600 bg-blue-50 active:bg-blue-100 transition-colors"
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="w-full px-2">
+                <p className="text-xs font-semibold text-gray-500 mb-2">방송으로 찾기</p>
+                <div className="flex flex-wrap gap-2">
+                  {([
+                    { label: '생활의달인', href: '/program/lifemaster' },
+                    { label: '히밥', href: '/program/hibab' },
+                    { label: '쯔양', href: '/program/tzuyang' },
+                    { label: '성시경 먹을텐데', href: '/program/sungsik' },
+                  ] as const).map(({ label, href }) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      className="text-xs px-3 py-1.5 rounded-full border border-orange-200 text-orange-600 bg-orange-50 active:bg-orange-100 transition-colors"
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           )}
