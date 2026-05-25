@@ -41,10 +41,11 @@ export default function HomeClient({ restaurants }: Props) {
           <h2 className="text-base font-bold text-gray-900">최근 방송 나온집</h2>
           <span className="text-xs text-gray-400">가로 스크롤</span>
         </div>
-        <div className="flex gap-3 overflow-x-auto scrollbar-hide px-4 pb-2">
+        <div className="flex flex-nowrap gap-3 overflow-x-auto overflow-y-hidden scrollbar-hide pl-4 pb-2 [-webkit-overflow-scrolling:touch] [touch-action:pan-x]">
           {recentRestaurants.map((r) => (
             <RestaurantCard key={r.id} restaurant={r} variant="horizontal" />
           ))}
+          <div aria-hidden className="shrink-0 w-4" />
         </div>
       </section>
 
