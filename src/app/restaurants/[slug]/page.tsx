@@ -3,6 +3,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getRestaurantBySlug, getRestaurantSlugs } from '@/lib/restaurants'
 import { getProgramSlugFromName } from '@/lib/programs'
+import { getAreaSlugFromName } from '@/lib/areas'
 import type { Restaurant } from '@/types/restaurant'
 import ShareButtons from '@/components/restaurant/ShareButtons'
 import SaveButton from '@/components/restaurant/SaveButton'
@@ -131,6 +132,34 @@ function buildRestaurantJsonLd(r: Restaurant): Record<string, unknown> {
 }
 
 // ─────────────────────────────────────────────
+// BreadcrumbList JSON-LD
+// ─────────────────────────────────────────────
+
+function buildBreadcrumbJsonLd(
+  r: Restaurant,
+  areaHref: string | null,
+  programHref: string | null,
+): Record<string, unknown> {
+  const items: Array<Record<string, unknown>> = [
+    { '@type': 'ListItem', position: 1, name: '부산 방송맛집', item: SITE_URL },
+  ]
+  let pos = 2
+  if (areaHref) {
+    items.push({ '@type': 'ListItem', position: pos++, name: r.area, item: `${SITE_URL}${areaHref}` })
+  }
+  if (programHref) {
+    const progName = r.creatorName ?? r.programName ?? r.sourceTitle
+    items.push({ '@type': 'ListItem', position: pos++, name: progName, item: `${SITE_URL}${programHref}` })
+  }
+  items.push({ '@type': 'ListItem', position: pos, name: r.name })
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items,
+  }
+}
+
+// ─────────────────────────────────────────────
 // generateMetadata
 // ─────────────────────────────────────────────
 
@@ -190,6 +219,8 @@ export default async function RestaurantDetailPage({ params }: Props) {
     getProgramSlugFromName(restaurant.programName) ??
     getProgramSlugFromName(restaurant.sourceTitle)
   const programHref = programSlug ? `/program/${programSlug}` : null
+  const areaSlug = getAreaSlugFromName(restaurant.area)
+  const areaHref = areaSlug ? `/area/${areaSlug}` : null
 
   return (
     <main className="pt-14 pb-24">
@@ -197,6 +228,36 @@ export default async function RestaurantDetailPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBreadcrumbJsonLd(restaurant, areaHref, programHref)) }}
+      />
+
+      {/* Breadcrumb */}
+      <nav aria-label="breadcrumb" className="px-4 py-2 bg-white border-b border-gray-50">
+        <ol className="flex items-center gap-1 text-xs text-gray-400 flex-wrap">
+          <li><Link href="/" className="hover:text-gray-600">부산</Link></li>
+          <li aria-hidden="true">/</li>
+          {areaHref ? (
+            <li><Link href={areaHref} className="hover:text-gray-600">{restaurant.area}</Link></li>
+          ) : (
+            <li>{restaurant.area}</li>
+          )}
+          {programHref && (
+            <>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href={programHref} className="hover:text-gray-600 max-w-[80px] truncate inline-block align-bottom">
+                  {restaurant.creatorName ?? restaurant.programName ?? restaurant.sourceTitle}
+                </Link>
+              </li>
+            </>
+          )}
+          <li aria-hidden="true">/</li>
+          <li className="text-gray-600 max-w-[120px] truncate">{restaurant.name}</li>
+        </ol>
+      </nav>
+
       {/* 상단 이미지 영역 */}
       <div className="relative h-52 bg-gradient-to-br from-orange-50 to-amber-100 flex items-center justify-center">
         <span className="text-7xl">{getCategoryEmoji(restaurant.category)}</span>
@@ -209,7 +270,13 @@ export default async function RestaurantDetailPage({ params }: Props) {
       <section className="px-4 py-5 bg-white">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <span className="text-xs text-gray-400 font-medium">{restaurant.area}</span>
+            {areaHref ? (
+              <Link href={areaHref} className="text-xs text-gray-400 font-medium hover:text-gray-600">
+                {restaurant.area}
+              </Link>
+            ) : (
+              <span className="text-xs text-gray-400 font-medium">{restaurant.area}</span>
+            )}
             <h1 className="text-xl font-bold text-gray-900 mt-0.5">{restaurant.name}</h1>
             <p className="text-sm text-gray-500 mt-1">{restaurant.mainMenu}</p>
           </div>

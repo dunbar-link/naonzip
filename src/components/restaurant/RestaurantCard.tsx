@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Restaurant } from '@/types/restaurant'
 import SaveButton from '@/components/restaurant/SaveButton'
 import { getProgramSlugFromName } from '@/lib/programs'
+import { getAreaSlugFromName } from '@/lib/areas'
 
 function getContentLabel(r: Restaurant): string {
   return r.creatorName ?? r.programName ?? r.sourceTitle
@@ -38,6 +39,8 @@ export default function RestaurantCard({ restaurant, variant = 'vertical' }: Pro
     getProgramSlugFromName(restaurant.programName) ??
     getProgramSlugFromName(restaurant.sourceTitle)
   const programHref = programSlug ? `/program/${programSlug}` : null
+  const areaSlug = getAreaSlugFromName(restaurant.area)
+  const areaHref = areaSlug ? `/area/${areaSlug}` : null
 
   if (variant === 'horizontal') {
     return (
@@ -50,7 +53,12 @@ export default function RestaurantCard({ restaurant, variant = 'vertical' }: Pro
             </div>
           </div>
           <div className="p-3">
-            <p className="text-xs font-medium text-gray-400 truncate">{restaurant.area}</p>
+            <p
+              className={`text-xs font-medium text-gray-400 truncate${areaHref ? ' cursor-pointer hover:text-gray-600' : ''}`}
+              onClick={areaHref ? (e) => { e.stopPropagation(); router.push(areaHref) } : undefined}
+            >
+              {restaurant.area}
+            </p>
             <p className="text-sm font-bold text-gray-900 mt-0.5 truncate">{restaurant.name}</p>
             <p className="text-xs text-gray-500 mt-0.5 truncate">{restaurant.mainMenu}</p>
             <span
@@ -74,7 +82,12 @@ export default function RestaurantCard({ restaurant, variant = 'vertical' }: Pro
         <div className="p-4 flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0">
-              <p className="text-xs text-gray-400 font-medium">{restaurant.area}</p>
+              <p
+                className={`text-xs text-gray-400 font-medium${areaHref ? ' cursor-pointer hover:text-gray-600' : ''}`}
+                onClick={areaHref ? (e) => { e.stopPropagation(); router.push(areaHref) } : undefined}
+              >
+                {restaurant.area}
+              </p>
               <p className="font-bold text-gray-900 mt-0.5 truncate">{restaurant.name}</p>
               <p className="text-sm text-gray-500 mt-0.5">{restaurant.mainMenu}</p>
             </div>
