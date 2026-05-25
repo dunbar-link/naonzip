@@ -377,6 +377,17 @@ export default async function RestaurantDetailPage({ params }: Props) {
               </a>
             </div>
           )}
+          {programHref && (
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-gray-400 w-16 flex-shrink-0">더 보기</span>
+              <Link
+                href={programHref}
+                className="text-sm text-orange-500 font-semibold underline underline-offset-2"
+              >
+                {getContentLabel(restaurant)} 맛집 더 보기 →
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 
@@ -396,6 +407,17 @@ export default async function RestaurantDetailPage({ params }: Props) {
               <a href={`tel:${restaurant.phone}`} className="text-sm text-blue-600">
                 {restaurant.phone}
               </a>
+            </div>
+          )}
+          {areaHref && (
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-gray-400 w-16 flex-shrink-0">더 보기</span>
+              <Link
+                href={areaHref}
+                className="text-sm text-orange-500 font-semibold underline underline-offset-2"
+              >
+                부산 {restaurant.area} 맛집 더 보기 →
+              </Link>
             </div>
           )}
         </div>
