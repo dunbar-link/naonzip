@@ -15,6 +15,10 @@ import {
   getProgramSlugFromName,
   getProgramNameFromSlug,
 } from '@/lib/programs'
+import {
+  getAreaSlugFromName,
+  getAreaNameFromSlug,
+} from '@/lib/areas'
 
 // ─────────────────────────────────────────────
 // 정렬 정책 (전역 안정 정렬)
@@ -249,4 +253,54 @@ export async function getRestaurantsByProgramSlug(
   })
 
   return { name, restaurants: matched }
+}
+
+// ─────────────────────────────────────────────
+// area landing — slug 목록
+// ─────────────────────────────────────────────
+
+/**
+ * 공개된 맛집 전체에서 등장하는 area slug 목록 반환.
+ * "기타"(etc)는 제외. 3건 미만 area도 제외.
+ * /area/[slug] 의 generateStaticParams 와 sitemap에서 사용.
+ */
+export async function getAreaSlugs(): Promise<string[]> {
+  const restaurants = await getRestaurants()
+  const countMap = new Map<string, number>()
+
+  for (const r of restaurants) {
+    const slug = getAreaSlugFromName(r.area)
+    if (!slug) continue
+    countMap.set(slug, (countMap.get(slug) ?? 0) + 1)
+  }
+
+  return Array.from(countMap.entries())
+    .filter(([, count]) => count >= 3)
+    .map(([slug]) => slug)
+    .sort()
+}
+
+// ─────────────────────────────────────────────
+// area landing — slug 기반 맛집 조회
+// ─────────────────────────────────────────────
+
+/**
+ * 주어진 area slug에 매칭되는 공개 맛집 목록 반환.
+ *
+ * - "etc" 및 매핑 없는 slug → { name: null, restaurants: [] }
+ * - 결과 3건 미만 → { name: null, restaurants: [] } (notFound 처리)
+ * - 정렬은 getRestaurants() broadcast_date desc 정책 승계.
+ */
+export async function getRestaurantsByAreaSlug(
+  slug: string,
+): Promise<{ name: string | null; restaurants: Restaurant[] }> {
+  const areaName = getAreaNameFromSlug(slug)
+  if (!areaName) return { name: null, restaurants: [] }
+
+  const all = await getRestaurants()
+  const matched = all.filter((r) => r.area === areaName)
+
+  if (matched.length < 3) return { name: null, restaurants: [] }
+
+  return { name: areaName, restaurants: matched }
 }
