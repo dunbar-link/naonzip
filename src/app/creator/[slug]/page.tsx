@@ -5,6 +5,7 @@ import {
   getCreatorSlugs,
   getRestaurantsByCreatorSlug,
 } from '@/lib/restaurants'
+import { getIntro } from '@/lib/intros'
 import RestaurantCard from '@/components/restaurant/RestaurantCard'
 
 const SITE_URL = 'https://naonzip.vercel.app'
@@ -84,9 +85,13 @@ export default async function CreatorLandingPage({ params }: Props) {
         <p className="mt-2 text-sm text-gray-500">
           부산 맛집 {restaurants.length}곳
         </p>
-        <p className="mt-3 text-sm text-gray-600 leading-relaxed">
-          유튜버 {name}이 소개한 부산 맛집을 한 곳에 모았어요. 최신 영상순으로 정렬됩니다.
-        </p>
+        <div className="mt-3 space-y-2">
+          {getIntro('creator', slug, name).paragraphs.map((p, i) => (
+            <p key={i} className="text-sm text-gray-600 leading-relaxed">
+              {p}
+            </p>
+          ))}
+        </div>
       </section>
 
       <div className="h-2 bg-gray-50" />
