@@ -5,6 +5,7 @@ import {
   getProgramSlugs,
   getRestaurantsByProgramSlug,
 } from '@/lib/restaurants'
+import { getIntro } from '@/lib/intros'
 import RestaurantCard from '@/components/restaurant/RestaurantCard'
 
 const SITE_URL = 'https://naonzip.vercel.app'
@@ -84,9 +85,13 @@ export default async function ProgramLandingPage({ params }: Props) {
         <p className="mt-2 text-sm text-gray-500">
           부산 맛집 {restaurants.length}곳
         </p>
-        <p className="mt-3 text-sm text-gray-600 leading-relaxed">
-          {name}에 소개된 부산 맛집을 한 곳에 모았어요. 최신 방영순으로 정렬됩니다.
-        </p>
+        <div className="mt-3 space-y-2">
+          {getIntro('program', slug, name).paragraphs.map((p, i) => (
+            <p key={i} className="text-sm text-gray-600 leading-relaxed">
+              {p}
+            </p>
+          ))}
+        </div>
       </section>
 
       <div className="h-2 bg-gray-50" />

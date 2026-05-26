@@ -1,5 +1,5 @@
 /**
- * Landing 페이지(category / area / creator) hero 하단 SEO intro.
+ * Landing 페이지(category / area / creator / program) hero 하단 SEO intro.
  *
  * - 정적 카피. 운영 데이터 아님.
  * - 누락 slug 는 종류별 fallback 1문장으로 자동 노출 (thin content 방지).
@@ -15,7 +15,7 @@ export type Intro = {
   paragraphs: string[]
 }
 
-export type IntroKind = 'category' | 'area' | 'creator'
+export type IntroKind = 'category' | 'area' | 'creator' | 'program'
 
 // ─────────────────────────────────────────────
 // slug → intro 매핑 (시범 적용)
@@ -156,6 +156,105 @@ export const creatorIntros: Record<string, Intro> = {
   },
 }
 
+export const programIntros: Record<string, Intro> = {
+  'lifemaster': {
+    paragraphs: [
+      '생활의 달인은 SBS에서 방영된 장수 다큐 예능으로, 각 분야 숙련자를 찾아 작업과 생활을 기록하는 시리즈다. 부산 편에서는 노포 식당의 조리 과정과 운영자를 자주 다뤘다.',
+      '이 페이지에는 생활의 달인에 소개된 부산 가게를 최신 방영순으로 정리해두었다.',
+    ],
+  },
+  'baekban-gihaeng': {
+    paragraphs: [
+      '식객 허영만의 백반기행은 TV조선에서 방영된 음식 기행 프로그램으로, 만화가 허영만이 직접 지역을 다니며 한 끼 식사를 기록하는 시리즈다.',
+      '이 페이지에는 백반기행 부산 편에 소개된 가게를 최신 방영순으로 정리해두었다.',
+    ],
+  },
+  'tzuyang': {
+    paragraphs: [
+      '쯔양은 한 끼 대용량 식사 콘텐츠로 알려진 유튜브 채널로, 부산 편에서는 자갈치시장·남포동 일대의 노포와 시장 가게를 중심으로 다뤘다.',
+      '이 페이지에는 쯔양 부산 편에 소개된 가게를 영상 공개일 기준 최신순으로 정리해두었다.',
+    ],
+  },
+  'sungsik': {
+    paragraphs: [
+      "성시경 먹을텐데는 가수 성시경이 직접 지역 노포를 찾아 식사 장면을 담는 유튜브 시리즈로, 부산 편에서는 돼지국밥·밀면·횟집을 중심으로 다뤘다.",
+      "이 페이지에는 먹을텐데 부산 편에 소개된 가게를 영상 공개일 기준 최신순으로 정리해두었다.",
+    ],
+  },
+  'ddoganjip': {
+    paragraphs: [
+      '풍자 또간집은 풍자가 한 번 다녀온 가게를 다시 찾아가 다른 메뉴까지 시도하는 형식의 유튜브 시리즈로, 부산 편에서는 노포와 시장 가게를 중심으로 다뤘다.',
+      '이 페이지에는 또간집 부산 편에 소개된 가게를 영상 공개일 기준 최신순으로 정리해두었다.',
+    ],
+  },
+  'jeonhyun-plan': {
+    paragraphs: [
+      '전현무계획은 방송인 전현무가 출연한 음식 콘텐츠로, 지역 가게를 일정에 따라 방문하는 형식이다.',
+      '이 페이지에는 전현무계획에 소개된 부산 가게를 최신 방영순으로 정리해두었다.',
+    ],
+  },
+  'hibab': {
+    paragraphs: [
+      '히밥은 한 끼 다인분 분량을 한 번에 먹는 콘텐츠로 알려진 유튜브 채널로, 부산 편에서는 양이 많거나 메뉴 구성이 특징적인 가게를 다뤘다.',
+      '이 페이지에는 히밥 부산 편에 소개된 가게를 영상 공개일 기준 최신순으로 정리해두었다.',
+    ],
+  },
+  'tasty-guys': {
+    paragraphs: [
+      '맛있는 녀석들은 코미디TV에서 방영된 음식 예능으로, 출연자들이 직접 가게를 찾아가 푸짐한 식사 장면을 담는 시리즈다.',
+      '이 페이지에는 맛있는 녀석들 부산 편에 소개된 가게를 최신 방영순으로 정리해두었다.',
+    ],
+  },
+  'samdae-cheonwang': {
+    paragraphs: [
+      '백종원의 3대 천왕은 SBS에서 방영된 음식 예능으로, 한 메뉴에 대해 세 가게를 비교하고 평가하는 형식의 시리즈다.',
+      '이 페이지에는 백종원의 3대 천왕에 소개된 부산 가게를 최신 방영순으로 정리해두었다.',
+    ],
+  },
+  'live-today': {
+    paragraphs: [
+      '생방송 투데이는 SBS의 생활 정보 프로그램으로, 지역 가게와 시장 풍경을 짧은 코너로 다루는 시리즈다.',
+      '이 페이지에는 생방송 투데이에 소개된 부산 가게를 최신 방영순으로 정리해두었다.',
+    ],
+  },
+  'live-info': {
+    paragraphs: [
+      '2TV 생생정보는 KBS의 생활 정보 프로그램으로, 지역 가게와 시장 풍경을 코너 단위로 다루는 시리즈다.',
+      '이 페이지에는 2TV 생생정보에 소개된 부산 가게를 최신 방영순으로 정리해두었다.',
+    ],
+  },
+  'korean-table': {
+    paragraphs: [
+      '한국인의 밥상은 KBS에서 방영 중인 음식 다큐로, 배우 최불암의 진행으로 지역 식문화와 가정 식사를 기록하는 시리즈다.',
+      '이 페이지에는 한국인의 밥상 부산 편에 소개된 가게를 최신 방영순으로 정리해두었다.',
+    ],
+  },
+  'pani-bottle': {
+    paragraphs: [
+      '빠니보틀은 국내외 여행 콘텐츠로 알려진 유튜브 채널로, 부산 편에서는 관광 동선과 함께 들른 가게들을 영상에 담았다.',
+      '이 페이지에는 빠니보틀 부산 편에 소개된 가게를 영상 공개일 기준 최신순으로 정리해두었다.',
+    ],
+  },
+  'foodieland': {
+    paragraphs: [
+      '푸디랜드 FoodieLand는 지역 가게와 향토 음식을 찾아 다니는 음식 유튜브 채널로, 부산 편에서는 돼지국밥·밀면·회 같은 갈래를 중심으로 다뤘다.',
+      '이 페이지에는 푸디랜드 부산 편에 소개된 가게를 영상 공개일 기준 최신순으로 정리해두었다.',
+    ],
+  },
+  'six-oclock-hometown': {
+    paragraphs: [
+      '6시 내고향은 KBS에서 방영 중인 지역 정보 프로그램으로, 전국의 노포·시장·향토 음식을 코너 단위로 다루는 시리즈다.',
+      '이 페이지에는 6시 내고향에 소개된 부산 가게를 최신 방영순으로 정리해두었다.',
+    ],
+  },
+  'wednesday-food-talk': {
+    paragraphs: [
+      '수요미식회는 tvN에서 방영된 음식 토크 프로그램으로, 한 메뉴 또는 동네를 주제로 패널이 가게를 추천하고 평가하는 시리즈다.',
+      '이 페이지에는 수요미식회에 소개된 부산 가게를 최신 방영순으로 정리해두었다.',
+    ],
+  },
+}
+
 // ─────────────────────────────────────────────
 // fallback
 // ─────────────────────────────────────────────
@@ -175,9 +274,16 @@ function getFallback(kind: IntroKind, name: string): Intro {
       ],
     }
   }
+  if (kind === 'creator') {
+    return {
+      paragraphs: [
+        `${name}이 부산에서 소개한 가게를 영상 공개일 기준 최신순으로 정리한 페이지다.`,
+      ],
+    }
+  }
   return {
     paragraphs: [
-      `${name}이 부산에서 소개한 가게를 영상 공개일 기준 최신순으로 정리한 페이지다.`,
+      `${name}에 소개된 부산 가게를 최신 방영순으로 정리한 페이지다.`,
     ],
   }
 }
@@ -189,7 +295,8 @@ function getFallback(kind: IntroKind, name: string): Intro {
 function getMap(kind: IntroKind): Record<string, Intro> {
   if (kind === 'category') return categoryIntros
   if (kind === 'area') return areaIntros
-  return creatorIntros
+  if (kind === 'creator') return creatorIntros
+  return programIntros
 }
 
 export function getIntro(
