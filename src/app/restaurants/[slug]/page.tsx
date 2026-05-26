@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { getRestaurantBySlug, getRestaurantSlugs, getRelatedRestaurants } from '@/lib/restaurants'
 import { getProgramSlugFromName } from '@/lib/programs'
 import { getAreaSlugFromName } from '@/lib/areas'
+import { getCategorySlugForRestaurant } from '@/lib/categories'
 import type { Restaurant } from '@/types/restaurant'
 import ShareButtons from '@/components/restaurant/ShareButtons'
 import SaveButton from '@/components/restaurant/SaveButton'
@@ -241,6 +242,11 @@ export default async function RestaurantDetailPage({ params }: Props) {
       : null
   const areaSlug = getAreaSlugFromName(restaurant.area)
   const areaHref = areaSlug ? `/area/${areaSlug}` : null
+  const categorySlug = getCategorySlugForRestaurant(restaurant.category, restaurant.mainMenu)
+  const categoryHref = categorySlug ? `/category/${categorySlug}` : null
+  const categoryDisplay = categorySlug
+    ? (categorySlug === 'gopchang' ? '곱창' : restaurant.category)
+    : null
 
   return (
     <main className="pt-14 pb-24">
@@ -417,6 +423,17 @@ export default async function RestaurantDetailPage({ params }: Props) {
                 className="text-sm text-orange-500 font-semibold underline underline-offset-2"
               >
                 부산 {restaurant.area} 맛집 더 보기 →
+              </Link>
+            </div>
+          )}
+          {categoryHref && categoryDisplay && (
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-gray-400 w-16 flex-shrink-0">더 보기</span>
+              <Link
+                href={categoryHref}
+                className="text-sm text-orange-500 font-semibold underline underline-offset-2"
+              >
+                부산 {categoryDisplay} 맛집 더 보기 →
               </Link>
             </div>
           )}

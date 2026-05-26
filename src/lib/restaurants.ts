@@ -16,6 +16,11 @@ import {
   getProgramNameFromSlug,
 } from '@/lib/programs'
 import {
+  getCategoryNameFromSlug,
+  matchesCategorySlug,
+  CATEGORY_NAMES,
+} from '@/lib/categories'
+import {
   getAreaSlugFromName,
   getAreaNameFromSlug,
 } from '@/lib/areas'
@@ -303,6 +308,52 @@ export async function getRestaurantsByAreaSlug(
   if (matched.length < 3) return { name: null, restaurants: [] }
 
   return { name: areaName, restaurants: matched }
+}
+
+// ─────────────────────────────────────────────
+// category landing — slug 목록
+// ─────────────────────────────────────────────
+
+/**
+ * MVP 정의된 category slug 중, 운영 DB에 1건 이상 매칭이 있는 slug 만 노출.
+ * 곱창은 main_menu 키워드 매칭(category 컬럼이 '고기'/'한식' 등에 분산).
+ *
+ * /category/[slug] 의 generateStaticParams 와 sitemap에서 사용.
+ */
+export async function getCategorySlugs(): Promise<string[]> {
+  const restaurants = await getRestaurants()
+  const result: string[] = []
+  for (const slug of Object.keys(CATEGORY_NAMES)) {
+    const has = restaurants.some((r) =>
+      matchesCategorySlug(slug, r.category, r.mainMenu),
+    )
+    if (has) result.push(slug)
+  }
+  return result.sort()
+}
+
+// ─────────────────────────────────────────────
+// category landing — slug 기반 맛집 조회
+// ─────────────────────────────────────────────
+
+/**
+ * 주어진 category slug 에 매칭되는 공개 맛집 목록 반환.
+ * - 정렬은 getRestaurants() 의 broadcast_date desc 정책 그대로.
+ * - 매칭 0건 → { name: null, restaurants: [] } → landing page 가 notFound 처리.
+ */
+export async function getRestaurantsByCategorySlug(
+  slug: string,
+): Promise<{ name: string | null; restaurants: Restaurant[] }> {
+  const name = getCategoryNameFromSlug(slug)
+  if (!name) return { name: null, restaurants: [] }
+
+  const all = await getRestaurants()
+  const matched = all.filter((r) =>
+    matchesCategorySlug(slug, r.category, r.mainMenu),
+  )
+
+  if (matched.length === 0) return { name: null, restaurants: [] }
+  return { name, restaurants: matched }
 }
 
 // ─────────────────────────────────────────────
