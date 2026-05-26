@@ -19,6 +19,7 @@ export const CATEGORY_SLUGS: Record<string, string> = {
   '밀면':    'milmyeon',
   '회':      'hoe',
   '곱창':    'gopchang',
+  '해산물':  'seafood',
 }
 
 export const CATEGORY_NAMES: Record<string, string> = {
@@ -26,6 +27,7 @@ export const CATEGORY_NAMES: Record<string, string> = {
   'milmyeon':      '밀면',
   'hoe':           '회',
   'gopchang':      '곱창',
+  'seafood':       '해산물',
 }
 
 // ─────────────────────────────────────────────
