@@ -163,7 +163,7 @@ export default function KakaoMapView({ restaurants }: Props) {
   }
 
   return (
-    <div className="relative w-full h-[calc(100dvh-7.5rem)]">
+    <div className="relative w-full h-[55dvh] min-h-[360px]">
       {/* 카카오맵 컨테이너 */}
       <div ref={containerRef} className="w-full h-full" />
 
