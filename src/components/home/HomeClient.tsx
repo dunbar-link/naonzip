@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import { Restaurant, AreaType } from '@/types/restaurant'
 import AreaFilter from '@/components/home/AreaFilter'
 import RestaurantCard from '@/components/restaurant/RestaurantCard'
+import { useHorizontalDragScroll } from '@/hooks/useHorizontalDragScroll'
 
 type Props = {
   restaurants: Restaurant[]
@@ -11,6 +12,7 @@ type Props = {
 
 export default function HomeClient({ restaurants }: Props) {
   const [selectedArea, setSelectedArea] = useState<AreaType | '전체'>('전체')
+  const recentScrollRef = useHorizontalDragScroll<HTMLDivElement>()
 
   const recentRestaurants = useMemo(() => {
     return [...restaurants]
@@ -41,7 +43,10 @@ export default function HomeClient({ restaurants }: Props) {
           <h2 className="text-base font-bold text-gray-900">최근 방송 나온집</h2>
           <span className="text-xs text-gray-400">가로 스크롤</span>
         </div>
-        <div className="flex flex-nowrap gap-3 overflow-x-auto overflow-y-hidden scrollbar-hide pl-4 pb-2 [-webkit-overflow-scrolling:touch] [touch-action:pan-x]">
+        <div
+          ref={recentScrollRef}
+          className="flex flex-nowrap gap-3 overflow-x-auto overflow-y-hidden scrollbar-hide pl-4 pb-2 [-webkit-overflow-scrolling:touch] [touch-action:pan-x]"
+        >
           {recentRestaurants.map((r) => (
             <RestaurantCard key={r.id} restaurant={r} variant="horizontal" />
           ))}

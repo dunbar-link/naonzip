@@ -1,6 +1,7 @@
 'use client'
 
 import { AreaType } from '@/types/restaurant'
+import { useHorizontalDragScroll } from '@/hooks/useHorizontalDragScroll'
 
 const areas: Array<AreaType | '전체'> = [
   '전체', '해운대', '서면', '광안리', '남포동', '기장', '동래', '사상',
@@ -12,8 +13,12 @@ type Props = {
 }
 
 export default function AreaFilter({ selected, onChange }: Props) {
+  const scrollRef = useHorizontalDragScroll<HTMLDivElement>()
   return (
-    <div className="flex gap-2 overflow-x-auto scrollbar-hide px-4 pb-1">
+    <div
+      ref={scrollRef}
+      className="flex gap-2 overflow-x-auto scrollbar-hide px-4 pb-1"
+    >
       {areas.map((area) => (
         <button
           key={area}
