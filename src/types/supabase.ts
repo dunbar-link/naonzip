@@ -30,6 +30,18 @@ export type RestaurantRow = {
 }
 
 /**
+ * restaurant_reports 행 타입 (정보 수정 제보)
+ */
+export type RestaurantReportRow = {
+  id: string
+  restaurant_slug: string
+  reason: string
+  message: string | null
+  status: string
+  created_at: string
+}
+
+/**
  * Supabase 전체 DB 스키마 타입
  * createClient<Database>() 에 제네릭으로 사용
  */
@@ -43,6 +55,17 @@ export type Database = {
           created_at?: string
         }
         Update: Partial<Omit<RestaurantRow, 'id' | 'created_at'>>
+        Relationships: []
+      }
+      restaurant_reports: {
+        Row: RestaurantReportRow
+        Insert: Omit<RestaurantReportRow, 'id' | 'status' | 'created_at'> & {
+          id?: string
+          status?: string
+          created_at?: string
+        }
+        Update: Partial<Omit<RestaurantReportRow, 'id' | 'created_at'>>
+        Relationships: []
       }
     }
     Views: {

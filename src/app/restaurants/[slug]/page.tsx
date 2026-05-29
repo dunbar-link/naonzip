@@ -9,6 +9,7 @@ import type { Restaurant } from '@/types/restaurant'
 import ShareButtons from '@/components/restaurant/ShareButtons'
 import SaveButton from '@/components/restaurant/SaveButton'
 import RestaurantCard from '@/components/restaurant/RestaurantCard'
+import ReportButton from '@/components/restaurant/ReportButton'
 
 const SITE_URL = 'https://naonzip.vercel.app'
 
@@ -477,18 +478,21 @@ export default async function RestaurantDetailPage({ params }: Props) {
       )}
 
       {/* 정보 수정 제보 */}
-      {reportFormUrl && (
-        <div className="px-4 mt-4 text-center">
-          <a
-            href={reportFormUrl}
-            target="_blank"
-            rel="noopener noreferrer nofollow"
-            className="text-xs text-gray-400 underline underline-offset-2 hover:text-gray-600"
-          >
-            정보가 다르다면 알려주세요
-          </a>
-        </div>
-      )}
+      <div className="px-4 mt-4 text-center">
+        <ReportButton slug={restaurant.slug} />
+        {reportFormUrl && (
+          <div className="mt-2">
+            <a
+              href={reportFormUrl}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="text-[11px] text-gray-300 underline underline-offset-2 hover:text-gray-500"
+            >
+              외부 폼으로 신고
+            </a>
+          </div>
+        )}
+      </div>
 
       {/* 뒤로가기 */}
       <div className="px-4 mt-2 mb-4">

@@ -63,3 +63,40 @@ CREATE POLICY "service role has full access"
   TO service_role
   USING (true)
   WITH CHECK (true);
+
+-- ─────────────────────────────────────────────
+-- restaurant_reports 테이블 (정보 수정 제보)
+-- ─────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS public.restaurant_reports (
+  id              uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  restaurant_slug text NOT NULL,
+  reason          text NOT NULL,
+  message         text,
+  status          text NOT NULL DEFAULT 'pending',
+  created_at      timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS restaurant_reports_slug_idx       ON public.restaurant_reports (restaurant_slug);
+CREATE INDEX IF NOT EXISTS restaurant_reports_created_at_idx ON public.restaurant_reports (created_at DESC);
+
+ALTER TABLE public.restaurant_reports ENABLE ROW LEVEL SECURITY;
+
+-- anon: INSERT 만 허용 (SELECT/UPDATE/DELETE 차단). 길이/상태 제약.
+CREATE POLICY "anon can submit reports"
+  ON public.restaurant_reports
+  FOR INSERT
+  TO anon, authenticated
+  WITH CHECK (
+    length(restaurant_slug) BETWEEN 1 AND 200
+    AND length(reason) BETWEEN 1 AND 50
+    AND (message IS NULL OR length(message) <= 1000)
+    AND status = 'pending'
+  );
+
+-- 관리자 전체 접근
+CREATE POLICY "service role has full access on reports"
+  ON public.restaurant_reports
+  FOR ALL
+  TO service_role
+  USING (true)
+  WITH CHECK (true);
