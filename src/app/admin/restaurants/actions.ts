@@ -117,6 +117,65 @@ export async function setRestaurantPublished(
 }
 
 /**
+ * 비공개(is_published=false) restaurant 삭제.
+ * 1) 쿠키 기반 인증 재검증 (proxy 우회 방어)
+ * 2) slug 로 row 를 재조회해 실제 저장된 is_published 로 가드:
+ *    - row 없음 → '식당을 찾을 수 없어요.'
+ *    - is_published === true → '공개된 식당은 삭제할 수 없어요.' (서버 가드)
+ * 3) DELETE WHERE slug=? AND is_published=false (선조회~삭제 사이 race 방어)
+ * 4) /admin/restaurants 만 무효화 (공개 경로는 건드리지 않음)
+ *
+ * candidate_queue / reports / saved 등 다른 테이블은 절대 건드리지 않는다.
+ * published 삭제는 서버 재조회 가드 + DELETE WHERE + UI 숨김으로 3중 방어한다.
+ */
+export async function deleteRestaurantDraft(
+  slug: string,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  const c = await cookies()
+  const token = c.get(ADMIN_COOKIE_NAME)?.value
+  const authed = await verifyAdminSessionToken(token)
+  if (!authed) {
+    return { ok: false, error: 'unauthorized' }
+  }
+
+  if (!slug || typeof slug !== 'string') {
+    return { ok: false, error: 'invalid slug' }
+  }
+
+  const supabase = getSupabaseAdminClient()
+
+  // 실제 저장된 row 의 is_published 로 가드 (클라이언트 값 불신).
+  const { data, error } = await supabase
+    .from('restaurants')
+    .select('id, is_published')
+    .eq('slug', slug)
+    .single()
+
+  if (error || !data) {
+    return { ok: false, error: '식당을 찾을 수 없어요.' }
+  }
+  if (data.is_published === true) {
+    return { ok: false, error: '공개된 식당은 삭제할 수 없어요.' }
+  }
+
+  // race 방어: 선조회 이후 공개되었을 수도 있으므로 WHERE 에 is_published=false 재명시.
+  const { error: delErr } = await supabase
+    .from('restaurants')
+    .delete()
+    .eq('slug', slug)
+    .eq('is_published', false)
+
+  if (delErr) {
+    console.error('[admin/restaurants] restaurant 삭제 실패:', delErr)
+    return { ok: false, error: 'delete failed' }
+  }
+
+  // 공개 경로는 무효화하지 않는다(비공개 식당이므로 공개 캐시에 존재하지 않음).
+  revalidatePath('/admin/restaurants')
+  return { ok: true }
+}
+
+/**
  * updateRestaurant 입력 (client component 에서 plain object 로 전달).
  * 모든 값은 문자열로 받아 서버에서 trim/숫자 변환/검증한다.
  * is_published 는 의도적으로 받지 않는다(수정과 공개를 분리).

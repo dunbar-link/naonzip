@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { getSupabaseAdminClient } from '@/lib/supabase-admin'
 import type { RestaurantRow } from '@/types/supabase'
 import PublishToggle from '../../PublishToggle'
+import DeleteDraftButton from '../../DeleteDraftButton'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -214,6 +215,15 @@ export default async function RestaurantPreviewPage({ params }: Props) {
         <p className="text-[10px] text-gray-400">
           created: {formatKST(r.created_at)} · {r.id}
         </p>
+
+        {/* 위험 구역 — 비공개 식당 삭제 (파괴적 동작이라 다른 액션과 시각적으로 분리). */}
+        {/* 공개된 식당에서는 렌더하지 않는다(UI 숨김 가드). */}
+        {r.is_published === false && (
+          <section className="rounded-lg border border-red-200 bg-red-50/50 p-4">
+            <h2 className="mb-2 text-xs font-bold text-red-700">위험 구역</h2>
+            <DeleteDraftButton slug={r.slug} />
+          </section>
+        )}
       </main>
     </div>
   )
