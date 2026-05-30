@@ -12,6 +12,7 @@ import {
   type RestaurantSourceType,
 } from '@/types/supabase'
 import { AREA_TYPES, type AreaType } from '@/types/restaurant'
+import { isInBusanRange } from '@/lib/coords'
 
 /** 빈/공백 문자열은 null 로 정규화. */
 function trimToNull(v: unknown): string | null {
@@ -86,6 +87,13 @@ export async function setRestaurantPublished(
 
     if (!requiredOk || !Number.isFinite(data.lat) || !Number.isFinite(data.lng)) {
       return { ok: false, error: '필수 정보가 부족해 공개할 수 없어요.' }
+    }
+    // 공개 게이트 강화: 저장값 0 차단 + 부산 범위 검증.
+    if (data.lat === 0 || data.lng === 0) {
+      return { ok: false, error: '좌표값을 다시 확인해 주세요.' }
+    }
+    if (!isInBusanRange(data.lat, data.lng)) {
+      return { ok: false, error: '좌표가 부산 범위를 벗어난 것 같아요.' }
     }
   }
 
@@ -201,6 +209,12 @@ export async function updateRestaurant(
   }
   if (!Number.isFinite(lng)) {
     return { ok: false, error: '경도(lng)는 숫자여야 해요.' }
+  }
+  if (lat === 0 || lng === 0) {
+    return { ok: false, error: '좌표값을 다시 확인해 주세요.' }
+  }
+  if (!isInBusanRange(lat, lng)) {
+    return { ok: false, error: '좌표가 부산 범위를 벗어난 것 같아요.' }
   }
 
   const supabase = getSupabaseAdminClient()

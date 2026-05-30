@@ -7,6 +7,7 @@ import {
   type RestaurantSourceType,
 } from '@/types/supabase'
 import { AREA_TYPES } from '@/types/restaurant'
+import { COORD_HINT, isInBusanRange } from '@/lib/coords'
 import { updateRestaurant } from '../../actions'
 
 /** page.tsx 에서 row 값으로 채워 넘기는 prefill. */
@@ -90,6 +91,11 @@ export default function EditForm({ restaurantId, isPublished, prefill }: Props) 
       setError('경도(lng)는 숫자여야 해요.')
       return
     }
+    // 0,0 은 클라+서버 둘 다 차단. 범위 밖은 경고만(서버가 최종 차단).
+    if (Number(form.lat) === 0 || Number(form.lng) === 0) {
+      setError('좌표값을 다시 확인해 주세요.')
+      return
+    }
 
     startTransition(async () => {
       const res = await updateRestaurant(restaurantId, {
@@ -123,6 +129,17 @@ export default function EditForm({ restaurantId, isPublished, prefill }: Props) 
       }
     })
   }
+
+  // 범위 밖 경고용 파생값(추가 state 없이 렌더 시 계산).
+  // 둘 다 유한수인데 부산 범위를 벗어나면 경고만 표시(제출은 허용).
+  const latNum = Number(form.lat)
+  const lngNum = Number(form.lng)
+  const coordsOutOfRange =
+    form.lat.trim() !== '' &&
+    form.lng.trim() !== '' &&
+    Number.isFinite(latNum) &&
+    Number.isFinite(lngNum) &&
+    !isInBusanRange(latNum, lngNum)
 
   // 저장 성공 후: redirect 없이 성공 메시지 + 미리보기/목록 링크.
   if (savedSlug) {
@@ -253,6 +270,15 @@ export default function EditForm({ restaurantId, isPublished, prefill }: Props) 
             className={inputClass}
             placeholder="예: 129.0594"
           />
+        </div>
+
+        <div className="sm:col-span-2">
+          <p className="text-xs text-gray-500">{COORD_HINT}</p>
+          {coordsOutOfRange && (
+            <p className="mt-1 text-[10px] text-amber-600">
+              좌표가 부산 범위를 벗어난 것 같아요. 값을 다시 확인해 주세요.
+            </p>
+          )}
         </div>
 
         <div>

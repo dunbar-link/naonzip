@@ -16,6 +16,7 @@ import {
   type RestaurantSourceType,
 } from '@/types/supabase'
 import { AREA_TYPES, type AreaType } from '@/types/restaurant'
+import { isInBusanRange } from '@/lib/coords'
 
 function isValidStatus(s: unknown): s is CandidateStatus {
   return typeof s === 'string' && (CANDIDATE_STATUSES as readonly string[]).includes(s)
@@ -301,6 +302,12 @@ export async function convertCandidateToRestaurant(
   }
   if (!Number.isFinite(lng)) {
     return { ok: false, error: '경도(lng)는 숫자여야 해요.' }
+  }
+  if (lat === 0 || lng === 0) {
+    return { ok: false, error: '좌표값을 다시 확인해 주세요.' }
+  }
+  if (!isInBusanRange(lat, lng)) {
+    return { ok: false, error: '좌표가 부산 범위를 벗어난 것 같아요.' }
   }
 
   const supabase = getSupabaseAdminClient()
