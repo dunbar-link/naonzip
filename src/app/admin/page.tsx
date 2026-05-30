@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { logout } from './logout/actions'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -7,7 +8,6 @@ const LINKS: { href: string; label: string; desc: string }[] = [
   { href: '/admin/candidates', label: '후보 관리', desc: '수집 후보 검토 / 승인' },
   { href: '/admin/restaurants', label: '식당 공개 관리', desc: '비공개 식당 공개 전환' },
   { href: '/admin/reports', label: '신고 관리', desc: '사용자 신고 처리' },
-  { href: '/admin/login', label: '로그인', desc: '관리자 세션 재로그인' },
 ]
 
 export default function AdminHomePage() {
@@ -37,6 +37,15 @@ export default function AdminHomePage() {
             </Link>
           ))}
         </nav>
+
+        <form action={logout} className="mt-6">
+          <button
+            type="submit"
+            className="block w-full rounded-lg border border-red-200 bg-white px-4 py-3 text-left text-sm font-medium text-red-600 hover:border-red-400"
+          >
+            로그아웃
+          </button>
+        </form>
       </main>
     </div>
   )
