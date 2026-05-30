@@ -12,10 +12,15 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 function sanitizeRedirect(v: string | undefined | null): string {
-  if (!v || typeof v !== 'string') return '/admin/reports'
-  if (!v.startsWith('/admin/')) return '/admin/reports'
-  if (v === '/admin/login') return '/admin/reports'
-  return v
+  const fallback = '/admin'
+  if (typeof v !== 'string' || !v) return fallback
+  // protocol-relative('//'), 백슬래시('\\'), 경로 정규화 우회('..') 차단
+  if (v.includes('//') || v.includes('\\') || v.includes('..')) return fallback
+  // 로그인 루프 방지
+  if (v === '/admin/login') return fallback
+  // 내부 경로만 허용 (prefix 우회 방지: 정확히 '/admin' 또는 '/admin/' 시작)
+  if (v === '/admin' || v.startsWith('/admin/')) return v
+  return fallback
 }
 
 async function login(formData: FormData): Promise<void> {
@@ -26,7 +31,7 @@ async function login(formData: FormData): Promise<void> {
 
   if (!verifyAdminPassword(password)) {
     const qs = new URLSearchParams({ error: '1' })
-    if (redirectRaw) qs.set('redirect', redirectRaw)
+    if (redirectRaw) qs.set('redirect', safeRedirect)
     redirect('/admin/login?' + qs.toString())
   }
 

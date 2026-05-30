@@ -29,7 +29,7 @@ export async function proxy(req: NextRequest) {
   loginUrl.pathname = '/admin/login'
   loginUrl.search = ''
   // 원래 가려던 경로를 redirect 파라미터로 보존 (안전: /admin/* 만 허용)
-  if (pathname.startsWith('/admin/')) {
+  if (pathname === '/admin' || pathname.startsWith('/admin/')) {
     loginUrl.searchParams.set('redirect', pathname)
   }
   return NextResponse.redirect(loginUrl)
