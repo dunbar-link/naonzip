@@ -30,6 +30,15 @@ export type RestaurantRow = {
 }
 
 /**
+ * restaurants.source_type 허용 값.
+ * DB CHECK 제약 (source_type IN ('youtube','tv','sns')) 과 일치시킬 것.
+ * 후보 변환 폼/서버 액션에서 화이트리스트로 공유한다.
+ * (candidate_queue 의 'other' 는 restaurant 로 등록할 수 없다.)
+ */
+export const RESTAURANT_SOURCE_TYPES = ['youtube', 'tv', 'sns'] as const
+export type RestaurantSourceType = (typeof RESTAURANT_SOURCE_TYPES)[number]
+
+/**
  * restaurant_reports.status 허용 값.
  * DB CHECK 제약 (restaurant_reports_status_check) 과 일치시킬 것.
  */

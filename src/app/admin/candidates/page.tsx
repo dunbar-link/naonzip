@@ -159,10 +159,18 @@ export default async function AdminCandidatesPage({ searchParams }: Props) {
                 </details>
               )}
 
-              <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[10px] text-gray-400">
+              <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] text-gray-400">
                 <span>created: {formatKST(r.created_at)}</span>
                 {r.reviewed_at && <span>reviewed: {formatKST(r.reviewed_at)}</span>}
                 <span className="font-mono text-gray-300">{r.id.slice(0, 8)}</span>
+                {r.status === 'VERIFIED' && (
+                  <Link
+                    href={`/admin/candidates/${r.id}/convert`}
+                    className="ml-auto rounded-md border border-gray-900 px-2 py-0.5 text-[10px] font-medium text-gray-900 hover:bg-gray-900 hover:text-white"
+                  >
+                    등록 준비
+                  </Link>
+                )}
               </div>
             </article>
           ))}
