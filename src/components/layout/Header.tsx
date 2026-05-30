@@ -1,6 +1,15 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function Header() {
+  const pathname = usePathname()
+
+  if (pathname?.startsWith('/admin')) {
+    return null
+  }
+
   return (
     <header className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-full max-w-[430px] bg-white border-b border-gray-100 h-14 flex items-center px-4">
       <Link href="/" className="flex items-center gap-1">

@@ -80,7 +80,7 @@ export default async function ConvertCandidatePage({ params }: Props) {
         </div>
       </header>
 
-      <main className="max-w-3xl mx-auto px-4 py-6">
+      <main className="max-w-3xl mx-auto px-4 py-6 pb-28">
         {candidate.converted_restaurant_slug && (
           <div className="mb-4 rounded-md border border-green-200 bg-green-50 px-3 py-2 text-xs text-green-700">
             <p className="font-medium">이미 식당으로 등록된 후보예요.</p>

@@ -63,6 +63,10 @@ const navItems = [
 export default function BottomNav() {
   const pathname = usePathname()
 
+  if (pathname?.startsWith('/admin')) {
+    return null
+  }
+
   return (
     <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 z-50 w-full max-w-[430px] bg-white border-t border-gray-100 h-16 flex items-center">
       {navItems.map((item) => {

@@ -83,7 +83,7 @@ export default async function RestaurantEditPage({ params }: Props) {
         </div>
       </header>
 
-      <main className="max-w-3xl mx-auto px-4 py-6">
+      <main className="max-w-3xl mx-auto px-4 py-6 pb-28">
         <p className="mb-4 rounded-md border border-gray-200 bg-white px-3 py-2 text-xs text-gray-600">
           수정과 공개는 분리됩니다. 공개는 미리보기에서 토글하세요.
         </p>
