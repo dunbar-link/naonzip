@@ -119,6 +119,52 @@ export async function addCandidate(
     return { ok: false, error: 'restaurant_name required' }
   }
 
+  // source_url: 빈 값은 null. 형식검증·중복검사·INSERT 에서 모두 이 변수를 재사용한다.
+  const sourceUrl = trimToNull(input.source_url)
+
+  // 품질 검증은 B/C 중복검사에서도 같은 client 를 쓰므로 여기서 한 번만 획득.
+  const supabase = getSupabaseAdminClient()
+
+  // A) source_url 형식 검증 — 값이 있으면 http(s) 스킴만 허용.
+  if (sourceUrl && !sourceUrl.startsWith('http://') && !sourceUrl.startsWith('https://')) {
+    return { ok: false, error: '소스 URL은 http:// 또는 https:// 로 시작해야 해요.' }
+  }
+
+  // B) restaurant_name + source_name 조합 중복 검사 (status 필터 없음 = REJECTED 포함 전체).
+  {
+    const { data, error } = await supabase
+      .from('candidate_queue')
+      .select('id')
+      .eq('restaurant_name', restaurantName)
+      .eq('source_name', sourceName)
+      .limit(1)
+    if (error) {
+      // 조회 실패 시 보수적으로 차단.
+      console.error('[admin/candidates] 중복 검사(식당/소스) 실패:', error)
+      return { ok: false, error: 'insert failed' }
+    }
+    if (data?.length) {
+      return { ok: false, error: '이미 같은 식당/소스 후보가 있어요.' }
+    }
+  }
+
+  // C) source_url 중복 검사 (값이 있을 때만).
+  if (sourceUrl) {
+    const { data, error } = await supabase
+      .from('candidate_queue')
+      .select('id')
+      .eq('source_url', sourceUrl)
+      .limit(1)
+    if (error) {
+      // 조회 실패 시 보수적으로 차단.
+      console.error('[admin/candidates] 중복 검사(URL) 실패:', error)
+      return { ok: false, error: 'insert failed' }
+    }
+    if (data?.length) {
+      return { ok: false, error: '이미 같은 URL 후보가 있어요.' }
+    }
+  }
+
   // confidence_score: 숫자 파싱 → 0~1 clamp, 미입력/비정상이면 기본 0.500.
   let confidence = 0.5
   const raw = input.confidence_score
@@ -129,7 +175,6 @@ export async function addCandidate(
     }
   }
 
-  const supabase = getSupabaseAdminClient()
   // defaultToNull: false → status 컬럼이 DB default 'PENDING' 으로 채워지게 한다.
   const { error } = await supabase.from('candidate_queue').insert(
     {
@@ -138,7 +183,7 @@ export async function addCandidate(
       episode_title: trimToNull(input.episode_title),
       restaurant_name: restaurantName,
       area_guess: trimToNull(input.area_guess),
-      source_url: trimToNull(input.source_url),
+      source_url: sourceUrl,
       confidence_score: confidence,
       operator_note: trimToNull(input.operator_note),
     },
