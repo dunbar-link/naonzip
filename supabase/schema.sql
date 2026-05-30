@@ -147,3 +147,60 @@ CREATE TRIGGER restaurant_reports_set_updated_at_trigger
   BEFORE UPDATE ON public.restaurant_reports
   FOR EACH ROW
   EXECUTE FUNCTION public.restaurant_reports_set_updated_at();
+
+-- ─────────────────────────────────────────────
+-- candidate_queue 테이블 (후보 검토 큐 MVP)
+--   - 외부 소스(youtube/tv/sns)에서 수집한 식당 후보를 운영자가 검토/마킹.
+--   - 승인(VERIFIED)은 단순 상태 마킹일 뿐, restaurant 자동 등록은 하지 않는다.
+--   - idempotent: 모든 정책/트리거는 DROP IF EXISTS 후 CREATE.
+-- ─────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS public.candidate_queue (
+  id               uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  source_type      text NOT NULL CHECK (source_type IN ('youtube', 'tv', 'sns')),
+  source_name      text NOT NULL,
+  episode_title    text,
+  restaurant_name  text NOT NULL,
+  area_guess       text,
+  source_url       text,
+  status           text NOT NULL DEFAULT 'PENDING'
+                     CHECK (status IN ('PENDING', 'VERIFIED', 'REJECTED')),
+  confidence_score numeric(4,3) CHECK (confidence_score >= 0 AND confidence_score <= 1),
+  operator_note    text,
+  created_at       timestamptz NOT NULL DEFAULT now(),
+  reviewed_at      timestamptz
+);
+
+CREATE INDEX IF NOT EXISTS candidate_queue_status_idx     ON public.candidate_queue (status);
+CREATE INDEX IF NOT EXISTS candidate_queue_created_at_idx ON public.candidate_queue (created_at DESC);
+
+ALTER TABLE public.candidate_queue ENABLE ROW LEVEL SECURITY;
+
+-- 관리자 전체 접근: service_role 키 (Admin CMS 용). anon 정책 없음.
+DROP POLICY IF EXISTS "service role has full access on candidate_queue" ON public.candidate_queue;
+CREATE POLICY "service role has full access on candidate_queue"
+  ON public.candidate_queue
+  FOR ALL
+  TO service_role
+  USING (true)
+  WITH CHECK (true);
+
+-- status 가 PENDING → 다른 값으로 바뀔 때 reviewed_at = now() 자동 기록.
+--   - OLD.status = 'PENDING' 조건으로 최초 1회만 기록 (재마킹 시 덮어쓰지 않음).
+CREATE OR REPLACE FUNCTION public.candidate_queue_set_reviewed_at()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  IF OLD.status = 'PENDING' AND NEW.status <> 'PENDING' THEN
+    NEW.reviewed_at := now();
+  END IF;
+  RETURN NEW;
+END;
+$$;
+
+-- BEFORE UPDATE trigger 재설치
+DROP TRIGGER IF EXISTS candidate_queue_set_reviewed_at_trigger ON public.candidate_queue;
+CREATE TRIGGER candidate_queue_set_reviewed_at_trigger
+  BEFORE UPDATE ON public.candidate_queue
+  FOR EACH ROW
+  EXECUTE FUNCTION public.candidate_queue_set_reviewed_at();

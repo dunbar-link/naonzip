@@ -51,6 +51,31 @@ export type RestaurantReportRow = {
 }
 
 /**
+ * candidate_queue.status 허용 값.
+ * DB CHECK 제약 (candidate_queue_status_check) 과 일치시킬 것.
+ */
+export const CANDIDATE_STATUSES = ['PENDING', 'VERIFIED', 'REJECTED'] as const
+export type CandidateStatus = (typeof CANDIDATE_STATUSES)[number]
+
+/**
+ * candidate_queue 행 타입 (후보 검토 큐)
+ */
+export type CandidateQueueRow = {
+  id: string
+  source_type: 'youtube' | 'tv' | 'sns'
+  source_name: string
+  episode_title: string | null
+  restaurant_name: string
+  area_guess: string | null
+  source_url: string | null
+  status: CandidateStatus
+  confidence_score: number | null
+  operator_note: string | null
+  created_at: string
+  reviewed_at: string | null
+}
+
+/**
  * Supabase 전체 DB 스키마 타입
  * createClient<Database>() 에 제네릭으로 사용
  */
@@ -81,6 +106,20 @@ export type Database = {
         Update: Partial<Omit<RestaurantReportRow, 'id' | 'created_at'>> & {
           updated_at?: string
         }
+        Relationships: []
+      }
+      candidate_queue: {
+        Row: CandidateQueueRow
+        Insert: Omit<
+          CandidateQueueRow,
+          'id' | 'status' | 'created_at' | 'reviewed_at'
+        > & {
+          id?: string
+          status?: CandidateStatus
+          created_at?: string
+          reviewed_at?: string | null
+        }
+        Update: Partial<Omit<CandidateQueueRow, 'id' | 'created_at'>>
         Relationships: []
       }
     }
