@@ -63,7 +63,15 @@ export default async function AdminCandidatesPage({ searchParams }: Props) {
       <header className="bg-white border-b border-gray-200">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
           <h1 className="text-sm font-bold text-gray-900">나온집 — 후보 검토</h1>
-          <span className="text-xs text-gray-500">{rows.length}건</span>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/admin/restaurants"
+              className="text-xs text-gray-500 hover:text-gray-900"
+            >
+              식당 공개 관리 →
+            </Link>
+            <span className="text-xs text-gray-500">{rows.length}건</span>
+          </div>
         </div>
       </header>
 
@@ -165,10 +173,10 @@ export default async function AdminCandidatesPage({ searchParams }: Props) {
                 <span className="font-mono text-gray-300">{r.id.slice(0, 8)}</span>
                 {r.converted_restaurant_slug ? (
                   <Link
-                    href={`/restaurants/${r.converted_restaurant_slug}`}
+                    href={`/admin/restaurants/${r.converted_restaurant_slug}/preview`}
                     className="ml-auto font-medium text-green-600 hover:underline"
                   >
-                    등록 완료: /restaurants/{r.converted_restaurant_slug}
+                    등록 완료(미리보기): /restaurants/{r.converted_restaurant_slug}
                   </Link>
                 ) : (
                   r.status === 'VERIFIED' && (
