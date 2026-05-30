@@ -305,6 +305,23 @@ export async function convertCandidateToRestaurant(
 
   const supabase = getSupabaseAdminClient()
 
+  // 변환 완료 가드 — 이미 restaurants 로 등록된 후보면 재변환을 차단한다.
+  //   - converted_restaurant_slug 가 채워져 있으면 (status 와 무관하게) 차단.
+  {
+    const { data, error } = await supabase
+      .from('candidate_queue')
+      .select('id, converted_restaurant_slug')
+      .eq('id', candidateId)
+      .single()
+    if (error || !data) {
+      console.error('[admin/candidates] candidate 조회 실패:', error)
+      return { ok: false, error: 'candidate not found' }
+    }
+    if (data.converted_restaurant_slug) {
+      return { ok: false, error: '이미 식당으로 등록된 후보예요.' }
+    }
+  }
+
   // slug 중복 검사 (INSERT 전 선검사). UNIQUE 제약과 23505 도 아래에서 한 번 더 잡는다.
   {
     const { data, error } = await supabase
@@ -358,6 +375,22 @@ export async function convertCandidateToRestaurant(
     }
     console.error('[admin/candidates] restaurant insert 실패:', error)
     return { ok: false, error: 'insert failed' }
+  }
+
+  // restaurant 등록 성공 후 candidate 에 변환 완료 마킹 (재변환 차단용).
+  //   - status 는 건드리지 않는다.
+  //   - 이 UPDATE 가 실패해도 restaurant 는 이미 등록되었으므로 로깅만 하고 성공 반환.
+  {
+    const { error: convertError } = await supabase
+      .from('candidate_queue')
+      .update({
+        converted_restaurant_slug: slug,
+        converted_at: new Date().toISOString(),
+      })
+      .eq('id', candidateId)
+    if (convertError) {
+      console.error('[admin/candidates] candidate 변환 마킹 실패:', convertError)
+    }
   }
 
   revalidatePath('/admin/candidates')

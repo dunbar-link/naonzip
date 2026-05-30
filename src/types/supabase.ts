@@ -89,6 +89,8 @@ export type CandidateQueueRow = {
   operator_note: string | null
   created_at: string
   reviewed_at: string | null
+  converted_restaurant_slug: string | null
+  converted_at: string | null
 }
 
 /**
@@ -128,12 +130,19 @@ export type Database = {
         Row: CandidateQueueRow
         Insert: Omit<
           CandidateQueueRow,
-          'id' | 'status' | 'created_at' | 'reviewed_at'
+          | 'id'
+          | 'status'
+          | 'created_at'
+          | 'reviewed_at'
+          | 'converted_restaurant_slug'
+          | 'converted_at'
         > & {
           id?: string
           status?: CandidateStatus
           created_at?: string
           reviewed_at?: string | null
+          converted_restaurant_slug?: string | null
+          converted_at?: string | null
         }
         Update: Partial<Omit<CandidateQueueRow, 'id' | 'created_at'>>
         Relationships: []

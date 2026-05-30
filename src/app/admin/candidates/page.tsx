@@ -49,7 +49,7 @@ export default async function AdminCandidatesPage({ searchParams }: Props) {
   let query = supabase
     .from('candidate_queue')
     .select(
-      'id, source_type, source_name, episode_title, restaurant_name, area_guess, source_url, status, confidence_score, operator_note, created_at, reviewed_at',
+      'id, source_type, source_name, episode_title, restaurant_name, area_guess, source_url, status, confidence_score, operator_note, created_at, reviewed_at, converted_restaurant_slug',
     )
     .order('created_at', { ascending: false })
     .limit(200)
@@ -163,13 +163,22 @@ export default async function AdminCandidatesPage({ searchParams }: Props) {
                 <span>created: {formatKST(r.created_at)}</span>
                 {r.reviewed_at && <span>reviewed: {formatKST(r.reviewed_at)}</span>}
                 <span className="font-mono text-gray-300">{r.id.slice(0, 8)}</span>
-                {r.status === 'VERIFIED' && (
+                {r.converted_restaurant_slug ? (
                   <Link
-                    href={`/admin/candidates/${r.id}/convert`}
-                    className="ml-auto rounded-md border border-gray-900 px-2 py-0.5 text-[10px] font-medium text-gray-900 hover:bg-gray-900 hover:text-white"
+                    href={`/restaurants/${r.converted_restaurant_slug}`}
+                    className="ml-auto font-medium text-green-600 hover:underline"
                   >
-                    등록 준비
+                    등록 완료: /restaurants/{r.converted_restaurant_slug}
                   </Link>
+                ) : (
+                  r.status === 'VERIFIED' && (
+                    <Link
+                      href={`/admin/candidates/${r.id}/convert`}
+                      className="ml-auto rounded-md border border-gray-900 px-2 py-0.5 text-[10px] font-medium text-gray-900 hover:bg-gray-900 hover:text-white"
+                    >
+                      등록 준비
+                    </Link>
+                  )
                 )}
               </div>
             </article>

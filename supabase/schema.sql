@@ -167,7 +167,9 @@ CREATE TABLE IF NOT EXISTS public.candidate_queue (
   confidence_score numeric(4,3) CHECK (confidence_score >= 0 AND confidence_score <= 1),
   operator_note    text,
   created_at       timestamptz NOT NULL DEFAULT now(),
-  reviewed_at      timestamptz
+  reviewed_at      timestamptz,
+  converted_restaurant_slug text,
+  converted_at              timestamptz
 );
 
 CREATE INDEX IF NOT EXISTS candidate_queue_status_idx     ON public.candidate_queue (status);
@@ -213,3 +215,12 @@ ALTER TABLE public.candidate_queue
 ALTER TABLE public.candidate_queue
   ADD CONSTRAINT candidate_queue_source_type_check
   CHECK (source_type IN ('youtube', 'tv', 'sns', 'other'));
+
+-- 변환 완료 추적 컬럼 (idempotent) — 이미 테이블이 존재하는 운영 DB 에도 적용.
+--   - converted_restaurant_slug: 등록된 restaurants.slug (FK 없음, nullable).
+--   - converted_at: 변환 시각.
+--   - 둘 다 있으면 "이미 식당으로 등록된 후보" 로 보고 재변환을 차단한다.
+ALTER TABLE public.candidate_queue
+  ADD COLUMN IF NOT EXISTS converted_restaurant_slug text;
+ALTER TABLE public.candidate_queue
+  ADD COLUMN IF NOT EXISTS converted_at timestamptz;

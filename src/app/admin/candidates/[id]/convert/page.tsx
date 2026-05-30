@@ -56,7 +56,7 @@ export default async function ConvertCandidatePage({ params }: Props) {
   const { data, error } = await supabase
     .from('candidate_queue')
     .select(
-      'id, source_type, source_name, episode_title, restaurant_name, area_guess, source_url, status, confidence_score, operator_note, created_at, reviewed_at',
+      'id, source_type, source_name, episode_title, restaurant_name, area_guess, source_url, status, confidence_score, operator_note, created_at, reviewed_at, converted_restaurant_slug',
     )
     .eq('id', id)
     .single()
@@ -81,7 +81,19 @@ export default async function ConvertCandidatePage({ params }: Props) {
       </header>
 
       <main className="max-w-3xl mx-auto px-4 py-6">
-        {candidate.status !== 'VERIFIED' && (
+        {candidate.converted_restaurant_slug && (
+          <div className="mb-4 rounded-md border border-green-200 bg-green-50 px-3 py-2 text-xs text-green-700">
+            <p className="font-medium">이미 식당으로 등록된 후보예요.</p>
+            <Link
+              href={`/restaurants/${candidate.converted_restaurant_slug}`}
+              className="mt-1 inline-block text-green-700 hover:underline"
+            >
+              등록 완료: /restaurants/{candidate.converted_restaurant_slug}
+            </Link>
+          </div>
+        )}
+
+        {!candidate.converted_restaurant_slug && candidate.status !== 'VERIFIED' && (
           <p className="mb-4 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-700">
             이 후보는 아직 VERIFIED 상태가 아니에요(현재: {candidate.status}). 그래도 등록은
             가능하지만, 검토 후 진행하는 것을 권장해요.
@@ -126,7 +138,9 @@ export default async function ConvertCandidatePage({ params }: Props) {
           )}
         </section>
 
-        <ConvertForm candidateId={candidate.id} prefill={prefill} />
+        {!candidate.converted_restaurant_slug && (
+          <ConvertForm candidateId={candidate.id} prefill={prefill} />
+        )}
       </main>
     </div>
   )
