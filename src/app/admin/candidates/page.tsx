@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { getSupabaseAdminClient } from '@/lib/supabase-admin'
 import { CANDIDATE_STATUSES, type CandidateStatus } from '@/types/supabase'
 import CandidateActions from './CandidateActions'
+import AddCandidateForm from './AddCandidateForm'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -89,6 +90,8 @@ export default async function AdminCandidatesPage({ searchParams }: Props) {
             )
           })}
         </nav>
+
+        <AddCandidateForm />
 
         {error && (
           <p className="mb-4 text-xs text-red-600">조회 실패: {error.message}</p>

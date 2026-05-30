@@ -156,7 +156,7 @@ CREATE TRIGGER restaurant_reports_set_updated_at_trigger
 -- ─────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS public.candidate_queue (
   id               uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  source_type      text NOT NULL CHECK (source_type IN ('youtube', 'tv', 'sns')),
+  source_type      text NOT NULL CHECK (source_type IN ('youtube', 'tv', 'sns', 'other')),
   source_name      text NOT NULL,
   episode_title    text,
   restaurant_name  text NOT NULL,
@@ -204,3 +204,12 @@ CREATE TRIGGER candidate_queue_set_reviewed_at_trigger
   BEFORE UPDATE ON public.candidate_queue
   FOR EACH ROW
   EXECUTE FUNCTION public.candidate_queue_set_reviewed_at();
+
+-- source_type CHECK 확장 ('other' 추가) — 이미 테이블이 존재하는 운영 DB 에도 적용.
+--   - 인라인 정의의 자동 명명 제약(candidate_queue_source_type_check)을 DROP 후 재생성.
+--   - idempotent: DROP IF EXISTS → ADD.
+ALTER TABLE public.candidate_queue
+  DROP CONSTRAINT IF EXISTS candidate_queue_source_type_check;
+ALTER TABLE public.candidate_queue
+  ADD CONSTRAINT candidate_queue_source_type_check
+  CHECK (source_type IN ('youtube', 'tv', 'sns', 'other'));

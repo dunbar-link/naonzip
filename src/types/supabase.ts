@@ -58,11 +58,18 @@ export const CANDIDATE_STATUSES = ['PENDING', 'VERIFIED', 'REJECTED'] as const
 export type CandidateStatus = (typeof CANDIDATE_STATUSES)[number]
 
 /**
+ * candidate_queue.source_type 허용 값.
+ * DB CHECK 제약 (candidate_queue_source_type_check) 과 일치시킬 것.
+ */
+export const CANDIDATE_SOURCE_TYPES = ['youtube', 'tv', 'sns', 'other'] as const
+export type CandidateSourceType = (typeof CANDIDATE_SOURCE_TYPES)[number]
+
+/**
  * candidate_queue 행 타입 (후보 검토 큐)
  */
 export type CandidateQueueRow = {
   id: string
-  source_type: 'youtube' | 'tv' | 'sns'
+  source_type: CandidateSourceType
   source_name: string
   episode_title: string | null
   restaurant_name: string
