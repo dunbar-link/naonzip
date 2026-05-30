@@ -46,7 +46,15 @@ function buildPrefill(row: RestaurantRow): EditPrefill {
 }
 
 export default async function RestaurantEditPage({ params }: Props) {
-  const { slug } = await params
+  const { slug: rawSlug } = await params
+  // Next 16 은 params 를 자동 디코딩하지 않는다. 한글 slug(%ED%..)를 1회 디코딩.
+  // 잘못된 % 시퀀스는 decodeURIComponent 가 URIError 를 던지므로 방어 후 raw 사용.
+  let slug: string
+  try {
+    slug = decodeURIComponent(rawSlug)
+  } catch {
+    slug = rawSlug
+  }
 
   const supabase = getSupabaseAdminClient()
   // is_published 무관 — 공개/비공개 모두 조회 (service_role 로 RLS 우회).
@@ -68,7 +76,7 @@ export default async function RestaurantEditPage({ params }: Props) {
           <h1 className="text-sm font-bold text-gray-900">나온집 — 식당 정보 수정</h1>
           <div className="flex items-center gap-3">
             <Link
-              href={`/admin/restaurants/${r.slug}/preview`}
+              href={`/admin/restaurants/${encodeURIComponent(r.slug)}/preview`}
               className="text-xs text-gray-500 hover:text-gray-900"
             >
               미리보기

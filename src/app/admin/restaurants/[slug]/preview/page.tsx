@@ -39,7 +39,15 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 export default async function RestaurantPreviewPage({ params }: Props) {
-  const { slug } = await params
+  const { slug: rawSlug } = await params
+  // Next 16 은 params 를 자동 디코딩하지 않는다. 한글 slug(%ED%..)를 1회 디코딩.
+  // 잘못된 % 시퀀스는 decodeURIComponent 가 URIError 를 던지므로 방어 후 raw 사용.
+  let slug: string
+  try {
+    slug = decodeURIComponent(rawSlug)
+  } catch {
+    slug = rawSlug
+  }
 
   const supabase = getSupabaseAdminClient()
   // is_published 무관 — 공개/비공개 모두 조회 (service_role 로 RLS 우회).
@@ -82,7 +90,7 @@ export default async function RestaurantPreviewPage({ params }: Props) {
             )}
             <div className="flex items-center gap-2">
               <Link
-                href={`/admin/restaurants/${r.slug}/edit`}
+                href={`/admin/restaurants/${encodeURIComponent(r.slug)}/edit`}
                 className="rounded-md border border-gray-300 bg-white px-3 py-1 text-xs font-medium text-gray-700 hover:border-gray-400"
               >
                 수정하기
@@ -93,7 +101,7 @@ export default async function RestaurantPreviewPage({ params }: Props) {
           <div className="text-xs text-gray-600">
             공개 페이지:{' '}
             <Link
-              href={`/restaurants/${r.slug}`}
+              href={`/restaurants/${encodeURIComponent(r.slug)}`}
               className="text-blue-600 hover:underline break-all"
             >
               /restaurants/{r.slug}

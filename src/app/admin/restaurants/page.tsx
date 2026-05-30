@@ -124,7 +124,7 @@ export default async function AdminRestaurantsPage({ searchParams }: Props) {
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <Link
-                    href={`/admin/restaurants/${r.slug}/preview`}
+                    href={`/admin/restaurants/${encodeURIComponent(r.slug)}/preview`}
                     className="rounded-md border border-gray-300 px-3 py-1 text-xs font-medium text-gray-700 hover:border-gray-400"
                   >
                     미리보기
