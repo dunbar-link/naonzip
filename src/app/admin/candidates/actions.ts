@@ -318,7 +318,7 @@ export async function convertCandidateToRestaurant(
       return { ok: false, error: 'candidate not found' }
     }
     if (data.converted_restaurant_slug) {
-      return { ok: false, error: '이미 식당으로 등록된 후보예요.' }
+      return { ok: false, error: '이미 식당 등록이 완료된 후보예요.' }
     }
   }
 
