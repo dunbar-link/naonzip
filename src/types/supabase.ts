@@ -45,6 +45,7 @@ export type RestaurantReportRow = {
   reason: string
   message: string | null
   status: ReportStatus
+  reporter_ip_hash: string | null
   created_at: string
   updated_at: string
 }
@@ -67,9 +68,13 @@ export type Database = {
       }
       restaurant_reports: {
         Row: RestaurantReportRow
-        Insert: Omit<RestaurantReportRow, 'id' | 'status' | 'created_at' | 'updated_at'> & {
+        Insert: Omit<
+          RestaurantReportRow,
+          'id' | 'status' | 'reporter_ip_hash' | 'created_at' | 'updated_at'
+        > & {
           id?: string
           status?: ReportStatus
+          reporter_ip_hash?: string | null
           created_at?: string
           updated_at?: string
         }

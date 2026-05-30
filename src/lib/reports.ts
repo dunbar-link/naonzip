@@ -8,6 +8,7 @@
  */
 
 import { isSupabaseConfigured, getSupabaseClient } from '@/lib/supabase'
+import { checkReportRateLimit } from '@/lib/report-rate-limit'
 
 export const REPORT_REASONS = [
   '폐업',
@@ -29,6 +30,15 @@ export type ReportResult =
   | { ok: true; mocked?: boolean }
   | { ok: false; error: string }
 
+/**
+ * 신고 제출 컨텍스트 (서버 전용).
+ * - headers 가 있으면 IP 기반 rate-limit 을 적용한다.
+ * - Route Handler 에서 request.headers 를 전달한다.
+ */
+export type ReportContext = {
+  headers?: Headers
+}
+
 const MAX_SLUG = 200
 const MAX_REASON = 50
 const MAX_MESSAGE = 1000
@@ -44,7 +54,10 @@ export function validateReport(input: ReportInput): string | null {
   return null
 }
 
-export async function submitRestaurantReport(input: ReportInput): Promise<ReportResult> {
+export async function submitRestaurantReport(
+  input: ReportInput,
+  context?: ReportContext,
+): Promise<ReportResult> {
   const err = validateReport(input)
   if (err) return { ok: false, error: err }
 
@@ -59,15 +72,29 @@ export async function submitRestaurantReport(input: ReportInput): Promise<Report
     return { ok: true, mocked: true }
   }
 
+  const slug = input.slug.trim()
+
+  // validate 통과 후 rate-limit 체크 (서버에서 headers 가 전달된 경우에만).
+  // service_role 미설정/조회 실패 시 helper 가 fail-open 으로 통과시킨다.
+  let reporterIpHash: string | null = null
+  if (context?.headers) {
+    const rl = await checkReportRateLimit(context.headers, slug)
+    if (rl.limited) {
+      return { ok: false, error: 'rate_limited' }
+    }
+    reporterIpHash = rl.ipHash
+  }
+
   try {
     const supabase = getSupabaseClient()
     // defaultToNull: false → Prefer: missing=default 헤더로 status 컬럼이 DB default 'pending' 으로 채워지게 한다.
     // 그렇지 않으면 RLS WITH CHECK `status = 'pending'` 가 위반된다.
     const { error } = await supabase.from('restaurant_reports').insert(
       {
-        restaurant_slug: input.slug.trim(),
+        restaurant_slug: slug,
         reason: input.reason.trim(),
         message,
+        reporter_ip_hash: reporterIpHash,
       },
       { defaultToNull: false },
     )

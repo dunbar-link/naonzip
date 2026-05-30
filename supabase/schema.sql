@@ -119,6 +119,17 @@ ALTER TABLE public.restaurant_reports
   ADD CONSTRAINT restaurant_reports_status_check
   CHECK (status IN ('pending', 'reviewed', 'applied', 'rejected'));
 
+-- reporter IP 해시 (spam rate-limit 용).
+--   - 원문 IP 는 저장하지 않고 SHA-256 hash 만 보관 (개인정보 부담 최소화).
+--   - NULL 허용: 기존 row / IP 미상 요청 대응.
+ALTER TABLE public.restaurant_reports
+  ADD COLUMN IF NOT EXISTS reporter_ip_hash text;
+
+-- (reporter_ip_hash, restaurant_slug, created_at DESC) 복합 인덱스
+--   → 동일 IP해시 + 동일 slug 의 최근 신고 count 조회(rate-limit)를 최적화.
+CREATE INDEX IF NOT EXISTS restaurant_reports_reporter_ip_hash_slug_created_at_idx
+  ON public.restaurant_reports (reporter_ip_hash, restaurant_slug, created_at DESC);
+
 -- updated_at 자동 갱신 trigger function (재실행 안전)
 CREATE OR REPLACE FUNCTION public.restaurant_reports_set_updated_at()
 RETURNS TRIGGER
