@@ -462,6 +462,24 @@ export default async function RestaurantDetailPage({ params }: Props) {
         }}
       />
 
+      {/* 정보 수정 제보 (공유하기 바로 아래로 배치 — 발견성 ↑) */}
+      <div className="h-2 bg-gray-50" />
+      <section className="px-4 py-4 bg-white text-center">
+        <ReportButton slug={restaurant.slug} />
+        {reportFormUrl && (
+          <div className="mt-2">
+            <a
+              href={reportFormUrl}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="text-[11px] text-gray-300 underline underline-offset-2 hover:text-gray-500"
+            >
+              외부 폼으로 신고
+            </a>
+          </div>
+        )}
+      </section>
+
       {/* 관련 맛집 */}
       {related.length > 0 && (
         <>
@@ -476,23 +494,6 @@ export default async function RestaurantDetailPage({ params }: Props) {
           </section>
         </>
       )}
-
-      {/* 정보 수정 제보 */}
-      <div className="px-4 mt-4 text-center">
-        <ReportButton slug={restaurant.slug} />
-        {reportFormUrl && (
-          <div className="mt-2">
-            <a
-              href={reportFormUrl}
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              className="text-[11px] text-gray-300 underline underline-offset-2 hover:text-gray-500"
-            >
-              외부 폼으로 신고
-            </a>
-          </div>
-        )}
-      </div>
 
       {/* 뒤로가기 */}
       <div className="px-4 mt-2 mb-4">

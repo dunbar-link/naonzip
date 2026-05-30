@@ -30,6 +30,13 @@ export type RestaurantRow = {
 }
 
 /**
+ * restaurant_reports.status 허용 값.
+ * DB CHECK 제약 (restaurant_reports_status_check) 과 일치시킬 것.
+ */
+export const REPORT_STATUSES = ['pending', 'reviewed', 'applied', 'rejected'] as const
+export type ReportStatus = (typeof REPORT_STATUSES)[number]
+
+/**
  * restaurant_reports 행 타입 (정보 수정 제보)
  */
 export type RestaurantReportRow = {
@@ -37,8 +44,9 @@ export type RestaurantReportRow = {
   restaurant_slug: string
   reason: string
   message: string | null
-  status: string
+  status: ReportStatus
   created_at: string
+  updated_at: string
 }
 
 /**
@@ -59,12 +67,15 @@ export type Database = {
       }
       restaurant_reports: {
         Row: RestaurantReportRow
-        Insert: Omit<RestaurantReportRow, 'id' | 'status' | 'created_at'> & {
+        Insert: Omit<RestaurantReportRow, 'id' | 'status' | 'created_at' | 'updated_at'> & {
           id?: string
-          status?: string
+          status?: ReportStatus
           created_at?: string
+          updated_at?: string
         }
-        Update: Partial<Omit<RestaurantReportRow, 'id' | 'created_at'>>
+        Update: Partial<Omit<RestaurantReportRow, 'id' | 'created_at'>> & {
+          updated_at?: string
+        }
         Relationships: []
       }
     }

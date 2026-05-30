@@ -100,3 +100,39 @@ CREATE POLICY "service role has full access on reports"
   TO service_role
   USING (true)
   WITH CHECK (true);
+
+-- ─────────────────────────────────────────────
+-- restaurant_reports 보강 (idempotent ALTER 블록)
+--   - updated_at 컬럼 + 자동 갱신 trigger
+--   - status CHECK 제약 (pending/reviewed/applied/rejected)
+-- 기존 운영 row 가 있어도 안전하게 재실행 가능하도록 작성.
+-- ─────────────────────────────────────────────
+
+-- updated_at 컬럼 추가 (없으면 기본값 now() 로 백필)
+ALTER TABLE public.restaurant_reports
+  ADD COLUMN IF NOT EXISTS updated_at timestamptz NOT NULL DEFAULT now();
+
+-- status 허용 값 화이트리스트
+ALTER TABLE public.restaurant_reports
+  DROP CONSTRAINT IF EXISTS restaurant_reports_status_check;
+ALTER TABLE public.restaurant_reports
+  ADD CONSTRAINT restaurant_reports_status_check
+  CHECK (status IN ('pending', 'reviewed', 'applied', 'rejected'));
+
+-- updated_at 자동 갱신 trigger function (재실행 안전)
+CREATE OR REPLACE FUNCTION public.restaurant_reports_set_updated_at()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  NEW.updated_at := now();
+  RETURN NEW;
+END;
+$$;
+
+-- BEFORE UPDATE trigger 재설치
+DROP TRIGGER IF EXISTS restaurant_reports_set_updated_at_trigger ON public.restaurant_reports;
+CREATE TRIGGER restaurant_reports_set_updated_at_trigger
+  BEFORE UPDATE ON public.restaurant_reports
+  FOR EACH ROW
+  EXECUTE FUNCTION public.restaurant_reports_set_updated_at();

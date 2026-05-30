@@ -78,9 +78,9 @@ export default function ReportButton({ slug }: Props) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="text-xs text-gray-400 underline underline-offset-2 hover:text-gray-600"
+        className="inline-block py-2 text-sm text-gray-500 underline underline-offset-2 hover:text-gray-700"
       >
-        정보가 다르다면 알려주세요
+        정보가 다르다면 알려주세요 →
       </button>
 
       {open && (
