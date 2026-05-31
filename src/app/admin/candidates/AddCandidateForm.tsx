@@ -33,12 +33,64 @@ const SOURCE_OPTIONS: { value: CandidateSourceType; label: string }[] = [
   { value: 'other', label: 'other' },
 ]
 
+// 신뢰도: 자유 입력 대신 5단계 select. addCandidate 가 0~1 clamp/기본 0.5 로 처리하므로 payload 호환.
+const CONFIDENCE_OPTIONS = ['0.1', '0.3', '0.5', '0.7', '0.9'] as const
+
+// 빠른 붙여넣기 라벨 → FormState 키 매핑. 표에 없는 키는 무시한다.
+//   - source_type 은 매핑 대상 아님(기존 select 값 유지).
+const PASTE_KEY_MAP: Record<string, Exclude<keyof FormState, 'source_type'>> = {
+  소스명: 'source_name',
+  식당명: 'restaurant_name',
+  추정지역: 'area_guess',
+  에피소드: 'episode_title',
+  URL: 'source_url',
+  신뢰도: 'confidence_score',
+  메모: 'operator_note',
+}
+
+// 붙여넣은 신뢰도 값을 select 가 가진 5단계 중 가장 가까운 값으로 스냅. 비정상이면 null.
+function snapConfidence(raw: string): string | null {
+  const n = Number(raw)
+  if (!Number.isFinite(n)) return null
+  let best: string = CONFIDENCE_OPTIONS[0]
+  for (const opt of CONFIDENCE_OPTIONS) {
+    if (Math.abs(Number(opt) - n) < Math.abs(Number(best) - n)) best = opt
+  }
+  return best
+}
+
+/**
+ * "라벨: 값" 줄 목록을 파싱해 채울 필드만 부분 객체로 반환.
+ *   - 줄 단위, 첫 ":" 기준 split (URL 값의 https:// 콜론 보존)
+ *   - 알 수 없는 라벨 무시, 빈 값 무시
+ *   - 신뢰도는 5단계로 스냅, 스냅 실패 시 건너뜀
+ */
+function parsePaste(text: string): Partial<FormState> {
+  const result: Partial<FormState> = {}
+  for (const line of text.split(/\r?\n/)) {
+    const idx = line.indexOf(':')
+    if (idx === -1) continue
+    const key = line.slice(0, idx).trim()
+    const value = line.slice(idx + 1).trim()
+    const field = PASTE_KEY_MAP[key]
+    if (!field || value === '') continue
+    if (field === 'confidence_score') {
+      const snapped = snapConfidence(value)
+      if (snapped) result.confidence_score = snapped
+    } else {
+      result[field] = value
+    }
+  }
+  return result
+}
+
 const inputClass =
   'w-full rounded-md border border-gray-300 bg-white px-2 py-1.5 text-xs disabled:opacity-50'
 const labelClass = 'block text-xs font-medium text-gray-700 mb-1'
 
 export default function AddCandidateForm() {
   const [form, setForm] = useState<FormState>(EMPTY)
+  const [pasteText, setPasteText] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   const [pending, startTransition] = useTransition()
@@ -47,6 +99,17 @@ export default function AddCandidateForm() {
     setForm((f) => ({ ...f, [key]: value }))
     setError(null)
     setSuccess(false)
+  }
+
+  // 빠른 붙여넣기: 인식한 라벨만 기존 필드로 병합. 빈 textarea 면 아무것도 바꾸지 않는다.
+  function onPasteChange(text: string) {
+    setPasteText(text)
+    setError(null)
+    setSuccess(false)
+    const parsed = parsePaste(text)
+    if (Object.keys(parsed).length > 0) {
+      setForm((f) => ({ ...f, ...parsed }))
+    }
   }
 
   function onSubmit(e: React.FormEvent) {
@@ -76,6 +139,7 @@ export default function AddCandidateForm() {
       })
       if (res.ok) {
         setForm(EMPTY)
+        setPasteText('')
         setSuccess(true)
       } else {
         setError(res.error)
@@ -89,6 +153,24 @@ export default function AddCandidateForm() {
         후보 수동 추가
       </summary>
       <form onSubmit={onSubmit} className="border-t border-gray-100 px-4 py-4">
+        <div className="mb-3">
+          <label className={labelClass}>빠른 붙여넣기 (선택)</label>
+          <textarea
+            value={pasteText}
+            disabled={pending}
+            onChange={(e) => onPasteChange(e.target.value)}
+            rows={4}
+            className={inputClass}
+            placeholder={
+              '소스명: 전현무계획3\n식당명: 중앙곰탕\n추정지역: 중앙동\n에피소드: 부산편 양수백 맛집\nURL: https://...\n신뢰도: 0.9\n메모: 양수백 대표'
+            }
+          />
+          <p className="mt-1 text-[11px] text-gray-400">
+            줄마다 “라벨: 값” 형식으로 붙여넣으면 아래 필드가 자동으로 채워져요. 비워둬도 기존
+            입력 방식 그대로 쓸 수 있어요.
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div>
             <label className={labelClass}>소스 유형 *</label>
@@ -166,17 +248,19 @@ export default function AddCandidateForm() {
           </div>
 
           <div>
-            <label className={labelClass}>신뢰도 (0~1)</label>
-            <input
-              type="number"
-              step="0.001"
-              min="0"
-              max="1"
+            <label className={labelClass}>신뢰도</label>
+            <select
               value={form.confidence_score}
               disabled={pending}
               onChange={(e) => set('confidence_score', e.target.value)}
               className={inputClass}
-            />
+            >
+              {CONFIDENCE_OPTIONS.map((v) => (
+                <option key={v} value={v}>
+                  {v}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
