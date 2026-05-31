@@ -13,6 +13,7 @@ import {
 } from '@/types/supabase'
 import { AREA_TYPES, type AreaType } from '@/types/restaurant'
 import { isInBusanRange } from '@/lib/coords'
+import { isValidSlug, SLUG_INVALID_MESSAGE } from '@/lib/slug'
 
 /** 빈/공백 문자열은 null 로 정규화. */
 function trimToNull(v: unknown): string | null {
@@ -277,6 +278,25 @@ export async function updateRestaurant(
   }
 
   const supabase = getSupabaseAdminClient()
+
+  // slug 형식 검증은 "변경 시에만". 현재 저장된 slug 를 서버에서 조회해 비교한다.
+  //   - 클라이언트 전달값은 신뢰하지 않는다(서버 SELECT 가 원본 기준).
+  //   - 제출 slug 가 원본과 같으면(한글 slug 유지 등) 형식 검증을 건너뛴다.
+  //   - 다를 때만 URL-safe 형식 검증.
+  {
+    const { data, error } = await supabase
+      .from('restaurants')
+      .select('slug')
+      .eq('id', id)
+      .single()
+    if (error || !data) {
+      console.error('[admin/restaurants] 원본 slug 조회 실패:', error)
+      return { ok: false, error: '식당을 찾을 수 없어요.' }
+    }
+    if (slug !== data.slug && !isValidSlug(slug)) {
+      return { ok: false, error: SLUG_INVALID_MESSAGE }
+    }
+  }
 
   // slug 자기제외 중복 검사 (.neq('id', id)) — slug 를 유지해도 안전하다.
   // UNIQUE 제약과 23505 도 아래 UPDATE 에서 한 번 더 잡는다.

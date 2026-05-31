@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useRef, useState, useTransition } from 'react'
 import Link from 'next/link'
 import {
   RESTAURANT_SOURCE_TYPES,
@@ -8,6 +8,7 @@ import {
 } from '@/types/supabase'
 import { AREA_TYPES } from '@/types/restaurant'
 import { COORD_HINT, isInBusanRange } from '@/lib/coords'
+import { isValidSlug, SLUG_HINT, SLUG_INVALID_MESSAGE } from '@/lib/slug'
 import { updateRestaurant } from '../../actions'
 
 /** page.tsx 에서 row 값으로 채워 넘기는 prefill. */
@@ -50,6 +51,9 @@ type Props = {
 
 export default function EditForm({ restaurantId, isPublished, prefill }: Props) {
   const [form, setForm] = useState<FormState>({ ...prefill })
+  // 원본 slug 를 최초 prefill 값으로 캡처(폼 입력으로 바뀌어도 원본 유지).
+  // edit 은 "변경 시에만" 형식 검증하므로 원본과의 비교 기준이 필요하다.
+  const originalSlug = useRef(prefill.slug.trim())
   const [error, setError] = useState<string | null>(null)
   const [savedSlug, setSavedSlug] = useState<string | null>(null)
   const [pending, startTransition] = useTransition()
@@ -82,6 +86,15 @@ export default function EditForm({ restaurantId, isPublished, prefill }: Props) 
         setError(message)
         return
       }
+    }
+    // slug 형식 검증은 "변경 시에만". 원본과 같으면(한글 slug 유지) 통과.
+    if (
+      form.slug.trim() !== originalSlug.current &&
+      form.slug.trim() &&
+      !isValidSlug(form.slug.trim())
+    ) {
+      setError(SLUG_INVALID_MESSAGE)
+      return
     }
     if (!Number.isFinite(Number(form.lat))) {
       setError('위도(lat)는 숫자여야 해요.')
@@ -141,6 +154,13 @@ export default function EditForm({ restaurantId, isPublished, prefill }: Props) 
     Number.isFinite(lngNum) &&
     !isInBusanRange(latNum, lngNum)
 
+  // slug 형식 위반 경고용 파생값 — "원본과 다르고, 비어있지 않고, 형식 위반"일 때만.
+  // 원본과 같으면(한글 slug 유지) 경고하지 않는다.
+  const slugInvalid =
+    form.slug.trim() !== originalSlug.current &&
+    form.slug.trim() !== '' &&
+    !isValidSlug(form.slug.trim())
+
   // 저장 성공 후: redirect 없이 성공 메시지 + 미리보기/목록 링크.
   if (savedSlug) {
     return (
@@ -187,6 +207,10 @@ export default function EditForm({ restaurantId, isPublished, prefill }: Props) 
             className={inputClass}
             placeholder="예: busan-gukbap"
           />
+          <p className="mt-1 text-xs text-gray-500">{SLUG_HINT}</p>
+          {slugInvalid && (
+            <p className="mt-1 text-[10px] text-amber-600">{SLUG_INVALID_MESSAGE}</p>
+          )}
           {isPublished && (
             <p className="mt-1 text-[10px] text-amber-600">
               공개 중인 식당의 slug를 바꾸면 기존 공개 URL이 깨집니다.

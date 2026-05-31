@@ -14,7 +14,8 @@ type Props = {
 
 /**
  * 후보의 식당명에서 slug 초안 생성.
- * 한글/영문/숫자는 유지하고, 공백·구분자는 하이픈으로, 그 외는 제거.
+ * 영문 소문자/숫자만 유지하고, 공백·구분자는 하이픈으로, 그 외(한글 포함)는 제거.
+ * 자동 로마자 변환은 하지 않으므로 한글 name 이면 결과가 빈값이 될 수 있다.
  * 운영자가 폼에서 자유롭게 수정할 수 있으므로 "초안" 수준이면 충분하다.
  */
 function draftSlug(name: string): string {
@@ -23,7 +24,7 @@ function draftSlug(name: string): string {
     .toLowerCase()
     .normalize('NFC')
     .replace(/[\s_]+/g, '-')
-    .replace(/[^가-힣a-z0-9-]/g, '')
+    .replace(/[^a-z0-9-]/g, '')
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '')
 }

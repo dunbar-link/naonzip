@@ -17,6 +17,7 @@ import {
 } from '@/types/supabase'
 import { AREA_TYPES, type AreaType } from '@/types/restaurant'
 import { isInBusanRange } from '@/lib/coords'
+import { isValidSlug, SLUG_INVALID_MESSAGE } from '@/lib/slug'
 
 function isValidStatus(s: unknown): s is CandidateStatus {
   return typeof s === 'string' && (CANDIDATE_STATUSES as readonly string[]).includes(s)
@@ -287,6 +288,8 @@ export async function convertCandidateToRestaurant(
   const sourceTitle = trimToNull(payload.source_title)
 
   if (!slug) return { ok: false, error: 'slug 를 입력해주세요.' }
+  // 신규 생성이므로 항상 전체 slug 형식 검증.
+  if (!isValidSlug(slug)) return { ok: false, error: SLUG_INVALID_MESSAGE }
   if (!name) return { ok: false, error: '식당명을 입력해주세요.' }
   if (!address) return { ok: false, error: '주소를 입력해주세요.' }
   if (!category) return { ok: false, error: '카테고리를 입력해주세요.' }

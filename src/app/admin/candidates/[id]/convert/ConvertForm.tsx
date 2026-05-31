@@ -7,6 +7,7 @@ import {
 } from '@/types/supabase'
 import { AREA_TYPES } from '@/types/restaurant'
 import { COORD_HINT, isInBusanRange } from '@/lib/coords'
+import { isValidSlug, SLUG_HINT, SLUG_INVALID_MESSAGE } from '@/lib/slug'
 import { convertCandidateToRestaurant } from '../../actions'
 
 /** page.tsx 에서 계산해 넘기는 prefill 값. */
@@ -113,6 +114,11 @@ export default function ConvertForm({ candidateId, prefill }: Props) {
         return
       }
     }
+    // slug 형식 검증(신규 생성이므로 항상). 빈값은 위 필수값 체크가 처리.
+    if (form.slug.trim() && !isValidSlug(form.slug.trim())) {
+      setError(SLUG_INVALID_MESSAGE)
+      return
+    }
     if (!Number.isFinite(Number(form.lat))) {
       setError('위도(lat)는 숫자여야 해요.')
       return
@@ -171,6 +177,9 @@ export default function ConvertForm({ candidateId, prefill }: Props) {
     Number.isFinite(lngNum) &&
     !isInBusanRange(latNum, lngNum)
 
+  // slug 형식 위반 경고용 파생값(비어있지 않고 형식 위반일 때만).
+  const slugInvalid = form.slug.trim() !== '' && !isValidSlug(form.slug.trim())
+
   // 등록 성공 후: redirect 없이 성공 메시지 + 공개 URL 링크.
   if (successSlug) {
     return (
@@ -217,6 +226,10 @@ export default function ConvertForm({ candidateId, prefill }: Props) {
             className={inputClass}
             placeholder="예: busan-gukbap"
           />
+          <p className="mt-1 text-xs text-gray-500">{SLUG_HINT}</p>
+          {slugInvalid && (
+            <p className="mt-1 text-[10px] text-amber-600">{SLUG_INVALID_MESSAGE}</p>
+          )}
         </div>
 
         <div>
