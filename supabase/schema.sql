@@ -224,3 +224,95 @@ ALTER TABLE public.candidate_queue
   ADD COLUMN IF NOT EXISTS converted_restaurant_slug text;
 ALTER TABLE public.candidate_queue
   ADD COLUMN IF NOT EXISTS converted_at timestamptz;
+
+-- ─────────────────────────────────────────────
+-- restaurant_appearances 테이블 (방송 출연 기록 — 1:N)
+--   - 한 식당(restaurants)이 여러 방송/유튜브에 출연할 수 있으므로,
+--     방송별 정보를 restaurants 에 비정규화하지 않고 이 테이블에 1건씩 적재한다.
+--   - Step 0(dual-write 준비): restaurants 의 기존 방송 컬럼은 유지(drop 금지).
+--     이 단계에서는 테이블/RLS/백필만 준비하고, read 경로는 아직 바꾸지 않는다.
+--   - idempotent: CREATE TABLE/INDEX IF NOT EXISTS, 정책은 DROP IF EXISTS 후 CREATE.
+-- ─────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS public.restaurant_appearances (
+  id            uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  restaurant_id uuid NOT NULL REFERENCES public.restaurants(id) ON DELETE CASCADE,
+  source_type   text NOT NULL CHECK (source_type IN ('youtube', 'tv', 'sns')),
+  source_title  text NOT NULL,
+  program_name  text,
+  creator_name  text,
+  episode_title text,
+  broadcast_date date,
+  video_url     text,
+  candidate_id  uuid,
+  note          text,
+  created_at    timestamptz NOT NULL DEFAULT now()
+);
+
+-- 인덱스
+--   - (restaurant_id, broadcast_date DESC NULLS LAST): 식당별 최신 출연(대표 방송) 조회.
+--   - source_type / program_name / creator_name: landing/필터 조회 대비.
+CREATE INDEX IF NOT EXISTS restaurant_appearances_restaurant_id_idx
+  ON public.restaurant_appearances (restaurant_id, broadcast_date DESC NULLS LAST);
+CREATE INDEX IF NOT EXISTS restaurant_appearances_source_type_idx
+  ON public.restaurant_appearances (source_type);
+CREATE INDEX IF NOT EXISTS restaurant_appearances_program_name_idx
+  ON public.restaurant_appearances (program_name);
+CREATE INDEX IF NOT EXISTS restaurant_appearances_creator_name_idx
+  ON public.restaurant_appearances (creator_name);
+
+-- RLS
+ALTER TABLE public.restaurant_appearances ENABLE ROW LEVEL SECURITY;
+
+-- 공개 읽기: 부모 restaurant 가 is_published=true 인 출연만 anon 키로 조회 가능.
+--   - restaurants 공개 정책(is_published=true)과 동일한 가시성에 종속시킨다.
+DROP POLICY IF EXISTS "appearances of published restaurants are publicly readable"
+  ON public.restaurant_appearances;
+CREATE POLICY "appearances of published restaurants are publicly readable"
+  ON public.restaurant_appearances
+  FOR SELECT
+  TO anon, authenticated
+  USING (
+    EXISTS (
+      SELECT 1
+      FROM public.restaurants r
+      WHERE r.id = restaurant_appearances.restaurant_id
+        AND r.is_published = true
+    )
+  );
+
+-- 관리자 전체 접근: service_role 키 (Admin CMS 용).
+DROP POLICY IF EXISTS "service role has full access on appearances"
+  ON public.restaurant_appearances;
+CREATE POLICY "service role has full access on appearances"
+  ON public.restaurant_appearances
+  FOR ALL
+  TO service_role
+  USING (true)
+  WITH CHECK (true);
+
+-- ─────────────────────────────────────────────
+-- backfill: 기존 restaurants 의 방송 컬럼 → restaurant_appearances 1건씩 복사 (insert-only)
+--   - dual-write 전환을 위해 기존 식당마다 "대표 출연" 1개를 만들어 둔다.
+--   - restaurants 의 컬럼은 읽기만 한다. UPDATE/DROP 없음.
+--   - 중복 실행 안전: (restaurant_id, source_type, source_title, coalesce(video_url,''))
+--     조합이 이미 있으면 INSERT 하지 않는다.
+--   - source_type/source_title 은 restaurants 에서 NOT NULL 이지만, 방어적으로 NULL/빈값 제외.
+-- ─────────────────────────────────────────────
+INSERT INTO public.restaurant_appearances
+  (restaurant_id, source_type, source_title, program_name, creator_name,
+   episode_title, broadcast_date, video_url)
+SELECT
+  r.id, r.source_type, r.source_title, r.program_name, r.creator_name,
+  r.episode_title, r.broadcast_date, r.video_url
+FROM public.restaurants r
+WHERE r.source_type IS NOT NULL
+  AND r.source_title IS NOT NULL
+  AND length(btrim(r.source_title)) > 0
+  AND NOT EXISTS (
+    SELECT 1
+    FROM public.restaurant_appearances a
+    WHERE a.restaurant_id = r.id
+      AND a.source_type = r.source_type
+      AND a.source_title = r.source_title
+      AND coalesce(a.video_url, '') = coalesce(r.video_url, '')
+  );

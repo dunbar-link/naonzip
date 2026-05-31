@@ -94,6 +94,26 @@ export type CandidateQueueRow = {
 }
 
 /**
+ * restaurant_appearances 행 타입 (방송 출연 기록 — restaurants 1:N)
+ * DB CHECK 제약 (source_type IN ('youtube','tv','sns')) 과 일치시킬 것.
+ * Step 0(dual-write 준비) — read 경로는 아직 이 타입을 사용하지 않는다.
+ */
+export type RestaurantAppearanceRow = {
+  id: string
+  restaurant_id: string
+  source_type: RestaurantSourceType
+  source_title: string
+  program_name: string | null
+  creator_name: string | null
+  episode_title: string | null
+  broadcast_date: string | null // ISO date 'YYYY-MM-DD'
+  video_url: string | null
+  candidate_id: string | null
+  note: string | null
+  created_at: string
+}
+
+/**
  * Supabase 전체 DB 스키마 타입
  * createClient<Database>() 에 제네릭으로 사용
  */
@@ -145,6 +165,15 @@ export type Database = {
           converted_at?: string | null
         }
         Update: Partial<Omit<CandidateQueueRow, 'id' | 'created_at'>>
+        Relationships: []
+      }
+      restaurant_appearances: {
+        Row: RestaurantAppearanceRow
+        Insert: Omit<RestaurantAppearanceRow, 'id' | 'created_at'> & {
+          id?: string
+          created_at?: string
+        }
+        Update: Partial<Omit<RestaurantAppearanceRow, 'id' | 'created_at'>>
         Relationships: []
       }
     }
