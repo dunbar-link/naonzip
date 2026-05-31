@@ -89,16 +89,24 @@ export default async function ConvertCandidatePage({ params }: Props) {
     }))
   }
 
-  // appearance 추가 폼 prefill (candidate 값 기반).
+  // appearance 추가 폼 prefill (candidate 값 기반 — 운영자는 확인 후 수정 가능).
+  //   - source_type: youtube/tv/sns 면 그대로, other 면 기본 'tv'(운영자가 바꿀 수 있음).
+  //   - note: operator_note 있으면 참고로 채우고, 없으면 기본 문구.
   const appearancePrefill: AppearancePrefill = {
-    source_type: prefill.source_type,
+    source_type: (RESTAURANT_SOURCE_TYPES as readonly string[]).includes(
+      candidate.source_type,
+    )
+      ? (candidate.source_type as RestaurantSourceType)
+      : 'tv',
     source_title: candidate.source_name ?? '',
     program_name: prefill.program_name,
     creator_name: prefill.creator_name,
     episode_title: candidate.episode_title ?? '',
     broadcast_date: '',
     video_url: candidate.source_url ?? '',
-    note: '',
+    note: candidate.operator_note?.trim()
+      ? candidate.operator_note
+      : '후보에서 추가한 방송 출연 기록',
   }
 
   return (

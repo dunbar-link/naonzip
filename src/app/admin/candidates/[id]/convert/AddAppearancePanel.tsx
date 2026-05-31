@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useTransition } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
   RESTAURANT_SOURCE_TYPES,
@@ -51,6 +52,7 @@ type Props = {
 }
 
 export default function AddAppearancePanel({ candidateId, matches, prefill }: Props) {
+  const router = useRouter()
   const [selected, setSelected] = useState<ExistingMatch | null>(null)
   const [form, setForm] = useState<FormState>({ ...prefill })
   const [error, setError] = useState<string | null>(null)
@@ -97,6 +99,9 @@ export default function AddAppearancePanel({ candidateId, matches, prefill }: Pr
       })
       if (res.ok) {
         setDoneSlug(res.slug)
+        // 서버 컴포넌트 재실행 → candidate 가 converted 로 마킹돼 패널이 사라지고
+        // "완료" 가드가 바로 보이도록 갱신.
+        router.refresh()
       } else {
         setError(res.error)
       }
@@ -169,6 +174,9 @@ export default function AddAppearancePanel({ candidateId, matches, prefill }: Pr
 
             {selected?.id === m.id && (
               <form onSubmit={onSubmit} className="mt-3 border-t border-amber-100 pt-3">
+                <p className="mb-3 text-[11px] text-gray-500">
+                  후보 정보로 자동 채웠어요. 확인 후 추가해 주세요. (모든 값은 수정할 수 있어요)
+                </p>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div>
                     <label className={labelClass}>소스 유형 *</label>
@@ -275,7 +283,7 @@ export default function AddAppearancePanel({ candidateId, matches, prefill }: Pr
                     disabled={pending}
                     className="rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-700 disabled:opacity-50"
                   >
-                    {pending ? '추가 중…' : '방송 출연 추가'}
+                    {pending ? '추가 중…' : '방송 출연 추가하기'}
                   </button>
                   <button
                     type="button"
