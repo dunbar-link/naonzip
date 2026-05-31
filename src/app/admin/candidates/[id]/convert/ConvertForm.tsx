@@ -8,6 +8,10 @@ import {
 import { AREA_TYPES } from '@/types/restaurant'
 import { COORD_HINT, isInBusanRange } from '@/lib/coords'
 import { isValidSlug, SLUG_HINT, SLUG_INVALID_MESSAGE } from '@/lib/slug'
+import {
+  parseRestaurantPaste,
+  RESTAURANT_PASTE_PLACEHOLDER,
+} from '@/lib/admin-restaurant-paste'
 import { convertCandidateToRestaurant } from '../../actions'
 
 /** page.tsx 에서 계산해 넘기는 prefill 값. */
@@ -81,6 +85,8 @@ export default function ConvertForm({ candidateId, prefill }: Props) {
     naver_map_url: '',
     tmap_url: '',
   })
+  const [pasteText, setPasteText] = useState('')
+  const [pasteIgnored, setPasteIgnored] = useState<string[]>([])
   const [error, setError] = useState<string | null>(null)
   const [successSlug, setSuccessSlug] = useState<string | null>(null)
   const [pending, startTransition] = useTransition()
@@ -89,6 +95,18 @@ export default function ConvertForm({ candidateId, prefill }: Props) {
     setForm((f) => ({ ...f, [key]: value }))
     setError(null)
     setSuccessSlug(null)
+  }
+
+  // 빠른 붙여넣기: 인식한 필드만 기존 form 에 병합. 빈 textarea 면 아무것도 바꾸지 않는다.
+  function onPasteChange(text: string) {
+    setPasteText(text)
+    setError(null)
+    setSuccessSlug(null)
+    const { fields, ignored } = parseRestaurantPaste(text)
+    if (Object.keys(fields).length > 0) {
+      setForm((f) => ({ ...f, ...fields }))
+    }
+    setPasteIgnored(ignored)
   }
 
   function onSubmit(e: React.FormEvent) {
@@ -214,6 +232,29 @@ export default function ConvertForm({ candidateId, prefill }: Props) {
         자동 채움 값은 prefill 된 것이며 모두 수정할 수 있어요. 필수 항목(*)을 채운 뒤
         저장하면 비공개(is_published=false)로 등록됩니다.
       </p>
+
+      <div className="mb-4">
+        <label className={labelClass}>빠른 붙여넣기 (선택)</label>
+        <textarea
+          value={pasteText}
+          disabled={pending}
+          onChange={(e) => onPasteChange(e.target.value)}
+          rows={5}
+          className={inputClass}
+          placeholder={RESTAURANT_PASTE_PLACEHOLDER}
+        />
+        <p className="mt-1 text-[11px] text-gray-400">
+          ChatGPT가 정리한 등록 정보를 붙여넣으면 아래 칸이 자동으로 채워져요. 비워두면 기존
+          입력 방식 그대로 쓸 수 있어요.
+        </p>
+        {pasteIgnored.length > 0 && (
+          <ul className="mt-1 space-y-0.5 text-[10px] text-amber-600">
+            {pasteIgnored.map((msg, i) => (
+              <li key={i}>{msg}</li>
+            ))}
+          </ul>
+        )}
+      </div>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div>

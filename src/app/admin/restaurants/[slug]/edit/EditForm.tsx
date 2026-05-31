@@ -9,6 +9,10 @@ import {
 import { AREA_TYPES } from '@/types/restaurant'
 import { COORD_HINT, isInBusanRange } from '@/lib/coords'
 import { isValidSlug, SLUG_HINT, SLUG_INVALID_MESSAGE } from '@/lib/slug'
+import {
+  parseRestaurantPaste,
+  RESTAURANT_PASTE_PLACEHOLDER,
+} from '@/lib/admin-restaurant-paste'
 import { updateRestaurant } from '../../actions'
 
 /** page.tsx 에서 row 값으로 채워 넘기는 prefill. */
@@ -54,6 +58,8 @@ export default function EditForm({ restaurantId, isPublished, prefill }: Props) 
   // 원본 slug 를 최초 prefill 값으로 캡처(폼 입력으로 바뀌어도 원본 유지).
   // edit 은 "변경 시에만" 형식 검증하므로 원본과의 비교 기준이 필요하다.
   const originalSlug = useRef(prefill.slug.trim())
+  const [pasteText, setPasteText] = useState('')
+  const [pasteIgnored, setPasteIgnored] = useState<string[]>([])
   const [error, setError] = useState<string | null>(null)
   const [savedSlug, setSavedSlug] = useState<string | null>(null)
   const [pending, startTransition] = useTransition()
@@ -62,6 +68,18 @@ export default function EditForm({ restaurantId, isPublished, prefill }: Props) 
     setForm((f) => ({ ...f, [key]: value }))
     setError(null)
     setSavedSlug(null)
+  }
+
+  // 빠른 붙여넣기: 인식한 필드만 기존 form 에 병합. 빈 textarea 면 아무것도 바꾸지 않는다.
+  function onPasteChange(text: string) {
+    setPasteText(text)
+    setError(null)
+    setSavedSlug(null)
+    const { fields, ignored } = parseRestaurantPaste(text)
+    if (Object.keys(fields).length > 0) {
+      setForm((f) => ({ ...f, ...fields }))
+    }
+    setPasteIgnored(ignored)
   }
 
   function onSubmit(e: React.FormEvent) {
@@ -195,6 +213,29 @@ export default function EditForm({ restaurantId, isPublished, prefill }: Props) 
         필수 항목(*)을 채운 뒤 저장하면 식당 정보가 갱신됩니다. 공개 상태는 변경되지
         않으며, 공개/비공개는 미리보기에서 토글하세요.
       </p>
+
+      <div className="mb-4">
+        <label className={labelClass}>빠른 붙여넣기 (선택)</label>
+        <textarea
+          value={pasteText}
+          disabled={pending}
+          onChange={(e) => onPasteChange(e.target.value)}
+          rows={5}
+          className={inputClass}
+          placeholder={RESTAURANT_PASTE_PLACEHOLDER}
+        />
+        <p className="mt-1 text-[11px] text-gray-400">
+          ChatGPT가 정리한 등록 정보를 붙여넣으면 아래 칸이 자동으로 채워져요. 비워두면 기존
+          입력 방식 그대로 쓸 수 있어요.
+        </p>
+        {pasteIgnored.length > 0 && (
+          <ul className="mt-1 space-y-0.5 text-[10px] text-amber-600">
+            {pasteIgnored.map((msg, i) => (
+              <li key={i}>{msg}</li>
+            ))}
+          </ul>
+        )}
+      </div>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div>
