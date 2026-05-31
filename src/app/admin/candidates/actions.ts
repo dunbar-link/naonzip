@@ -18,6 +18,7 @@ import {
 import { AREA_TYPES, type AreaType } from '@/types/restaurant'
 import { isInBusanRange } from '@/lib/coords'
 import { isValidSlug, SLUG_INVALID_MESSAGE } from '@/lib/slug'
+import { revalidateRestaurantPublicPaths } from '@/lib/revalidate-restaurants'
 
 function isValidStatus(s: unknown): s is CandidateStatus {
   return typeof s === 'string' && (CANDIDATE_STATUSES as readonly string[]).includes(s)
@@ -405,4 +406,165 @@ export async function convertCandidateToRestaurant(
 
   revalidatePath('/admin/candidates')
   return { ok: true, slug }
+}
+
+/**
+ * addCandidateAppearanceToRestaurant 입력 (client component 에서 plain object 로 전달).
+ */
+export type AddAppearanceInput = {
+  restaurantId: string
+  source_type: string
+  source_title: string
+  program_name?: string
+  creator_name?: string
+  episode_title?: string
+  broadcast_date?: string
+  video_url?: string
+  note?: string
+}
+
+/**
+ * 기존 restaurant 에 candidate 의 방송 출연(appearance)을 추가한다(중복 식당 row 생성 방지).
+ * 1) 쿠키 기반 인증 재검증
+ * 2) candidate 존재 + 이미 변환완료(converted_restaurant_slug)면 차단
+ * 3) 대상 restaurant 존재 확인(읽기만 — restaurants row 는 생성/수정하지 않는다)
+ * 4) source_type youtube/tv/sns · source_title 필수 · video_url 형식 검증
+ * 5) (restaurant_id, source_type, source_title, video_url) 동일 출연 중복 차단
+ * 6) restaurant_appearances INSERT (candidate_id 기록)
+ * 7) candidate 를 converted 로 마킹(converted_restaurant_slug/converted_at 두 필드만)
+ * 8) public 경로 revalidate
+ *
+ * 자동 등록이 아니라 운영자가 기존 식당을 직접 선택해 출연을 추가하는 흐름이다.
+ * restaurants 의 source_title/program_name 등 기존 컬럼은 절대 덮어쓰지 않는다.
+ */
+export async function addCandidateAppearanceToRestaurant(
+  candidateId: string,
+  input: AddAppearanceInput,
+): Promise<{ ok: true; slug: string } | { ok: false; error: string }> {
+  const c = await cookies()
+  const token = c.get(ADMIN_COOKIE_NAME)?.value
+  const authed = await verifyAdminSessionToken(token)
+  if (!authed) {
+    return { ok: false, error: 'unauthorized' }
+  }
+
+  if (!candidateId || typeof candidateId !== 'string') {
+    return { ok: false, error: 'invalid candidate id' }
+  }
+  if (!input.restaurantId || typeof input.restaurantId !== 'string') {
+    return { ok: false, error: 'invalid restaurant id' }
+  }
+
+  // source_type: youtube/tv/sns 화이트리스트 (candidate 의 'other' 는 불가).
+  if (!isValidRestaurantSourceType(input.source_type)) {
+    return { ok: false, error: '소스 유형은 youtube/tv/sns 중에서 선택해주세요.' }
+  }
+
+  const sourceTitle = trimToNull(input.source_title)
+  if (!sourceTitle) {
+    return { ok: false, error: '출처명을 입력해주세요.' }
+  }
+
+  // video_url: 빈 값은 null, 있으면 http(s) 스킴만 허용.
+  const videoUrl = trimToNull(input.video_url)
+  if (videoUrl && !videoUrl.startsWith('http://') && !videoUrl.startsWith('https://')) {
+    return { ok: false, error: '영상 URL은 http:// 또는 https:// 로 시작해야 해요.' }
+  }
+  const programName = trimToNull(input.program_name)
+  const creatorName = trimToNull(input.creator_name)
+  const episodeTitle = trimToNull(input.episode_title)
+  const broadcastDate = trimToNull(input.broadcast_date)
+  const note = trimToNull(input.note)
+
+  const supabase = getSupabaseAdminClient()
+
+  // candidate 존재 + 변환완료 가드.
+  {
+    const { data, error } = await supabase
+      .from('candidate_queue')
+      .select('id, converted_restaurant_slug')
+      .eq('id', candidateId)
+      .single()
+    if (error || !data) {
+      return { ok: false, error: 'candidate not found' }
+    }
+    if (data.converted_restaurant_slug) {
+      return { ok: false, error: '이미 식당 등록 또는 출연 추가가 완료된 후보예요.' }
+    }
+  }
+
+  // 대상 restaurant 존재 확인(읽기만). slug 회수.
+  let restaurantSlug: string
+  {
+    const { data, error } = await supabase
+      .from('restaurants')
+      .select('id, slug')
+      .eq('id', input.restaurantId)
+      .single()
+    if (error || !data) {
+      return { ok: false, error: '대상 식당을 찾을 수 없어요.' }
+    }
+    restaurantSlug = data.slug
+  }
+
+  // 동일 출연 중복 차단: (restaurant_id, source_type, source_title, video_url).
+  //   - schema.sql backfill 가드와 동일 기준(coalesce(video_url,'')).
+  {
+    let query = supabase
+      .from('restaurant_appearances')
+      .select('id')
+      .eq('restaurant_id', input.restaurantId)
+      .eq('source_type', input.source_type)
+      .eq('source_title', sourceTitle)
+    query = videoUrl ? query.eq('video_url', videoUrl) : query.is('video_url', null)
+    const { data, error } = await query.limit(1)
+    if (error) {
+      console.error('[admin/candidates] appearance 중복 검사 실패:', error)
+      return { ok: false, error: 'insert failed' }
+    }
+    if (data?.length) {
+      return { ok: false, error: '이미 이 식당에 등록된 방송 출연이에요.' }
+    }
+  }
+
+  // restaurant_appearances INSERT. restaurants row 는 건드리지 않는다.
+  const { error: insErr } = await supabase.from('restaurant_appearances').insert(
+    {
+      restaurant_id: input.restaurantId,
+      source_type: input.source_type,
+      source_title: sourceTitle,
+      program_name: programName,
+      creator_name: creatorName,
+      episode_title: episodeTitle,
+      broadcast_date: broadcastDate,
+      video_url: videoUrl,
+      candidate_id: candidateId,
+      note,
+    },
+    { defaultToNull: false },
+  )
+  if (insErr) {
+    console.error('[admin/candidates] appearance insert 실패:', insErr)
+    return { ok: false, error: 'insert failed' }
+  }
+
+  // candidate 변환 완료 마킹 (재변환 차단용). status/reviewed_at 는 건드리지 않는다.
+  //   - 마킹 실패해도 appearance 는 이미 추가됐으므로 로깅만 하고 성공 반환.
+  {
+    const { error: markErr } = await supabase
+      .from('candidate_queue')
+      .update({
+        converted_restaurant_slug: restaurantSlug,
+        converted_at: new Date().toISOString(),
+      })
+      .eq('id', candidateId)
+    if (markErr) {
+      console.error('[admin/candidates] candidate 변환 마킹 실패:', markErr)
+    }
+  }
+
+  // 출연이 추가된 식당이 검색/목록/지도/홈/상세/landing 에 반영되도록 public 경로 무효화.
+  revalidateRestaurantPublicPaths([restaurantSlug])
+  revalidatePath('/admin/candidates')
+  return { ok: true, slug: restaurantSlug }
 }

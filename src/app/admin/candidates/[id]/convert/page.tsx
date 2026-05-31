@@ -4,6 +4,10 @@ import { getSupabaseAdminClient } from '@/lib/supabase-admin'
 import type { CandidateQueueRow, RestaurantSourceType } from '@/types/supabase'
 import { RESTAURANT_SOURCE_TYPES } from '@/types/supabase'
 import ConvertForm, { type ConvertPrefill } from './ConvertForm'
+import AddAppearancePanel, {
+  type ExistingMatch,
+  type AppearancePrefill,
+} from './AddAppearancePanel'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -67,6 +71,36 @@ export default async function ConvertCandidatePage({ params }: Props) {
   const candidate = data as CandidateQueueRow
   const prefill = buildPrefill(candidate)
 
+  // 기존 식당 이름 정확 일치 조회(service_role — 공개/비공개 모두). 변환 전일 때만.
+  //   - 너무 넓은 유사검색은 하지 않는다(정확 일치만).
+  let matches: ExistingMatch[] = []
+  if (!candidate.converted_restaurant_slug && candidate.restaurant_name) {
+    const { data: matchRows } = await supabase
+      .from('restaurants')
+      .select('id, slug, name, source_title, is_published')
+      .eq('name', candidate.restaurant_name)
+      .limit(5)
+    matches = (matchRows ?? []).map((r) => ({
+      id: r.id,
+      slug: r.slug,
+      name: r.name,
+      sourceTitle: r.source_title,
+      isPublished: r.is_published,
+    }))
+  }
+
+  // appearance 추가 폼 prefill (candidate 값 기반).
+  const appearancePrefill: AppearancePrefill = {
+    source_type: prefill.source_type,
+    source_title: candidate.source_name ?? '',
+    program_name: prefill.program_name,
+    creator_name: prefill.creator_name,
+    episode_title: candidate.episode_title ?? '',
+    broadcast_date: '',
+    video_url: candidate.source_url ?? '',
+    note: '',
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white border-b border-gray-200">
@@ -84,12 +118,12 @@ export default async function ConvertCandidatePage({ params }: Props) {
       <main className="max-w-3xl mx-auto px-4 py-6 pb-28">
         {candidate.converted_restaurant_slug && (
           <div className="mb-4 rounded-md border border-green-200 bg-green-50 px-3 py-2 text-xs text-green-700">
-            <p className="font-medium">식당 등록을 완료했습니다.</p>
+            <p className="font-medium">식당 등록 또는 방송 출연 추가를 완료했습니다.</p>
             <Link
               href={`/restaurants/${candidate.converted_restaurant_slug}`}
               className="mt-1 inline-block text-green-700 hover:underline"
             >
-              등록된 식당 보기
+              연결된 식당 보기
             </Link>
           </div>
         )}
@@ -139,8 +173,24 @@ export default async function ConvertCandidatePage({ params }: Props) {
           )}
         </section>
 
+        {/* 기존 식당 정확 일치가 있으면 "방송 출연 추가" 경로를 먼저 안내. */}
+        {!candidate.converted_restaurant_slug && matches.length > 0 && (
+          <AddAppearancePanel
+            candidateId={candidate.id}
+            matches={matches}
+            prefill={appearancePrefill}
+          />
+        )}
+
         {!candidate.converted_restaurant_slug && (
-          <ConvertForm candidateId={candidate.id} prefill={prefill} />
+          <>
+            {matches.length > 0 && (
+              <p className="mb-2 text-xs font-medium text-gray-500">
+                또는 — 정말 다른 식당이라면 새 식당으로 등록하세요.
+              </p>
+            )}
+            <ConvertForm candidateId={candidate.id} prefill={prefill} />
+          </>
         )}
       </main>
     </div>
