@@ -128,10 +128,10 @@ export default async function ConvertCandidatePage({ params }: Props) {
           <div className="mb-4 rounded-md border border-green-200 bg-green-50 px-3 py-2 text-xs text-green-700">
             <p className="font-medium">식당 등록 또는 방송 출연 추가를 완료했습니다.</p>
             <Link
-              href={`/restaurants/${candidate.converted_restaurant_slug}`}
+              href={`/admin/restaurants/${candidate.converted_restaurant_slug}/preview`}
               className="mt-1 inline-block text-green-700 hover:underline"
             >
-              연결된 식당 보기
+              관리자 미리보기로 보기
             </Link>
           </div>
         )}

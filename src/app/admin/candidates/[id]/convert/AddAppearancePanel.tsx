@@ -117,12 +117,12 @@ export default function AddAppearancePanel({ candidateId, matches, prefill }: Pr
         </p>
         <p className="mt-2 text-xs text-green-700">
           <Link
-            href={`/restaurants/${doneSlug}`}
+            href={`/admin/restaurants/${doneSlug}/preview`}
             target="_blank"
             rel="noreferrer"
-            className="font-mono underline underline-offset-2 hover:text-green-900"
+            className="underline underline-offset-2 hover:text-green-900"
           >
-            /restaurants/{doneSlug}
+            관리자 미리보기로 보기
           </Link>
         </p>
         <p className="mt-3 text-xs text-gray-500">
