@@ -21,6 +21,26 @@ export type AreaType = (typeof AREA_TYPES)[number]
 
 export type SourceType = 'youtube' | 'tv' | 'sns'
 
+/**
+ * 방송 출연 기록 (restaurant_appearances 1행 ↔ 앱 타입).
+ * 한 식당이 여러 방송/유튜브에 나올 수 있어 Restaurant.appearances[] 로 묶는다.
+ * 대표 방송(최신)은 restaurants.ts 어댑터가 골라 기존 Restaurant 방송 필드에 반영한다.
+ */
+export type Appearance = {
+  id: string
+  restaurantId: string
+  sourceType: SourceType
+  sourceTitle: string
+  programName?: string
+  creatorName?: string
+  episodeTitle?: string
+  broadcastDate?: string
+  videoUrl?: string
+  candidateId?: string
+  note?: string
+  createdAt: string
+}
+
 export type Restaurant = {
   id: string
   slug: string
@@ -47,4 +67,7 @@ export type Restaurant = {
   description?: string
   thumbnail?: string
   isPublished: boolean
+  // 방송 출연 기록(최신순). 대표 방송은 위 sourceType/.../broadcastDate 필드에 반영됨.
+  // Step 1: 읽기만 추가. 기존 필드는 그대로 유지(dual-write).
+  appearances?: Appearance[]
 }

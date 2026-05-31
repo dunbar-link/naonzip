@@ -7,8 +7,8 @@
  * 이 파일은 서버 컴포넌트 / 서버 함수에서만 호출한다.
  */
 
-import type { RestaurantRow } from '@/types/supabase'
-import type { Restaurant } from '@/types/restaurant'
+import type { RestaurantRow, RestaurantAppearanceRow } from '@/types/supabase'
+import type { Restaurant, Appearance } from '@/types/restaurant'
 import { mockRestaurants } from '@/data/mock-restaurants'
 import { isSupabaseConfigured, getSupabaseClient } from '@/lib/supabase'
 import {
@@ -50,11 +50,74 @@ function sortRestaurants(list: Restaurant[]): Restaurant[] {
 }
 
 // ─────────────────────────────────────────────
+// 방송 출연(appearance) 어댑터
+//   - 대표 방송 선정: broadcast_date 있는 것 우선 → 최신 DESC → 동률/없음이면 created_at DESC
+//   - appearance 가 없으면(미backfill/조회실패) restaurants row 의 방송 컬럼을 단일 appearance 로 fallback
+//     → 기존 화면 출력이 그대로 유지된다(Step 1: 화면 변화 없음).
+// ─────────────────────────────────────────────
+
+function appearanceRowToAppearance(a: RestaurantAppearanceRow): Appearance {
+  return {
+    id: a.id,
+    restaurantId: a.restaurant_id,
+    sourceType: a.source_type,
+    sourceTitle: a.source_title,
+    programName: a.program_name ?? undefined,
+    creatorName: a.creator_name ?? undefined,
+    episodeTitle: a.episode_title ?? undefined,
+    broadcastDate: a.broadcast_date ?? undefined,
+    videoUrl: a.video_url ?? undefined,
+    candidateId: a.candidate_id ?? undefined,
+    note: a.note ?? undefined,
+    createdAt: a.created_at,
+  }
+}
+
+/** restaurants row 의 방송 컬럼으로 만든 단일 fallback appearance. */
+function fallbackAppearanceFromRow(row: RestaurantRow): Appearance {
+  return {
+    id: `${row.id}:legacy`,
+    restaurantId: row.id,
+    sourceType: row.source_type,
+    sourceTitle: row.source_title,
+    programName: row.program_name ?? undefined,
+    creatorName: row.creator_name ?? undefined,
+    episodeTitle: row.episode_title ?? undefined,
+    broadcastDate: row.broadcast_date ?? undefined,
+    videoUrl: row.video_url ?? undefined,
+    createdAt: row.created_at,
+  }
+}
+
+/** 대표 방송이 앞에 오도록 정렬: broadcastDate desc(없으면 뒤) → createdAt desc. */
+function compareAppearances(a: Appearance, b: Appearance): number {
+  const ad = a.broadcastDate ?? ''
+  const bd = b.broadcastDate ?? ''
+  if (ad && !bd) return -1
+  if (!ad && bd) return 1
+  if (ad !== bd) return ad < bd ? 1 : -1
+  // 동률 또는 둘 다 없음 → created_at 최신순
+  if (a.createdAt !== b.createdAt) return a.createdAt < b.createdAt ? 1 : -1
+  return 0
+}
+
+// ─────────────────────────────────────────────
 // DB 행 → 앱 타입 변환
 // ─────────────────────────────────────────────
 
-function rowToRestaurant(row: RestaurantRow): Restaurant {
-  const broadcastDate = row.broadcast_date ?? undefined
+function rowToRestaurant(
+  row: RestaurantRow,
+  appearanceRows: RestaurantAppearanceRow[] = [],
+): Restaurant {
+  // appearance 가 있으면 그걸로, 없으면 row 방송컬럼 단일 fallback. 최신순 정렬.
+  const appearances =
+    appearanceRows.length > 0
+      ? appearanceRows.map(appearanceRowToAppearance).sort(compareAppearances)
+      : [fallbackAppearanceFromRow(row)]
+
+  // 대표 방송 = 정렬 후 첫 번째. 기존 Restaurant 방송 필드는 이 값으로 채운다.
+  const rep = appearances[0]
+  const broadcastDate = rep.broadcastDate
   const appearedAt = broadcastDate ? broadcastDate.slice(0, 7) : undefined
 
   return {
@@ -70,19 +133,42 @@ function rowToRestaurant(row: RestaurantRow): Restaurant {
     priceText: row.price_text,
     phone: row.phone ?? undefined,
     thumbnail: row.thumbnail ?? undefined,
-    creatorName: row.creator_name ?? undefined,
-    programName: row.program_name ?? undefined,
-    episodeTitle: row.episode_title ?? undefined,
+    creatorName: rep.creatorName,
+    programName: rep.programName,
+    episodeTitle: rep.episodeTitle,
     broadcastDate,
     appearedAt,
     description: row.description ?? undefined,
-    videoUrl: row.video_url ?? undefined,
+    videoUrl: rep.videoUrl,
     kakaoMapUrl: row.kakao_map_url ?? undefined,
     naverMapUrl: row.naver_map_url ?? undefined,
     tmapUrl: row.tmap_url ?? undefined,
-    sourceType: row.source_type,
-    sourceTitle: row.source_title,
+    sourceType: rep.sourceType,
+    sourceTitle: rep.sourceTitle,
     isPublished: row.is_published,
+    appearances,
+  }
+}
+
+/** mock Restaurant 에 appearances 가 없으면 기존 방송 필드로 단일 fallback 을 채운다. */
+function withFallbackAppearance(r: Restaurant): Restaurant {
+  if (r.appearances && r.appearances.length > 0) return r
+  return {
+    ...r,
+    appearances: [
+      {
+        id: `${r.id}:legacy`,
+        restaurantId: r.id,
+        sourceType: r.sourceType,
+        sourceTitle: r.sourceTitle,
+        programName: r.programName,
+        creatorName: r.creatorName,
+        episodeTitle: r.episodeTitle,
+        broadcastDate: r.broadcastDate,
+        videoUrl: r.videoUrl,
+        createdAt: '',
+      },
+    ],
   }
 }
 
@@ -98,8 +184,13 @@ function rowToRestaurant(row: RestaurantRow): Restaurant {
  * 데이터 없음     → mock fallback (없으면 null)
  */
 export async function getRestaurantBySlug(slug: string): Promise<Restaurant | null> {
+  const mockBySlug = () => {
+    const r = mockRestaurants.find((m) => m.slug === slug && m.isPublished)
+    return r ? withFallbackAppearance(r) : null
+  }
+
   if (!isSupabaseConfigured()) {
-    return mockRestaurants.find((r) => r.slug === slug && r.isPublished) ?? null
+    return mockBySlug()
   }
 
   try {
@@ -112,13 +203,20 @@ export async function getRestaurantBySlug(slug: string): Promise<Restaurant | nu
       .single()
 
     if (error || !data) {
-      return mockRestaurants.find((r) => r.slug === slug && r.isPublished) ?? null
+      return mockBySlug()
     }
 
-    return rowToRestaurant(data)
+    // 대상 식당의 appearance 만 1회 조회(쿼리 총 2회, N+1 아님).
+    // 조회 실패해도 rowToRestaurant 가 row 방송컬럼으로 fallback → 화면 유지.
+    const { data: appData } = await supabase
+      .from('restaurant_appearances')
+      .select('*')
+      .eq('restaurant_id', data.id)
+
+    return rowToRestaurant(data, (appData as RestaurantAppearanceRow[]) ?? [])
   } catch (err) {
     console.error('[restaurants] getRestaurantBySlug 예외, mock fallback:', err)
-    return mockRestaurants.find((r) => r.slug === slug && r.isPublished) ?? null
+    return mockBySlug()
   }
 }
 
@@ -134,8 +232,13 @@ export async function getRestaurantBySlug(slug: string): Promise<Restaurant | nu
  * 데이터 없음     → mock fallback
  */
 export async function getRestaurants(): Promise<Restaurant[]> {
+  const mockList = () =>
+    sortRestaurants(
+      mockRestaurants.filter((r) => r.isPublished).map(withFallbackAppearance),
+    )
+
   if (!isSupabaseConfigured()) {
-    return sortRestaurants(mockRestaurants.filter((r) => r.isPublished))
+    return mockList()
   }
 
   try {
@@ -149,13 +252,35 @@ export async function getRestaurants(): Promise<Restaurant[]> {
       .order('slug', { ascending: true })
 
     if (error || !data || data.length === 0) {
-      return sortRestaurants(mockRestaurants.filter((r) => r.isPublished))
+      return mockList()
     }
 
-    return (data as RestaurantRow[]).map(rowToRestaurant)
+    const rows = data as RestaurantRow[]
+
+    // appearance 일괄 조회(.in) — 식당 N건이어도 쿼리 1회. 전체 2쿼리, N+1 아님.
+    // 조회 실패 시 빈 맵 → rowToRestaurant 가 row 방송컬럼으로 fallback → 화면 유지.
+    const byRestaurant = new Map<string, RestaurantAppearanceRow[]>()
+    const { data: appData, error: appError } = await supabase
+      .from('restaurant_appearances')
+      .select('*')
+      .in(
+        'restaurant_id',
+        rows.map((r) => r.id),
+      )
+    if (appError) {
+      console.error('[restaurants] appearances 조회 실패, row fallback 사용:', appError)
+    } else {
+      for (const a of (appData as RestaurantAppearanceRow[]) ?? []) {
+        const arr = byRestaurant.get(a.restaurant_id) ?? []
+        arr.push(a)
+        byRestaurant.set(a.restaurant_id, arr)
+      }
+    }
+
+    return rows.map((r) => rowToRestaurant(r, byRestaurant.get(r.id) ?? []))
   } catch (err) {
     console.error('[restaurants] getRestaurants 예외, mock fallback:', err)
-    return sortRestaurants(mockRestaurants.filter((r) => r.isPublished))
+    return mockList()
   }
 }
 
