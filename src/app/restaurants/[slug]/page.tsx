@@ -5,7 +5,7 @@ import { getRestaurantBySlug, getRestaurantSlugs, getRelatedRestaurants } from '
 import { getProgramSlugFromName } from '@/lib/programs'
 import { getAreaSlugFromName } from '@/lib/areas'
 import { getCategorySlugForRestaurant } from '@/lib/categories'
-import type { Restaurant } from '@/types/restaurant'
+import type { Restaurant, Appearance } from '@/types/restaurant'
 import ShareButtons from '@/components/restaurant/ShareButtons'
 import SaveButton from '@/components/restaurant/SaveButton'
 import RestaurantCard from '@/components/restaurant/RestaurantCard'
@@ -30,6 +30,24 @@ function formatBroadcastDate(date?: string): string | null {
   const [year, month, day] = date.split('-')
   if (!year || !month) return null
   return day ? `${year}년 ${month}월 ${day}일` : `${year}년 ${month}월`
+}
+
+function getSourceTypeLabel(sourceType: string): string {
+  if (sourceType === 'youtube') return '유튜브'
+  if (sourceType === 'tv') return 'TV방송'
+  return 'SNS'
+}
+
+// 방송 기록 표시용 방어적 정렬: broadcastDate 있음 우선 → 최신 DESC → createdAt 최신 DESC.
+// (lib/restaurants.ts 의 대표 선정 로직은 건드리지 않고, 뷰에서 한 번 더 안전하게 정렬한다.)
+function compareAppearancesForView(a: Appearance, b: Appearance): number {
+  const ad = a.broadcastDate ?? ''
+  const bd = b.broadcastDate ?? ''
+  if (ad && !bd) return -1
+  if (!ad && bd) return 1
+  if (ad !== bd) return ad < bd ? 1 : -1
+  if (a.createdAt !== b.createdAt) return a.createdAt < b.createdAt ? 1 : -1
+  return 0
 }
 
 type Props = {
@@ -249,6 +267,11 @@ export default async function RestaurantDetailPage({ params }: Props) {
     ? (categorySlug === 'gopchang' ? '곱창' : restaurant.category)
     : null
 
+  // 방송 기록: 2건 이상일 때만 노출. 대표 방송 로직은 변경하지 않고 뷰에서 방어적 정렬만.
+  const appearanceHistory = [...(restaurant.appearances ?? [])].sort(
+    compareAppearancesForView,
+  )
+
   return (
     <main className="pt-14 pb-24">
       <script
@@ -397,6 +420,52 @@ export default async function RestaurantDetailPage({ params }: Props) {
           )}
         </div>
       </section>
+
+      {/* 방송 기록 — 출연이 2건 이상일 때만 노출(대표 방송 섹션은 위에 그대로 유지) */}
+      {appearanceHistory.length >= 2 && (
+        <>
+          <div className="h-2 bg-gray-50" />
+          <section className="px-4 py-5 bg-white">
+            <h2 className="text-sm font-bold text-gray-900 mb-3">이 식당이 나온 방송</h2>
+            <ul className="flex flex-col gap-3">
+              {appearanceHistory.map((ap) => {
+                const label = ap.creatorName ?? ap.programName ?? ap.sourceTitle
+                const dateText = formatBroadcastDate(ap.broadcastDate)
+                return (
+                  <li key={ap.id} className="rounded-xl bg-gray-50 px-4 py-3">
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm font-bold text-gray-900 truncate">{label}</p>
+                      <span
+                        className={`ml-auto flex-shrink-0 text-[10px] font-bold px-2 py-0.5 rounded-full ${getContentBadgeColor(ap.sourceType)}`}
+                      >
+                        {getSourceTypeLabel(ap.sourceType)}
+                      </span>
+                    </div>
+                    {ap.episodeTitle && (
+                      <p className="mt-1 text-sm text-gray-700">{ap.episodeTitle}</p>
+                    )}
+                    <div className="mt-1 flex flex-wrap items-center gap-2">
+                      <span className="text-xs text-gray-400">
+                        {dateText ?? '방영일 미확인'}
+                      </span>
+                      {ap.videoUrl && (
+                        <a
+                          href={ap.videoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-orange-500 font-semibold underline underline-offset-2"
+                        >
+                          출처 보기 →
+                        </a>
+                      )}
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+          </section>
+        </>
+      )}
 
       <div className="h-2 bg-gray-50" />
 
