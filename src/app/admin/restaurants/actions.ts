@@ -14,6 +14,7 @@ import {
 import { AREA_TYPES, type AreaType } from '@/types/restaurant'
 import { isInBusanRange } from '@/lib/coords'
 import { isValidSlug, SLUG_INVALID_MESSAGE } from '@/lib/slug'
+import { revalidateRestaurantPublicPaths } from '@/lib/revalidate-restaurants'
 
 /** 빈/공백 문자열은 null 로 정규화. */
 function trimToNull(v: unknown): string | null {
@@ -108,11 +109,9 @@ export async function setRestaurantPublished(
     return { ok: false, error: 'update failed' }
   }
 
-  // 공개 목록 / 상세(dynamic route) / admin 목록 캐시 무효화.
-  //   - '/restaurants/[slug]' 는 dynamic segment 이므로 type 'page' 필수
-  //     (revalidatePath docs: dynamic segment 포함 시 'page'/'layout' 인자 필요).
-  revalidatePath('/restaurants')
-  revalidatePath('/restaurants/[slug]', 'page')
+  // 공개/비공개 전환 모두 목록/검색/지도/홈/landing 에 영향을 주므로 public 경로를 폭넓게 무효화.
+  //   - 해당 slug 상세도 함께 무효화.
+  revalidateRestaurantPublicPaths([idOrSlug])
   revalidatePath('/admin/restaurants')
   return { ok: true }
 }
@@ -194,7 +193,10 @@ export async function deleteRestaurantDraft(
     console.error('[admin/restaurants] candidate 변환 상태 reset 실패:', resetErr.message)
   }
 
-  // 공개 경로는 무효화하지 않는다(비공개 식당이므로 공개 캐시에 존재하지 않음).
+  // 삭제된 식당이 검색/목록/지도/홈/landing 에서 즉시 빠지도록 public 경로를 폭넓게 무효화.
+  //   - 비공개 draft 라도 방어적으로 무효화(과거 공개 이력/캐시 잔존 대비).
+  //   - 삭제된 slug 상세도 함께 무효화(404 반영).
+  revalidateRestaurantPublicPaths([slug])
   revalidatePath('/admin/restaurants')
   revalidatePath('/admin/candidates')
 
@@ -315,6 +317,8 @@ export async function updateRestaurant(
   //   - 클라이언트 전달값은 신뢰하지 않는다(서버 SELECT 가 원본 기준).
   //   - 제출 slug 가 원본과 같으면(한글 slug 유지 등) 형식 검증을 건너뛴다.
   //   - 다를 때만 URL-safe 형식 검증.
+  //   - 원본 slug 는 slug 변경 시 old 경로 무효화를 위해 outer 스코프로 보관.
+  let originalSlug: string | null = null
   {
     const { data, error } = await supabase
       .from('restaurants')
@@ -325,6 +329,7 @@ export async function updateRestaurant(
       console.error('[admin/restaurants] 원본 slug 조회 실패:', error)
       return { ok: false, error: '식당을 찾을 수 없어요.' }
     }
+    originalSlug = data.slug
     if (slug !== data.slug && !isValidSlug(slug)) {
       return { ok: false, error: SLUG_INVALID_MESSAGE }
     }
@@ -389,12 +394,12 @@ export async function updateRestaurant(
     return { ok: false, error: 'update failed' }
   }
 
-  // 항상 admin 목록 무효화. 공개 식당이면 공개 목록/상세(dynamic route)도 무효화.
-  //   - '/restaurants/[slug]' 는 dynamic segment 이므로 type 'page' 필수.
+  // 항상 admin 목록 무효화. 공개 식당이면 목록/검색/지도/홈/landing 을 폭넓게 무효화.
+  //   - slug 변경 시 old/new 상세 경로 모두 무효화(originalSlug != slug 대비).
+  //   - 비공개 draft 면 공개 캐시에 없으므로 public 무효화 불필요(불필요한 재생성 회피).
   revalidatePath('/admin/restaurants')
   if (updated?.is_published) {
-    revalidatePath('/restaurants')
-    revalidatePath('/restaurants/[slug]', 'page')
+    revalidateRestaurantPublicPaths([originalSlug, slug])
   }
 
   return { ok: true, slug }
