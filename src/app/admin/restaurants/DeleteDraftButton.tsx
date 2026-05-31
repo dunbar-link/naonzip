@@ -31,7 +31,11 @@ export default function DeleteDraftButton({ slug }: Props) {
           startTransition(async () => {
             const res = await deleteRestaurantDraft(slug)
             if (res.ok) {
-              setMessage(SUCCESS_MESSAGE)
+              if ('warning' in res) {
+                window.alert(res.warning)
+              } else {
+                setMessage(SUCCESS_MESSAGE)
+              }
               router.push('/admin/restaurants')
             } else {
               setError(res.error)

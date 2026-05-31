@@ -126,12 +126,21 @@ export async function setRestaurantPublished(
  * 3) DELETE WHERE slug=? AND is_published=false (선조회~삭제 사이 race 방어)
  * 4) /admin/restaurants 만 무효화 (공개 경로는 건드리지 않음)
  *
- * candidate_queue / reports / saved 등 다른 테이블은 절대 건드리지 않는다.
+ * 삭제 성공 후, 이 slug 로 변환되어 있던 candidate_queue 의 converted 상태
+ * (converted_restaurant_slug / converted_at) 를 null 로 되돌린다.
+ *   - reset 은 delete 성공 후에만 수행한다.
+ *   - status / reviewed_at 는 절대 건드리지 않는다(converted 두 필드만).
+ *   - reset 실패 시에도 restaurant 는 이미 삭제됐으므로 ok:true + warning 으로 알린다.
+ * reports / saved 등 다른 테이블은 절대 건드리지 않는다.
  * published 삭제는 서버 재조회 가드 + DELETE WHERE + UI 숨김으로 3중 방어한다.
  */
 export async function deleteRestaurantDraft(
   slug: string,
-): Promise<{ ok: true } | { ok: false; error: string }> {
+): Promise<
+  | { ok: true }
+  | { ok: true; warning: string }
+  | { ok: false; error: string }
+> {
   const c = await cookies()
   const token = c.get(ADMIN_COOKIE_NAME)?.value
   const authed = await verifyAdminSessionToken(token)
@@ -171,8 +180,31 @@ export async function deleteRestaurantDraft(
     return { ok: false, error: 'delete failed' }
   }
 
+  // 삭제 성공 후에만 candidate 변환 상태 reset.
+  //   - converted 두 필드(converted_restaurant_slug/converted_at)만 null 로.
+  //   - status/reviewed_at 는 payload 에 절대 넣지 않는다.
+  //   - 매칭 0개여도 에러가 아니다(.eq 만 사용).
+  const { error: resetErr } = await supabase
+    .from('candidate_queue')
+    .update({ converted_restaurant_slug: null, converted_at: null })
+    .eq('converted_restaurant_slug', slug)
+
+  if (resetErr) {
+    // restaurant 는 이미 삭제됨. reset 실패는 warning 으로만 알린다(민감정보 없이).
+    console.error('[admin/restaurants] candidate 변환 상태 reset 실패:', resetErr.message)
+  }
+
   // 공개 경로는 무효화하지 않는다(비공개 식당이므로 공개 캐시에 존재하지 않음).
   revalidatePath('/admin/restaurants')
+  revalidatePath('/admin/candidates')
+
+  if (resetErr) {
+    return {
+      ok: true,
+      warning:
+        '식당은 삭제했지만 후보 변환 상태 초기화에 실패했어요. 후보 목록을 확인해 주세요.',
+    }
+  }
   return { ok: true }
 }
 
