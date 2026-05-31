@@ -350,45 +350,84 @@ export async function convertCandidateToRestaurant(
   }
 
   // defaultToNull: false → 넘기지 않은 컬럼이 DB default 로 채워지게 한다.
-  const { error } = await supabase.from('restaurants').insert(
-    {
-      slug,
-      name,
-      area: payload.area,
-      address,
-      lat,
-      lng,
-      category,
-      main_menu: mainMenu,
-      price_text: priceText,
-      phone: trimToNull(payload.phone),
-      thumbnail: trimToNull(payload.thumbnail),
-      creator_name: trimToNull(payload.creator_name),
-      program_name: trimToNull(payload.program_name),
-      episode_title: trimToNull(payload.episode_title),
-      broadcast_date: trimToNull(payload.broadcast_date),
-      description: trimToNull(payload.description),
-      video_url: trimToNull(payload.video_url),
-      kakao_map_url: trimToNull(payload.kakao_map_url),
-      naver_map_url: trimToNull(payload.naver_map_url),
-      tmap_url: trimToNull(payload.tmap_url),
-      source_type: payload.source_type,
-      source_title: sourceTitle,
-      is_published: false,
-    },
-    { defaultToNull: false },
-  )
+  //   - dual-write 를 위해 .select('id') 로 생성된 row id 를 회수한다.
+  const { data: insertedRestaurant, error } = await supabase
+    .from('restaurants')
+    .insert(
+      {
+        slug,
+        name,
+        area: payload.area,
+        address,
+        lat,
+        lng,
+        category,
+        main_menu: mainMenu,
+        price_text: priceText,
+        phone: trimToNull(payload.phone),
+        thumbnail: trimToNull(payload.thumbnail),
+        creator_name: trimToNull(payload.creator_name),
+        program_name: trimToNull(payload.program_name),
+        episode_title: trimToNull(payload.episode_title),
+        broadcast_date: trimToNull(payload.broadcast_date),
+        description: trimToNull(payload.description),
+        video_url: trimToNull(payload.video_url),
+        kakao_map_url: trimToNull(payload.kakao_map_url),
+        naver_map_url: trimToNull(payload.naver_map_url),
+        tmap_url: trimToNull(payload.tmap_url),
+        source_type: payload.source_type,
+        source_title: sourceTitle,
+        is_published: false,
+      },
+      { defaultToNull: false },
+    )
+    .select('id')
+    .single()
 
-  if (error) {
+  if (error || !insertedRestaurant) {
     // 선검사와 INSERT 사이의 경합(race) 또는 UNIQUE 위반은 slug 중복 메시지로 변환.
-    if (error.code === '23505') {
+    if (error?.code === '23505') {
       return { ok: false, error: '이미 존재하는 slug예요. 다른 slug로 바꿔주세요.' }
     }
     console.error('[admin/candidates] restaurant insert 실패:', error)
     return { ok: false, error: 'insert failed' }
   }
 
-  // restaurant 등록 성공 후 candidate 에 변환 완료 마킹 (재변환 차단용).
+  // dual-write: restaurants 와 함께 restaurant_appearances 1건 INSERT.
+  //   - 새 식당의 "대표 출연" 을 read 어댑터의 row fallback 이 아니라 실제 appearance 로 남긴다.
+  //   - 둘 다 성공해야 정상 완료. appearance 실패 시 방금 만든 draft 를 롤백 삭제하고 에러 반환.
+  //   - candidate converted 마킹은 appearance 성공 이후에만 수행한다.
+  {
+    const { error: appErr } = await supabase.from('restaurant_appearances').insert(
+      {
+        restaurant_id: insertedRestaurant.id,
+        source_type: payload.source_type,
+        source_title: sourceTitle,
+        program_name: trimToNull(payload.program_name),
+        creator_name: trimToNull(payload.creator_name),
+        episode_title: trimToNull(payload.episode_title),
+        broadcast_date: trimToNull(payload.broadcast_date),
+        video_url: trimToNull(payload.video_url),
+        candidate_id: candidateId,
+        note: '후보에서 새 식당 등록 시 생성된 출연 기록',
+      },
+      { defaultToNull: false },
+    )
+    if (appErr) {
+      // 롤백: 방금 만든 비공개 draft 를 삭제(ON DELETE CASCADE). 삭제 실패해도 로깅만.
+      console.error('[admin/candidates] appearance insert 실패, restaurant 롤백 시도:', appErr)
+      const { error: rbErr } = await supabase
+        .from('restaurants')
+        .delete()
+        .eq('id', insertedRestaurant.id)
+      if (rbErr) {
+        console.error('[admin/candidates] restaurant 롤백 삭제 실패:', rbErr.message)
+      }
+      return { ok: false, error: 'insert failed' }
+    }
+  }
+
+  // restaurant + appearance 등록 성공 후 candidate 에 변환 완료 마킹 (재변환 차단용).
   //   - status 는 건드리지 않는다.
   //   - 이 UPDATE 가 실패해도 restaurant 는 이미 등록되었으므로 로깅만 하고 성공 반환.
   {
