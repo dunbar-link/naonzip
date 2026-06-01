@@ -5,6 +5,7 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 const LINKS: { href: string; label: string; desc: string }[] = [
+  { href: '/admin/quick-register', label: '빠른 등록', desc: '한 번 붙여넣기로 식당 등록 / 공개' },
   { href: '/admin/candidates', label: '후보 관리', desc: '수집 후보 검토 / 승인' },
   { href: '/admin/restaurants', label: '식당 공개 관리', desc: '비공개 식당 공개 전환' },
   { href: '/admin/reports', label: '신고 관리', desc: '사용자 신고 처리' },
