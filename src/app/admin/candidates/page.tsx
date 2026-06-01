@@ -182,9 +182,9 @@ export default async function AdminCandidatesPage({ searchParams }: Props) {
                   r.status === 'VERIFIED' && (
                     <Link
                       href={`/admin/candidates/${r.id}/convert`}
-                      className="ml-auto rounded-md border border-gray-900 px-2 py-0.5 text-[10px] font-medium text-gray-900 hover:bg-gray-900 hover:text-white"
+                      className="ml-auto rounded-md bg-blue-600 px-3 py-1 text-xs font-semibold text-white hover:bg-blue-700"
                     >
-                      등록 준비
+                      등록 준비 →
                     </Link>
                   )
                 )}

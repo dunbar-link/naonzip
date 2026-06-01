@@ -96,6 +96,8 @@ export type AddCandidateInput = {
   source_url?: string
   confidence_score?: string | number
   operator_note?: string
+  // true 면 status=VERIFIED 로 바로 생성한다(검토완료로 추가 흐름). 기본은 PENDING.
+  verified?: boolean
 }
 
 /**
@@ -111,7 +113,7 @@ export type AddCandidateInput = {
  */
 export async function addCandidate(
   input: AddCandidateInput,
-): Promise<{ ok: true } | { ok: false; error: string }> {
+): Promise<{ ok: true; id: string } | { ok: false; error: string }> {
   const c = await cookies()
   const token = c.get(ADMIN_COOKIE_NAME)?.value
   const authed = await verifyAdminSessionToken(token)
@@ -189,28 +191,34 @@ export async function addCandidate(
     }
   }
 
-  // defaultToNull: false → status 컬럼이 DB default 'PENDING' 으로 채워지게 한다.
-  const { error } = await supabase.from('candidate_queue').insert(
-    {
-      source_type: input.source_type,
-      source_name: sourceName,
-      episode_title: trimToNull(input.episode_title),
-      restaurant_name: restaurantName,
-      area_guess: trimToNull(input.area_guess),
-      source_url: sourceUrl,
-      confidence_score: confidence,
-      operator_note: trimToNull(input.operator_note),
-    },
-    { defaultToNull: false },
-  )
+  // defaultToNull: false → status 미지정 시 DB default 'PENDING'.
+  //   - verified=true 면 status=VERIFIED 로 바로 생성(등록 준비 redirect 용 id 회수).
+  const { data, error } = await supabase
+    .from('candidate_queue')
+    .insert(
+      {
+        source_type: input.source_type,
+        source_name: sourceName,
+        episode_title: trimToNull(input.episode_title),
+        restaurant_name: restaurantName,
+        area_guess: trimToNull(input.area_guess),
+        source_url: sourceUrl,
+        confidence_score: confidence,
+        operator_note: trimToNull(input.operator_note),
+        ...(input.verified ? { status: 'VERIFIED' as const } : {}),
+      },
+      { defaultToNull: false },
+    )
+    .select('id')
+    .single()
 
-  if (error) {
+  if (error || !data) {
     console.error('[admin/candidates] insert 실패:', error)
     return { ok: false, error: 'insert failed' }
   }
 
   revalidatePath('/admin/candidates')
-  return { ok: true }
+  return { ok: true, id: data.id }
 }
 
 /**
