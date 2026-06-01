@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useTransition } from 'react'
+import Link from 'next/link'
 import {
   RESTAURANT_SOURCE_TYPES,
   type RestaurantSourceType,
@@ -13,6 +14,7 @@ import {
   RESTAURANT_PASTE_PLACEHOLDER,
 } from '@/lib/admin-restaurant-paste'
 import { convertCandidateToRestaurant } from '../../actions'
+import { setRestaurantPublished } from '../../../restaurants/actions'
 
 /** page.tsx 에서 계산해 넘기는 prefill 값. */
 export type ConvertPrefill = {
@@ -90,6 +92,24 @@ export default function ConvertForm({ candidateId, prefill }: Props) {
   const [error, setError] = useState<string | null>(null)
   const [successSlug, setSuccessSlug] = useState<string | null>(null)
   const [pending, startTransition] = useTransition()
+  // 등록 성공 박스에서 "바로 공개하기"용 상태 (새 식당 등록 흐름 전용).
+  const [publishing, startPublish] = useTransition()
+  const [publishedDone, setPublishedDone] = useState(false)
+  const [publishError, setPublishError] = useState<string | null>(null)
+
+  // 방금 등록한 restaurant 를 같은 화면에서 공개. 자동 공개 없음 — 버튼 클릭 시에만.
+  function onPublish() {
+    if (!successSlug) return
+    setPublishError(null)
+    startPublish(async () => {
+      const res = await setRestaurantPublished(successSlug, true)
+      if (res.ok) {
+        setPublishedDone(true)
+      } else {
+        setPublishError(res.error)
+      }
+    })
+  }
 
   function set<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((f) => ({ ...f, [key]: value }))
@@ -198,26 +218,54 @@ export default function ConvertForm({ candidateId, prefill }: Props) {
   // slug 형식 위반 경고용 파생값(비어있지 않고 형식 위반일 때만).
   const slugInvalid = form.slug.trim() !== '' && !isValidSlug(form.slug.trim())
 
-  // 등록 성공 후: redirect 없이 성공 메시지 + 공개 URL 링크.
+  // 등록 성공 후: redirect 없이 같은 화면에서 "바로 공개하기"까지 처리.
   if (successSlug) {
     return (
       <div className="rounded-lg border border-green-200 bg-green-50 p-4">
         <p className="text-sm font-medium text-green-800">
-          식당이 등록되었어요. (is_published=false — 아직 비공개)
+          {publishedDone
+            ? '식당 등록과 공개를 완료했습니다.'
+            : '식당이 등록되었어요. (아직 비공개 — is_published=false)'}
         </p>
-        <p className="mt-2 text-xs text-green-700">
-          공개 페이지 URL (게시 전이라 비공개 상태일 수 있어요):{' '}
-          <a
-            href={`/restaurants/${successSlug}`}
-            target="_blank"
-            rel="noreferrer"
-            className="font-mono underline underline-offset-2 hover:text-green-900"
+
+        {/* 바로 공개하기 + 미리보기. 모바일에서 세로로 줄바꿈되도록 flex-wrap. */}
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          {!publishedDone && (
+            <button
+              type="button"
+              disabled={publishing}
+              onClick={onPublish}
+              className="rounded-md bg-blue-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+            >
+              {publishing ? '공개 처리 중…' : '바로 공개하기'}
+            </button>
+          )}
+          <Link
+            href={`/admin/restaurants/${successSlug}/preview`}
+            className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:border-gray-400"
           >
-            /restaurants/{successSlug}
-          </a>
-        </p>
+            관리자 미리보기로 보기
+          </Link>
+          {publishedDone && (
+            <a
+              href={`/restaurants/${successSlug}`}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-xs font-medium text-blue-600 hover:border-blue-400"
+            >
+              공개 페이지 보기 ↗
+            </a>
+          )}
+        </div>
+
+        {publishError && (
+          <p className="mt-2 text-xs text-red-600">{publishError}</p>
+        )}
+
         <p className="mt-3 text-xs text-gray-500">
-          후보는 그대로 유지됩니다(상태/삭제 변경 없음).
+          {publishedDone
+            ? '공개 상태로 전환되었어요. 후보는 그대로 유지됩니다.'
+            : '아직 공개 전이라 공개 페이지는 404일 수 있어요. 후보는 그대로 유지됩니다.'}
         </p>
       </div>
     )
