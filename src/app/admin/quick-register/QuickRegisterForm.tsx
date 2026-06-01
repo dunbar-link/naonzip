@@ -95,14 +95,13 @@ export default function QuickRegisterForm() {
     setError(null)
   }
 
-  function runDuplicateCheck(next: FormState) {
-    if (!next.name.trim() && !next.slug.trim() && !next.address.trim()) return
+  function runDuplicateCheck(next: { name?: string; slug?: string; address?: string }) {
+    const name = (next.name ?? '').trim()
+    const slug = (next.slug ?? '').trim()
+    const address = (next.address ?? '').trim()
+    if (!name && !slug && !address) return
     startChecking(async () => {
-      const res = await findPossibleDuplicates({
-        name: next.name,
-        slug: next.slug,
-        address: next.address,
-      })
+      const res = await findPossibleDuplicates({ name, slug, address })
       if (res.ok) {
         setDuplicates(res.matches)
         setChecked(true)
@@ -116,11 +115,12 @@ export default function QuickRegisterForm() {
     const { fields, ignored } = parseRestaurantPaste(text)
     setPasteIgnored(ignored)
     if (Object.keys(fields).length > 0) {
-      setForm((f) => {
-        const merged = { ...f, ...fields }
-        // 병합 직후 값으로 중복 확인.
-        runDuplicateCheck(merged)
-        return merged
+      // setForm 업데이터는 순수하게 유지(부수효과 금지). 중복 확인은 업데이터 밖에서 호출.
+      setForm((f) => ({ ...f, ...fields }))
+      runDuplicateCheck({
+        name: fields.name ?? form.name,
+        slug: fields.slug ?? form.slug,
+        address: fields.address ?? form.address,
       })
     }
   }
