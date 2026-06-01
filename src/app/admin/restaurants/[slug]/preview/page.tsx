@@ -38,6 +38,21 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   )
 }
 
+/** 짧은 외부 링크 버튼. href 가 없으면 렌더하지 않는다(빈 블록 방지). */
+function LinkButton({ href, label }: { href: string | null; label: string }) {
+  if (!href) return null
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="inline-flex items-center gap-1 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-xs font-medium text-blue-600 hover:border-blue-400 hover:bg-blue-50"
+    >
+      {label} ↗
+    </Link>
+  )
+}
+
 export default async function RestaurantPreviewPage({ params }: Props) {
   const { slug: rawSlug } = await params
   // Next 16 은 params 를 자동 디코딩하지 않는다. 한글 slug(%ED%..)를 1회 디코딩.
@@ -144,71 +159,26 @@ export default async function RestaurantPreviewPage({ params }: Props) {
           <Field label="전화">{r.phone}</Field>
         </section>
 
-        {/* 출처 / 방송 정보 */}
+        {/* 방송 / 링크 정보 — 출처 메타와 외부 링크를 한 카드로 묶는다. */}
         <section className="space-y-1.5 rounded-lg border border-gray-200 bg-white p-4">
-          <h2 className="mb-2 text-xs font-bold text-gray-900">출처 정보</h2>
+          <h2 className="mb-2 text-xs font-bold text-gray-900">방송 / 링크 정보</h2>
           <Field label="소스 유형">{r.source_type}</Field>
           <Field label="출처명">{r.source_title}</Field>
           <Field label="채널/크리에이터">{r.creator_name}</Field>
           <Field label="프로그램명">{r.program_name}</Field>
           <Field label="에피소드">{r.episode_title}</Field>
           <Field label="방송일">{r.broadcast_date}</Field>
-        </section>
 
-        {/* 링크 */}
-        {(r.video_url || r.kakao_map_url || r.naver_map_url || r.tmap_url) && (
-          <section className="space-y-1.5 rounded-lg border border-gray-200 bg-white p-4">
-            <h2 className="mb-2 text-xs font-bold text-gray-900">링크</h2>
-            {r.video_url && (
-              <Field label="영상">
-                <Link
-                  href={r.video_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 hover:underline break-all"
-                >
-                  {r.video_url}
-                </Link>
-              </Field>
-            )}
-            {r.kakao_map_url && (
-              <Field label="카카오맵">
-                <Link
-                  href={r.kakao_map_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 hover:underline break-all"
-                >
-                  {r.kakao_map_url}
-                </Link>
-              </Field>
-            )}
-            {r.naver_map_url && (
-              <Field label="네이버맵">
-                <Link
-                  href={r.naver_map_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 hover:underline break-all"
-                >
-                  {r.naver_map_url}
-                </Link>
-              </Field>
-            )}
-            {r.tmap_url && (
-              <Field label="티맵">
-                <Link
-                  href={r.tmap_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 hover:underline break-all"
-                >
-                  {r.tmap_url}
-                </Link>
-              </Field>
-            )}
-          </section>
-        )}
+          {/* 외부 링크는 버튼으로. 값이 있는 것만 렌더하므로 빈 블록이 생기지 않는다. */}
+          {(r.video_url || r.kakao_map_url || r.naver_map_url || r.tmap_url) && (
+            <div className="mt-3 flex flex-wrap gap-2 border-t border-gray-100 pt-3">
+              <LinkButton href={r.video_url} label="영상 보기" />
+              <LinkButton href={r.kakao_map_url} label="카카오맵 열기" />
+              <LinkButton href={r.naver_map_url} label="네이버맵 열기" />
+              <LinkButton href={r.tmap_url} label="티맵 열기" />
+            </div>
+          )}
+        </section>
 
         {/* 설명 */}
         {r.description && (

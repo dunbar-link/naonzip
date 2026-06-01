@@ -512,6 +512,9 @@ export default function EditForm({ restaurantId, isPublished, prefill }: Props) 
             className={inputClass}
             placeholder="https://"
           />
+          <p className="mt-1 text-[10px] text-gray-400">
+            네이버맵·티맵 URL은 비워둬도 공개 페이지에서 좌표로 자동 생성돼요.
+          </p>
         </div>
       </div>
 
