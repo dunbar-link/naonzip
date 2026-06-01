@@ -195,6 +195,19 @@ export default function QuickRegisterForm() {
     })
   }
 
+  // 다음 식당 등록: 페이지 이동 없이 입력/성공/중복/공개 상태를 초기화한다.
+  function resetForNext() {
+    setForm(EMPTY)
+    setPasteText('')
+    setPasteIgnored([])
+    setDuplicates([])
+    setChecked(false)
+    setError(null)
+    setSuccessSlug(null)
+    setPublishedDone(false)
+    setPublishError(null)
+  }
+
   // 등록 성공 → 같은 화면에서 공개까지.
   if (successSlug) {
     return (
@@ -205,6 +218,13 @@ export default function QuickRegisterForm() {
             : '비공개로 등록되었어요. (아직 비공개 — is_published=false)'}
         </p>
         <div className="mt-3 flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={resetForNext}
+            className="rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-700"
+          >
+            다음 식당 등록
+          </button>
           {!publishedDone && (
             <button
               type="button"
@@ -235,8 +255,8 @@ export default function QuickRegisterForm() {
         {publishError && <p className="mt-2 text-xs text-red-600">{publishError}</p>}
         <p className="mt-3 text-xs text-gray-500">
           {publishedDone
-            ? '공개 상태로 전환되었어요.'
-            : '아직 공개 전이라 공개 페이지는 404일 수 있어요.'}
+            ? '공개 상태로 전환되었어요. 새 정보를 붙여넣어 계속 등록할 수 있어요.'
+            : '아직 공개 전이라 공개 페이지는 404일 수 있어요. 새 정보를 붙여넣어 계속 등록할 수 있어요.'}
         </p>
       </div>
     )
