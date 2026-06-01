@@ -43,59 +43,119 @@ export type RestaurantPasteFields = {
 type PasteField = keyof RestaurantPasteFields
 
 /**
- * 라벨(소문자 정규화) → 필드 매핑.
- *   - 한글 라벨 + 영문 snake_case alias 둘 다 지원.
- *   - 조회 시 key.toLowerCase() 로 찾으므로 영문은 소문자, "URL"→"url" 로 저장.
+ * 라벨 정규화: 앞뒤·내부 공백 제거 + 소문자.
+ *   - "영상 URL" / "영상URL" / "video url" / "video_url" 을 모두 같은 키로 취급.
  *   - 한글은 toLowerCase 영향 없음.
  */
+function normalizeLabel(s: string): string {
+  return s.replace(/\s+/g, '').toLowerCase()
+}
+
+/**
+ * 정규화된 라벨 → 필드 매핑. (키는 모두 normalizeLabel 결과 형태: 공백없음·소문자)
+ *   - 한글 라벨 + 영문 snake_case + 공백/언더스코어 변형 alias 지원.
+ */
 const FIELD_ALIASES: Record<string, PasteField> = {
+  // slug
   slug: 'slug',
+  슬러그: 'slug',
+  // name
   식당명: 'name',
+  상호: 'name',
+  이름: 'name',
   name: 'name',
+  restaurant_name: 'name',
+  // area
   지역: 'area',
   area: 'area',
+  // category
   카테고리: 'category',
   category: 'category',
+  // address
   주소: 'address',
   address: 'address',
+  // lat
   위도: 'lat',
   lat: 'lat',
   latitude: 'lat',
+  // lng
   경도: 'lng',
   lng: 'lng',
   longitude: 'lng',
+  // main_menu (대표 메뉴 → 대표메뉴 로 정규화됨)
   대표메뉴: 'main_menu',
-  '대표 메뉴': 'main_menu',
   main_menu: 'main_menu',
+  menu: 'main_menu',
+  // price_text
   가격대: 'price_text',
+  가격: 'price_text',
   price_text: 'price_text',
+  price: 'price_text',
+  // source_type
   소스유형: 'source_type',
+  출처유형: 'source_type',
   source_type: 'source_type',
+  // source_title (출처명/소스명/소스/출처/source_name)
   출처명: 'source_title',
+  소스명: 'source_title',
+  소스: 'source_title',
+  출처: 'source_title',
   source_title: 'source_title',
-  크리에이터명: 'creator_name',
-  creator_name: 'creator_name',
+  source_name: 'source_title',
+  // program_name
   프로그램명: 'program_name',
+  프로그램: 'program_name',
   program_name: 'program_name',
+  // creator_name
+  크리에이터명: 'creator_name',
+  크리에이터: 'creator_name',
+  creator_name: 'creator_name',
+  // episode_title
   에피소드: 'episode_title',
   episode: 'episode_title',
+  episode_title: 'episode_title',
+  // broadcast_date (방영일/방송일/date)
   방영일: 'broadcast_date',
+  방송일: 'broadcast_date',
   broadcast_date: 'broadcast_date',
+  date: 'broadcast_date',
+  // phone
   전화: 'phone',
+  전화번호: 'phone',
   phone: 'phone',
+  // thumbnail (썸네일 URL → 썸네일url)
   썸네일: 'thumbnail',
+  썸네일url: 'thumbnail',
   thumbnail: 'thumbnail',
+  // video_url (영상 URL/비디오 URL/video url)
   영상url: 'video_url',
+  비디오url: 'video_url',
   video_url: 'video_url',
+  videourl: 'video_url',
+  // kakao_map_url (카카오맵 URL/kakao url)
   카카오맵url: 'kakao_map_url',
   kakao_map_url: 'kakao_map_url',
+  kakaourl: 'kakao_map_url',
+  // naver_map_url (네이버맵 URL/naver url)
   네이버맵url: 'naver_map_url',
   naver_map_url: 'naver_map_url',
+  naverurl: 'naver_map_url',
+  // tmap_url (티맵 URL/tmap url)
   티맵url: 'tmap_url',
   tmap_url: 'tmap_url',
+  tmapurl: 'tmap_url',
+  // description
   설명: 'description',
   description: 'description',
+  desc: 'description',
 }
+
+// URL 자동 분류용 패턴. 라벨이 없거나 멀티라인으로 URL 만 있을 때 적절한 필드로 보낸다.
+const URL_RE = /https?:\/\/[^\s]+/gi
+const KAKAO_URL_RE = /(map\.kakao\.com|place\.map\.kakao\.com|kko\.to)/i
+const NAVER_MAP_URL_RE = /(map\.naver\.com|naver\.me)/i
+const TMAP_URL_RE = /tmap/i
+const VIDEO_URL_RE = /(youtube\.com|youtu\.be|tv\.naver\.com|sbs\.co\.kr|programs\.|\/vod\/)/i
 
 function isAreaValue(v: string): boolean {
   return (AREA_TYPES as readonly string[]).includes(v)
@@ -120,11 +180,11 @@ export function parseRestaurantPaste(text: string): {
   for (const line of text.split(/\r?\n/)) {
     const idx = line.indexOf(':')
     if (idx === -1) continue
-    const rawKey = line.slice(0, idx).trim()
+    const rawKey = line.slice(0, idx)
     const value = line.slice(idx + 1).trim()
     if (value === '') continue
 
-    const field = FIELD_ALIASES[rawKey.toLowerCase()]
+    const field = FIELD_ALIASES[normalizeLabel(rawKey)]
     if (!field) continue
 
     if (field === 'area') {
@@ -135,6 +195,33 @@ export function parseRestaurantPaste(text: string): {
       else ignored.push(`소스유형 “${value}”은(는) youtube/tv/sns 가 아니어서 무시했어요.`)
     } else {
       fields[field] = value
+    }
+  }
+
+  // URL 자동 감지 fallback — 라벨 누락/멀티라인 대응.
+  //   본문의 http(s) URL 들을 종류별로 분류해 비어있는 URL 필드를 보완한다.
+  //   라벨로 이미 채워진 필드는 덮어쓰지 않는다.
+  const urls = text.match(URL_RE) ?? []
+  if (urls.length > 0) {
+    if (!fields.kakao_map_url) {
+      const u = urls.find((x) => KAKAO_URL_RE.test(x))
+      if (u) fields.kakao_map_url = u
+    }
+    if (!fields.naver_map_url) {
+      const u = urls.find((x) => NAVER_MAP_URL_RE.test(x))
+      if (u) fields.naver_map_url = u
+    }
+    if (!fields.tmap_url) {
+      const u = urls.find((x) => TMAP_URL_RE.test(x))
+      if (u) fields.tmap_url = u
+    }
+    if (!fields.video_url) {
+      // 영상성 URL 우선, 없으면 지도/티맵으로 분류되지 않은 첫 URL.
+      const isMapLike = (x: string) =>
+        KAKAO_URL_RE.test(x) || NAVER_MAP_URL_RE.test(x) || TMAP_URL_RE.test(x)
+      const u =
+        urls.find((x) => VIDEO_URL_RE.test(x)) ?? urls.find((x) => !isMapLike(x))
+      if (u) fields.video_url = u
     }
   }
 
@@ -156,8 +243,9 @@ export const RESTAURANT_PASTE_PLACEHOLDER = [
   '출처명: 전현무계획3',
   '프로그램명: 전현무계획3',
   '에피소드: 부산 편 양수백 맛집',
+  '방영일: 2026-05-04',
   '전화: 0507-1396-4117',
-  '카카오맵URL: http://kko.to/...',
-  '네이버맵URL: https://naver.me/...',
+  '영상 URL: https://...',
+  '카카오맵 URL: https://map.kakao.com/...',
   '설명: 전현무계획3 부산 편에 나온 중앙동 양수백 맛집.',
 ].join('\n')
