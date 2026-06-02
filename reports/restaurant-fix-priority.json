@@ -1,0 +1,2059 @@
+{
+  "generated_at": "2026-06-02T10:34:37.942Z",
+  "generated_at_kst": "2026. 6. 2. PM 7:34:37",
+  "weights": {
+    "video_url": 5,
+    "kakao_map_url": 5,
+    "broadcast_date": 4,
+    "appearance_broadcast_date": 4,
+    "episode_title": 3,
+    "source_title": 4,
+    "program_or_creator": 4,
+    "main_menu": 2,
+    "price_text": 2,
+    "area_etc": 1,
+    "description": 1,
+    "thumbnail": "집계만(점수 제외)"
+  },
+  "summary": {
+    "published_restaurants": 69,
+    "priority_candidates": 57,
+    "top_score": 19,
+    "no_thumbnail": 69,
+    "video_url_missing": 50,
+    "kakao_map_url_missing": 2,
+    "broadcast_date_missing": 31,
+    "appearance_broadcast_date_missing": 32,
+    "episode_title_missing": 22,
+    "source_title_missing": 0,
+    "program_or_creator_missing": 0
+  },
+  "top20": [
+    {
+      "score": 19,
+      "slug": "naeho-naengmyeon",
+      "name": "내호냉면",
+      "area": "남구",
+      "category": "밀면",
+      "address": "부산광역시 남구 장고개로 11-5",
+      "source_title": "맛있는녀석들",
+      "program_name": "맛있는녀석들",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "main_menu",
+        "description"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 18,
+      "slug": "baekban-namgu-chossijib",
+      "name": "궁중해물탕 조씨집 대연본점",
+      "area": "남구",
+      "category": "해산물",
+      "address": "부산 남구 진남로 7-11",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 18,
+      "slug": "baekban-nampo-18-wandang",
+      "name": "18번완당집",
+      "area": "남포동",
+      "category": "한식",
+      "address": "부산 중구 비프광장로 31",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "main_menu"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 18,
+      "slug": "baekban-yeongdo-gamasot-doejigukbap",
+      "name": "가마솥돼지국밥 영도점",
+      "area": "영도",
+      "category": "돼지국밥",
+      "address": "부산 영도구 절영로49번길 25",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 18,
+      "slug": "matnyuk-seomyeon-songjeong-3dae-gukbap",
+      "name": "송정3대국밥",
+      "area": "서면",
+      "category": "돼지국밥",
+      "address": "부산 부산진구 서면로68번길 33",
+      "source_title": "맛있는녀석들",
+      "program_name": "맛있는녀석들",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 18,
+      "slug": "pungja-namgu-hapcheon-gukbap",
+      "name": "합천국밥집",
+      "area": "남구",
+      "category": "돼지국밥",
+      "address": "부산 남구 용호로 235",
+      "source_title": "또간집",
+      "program_name": "또간집",
+      "creator_name": "풍자",
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 18,
+      "slug": "samdae-seomyeon-wonjo-halmae-nakji",
+      "name": "원조할매낙지",
+      "area": "서면",
+      "category": "한식",
+      "address": "부산 부산진구 골드테마길 10",
+      "source_title": "백종원의 3대 천왕",
+      "program_name": "백종원의 3대 천왕",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 17,
+      "slug": "hoeguksu-halmaejip",
+      "name": "회국수할매집",
+      "area": "서면",
+      "category": "한식",
+      "address": "부산 부산진구 서면문화로 5",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "description"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 17,
+      "slug": "mulkkong-sikdang",
+      "name": "물꽁식당",
+      "area": "남포동",
+      "category": "해산물",
+      "address": "부산광역시 중구 흥교로 55",
+      "source_title": "6시내고향",
+      "program_name": "6시내고향",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "description"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 17,
+      "slug": "samdaecheonwang-shinbalwon",
+      "name": "신발원",
+      "area": "기타",
+      "category": "중식",
+      "address": "부산광역시 동구 대영로243번길 62",
+      "source_title": "백종원의 3대천왕",
+      "program_name": "백종원의 3대천왕",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "area_etc"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 17,
+      "slug": "sokssiwonhan-daegutang-haeundae",
+      "name": "속씨원한 대구탕 해운대 본점",
+      "area": "해운대",
+      "category": "해산물",
+      "address": "부산 해운대구 해운대로570번길 11 2층",
+      "source_title": "맛있는녀석들",
+      "program_name": "맛있는녀석들",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "description"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 17,
+      "slug": "subyeon-choego-doejigukbap-minrak",
+      "name": "수변최고돼지국밥 민락본점",
+      "area": "광안리",
+      "category": "돼지국밥",
+      "address": "부산 수영구 광안해변로370번길 9-32",
+      "source_title": "수요미식회",
+      "program_name": "수요미식회",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "description"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 16,
+      "slug": "baekban-seomyeon-marathon-jib",
+      "name": "마라톤집",
+      "area": "서면",
+      "category": "한식",
+      "address": "부산 부산진구 가야대로784번길 54",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 16,
+      "slug": "bapsang-gijang-haebyeon-jipbul-gomjangeo",
+      "name": "해변짚불곰장어",
+      "area": "기장",
+      "category": "해산물",
+      "address": "부산 기장군 기장읍 공수2길 11",
+      "source_title": "한국인의 밥상",
+      "program_name": "한국인의 밥상",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 16,
+      "slug": "live-today-samjin-eomuk",
+      "name": "삼진어묵 본점",
+      "area": "영도",
+      "category": "해산물",
+      "address": "부산광역시 영도구 태종로99번길 36",
+      "source_title": "생방송 투데이",
+      "program_name": "생방송 투데이",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 16,
+      "slug": "saengdal-geumjeong-songs-bakery",
+      "name": "송스 베이커리",
+      "area": "기타",
+      "category": "베이커리/디저트",
+      "address": "부산 금정구 수림로 26",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "price_text",
+        "area_etc"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 16,
+      "slug": "saengdal-gijang-ilgwangdang",
+      "name": "일광당",
+      "area": "기장",
+      "category": "베이커리/디저트",
+      "address": "부산 기장군 일광읍 일광로 125-1",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 16,
+      "slug": "saengdal-saha-cheramie",
+      "name": "쉐라미과자점",
+      "area": "기타",
+      "category": "베이커리/디저트",
+      "address": "부산 사하구 낙동대로 238",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "price_text",
+        "area_etc"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 15,
+      "slug": "pungja-nampo-milyangjib",
+      "name": "밀양집",
+      "area": "남포동",
+      "category": "돼지국밥",
+      "address": "부산 중구 중구로47번길 35",
+      "source_title": "또간집",
+      "program_name": "또간집",
+      "creator_name": "풍자",
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 15,
+      "slug": "saengdal-gijang-jeil-bunsik",
+      "name": "제일분식",
+      "area": "기장",
+      "category": "분식/길거리",
+      "address": "부산 기장군 장안읍 좌천로 38",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    }
+  ],
+  "area_missing": [
+    {
+      "value": "서면",
+      "count": 9
+    },
+    {
+      "value": "기타",
+      "count": 8
+    },
+    {
+      "value": "광안리",
+      "count": 7
+    },
+    {
+      "value": "해운대",
+      "count": 6
+    },
+    {
+      "value": "남구",
+      "count": 5
+    },
+    {
+      "value": "남포동",
+      "count": 5
+    },
+    {
+      "value": "영도",
+      "count": 5
+    },
+    {
+      "value": "기장",
+      "count": 4
+    },
+    {
+      "value": "사상",
+      "count": 4
+    },
+    {
+      "value": "연제",
+      "count": 3
+    },
+    {
+      "value": "동래",
+      "count": 1
+    }
+  ],
+  "category_missing": [
+    {
+      "value": "한식",
+      "count": 13
+    },
+    {
+      "value": "돼지국밥",
+      "count": 10
+    },
+    {
+      "value": "해산물",
+      "count": 7
+    },
+    {
+      "value": "베이커리/디저트",
+      "count": 6
+    },
+    {
+      "value": "밀면",
+      "count": 4
+    },
+    {
+      "value": "분식/길거리",
+      "count": 4
+    },
+    {
+      "value": "고기",
+      "count": 4
+    },
+    {
+      "value": "중식",
+      "count": 2
+    },
+    {
+      "value": "일식",
+      "count": 2
+    },
+    {
+      "value": "회",
+      "count": 2
+    },
+    {
+      "value": "곱창",
+      "count": 1
+    },
+    {
+      "value": "아시안",
+      "count": 1
+    },
+    {
+      "value": "분식",
+      "count": 1
+    }
+  ],
+  "etc_area_list": [
+    {
+      "slug": "2tv-gumjeong-geumjukheon",
+      "name": "금죽헌 금정산성점",
+      "category": "한식",
+      "address": "부산 금정구 산성로 531 1층"
+    },
+    {
+      "slug": "live-today-donggu-halme-gimbap",
+      "name": "할매김밥",
+      "category": "분식",
+      "address": "부산 동구 고관로 106 상가아파트 상가안"
+    },
+    {
+      "slug": "saengdal-saha-cheramie",
+      "name": "쉐라미과자점",
+      "category": "베이커리/디저트",
+      "address": "부산 사하구 낙동대로 238"
+    },
+    {
+      "slug": "saengdal-geumjeong-songs-bakery",
+      "name": "송스 베이커리",
+      "category": "베이커리/디저트",
+      "address": "부산 금정구 수림로 26"
+    },
+    {
+      "slug": "live-today-suyeong-geumsin-jeonseon-sangyusibi",
+      "name": "금신전선 상유십이",
+      "category": "한식",
+      "address": "부산 수영구 수영로582번길 28"
+    },
+    {
+      "slug": "saengdal-bukgu-shunsaikubo",
+      "name": "슌사이쿠보 화명",
+      "category": "아시안",
+      "address": "부산 북구 양달로4번길 17 금샘빌딩 1층"
+    },
+    {
+      "slug": "samdaecheonwang-shinbalwon",
+      "name": "신발원",
+      "category": "중식",
+      "address": "부산광역시 동구 대영로243번길 62"
+    },
+    {
+      "slug": "wonjo-gaya-milmyeon",
+      "name": "원조가야밀면",
+      "category": "밀면",
+      "address": "부산 사하구 낙동대로451번길 33"
+    }
+  ],
+  "appearance_missing_top": [
+    {
+      "slug": "baekban-dongnae-pajeon",
+      "name": "동래할매파전",
+      "appearance_count": 2,
+      "missing_count": 3,
+      "missing": [
+        "video_url",
+        "broadcast_date"
+      ]
+    },
+    {
+      "slug": "baekban-namgu-chossijib",
+      "name": "궁중해물탕 조씨집 대연본점",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "baekban-nampo-18-wandang",
+      "name": "18번완당집",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "baekban-seomyeon-marathon-jib",
+      "name": "마라톤집",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "baekban-yeongdo-gamasot-doejigukbap",
+      "name": "가마솥돼지국밥 영도점",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "bapsang-gijang-haebyeon-jipbul-gomjangeo",
+      "name": "해변짚불곰장어",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "hoeguksu-halmaejip",
+      "name": "회국수할매집",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "live-today-samjin-eomuk",
+      "name": "삼진어묵 본점",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "matnyuk-seomyeon-songjeong-3dae-gukbap",
+      "name": "송정3대국밥",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "mulkkong-sikdang",
+      "name": "물꽁식당",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "naeho-naengmyeon",
+      "name": "내호냉면",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "pungja-namgu-hapcheon-gukbap",
+      "name": "합천국밥집",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "saengdal-gijang-ilgwangdang",
+      "name": "일광당",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "samdae-seomyeon-wonjo-halmae-nakji",
+      "name": "원조할매낙지",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "samdaecheonwang-shinbalwon",
+      "name": "신발원",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "sokssiwonhan-daegutang-haeundae",
+      "name": "속씨원한 대구탕 해운대 본점",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "subyeon-choego-doejigukbap-minrak",
+      "name": "수변최고돼지국밥 민락본점",
+      "appearance_count": 1,
+      "missing_count": 3,
+      "missing": [
+        "broadcast_date",
+        "episode_title",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "ddoganjip-hapcheon-ilryu-dwaeji-gukbap",
+      "name": "합천일류돼지국밥",
+      "appearance_count": 1,
+      "missing_count": 2,
+      "missing": [
+        "broadcast_date",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "ddoganjip-pungnyeon-gopchang",
+      "name": "풍년곱창",
+      "appearance_count": 1,
+      "missing_count": 2,
+      "missing": [
+        "broadcast_date",
+        "video_url"
+      ]
+    },
+    {
+      "slug": "iganae-tteokbokki",
+      "name": "이가네떡볶이 본점",
+      "appearance_count": 1,
+      "missing_count": 2,
+      "missing": [
+        "broadcast_date",
+        "video_url"
+      ]
+    }
+  ],
+  "all_scored": [
+    {
+      "score": 19,
+      "slug": "naeho-naengmyeon",
+      "name": "내호냉면",
+      "area": "남구",
+      "category": "밀면",
+      "address": "부산광역시 남구 장고개로 11-5",
+      "source_title": "맛있는녀석들",
+      "program_name": "맛있는녀석들",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "main_menu",
+        "description"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 18,
+      "slug": "baekban-namgu-chossijib",
+      "name": "궁중해물탕 조씨집 대연본점",
+      "area": "남구",
+      "category": "해산물",
+      "address": "부산 남구 진남로 7-11",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 18,
+      "slug": "baekban-nampo-18-wandang",
+      "name": "18번완당집",
+      "area": "남포동",
+      "category": "한식",
+      "address": "부산 중구 비프광장로 31",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "main_menu"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 18,
+      "slug": "baekban-yeongdo-gamasot-doejigukbap",
+      "name": "가마솥돼지국밥 영도점",
+      "area": "영도",
+      "category": "돼지국밥",
+      "address": "부산 영도구 절영로49번길 25",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 18,
+      "slug": "matnyuk-seomyeon-songjeong-3dae-gukbap",
+      "name": "송정3대국밥",
+      "area": "서면",
+      "category": "돼지국밥",
+      "address": "부산 부산진구 서면로68번길 33",
+      "source_title": "맛있는녀석들",
+      "program_name": "맛있는녀석들",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 18,
+      "slug": "pungja-namgu-hapcheon-gukbap",
+      "name": "합천국밥집",
+      "area": "남구",
+      "category": "돼지국밥",
+      "address": "부산 남구 용호로 235",
+      "source_title": "또간집",
+      "program_name": "또간집",
+      "creator_name": "풍자",
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 18,
+      "slug": "samdae-seomyeon-wonjo-halmae-nakji",
+      "name": "원조할매낙지",
+      "area": "서면",
+      "category": "한식",
+      "address": "부산 부산진구 골드테마길 10",
+      "source_title": "백종원의 3대 천왕",
+      "program_name": "백종원의 3대 천왕",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 17,
+      "slug": "hoeguksu-halmaejip",
+      "name": "회국수할매집",
+      "area": "서면",
+      "category": "한식",
+      "address": "부산 부산진구 서면문화로 5",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "description"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 17,
+      "slug": "mulkkong-sikdang",
+      "name": "물꽁식당",
+      "area": "남포동",
+      "category": "해산물",
+      "address": "부산광역시 중구 흥교로 55",
+      "source_title": "6시내고향",
+      "program_name": "6시내고향",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "description"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 17,
+      "slug": "samdaecheonwang-shinbalwon",
+      "name": "신발원",
+      "area": "기타",
+      "category": "중식",
+      "address": "부산광역시 동구 대영로243번길 62",
+      "source_title": "백종원의 3대천왕",
+      "program_name": "백종원의 3대천왕",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "area_etc"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 17,
+      "slug": "sokssiwonhan-daegutang-haeundae",
+      "name": "속씨원한 대구탕 해운대 본점",
+      "area": "해운대",
+      "category": "해산물",
+      "address": "부산 해운대구 해운대로570번길 11 2층",
+      "source_title": "맛있는녀석들",
+      "program_name": "맛있는녀석들",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "description"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 17,
+      "slug": "subyeon-choego-doejigukbap-minrak",
+      "name": "수변최고돼지국밥 민락본점",
+      "area": "광안리",
+      "category": "돼지국밥",
+      "address": "부산 수영구 광안해변로370번길 9-32",
+      "source_title": "수요미식회",
+      "program_name": "수요미식회",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "description"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 16,
+      "slug": "baekban-seomyeon-marathon-jib",
+      "name": "마라톤집",
+      "area": "서면",
+      "category": "한식",
+      "address": "부산 부산진구 가야대로784번길 54",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 16,
+      "slug": "bapsang-gijang-haebyeon-jipbul-gomjangeo",
+      "name": "해변짚불곰장어",
+      "area": "기장",
+      "category": "해산물",
+      "address": "부산 기장군 기장읍 공수2길 11",
+      "source_title": "한국인의 밥상",
+      "program_name": "한국인의 밥상",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 16,
+      "slug": "live-today-samjin-eomuk",
+      "name": "삼진어묵 본점",
+      "area": "영도",
+      "category": "해산물",
+      "address": "부산광역시 영도구 태종로99번길 36",
+      "source_title": "생방송 투데이",
+      "program_name": "생방송 투데이",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 16,
+      "slug": "saengdal-geumjeong-songs-bakery",
+      "name": "송스 베이커리",
+      "area": "기타",
+      "category": "베이커리/디저트",
+      "address": "부산 금정구 수림로 26",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "price_text",
+        "area_etc"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 16,
+      "slug": "saengdal-gijang-ilgwangdang",
+      "name": "일광당",
+      "area": "기장",
+      "category": "베이커리/디저트",
+      "address": "부산 기장군 일광읍 일광로 125-1",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 16,
+      "slug": "saengdal-saha-cheramie",
+      "name": "쉐라미과자점",
+      "area": "기타",
+      "category": "베이커리/디저트",
+      "address": "부산 사하구 낙동대로 238",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "price_text",
+        "area_etc"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 15,
+      "slug": "pungja-nampo-milyangjib",
+      "name": "밀양집",
+      "area": "남포동",
+      "category": "돼지국밥",
+      "address": "부산 중구 중구로47번길 35",
+      "source_title": "또간집",
+      "program_name": "또간집",
+      "creator_name": "풍자",
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 15,
+      "slug": "saengdal-gijang-jeil-bunsik",
+      "name": "제일분식",
+      "area": "기장",
+      "category": "분식/길거리",
+      "address": "부산 기장군 장안읍 좌천로 38",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 15,
+      "slug": "saengdal-yeongdo-sato-bunsik",
+      "name": "사또분식",
+      "area": "영도",
+      "category": "분식/길거리",
+      "address": "부산 영도구 절영로35번길 39",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 15,
+      "slug": "samdae-seomyeon-gijang-son-kalguksu",
+      "name": "기장손칼국수",
+      "area": "서면",
+      "category": "한식",
+      "address": "부산 부산진구 서면로 56",
+      "source_title": "백종원의 3대 천왕",
+      "program_name": "백종원의 3대 천왕",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 15,
+      "slug": "tzuyang-haeundae-ppalgan-tteokbokki",
+      "name": "빨간떡볶이",
+      "area": "해운대",
+      "category": "분식/길거리",
+      "address": "부산 해운대구 우동1로20번가길 4 1층",
+      "source_title": "쯔양",
+      "program_name": "쯔양",
+      "creator_name": "쯔양",
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 15,
+      "slug": "tzuyang-yeonje-yeonji-yanggopchang",
+      "name": "연지가양곱창",
+      "area": "연제",
+      "category": "고기",
+      "address": "부산 연제구 반송로 18-6 1층",
+      "source_title": "쯔양",
+      "program_name": "쯔양",
+      "creator_name": "쯔양",
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 13,
+      "slug": "ddoganjip-hapcheon-ilryu-dwaeji-gukbap",
+      "name": "합천일류돼지국밥",
+      "area": "사상",
+      "category": "돼지국밥",
+      "address": "부산 사상구 광장로 34",
+      "source_title": "풍자 또간집",
+      "program_name": "풍자 또간집",
+      "creator_name": "풍자",
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 13,
+      "slug": "ddoganjip-pungnyeon-gopchang",
+      "name": "풍년곱창",
+      "area": "남구",
+      "category": "곱창",
+      "address": "부산 남구 용소로28번길 22-1",
+      "source_title": "풍자 또간집",
+      "program_name": "풍자 또간집",
+      "creator_name": "풍자",
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 13,
+      "slug": "hanyakbang-gukbap-hyeongje-food",
+      "name": "한약방돼지국밥 형제식품",
+      "area": "서면",
+      "category": "돼지국밥",
+      "address": "부산 부산진구 범천동 839-407",
+      "source_title": "전현무계획3",
+      "program_name": "전현무계획3",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "ok",
+      "kakao_map_url_status": "missing",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "kakao_map_url",
+        "broadcast_date",
+        "appearance_broadcast_date"
+      ],
+      "recommended_action": "카카오맵 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 13,
+      "slug": "iganae-tteokbokki",
+      "name": "이가네떡볶이 본점",
+      "area": "남포동",
+      "category": "분식/길거리",
+      "address": "부산 중구 부평1길 48",
+      "source_title": "백종원의 3대천왕",
+      "program_name": "백종원의 3대천왕",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 13,
+      "slug": "saengdal-haeundae-missaem-ssalbbang",
+      "name": "미쌤쌀빵",
+      "area": "해운대",
+      "category": "베이커리/디저트",
+      "address": "부산 해운대구 센텀중앙로 145, 1층",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": null,
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "broadcast_date",
+        "appearance_broadcast_date"
+      ],
+      "recommended_action": "영상 URL / 방영일 / 방영일(출연) 보강"
+    },
+    {
+      "score": 13,
+      "slug": "sungsik-gwangalli-jinmi-eonyang-bulgogi",
+      "name": "진미언양불고기",
+      "area": "광안리",
+      "category": "고기",
+      "address": "부산 수영구 남천바다로33번길 7",
+      "source_title": "성시경의 먹을텐데",
+      "program_name": "성시경의 먹을텐데",
+      "creator_name": "성시경",
+      "broadcast_date": null,
+      "video_url_status": "ok",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "episode_title",
+        "price_text"
+      ],
+      "recommended_action": "방영일 / 방영일(출연) / 에피소드 보강"
+    },
+    {
+      "score": 10,
+      "slug": "saengdal-jeonpo-toda-park",
+      "name": "토다공원",
+      "area": "서면",
+      "category": "일식",
+      "address": "부산 부산진구 전포대로210번길 36 1층",
+      "source_title": "SBS 생활의 달인",
+      "program_name": "생활의 달인",
+      "creator_name": null,
+      "broadcast_date": "2026-05-04",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "missing",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "kakao_map_url"
+      ],
+      "recommended_action": "영상 URL / 카카오맵 URL 보강"
+    },
+    {
+      "score": 10,
+      "slug": "samdae-haeundae-wonjo-halmae-gukbap",
+      "name": "해운대원조할매국밥",
+      "area": "해운대",
+      "category": "한식",
+      "address": "부산 해운대구 구남로21번길 27",
+      "source_title": "백종원의 3대 천왕",
+      "program_name": "백종원의 3대 천왕",
+      "creator_name": null,
+      "broadcast_date": "2016-07-30",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "episode_title",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 에피소드 / 가격대 보강"
+    },
+    {
+      "score": 10,
+      "slug": "sungsik-gwangalli-geumson-1983",
+      "name": "금손1983",
+      "area": "광안리",
+      "category": "한식",
+      "address": "부산 수영구 수영로680번길 54 1층",
+      "source_title": "성시경의 먹을텐데",
+      "program_name": "성시경의 먹을텐데",
+      "creator_name": "성시경",
+      "broadcast_date": null,
+      "video_url_status": "ok",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "broadcast_date",
+        "appearance_broadcast_date",
+        "price_text"
+      ],
+      "recommended_action": "방영일 / 방영일(출연) / 가격대 보강"
+    },
+    {
+      "score": 9,
+      "slug": "baekban-dongnae-pajeon",
+      "name": "동래할매파전",
+      "area": "동래",
+      "category": "한식",
+      "address": "부산 동래구 명륜로94번길 43-10",
+      "source_title": "백반기행",
+      "program_name": "백반기행",
+      "creator_name": null,
+      "broadcast_date": "2024-09-14",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 2,
+      "missing_reasons": [
+        "video_url",
+        "appearance_broadcast_date"
+      ],
+      "recommended_action": "영상 URL / 방영일(출연) 보강"
+    },
+    {
+      "score": 8,
+      "slug": "saengbang-gwangalli-sanhae-hoejip",
+      "name": "산해횟집",
+      "area": "광안리",
+      "category": "회",
+      "address": "부산 수영구 광안해변로344번길 17-20 풍경타워 8층",
+      "source_title": "생방송투데이 2221회",
+      "program_name": "생방송투데이",
+      "creator_name": null,
+      "broadcast_date": "2018-12-04",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "episode_title"
+      ],
+      "recommended_action": "영상 URL / 에피소드 보강"
+    },
+    {
+      "score": 8,
+      "slug": "saengdal-bukgu-shunsaikubo",
+      "name": "슌사이쿠보 화명",
+      "area": "기타",
+      "category": "아시안",
+      "address": "부산 북구 양달로4번길 17 금샘빌딩 1층",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": "2026-04-20",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "price_text",
+        "area_etc"
+      ],
+      "recommended_action": "영상 URL / 가격대 / 지역 재분류 보강"
+    },
+    {
+      "score": 8,
+      "slug": "saengdal-namgu-daeyeon-milmyeon",
+      "name": "대연밀면",
+      "area": "남구",
+      "category": "밀면",
+      "address": "부산 남구 천제등로 55 1층",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": "2025-08-18",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "episode_title"
+      ],
+      "recommended_action": "영상 URL / 에피소드 보강"
+    },
+    {
+      "score": 8,
+      "slug": "saengdal-yeonje-gukje-milmyeon",
+      "name": "국제밀면 본점",
+      "area": "연제",
+      "category": "밀면",
+      "address": "부산 연제구 중앙대로1235번길 23-6",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": "2025-08-18",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "episode_title"
+      ],
+      "recommended_action": "영상 URL / 에피소드 보강"
+    },
+    {
+      "score": 7,
+      "slug": "baekban-haeundae-yangs-yanggopchang",
+      "name": "양가네 양곱창",
+      "area": "해운대",
+      "category": "고기",
+      "address": "부산 해운대구 구남로8번길 7-3",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": "2022-03-25",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 가격대 보강"
+    },
+    {
+      "score": 7,
+      "slug": "baekban-yeongdo-jinju-sikdang",
+      "name": "진주식당",
+      "area": "영도",
+      "category": "한식",
+      "address": "부산 영도구 대평로 16",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": "2020-07-24",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 가격대 보강"
+    },
+    {
+      "score": 7,
+      "slug": "baekban-yeongdo-jungri-haenyeochon",
+      "name": "영도 중리해녀촌",
+      "area": "영도",
+      "category": "해산물",
+      "address": "부산 영도구 중리남로 2-35 영도해녀문화전시관 1층",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": "2020-07-24",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 가격대 보강"
+    },
+    {
+      "score": 7,
+      "slug": "saengdal-sasang-peanut-bbangatgan",
+      "name": "피넛빵앗간",
+      "area": "사상",
+      "category": "베이커리/디저트",
+      "address": "부산 사상구 사상로148번길 11 1층",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": "2026-04-13",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "price_text"
+      ],
+      "recommended_action": "영상 URL / 가격대 보강"
+    },
+    {
+      "score": 7,
+      "slug": "saengdal-suyeong-sushibashiku",
+      "name": "스시바시쿠",
+      "area": "광안리",
+      "category": "일식",
+      "address": "부산 수영구 민락동 168-13",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": "2026-04-20",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "main_menu"
+      ],
+      "recommended_action": "영상 URL / 대표메뉴 보강"
+    },
+    {
+      "score": 7,
+      "slug": "wonjo-gaya-milmyeon",
+      "name": "원조가야밀면",
+      "area": "기타",
+      "category": "밀면",
+      "address": "부산 사하구 낙동대로451번길 33",
+      "source_title": "SBS 생활의 달인",
+      "program_name": "생활의 달인",
+      "creator_name": null,
+      "broadcast_date": "2026-05-25",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url",
+        "area_etc",
+        "description"
+      ],
+      "recommended_action": "영상 URL / 설명 / 지역 재분류 보강"
+    },
+    {
+      "score": 5,
+      "slug": "baekban-seomyeon-masan-sikdang",
+      "name": "마산식당",
+      "area": "서면",
+      "category": "돼지국밥",
+      "address": "부산 부산진구 자유평화로 19",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": "2026-02-22",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url"
+      ],
+      "recommended_action": "영상 URL 보강"
+    },
+    {
+      "score": 5,
+      "slug": "baekban-yeonje-godeungeo-datchi",
+      "name": "고등어다찌 연산본점",
+      "area": "연제",
+      "category": "회",
+      "address": "부산 연제구 고분로31번길 42",
+      "source_title": "식객 허영만의 백반기행",
+      "program_name": "식객 허영만의 백반기행",
+      "creator_name": null,
+      "broadcast_date": "2026-02-22",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url"
+      ],
+      "recommended_action": "영상 URL 보강"
+    },
+    {
+      "score": 5,
+      "slug": "jeonhyun-gijang-haenyeo-halmaejib",
+      "name": "5번 친구해녀할매집",
+      "area": "기장",
+      "category": "해산물",
+      "address": "부산 기장군 기장읍 기장해안로 668",
+      "source_title": "전현무계획3",
+      "program_name": "전현무계획3",
+      "creator_name": "전현무",
+      "broadcast_date": "2026-01-09",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url"
+      ],
+      "recommended_action": "영상 URL 보강"
+    },
+    {
+      "score": 5,
+      "slug": "matnyuk-sasang-doejigalbi",
+      "name": "시골집명품석갈비",
+      "area": "사상",
+      "category": "고기",
+      "address": "부산 사상구 괘법동 549",
+      "source_title": "맛있는녀석들",
+      "program_name": "맛있는녀석들",
+      "creator_name": null,
+      "broadcast_date": "2024-07-17",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url"
+      ],
+      "recommended_action": "영상 URL 보강"
+    },
+    {
+      "score": 5,
+      "slug": "saengdal-gwangalli-jin-doejigomtang",
+      "name": "진돼지곰탕",
+      "area": "광안리",
+      "category": "돼지국밥",
+      "address": "부산 수영구 광안해변로284번길 4, 2층 201호",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": "2026-03-23",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url"
+      ],
+      "recommended_action": "영상 URL 보강"
+    },
+    {
+      "score": 5,
+      "slug": "saengdal-haeundae-amisan",
+      "name": "아미산",
+      "area": "해운대",
+      "category": "중식",
+      "address": "부산 해운대구 해운대해변로 154 마리나센터 8층",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": "2025-08-18",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url"
+      ],
+      "recommended_action": "영상 URL 보강"
+    },
+    {
+      "score": 5,
+      "slug": "saengdal-ssangdungyi-doejigukbap",
+      "name": "쌍둥이돼지국밥",
+      "area": "서면",
+      "category": "돼지국밥",
+      "address": "부산 부산진구 서면문화로 27",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": "2025-03-16",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url"
+      ],
+      "recommended_action": "영상 URL 보강"
+    },
+    {
+      "score": 5,
+      "slug": "saengdal-suyeong-dongyang-sarada-namcheon",
+      "name": "동양사라다 남천본점",
+      "area": "광안리",
+      "category": "베이커리/디저트",
+      "address": "부산 수영구 남천서로20번길 31",
+      "source_title": "생활의달인",
+      "program_name": "생활의달인",
+      "creator_name": null,
+      "broadcast_date": "2025-06-30",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url"
+      ],
+      "recommended_action": "영상 URL 보강"
+    },
+    {
+      "score": 5,
+      "slug": "saengsaeng-sasang-jurye-suyuk-kalguksu",
+      "name": "주례수육칼국수 2호점",
+      "area": "사상",
+      "category": "한식",
+      "address": "부산 사상구 가야대로 290-18",
+      "source_title": "2TV 생생정보",
+      "program_name": "2TV 생생정보",
+      "creator_name": null,
+      "broadcast_date": "2017-08-09",
+      "video_url_status": "missing",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "video_url"
+      ],
+      "recommended_action": "영상 URL 보강"
+    },
+    {
+      "score": 3,
+      "slug": "sungsik-nampodong-jungang-gomtang",
+      "name": "중앙곰탕",
+      "area": "남포동",
+      "category": "한식",
+      "address": "부산 중구 충장대로9번길 9 동영빌딩지하",
+      "source_title": "성시경의 먹을텐데",
+      "program_name": "먹을텐데",
+      "creator_name": "성시경",
+      "broadcast_date": "2025-07-08",
+      "video_url_status": "ok",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 2,
+      "missing_reasons": [
+        "episode_title"
+      ],
+      "recommended_action": "에피소드 보강"
+    },
+    {
+      "score": 1,
+      "slug": "2tv-gumjeong-geumjukheon",
+      "name": "금죽헌 금정산성점",
+      "area": "기타",
+      "category": "한식",
+      "address": "부산 금정구 산성로 531 1층",
+      "source_title": "KBS 2TV 생생정보",
+      "program_name": "2TV 생생정보",
+      "creator_name": null,
+      "broadcast_date": "2026-05-05",
+      "video_url_status": "ok",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "area_etc"
+      ],
+      "recommended_action": "기타 지역 재분류 검토"
+    },
+    {
+      "score": 1,
+      "slug": "live-today-donggu-halme-gimbap",
+      "name": "할매김밥",
+      "area": "기타",
+      "category": "분식",
+      "address": "부산 동구 고관로 106 상가아파트 상가안",
+      "source_title": "SBS 생방송 투데이",
+      "program_name": "생방송 투데이",
+      "creator_name": null,
+      "broadcast_date": "2026-05-29",
+      "video_url_status": "ok",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "area_etc"
+      ],
+      "recommended_action": "기타 지역 재분류 검토"
+    },
+    {
+      "score": 1,
+      "slug": "live-today-suyeong-geumsin-jeonseon-sangyusibi",
+      "name": "금신전선 상유십이",
+      "area": "기타",
+      "category": "한식",
+      "address": "부산 수영구 수영로582번길 28",
+      "source_title": "SBS 생방송 투데이",
+      "program_name": "생방송 투데이",
+      "creator_name": null,
+      "broadcast_date": "2026-05-29",
+      "video_url_status": "ok",
+      "kakao_map_url_status": "ok",
+      "appearance_count": 1,
+      "missing_reasons": [
+        "area_etc"
+      ],
+      "recommended_action": "기타 지역 재분류 검토"
+    }
+  ]
+}
