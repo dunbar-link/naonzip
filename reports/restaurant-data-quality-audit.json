@@ -1,0 +1,1862 @@
+{
+  "generated_at": "2026-06-02T09:46:08.034Z",
+  "generated_at_kst": "2026. 6. 2. PM 6:46:08",
+  "busan_range": {
+    "lat": [
+      34.8,
+      35.5
+    ],
+    "lng": [
+      128.7,
+      129.5
+    ]
+  },
+  "summary": {
+    "restaurants": 86,
+    "appearances": 88,
+    "candidates": 16,
+    "published": 70,
+    "unpublished": 16,
+    "missing_required": 70,
+    "no_thumbnail": 86,
+    "coordinate_warnings": 0,
+    "duplicate_coords": 0,
+    "url_warnings": 68,
+    "duplicate_slug": 0,
+    "duplicate_name": 2,
+    "duplicate_norm_name": 0,
+    "duplicate_address": 1,
+    "duplicate_phone": 0,
+    "duplicate_kakao": 0,
+    "duplicate_candidates": 0,
+    "odd_areas": 0,
+    "etc_area_count": 9,
+    "appearance_warnings": 65,
+    "rep_mismatch": 0,
+    "multi_appearance": 2,
+    "published_missing": 54,
+    "unpublished_but_converted": 0,
+    "test_traces": 0
+  },
+  "details": {
+    "missing_required": [
+      {
+        "slug": "saengdal-dongnae-gopchang-jungol",
+        "name": "동래 곱창전골",
+        "missing": [
+          "kakao_map_url",
+          "video_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "matnyuk-sasang-doejigalbi",
+        "name": "시골집명품석갈비",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "baekban-dongnae-pajeon",
+        "name": "동래할매파전",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "matnyuk-gwangalli-nakgopsae",
+        "name": "광안리 낙곱새",
+        "missing": [
+          "kakao_map_url",
+          "video_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "jeonhyun-jeonpo-vietnam-ssal-guksu",
+        "name": "전포 베트남쌀국수",
+        "missing": [
+          "kakao_map_url",
+          "video_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "sungsik-seomyeon-sogeumgui",
+        "name": "서면 소금구이 명가",
+        "missing": [
+          "kakao_map_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "hibab-gwangalli-chamchi-hoe",
+        "name": "광안리 참치회",
+        "missing": [
+          "kakao_map_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "samdae-gijang-myeolchi-ssambap",
+        "name": "기장 멸치쌈밥",
+        "missing": [
+          "kakao_map_url",
+          "video_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "baekban-gijang-jeonbok-juk",
+        "name": "기장 전복죽",
+        "missing": [
+          "kakao_map_url",
+          "video_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "pani-nampo-ssiat-ppang",
+        "name": "남포동 씨앗빵 본점",
+        "missing": [
+          "kakao_map_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "tzuyang-jagalchi-bibim-dangmyeon",
+        "name": "자갈치 비빔당면",
+        "missing": [
+          "kakao_map_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "tzuyang-haeundae-sujeburger",
+        "name": "해운대 수제버거",
+        "missing": [
+          "kakao_map_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "saengdal-ssangdungyi-doejigukbap",
+        "name": "쌍둥이돼지국밥",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "iganae-tteokbokki",
+        "name": "이가네떡볶이 본점",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "baekban-beomeosa-sanche-bibimbap",
+        "name": "범어사 산채비빔밥",
+        "missing": [
+          "kakao_map_url",
+          "video_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "hibab-gwangalli-jogae-gui-pocha",
+        "name": "광안리 조개구이 포차",
+        "missing": [
+          "kakao_map_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "subyeon-choego-doejigukbap-minrak",
+        "name": "수변최고돼지국밥 민락본점",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "sokssiwonhan-daegutang-haeundae",
+        "name": "속씨원한 대구탕 해운대 본점",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "mulkkong-sikdang",
+        "name": "물꽁식당",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "hoeguksu-halmaejip",
+        "name": "회국수할매집",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "baekban-nampo-18-wandang",
+        "name": "18번완당집",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "baekban-yeongdo-jinju-sikdang",
+        "name": "진주식당",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "bapsang-gijang-haebyeon-jipbul-gomjangeo",
+        "name": "해변짚불곰장어",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "samdae-haeundae-wonjo-halmae-gukbap",
+        "name": "해운대원조할매국밥",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "baekban-haeundae-yangs-yanggopchang",
+        "name": "양가네 양곱창",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "baekban-seomyeon-marathon-jib",
+        "name": "마라톤집",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengsaeng-sasang-jurye-suyuk-kalguksu",
+        "name": "주례수육칼국수 2호점",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-saha-cheramie",
+        "name": "쉐라미과자점",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-geumjeong-songs-bakery",
+        "name": "송스 베이커리",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengsaeng-dongnae-halmae-pajeon",
+        "name": "동래할매파전",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "pungja-nampo-milyangjib",
+        "name": "밀양집",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "baekban-seomyeon-masan-sikdang",
+        "name": "마산식당",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "matnyuk-seomyeon-songjeong-3dae-gukbap",
+        "name": "송정3대국밥",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "samdae-seomyeon-gijang-son-kalguksu",
+        "name": "기장손칼국수",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "sungsik-gwangalli-jinmi-eonyang-bulgogi",
+        "name": "진미언양불고기",
+        "missing": [
+          "broadcast_date"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "sungsik-gwangalli-geumson-1983",
+        "name": "금손1983",
+        "missing": [
+          "broadcast_date"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-gijang-ilgwangdang",
+        "name": "일광당",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-gijang-jeil-bunsik",
+        "name": "제일분식",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-bukgu-shunsaikubo",
+        "name": "슌사이쿠보 화명",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "samdae-donggu-shinbalwon",
+        "name": "신발원",
+        "missing": [
+          "broadcast_date",
+          "kakao_map_url",
+          "video_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "samdae-seomyeon-wonjo-halmae-nakji",
+        "name": "원조할매낙지",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-gwangalli-jin-doejigomtang",
+        "name": "진돼지곰탕",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-suyeong-dongyang-sarada-namcheon",
+        "name": "동양사라다 남천본점",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-suyeong-sushibashiku",
+        "name": "스시바시쿠",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "tzuyang-haeundae-ppalgan-tteokbokki",
+        "name": "빨간떡볶이",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-haeundae-missaem-ssalbbang",
+        "name": "미쌤쌀빵",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-haeundae-amisan",
+        "name": "아미산",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-sasang-peanut-bbangatgan",
+        "name": "피넛빵앗간",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "jeonhyun-gijang-haenyeo-halmaejib",
+        "name": "5번 친구해녀할매집",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "naeho-naengmyeon",
+        "name": "내호냉면",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "tzuyang-yeonje-yeonji-yanggopchang",
+        "name": "연지가양곱창",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "samdaecheonwang-shinbalwon",
+        "name": "신발원",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengbang-gwangalli-sanhae-hoejip",
+        "name": "산해횟집",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "baekban-yeongdo-gamasot-doejigukbap",
+        "name": "가마솥돼지국밥 영도점",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "baekban-yeongdo-jungri-haenyeochon",
+        "name": "영도 중리해녀촌",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-yeonje-gukje-milmyeon",
+        "name": "국제밀면 본점",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "baekban-yeonje-godeungeo-datchi",
+        "name": "고등어다찌 연산본점",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "baekban-namgu-chossijib",
+        "name": "궁중해물탕 조씨집 대연본점",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-namgu-daeyeon-milmyeon",
+        "name": "대연밀면",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "pungja-namgu-hapcheon-gukbap",
+        "name": "합천국밥집",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-namgu-namji-ramyeon",
+        "name": "남지라면천국",
+        "missing": [
+          "broadcast_date",
+          "kakao_map_url",
+          "video_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "live-today-samjin-eomuk",
+        "name": "삼진어묵 본점",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "ddoganjip-hapcheon-ilryu-dwaeji-gukbap",
+        "name": "합천일류돼지국밥",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "ddoganjip-pungnyeon-gopchang",
+        "name": "풍년곱창",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-yeongdo-sato-bunsik",
+        "name": "사또분식",
+        "missing": [
+          "broadcast_date",
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "matnyuk-gijang-daege-jjim",
+        "name": "기장 대게찜 본점",
+        "missing": [
+          "kakao_map_url",
+          "video_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "samdae-haeundae-haemul-pajeon",
+        "name": "해운대 해물파전",
+        "missing": [
+          "kakao_map_url",
+          "video_url"
+        ],
+        "is_published": false
+      },
+      {
+        "slug": "hanyakbang-gukbap-hyeongje-food",
+        "name": "한약방돼지국밥 형제식품",
+        "missing": [
+          "broadcast_date",
+          "kakao_map_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "wonjo-gaya-milmyeon",
+        "name": "원조가야밀면",
+        "missing": [
+          "video_url"
+        ],
+        "is_published": true
+      },
+      {
+        "slug": "saengdal-jeonpo-toda-park",
+        "name": "토다공원",
+        "missing": [
+          "kakao_map_url",
+          "video_url"
+        ],
+        "is_published": true
+      }
+    ],
+    "coordinate_warnings": [],
+    "duplicate_coords": [],
+    "url_warnings": [
+      {
+        "slug": "saengdal-dongnae-gopchang-jungol",
+        "name": "동래 곱창전골",
+        "reasons": [
+          "kakao_map_url_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "matnyuk-sasang-doejigalbi",
+        "name": "시골집명품석갈비",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "baekban-dongnae-pajeon",
+        "name": "동래할매파전",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "matnyuk-gwangalli-nakgopsae",
+        "name": "광안리 낙곱새",
+        "reasons": [
+          "kakao_map_url_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "jeonhyun-jeonpo-vietnam-ssal-guksu",
+        "name": "전포 베트남쌀국수",
+        "reasons": [
+          "kakao_map_url_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "sungsik-seomyeon-sogeumgui",
+        "name": "서면 소금구이 명가",
+        "reasons": [
+          "kakao_map_url_missing"
+        ]
+      },
+      {
+        "slug": "hibab-gwangalli-chamchi-hoe",
+        "name": "광안리 참치회",
+        "reasons": [
+          "kakao_map_url_missing"
+        ]
+      },
+      {
+        "slug": "samdae-gijang-myeolchi-ssambap",
+        "name": "기장 멸치쌈밥",
+        "reasons": [
+          "kakao_map_url_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "baekban-gijang-jeonbok-juk",
+        "name": "기장 전복죽",
+        "reasons": [
+          "kakao_map_url_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "pani-nampo-ssiat-ppang",
+        "name": "남포동 씨앗빵 본점",
+        "reasons": [
+          "kakao_map_url_missing"
+        ]
+      },
+      {
+        "slug": "tzuyang-jagalchi-bibim-dangmyeon",
+        "name": "자갈치 비빔당면",
+        "reasons": [
+          "kakao_map_url_missing"
+        ]
+      },
+      {
+        "slug": "tzuyang-haeundae-sujeburger",
+        "name": "해운대 수제버거",
+        "reasons": [
+          "kakao_map_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-ssangdungyi-doejigukbap",
+        "name": "쌍둥이돼지국밥",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "iganae-tteokbokki",
+        "name": "이가네떡볶이 본점",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "baekban-beomeosa-sanche-bibimbap",
+        "name": "범어사 산채비빔밥",
+        "reasons": [
+          "kakao_map_url_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "hibab-gwangalli-jogae-gui-pocha",
+        "name": "광안리 조개구이 포차",
+        "reasons": [
+          "kakao_map_url_missing"
+        ]
+      },
+      {
+        "slug": "subyeon-choego-doejigukbap-minrak",
+        "name": "수변최고돼지국밥 민락본점",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "sokssiwonhan-daegutang-haeundae",
+        "name": "속씨원한 대구탕 해운대 본점",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "mulkkong-sikdang",
+        "name": "물꽁식당",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "hoeguksu-halmaejip",
+        "name": "회국수할매집",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "baekban-nampo-18-wandang",
+        "name": "18번완당집",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "baekban-yeongdo-jinju-sikdang",
+        "name": "진주식당",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "bapsang-gijang-haebyeon-jipbul-gomjangeo",
+        "name": "해변짚불곰장어",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "samdae-haeundae-wonjo-halmae-gukbap",
+        "name": "해운대원조할매국밥",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "baekban-haeundae-yangs-yanggopchang",
+        "name": "양가네 양곱창",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "baekban-seomyeon-marathon-jib",
+        "name": "마라톤집",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengsaeng-sasang-jurye-suyuk-kalguksu",
+        "name": "주례수육칼국수 2호점",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-saha-cheramie",
+        "name": "쉐라미과자점",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-geumjeong-songs-bakery",
+        "name": "송스 베이커리",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengsaeng-dongnae-halmae-pajeon",
+        "name": "동래할매파전",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "pungja-nampo-milyangjib",
+        "name": "밀양집",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "baekban-seomyeon-masan-sikdang",
+        "name": "마산식당",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "matnyuk-seomyeon-songjeong-3dae-gukbap",
+        "name": "송정3대국밥",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "samdae-seomyeon-gijang-son-kalguksu",
+        "name": "기장손칼국수",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-gijang-ilgwangdang",
+        "name": "일광당",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-gijang-jeil-bunsik",
+        "name": "제일분식",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-bukgu-shunsaikubo",
+        "name": "슌사이쿠보 화명",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "samdae-donggu-shinbalwon",
+        "name": "신발원",
+        "reasons": [
+          "kakao_map_url_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "samdae-seomyeon-wonjo-halmae-nakji",
+        "name": "원조할매낙지",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-gwangalli-jin-doejigomtang",
+        "name": "진돼지곰탕",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-suyeong-dongyang-sarada-namcheon",
+        "name": "동양사라다 남천본점",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-suyeong-sushibashiku",
+        "name": "스시바시쿠",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "tzuyang-haeundae-ppalgan-tteokbokki",
+        "name": "빨간떡볶이",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-haeundae-missaem-ssalbbang",
+        "name": "미쌤쌀빵",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-haeundae-amisan",
+        "name": "아미산",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-sasang-peanut-bbangatgan",
+        "name": "피넛빵앗간",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "jeonhyun-gijang-haenyeo-halmaejib",
+        "name": "5번 친구해녀할매집",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "naeho-naengmyeon",
+        "name": "내호냉면",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "tzuyang-yeonje-yeonji-yanggopchang",
+        "name": "연지가양곱창",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "samdaecheonwang-shinbalwon",
+        "name": "신발원",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengbang-gwangalli-sanhae-hoejip",
+        "name": "산해횟집",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "baekban-yeongdo-gamasot-doejigukbap",
+        "name": "가마솥돼지국밥 영도점",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "baekban-yeongdo-jungri-haenyeochon",
+        "name": "영도 중리해녀촌",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-yeonje-gukje-milmyeon",
+        "name": "국제밀면 본점",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "baekban-yeonje-godeungeo-datchi",
+        "name": "고등어다찌 연산본점",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "baekban-namgu-chossijib",
+        "name": "궁중해물탕 조씨집 대연본점",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-namgu-daeyeon-milmyeon",
+        "name": "대연밀면",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "pungja-namgu-hapcheon-gukbap",
+        "name": "합천국밥집",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-namgu-namji-ramyeon",
+        "name": "남지라면천국",
+        "reasons": [
+          "kakao_map_url_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "live-today-samjin-eomuk",
+        "name": "삼진어묵 본점",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "ddoganjip-hapcheon-ilryu-dwaeji-gukbap",
+        "name": "합천일류돼지국밥",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "ddoganjip-pungnyeon-gopchang",
+        "name": "풍년곱창",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-yeongdo-sato-bunsik",
+        "name": "사또분식",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "matnyuk-gijang-daege-jjim",
+        "name": "기장 대게찜 본점",
+        "reasons": [
+          "kakao_map_url_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "samdae-haeundae-haemul-pajeon",
+        "name": "해운대 해물파전",
+        "reasons": [
+          "kakao_map_url_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "hanyakbang-gukbap-hyeongje-food",
+        "name": "한약방돼지국밥 형제식품",
+        "reasons": [
+          "kakao_map_url_missing"
+        ]
+      },
+      {
+        "slug": "wonjo-gaya-milmyeon",
+        "name": "원조가야밀면",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "slug": "saengdal-jeonpo-toda-park",
+        "name": "토다공원",
+        "reasons": [
+          "kakao_map_url_missing",
+          "video_url_missing"
+        ]
+      }
+    ],
+    "duplicates": {
+      "slug": [],
+      "name": [
+        {
+          "key": "동래할매파전",
+          "slugs": [
+            "baekban-dongnae-pajeon",
+            "saengsaeng-dongnae-halmae-pajeon"
+          ]
+        },
+        {
+          "key": "신발원",
+          "slugs": [
+            "samdae-donggu-shinbalwon",
+            "samdaecheonwang-shinbalwon"
+          ]
+        }
+      ],
+      "norm_name": [],
+      "address": [
+        {
+          "key": "부산 동래구 명륜로94번길 43-10",
+          "slugs": [
+            "baekban-dongnae-pajeon",
+            "saengsaeng-dongnae-halmae-pajeon"
+          ]
+        }
+      ],
+      "norm_address": [],
+      "phone": [],
+      "kakao_map_url": [],
+      "candidates": []
+    },
+    "area_tally": [
+      {
+        "value": "서면",
+        "count": 13
+      },
+      {
+        "value": "해운대",
+        "count": 11
+      },
+      {
+        "value": "광안리",
+        "count": 11
+      },
+      {
+        "value": "남포동",
+        "count": 11
+      },
+      {
+        "value": "기타",
+        "count": 9
+      },
+      {
+        "value": "기장",
+        "count": 8
+      },
+      {
+        "value": "남구",
+        "count": 7
+      },
+      {
+        "value": "영도",
+        "count": 5
+      },
+      {
+        "value": "동래",
+        "count": 4
+      },
+      {
+        "value": "사상",
+        "count": 4
+      },
+      {
+        "value": "연제",
+        "count": 3
+      }
+    ],
+    "category_tally": [
+      {
+        "value": "한식",
+        "count": 24
+      },
+      {
+        "value": "해산물",
+        "count": 11
+      },
+      {
+        "value": "돼지국밥",
+        "count": 10
+      },
+      {
+        "value": "고기",
+        "count": 7
+      },
+      {
+        "value": "베이커리/디저트",
+        "count": 7
+      },
+      {
+        "value": "분식/길거리",
+        "count": 6
+      },
+      {
+        "value": "밀면",
+        "count": 5
+      },
+      {
+        "value": "회",
+        "count": 4
+      },
+      {
+        "value": "아시안",
+        "count": 3
+      },
+      {
+        "value": "일식",
+        "count": 3
+      },
+      {
+        "value": "중식",
+        "count": 2
+      },
+      {
+        "value": "버거/양식",
+        "count": 1
+      },
+      {
+        "value": "분식",
+        "count": 1
+      },
+      {
+        "value": "라면",
+        "count": 1
+      },
+      {
+        "value": "곱창",
+        "count": 1
+      }
+    ],
+    "odd_areas": [],
+    "appearance_warnings": [
+      {
+        "restaurant_id": "168c8089-fc82-4c44-8009-fa9e80158d0d",
+        "source_title": "백종원의 3대천왕",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "5ad03bde-3af4-43ab-bcf9-e307d32521ae",
+        "source_title": "수요미식회",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "285d3c9e-7319-4378-92e5-c45ecc2a482e",
+        "source_title": "한국인의 밥상",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "b7a9baa2-c394-4f3f-a47b-b93f02fb638c",
+        "source_title": "6시내고향",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "99e9aaf9-23df-4a5b-8ad2-a209bbab23d0",
+        "source_title": "생활의달인",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "8332e69a-dfef-4ddb-b96d-07655cef7ef5",
+        "source_title": "쯔양",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "86eedb54-793c-4ff4-98fd-468b89cc81bd",
+        "source_title": "생활의달인",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "37e8fa0a-be8e-4886-852d-9e982e16cae2",
+        "source_title": "생방송투데이 2221회",
+        "reasons": [
+          "episode_title_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "2cb55410-d8ca-4bc1-a2b7-d2aacfaa4fe1",
+        "source_title": "백반기행",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "4f4203b7-ae0e-481b-b93a-c9ba0317c803",
+        "source_title": "풍자 또간집",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "d83abb1b-2f00-4593-a66f-8dc2e782afb9",
+        "source_title": "생활의달인",
+        "reasons": [
+          "episode_title_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "4924d90c-a5c1-4d0a-8712-d63094586897",
+        "source_title": "식객 허영만의 백반기행",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "e8a9ce4a-be01-4808-bf3c-985958ed8a01",
+        "source_title": "백종원의 3대천왕",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "534984b5-7b03-4945-9f1e-0d88fd57b7a3",
+        "source_title": "생활의달인",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "e76f9e91-8352-4e49-9d8c-382e9f5d9605",
+        "source_title": "맛있는녀석들",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "df042825-7247-47be-860e-9fb2af554903",
+        "source_title": "식객 허영만의 백반기행",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "4bb57c0f-1571-4c30-9e28-e5e89d062d93",
+        "source_title": "식객 허영만의 백반기행",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "5dc190c3-aa4c-4a5e-ae50-f829653a6fa4",
+        "source_title": "생활의달인",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "6d2db73a-f31b-4a82-85aa-c4c55e6a76db",
+        "source_title": "생활의달인",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "0106a35c-6674-4c09-9963-4fb131f7449f",
+        "source_title": "삼대천왕",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "6cf98194-e08c-4af5-9495-6bbe7957a70c",
+        "source_title": "쯔양",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "9fa8c2f5-452d-4bc0-9c8e-6f2079c7dd65",
+        "source_title": "생활의달인",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "fdb05ce6-5755-4b40-88ee-ea206ef596ee",
+        "source_title": "백반기행",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "db028631-6eae-4cf9-b497-80c897d612da",
+        "source_title": "생활의달인",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "ab83b139-74f4-40e4-a5f4-53eea8688981",
+        "source_title": "백종원의 3대 천왕",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "a2dbb9ed-7fe6-43ad-828c-c6d46278b09f",
+        "source_title": "생활의달인",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "34486e2a-fee3-4ed3-a6e3-c24bd84e4f3c",
+        "source_title": "생활의달인",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "6fa20bbf-ca29-4065-8eca-39d19b904d27",
+        "source_title": "또간집",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "cc75a2f8-52cd-4c3b-a34d-7fac494e8a0b",
+        "source_title": "식객 허영만의 백반기행",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "889f4bc5-cb01-40d3-aa7b-45f319a675bf",
+        "source_title": "백종원의 3대 천왕",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "48b964a1-9de6-4716-8c29-1455a37e7b91",
+        "source_title": "식객 허영만의 백반기행",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "eadafd41-2633-4ead-aeeb-dd54c0d2e9de",
+        "source_title": "생활의달인",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "fbb321a8-7901-4f8a-b05b-156474015b8c",
+        "source_title": "성시경의 먹을텐데",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing"
+        ]
+      },
+      {
+        "restaurant_id": "140d3045-01ea-4994-9338-514c3e19376c",
+        "source_title": "생활의달인",
+        "reasons": [
+          "episode_title_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "2b3ba8cc-c936-4389-aae4-7329501d75f0",
+        "source_title": "생활의달인",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "83060508-2554-49cf-bff0-2c7217a55561",
+        "source_title": "맛있는녀석들",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "02114234-4586-4813-bac8-7e1697f492f2",
+        "source_title": "백반기행",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "b2db448e-57c1-455a-ad64-e5949c05df74",
+        "source_title": "2TV 생생정보",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "88dc61af-8218-48e9-a91f-c00e83bee6b8",
+        "source_title": "맛있는녀석들",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "dcd3d121-d898-4daa-8e37-d1797e4bac3c",
+        "source_title": "생활의달인",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "f8560a38-de47-4618-b687-6ccfbb4bded0",
+        "source_title": "성시경의 먹을텐데",
+        "reasons": [
+          "broadcast_date_missing"
+        ]
+      },
+      {
+        "restaurant_id": "9d8c1860-f09b-43fb-9028-0e5ba72c513d",
+        "source_title": "식객 허영만의 백반기행",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "a84edf85-7e49-4822-851c-1a3d0fb9003e",
+        "source_title": "생활의달인",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "f8296659-33ba-4c61-981c-0fd32cd54ab7",
+        "source_title": "2TV 생생정보",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "806a5428-1d73-421e-b878-cee596c76e36",
+        "source_title": "또간집",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "4af7b487-eaf1-45b4-8511-27e6089fd604",
+        "source_title": "맛있는녀석들",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "62026b24-c99e-4dba-a023-2540c3226258",
+        "source_title": "성시경의 먹을텐데",
+        "reasons": [
+          "episode_title_missing"
+        ]
+      },
+      {
+        "restaurant_id": "081ea8e9-c0e1-49b2-bcc8-90369c730855",
+        "source_title": "맛있는녀석들",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "aed96196-233c-456b-89a9-cb15482dd9cc",
+        "source_title": "백종원의 3대 천왕",
+        "reasons": [
+          "episode_title_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "78384686-3a01-49c0-b103-15a33b169149",
+        "source_title": "식객 허영만의 백반기행",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "712dff4f-dd54-4a5b-b25e-f0ec710d204b",
+        "source_title": "전현무계획",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "0b3a8b91-d42b-4dbc-b980-230ee493feb1",
+        "source_title": "풍자 또간집",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "1fc41847-7c8e-4586-bcca-96570e959486",
+        "source_title": "생방송 투데이",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "07193125-d1c3-4f98-8ddc-e7c6e7ff0004",
+        "source_title": "식객 허영만의 백반기행",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "dddc9249-aee2-480a-ad9b-2b7871f3071e",
+        "source_title": "생활의달인",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "5f964861-93aa-413e-b1bd-f92423c6e722",
+        "source_title": "백종원의 3대 천왕",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "98f115ea-7870-43fc-a152-ef0a8e910ff8",
+        "source_title": "식객 허영만의 백반기행",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "d46a5c10-f620-40d0-a602-e49aacbc5999",
+        "source_title": "삼대천왕",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "b159834b-1ebe-467e-aecc-e3f24fc4675b",
+        "source_title": "생활의달인",
+        "reasons": [
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "9316bfb2-9c49-494d-a501-96893a9ad13e",
+        "source_title": "맛있는녀석들",
+        "reasons": [
+          "episode_title_missing",
+          "broadcast_date_missing",
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "cd695bb9-fb12-4824-b6c7-de5dcc0de631",
+        "source_title": "식객 허영만의 백반기행",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "403d0165-46c6-489a-aca7-0ddb863f8419",
+        "source_title": "전현무계획3",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "6bb141ff-de22-42de-92bf-e541ee559463",
+        "source_title": "전현무계획3",
+        "reasons": [
+          "broadcast_date_missing"
+        ]
+      },
+      {
+        "restaurant_id": "574a0e06-0835-4496-a809-9a80388070b3",
+        "source_title": "SBS 생활의 달인",
+        "reasons": [
+          "video_url_missing"
+        ]
+      },
+      {
+        "restaurant_id": "67053b94-6d0f-4bf8-ba48-70dbbd44bd9b",
+        "source_title": "SBS 생활의 달인",
+        "reasons": [
+          "video_url_missing"
+        ]
+      }
+    ],
+    "rep_mismatch": [],
+    "multi_appearance": [
+      {
+        "slug": "kimyusun-daegu-bbol-jjim",
+        "name": "김유순대구뽈찜전문점",
+        "count": 2
+      },
+      {
+        "slug": "sungsik-nampodong-jungang-gomtang",
+        "name": "중앙곰탕",
+        "count": 2
+      }
+    ],
+    "published_missing": [
+      "matnyuk-sasang-doejigalbi",
+      "baekban-dongnae-pajeon",
+      "saengdal-ssangdungyi-doejigukbap",
+      "iganae-tteokbokki",
+      "subyeon-choego-doejigukbap-minrak",
+      "sokssiwonhan-daegutang-haeundae",
+      "mulkkong-sikdang",
+      "hoeguksu-halmaejip",
+      "baekban-nampo-18-wandang",
+      "baekban-yeongdo-jinju-sikdang",
+      "bapsang-gijang-haebyeon-jipbul-gomjangeo",
+      "samdae-haeundae-wonjo-halmae-gukbap",
+      "baekban-haeundae-yangs-yanggopchang",
+      "baekban-seomyeon-marathon-jib",
+      "saengsaeng-sasang-jurye-suyuk-kalguksu",
+      "saengdal-saha-cheramie",
+      "saengdal-geumjeong-songs-bakery",
+      "saengsaeng-dongnae-halmae-pajeon",
+      "pungja-nampo-milyangjib",
+      "baekban-seomyeon-masan-sikdang",
+      "matnyuk-seomyeon-songjeong-3dae-gukbap",
+      "samdae-seomyeon-gijang-son-kalguksu",
+      "sungsik-gwangalli-jinmi-eonyang-bulgogi",
+      "sungsik-gwangalli-geumson-1983",
+      "saengdal-gijang-ilgwangdang",
+      "saengdal-gijang-jeil-bunsik",
+      "saengdal-bukgu-shunsaikubo",
+      "samdae-seomyeon-wonjo-halmae-nakji",
+      "saengdal-gwangalli-jin-doejigomtang",
+      "saengdal-suyeong-dongyang-sarada-namcheon",
+      "saengdal-suyeong-sushibashiku",
+      "tzuyang-haeundae-ppalgan-tteokbokki",
+      "saengdal-haeundae-missaem-ssalbbang",
+      "saengdal-haeundae-amisan",
+      "saengdal-sasang-peanut-bbangatgan",
+      "jeonhyun-gijang-haenyeo-halmaejib",
+      "naeho-naengmyeon",
+      "tzuyang-yeonje-yeonji-yanggopchang",
+      "samdaecheonwang-shinbalwon",
+      "saengbang-gwangalli-sanhae-hoejip",
+      "baekban-yeongdo-gamasot-doejigukbap",
+      "baekban-yeongdo-jungri-haenyeochon",
+      "saengdal-yeonje-gukje-milmyeon",
+      "baekban-yeonje-godeungeo-datchi",
+      "baekban-namgu-chossijib",
+      "saengdal-namgu-daeyeon-milmyeon",
+      "pungja-namgu-hapcheon-gukbap",
+      "live-today-samjin-eomuk",
+      "ddoganjip-hapcheon-ilryu-dwaeji-gukbap",
+      "ddoganjip-pungnyeon-gopchang",
+      "saengdal-yeongdo-sato-bunsik",
+      "hanyakbang-gukbap-hyeongje-food",
+      "wonjo-gaya-milmyeon",
+      "saengdal-jeonpo-toda-park"
+    ],
+    "unpublished_but_converted": [],
+    "test_traces": []
+  }
+}
