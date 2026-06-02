@@ -4,7 +4,6 @@ import { useState, useMemo } from 'react'
 import { Restaurant, AreaType } from '@/types/restaurant'
 import AreaFilter from '@/components/home/AreaFilter'
 import RestaurantCard from '@/components/restaurant/RestaurantCard'
-import { useHorizontalDragScroll } from '@/hooks/useHorizontalDragScroll'
 
 type Props = {
   restaurants: Restaurant[]
@@ -12,12 +11,11 @@ type Props = {
 
 export default function HomeClient({ restaurants }: Props) {
   const [selectedArea, setSelectedArea] = useState<AreaType | '전체'>('전체')
-  const recentScrollRef = useHorizontalDragScroll<HTMLDivElement>()
 
   const recentRestaurants = useMemo(() => {
     return [...restaurants]
       .sort((a, b) => (b.appearedAt ?? '').localeCompare(a.appearedAt ?? ''))
-      .slice(0, 6)
+      .slice(0, 3)
   }, [restaurants])
 
   const filteredRestaurants = useMemo(() => {
@@ -26,7 +24,7 @@ export default function HomeClient({ restaurants }: Props) {
   }, [restaurants, selectedArea])
 
   return (
-    <main className="pt-14 pb-20">
+    <main className="pt-14 pb-24">
       {/* 히어로 */}
       <section className="px-4 py-6 bg-gradient-to-br from-orange-50 to-amber-50">
         <p className="text-xs font-semibold text-orange-400 tracking-wide uppercase">Busan Naon-jip</p>
@@ -37,20 +35,15 @@ export default function HomeClient({ restaurants }: Props) {
         <p className="text-sm text-gray-500 mt-2">히밥·성시경·생활의달인이 다녀간 그 집</p>
       </section>
 
-      {/* 최근 방송 나온집 */}
+      {/* 최근 방송 나온집 — 최신 3개. 가로스크롤 없이 세로 grid 로 배치. */}
       <section className="mt-6">
-        <div className="px-4 mb-3 flex items-center justify-between">
+        <div className="px-4 mb-3">
           <h2 className="text-base font-bold text-gray-900">최근 방송 나온집</h2>
-          <span className="text-xs text-gray-400">가로 스크롤</span>
         </div>
-        <div
-          ref={recentScrollRef}
-          className="flex flex-nowrap gap-3 overflow-x-auto overflow-y-hidden scrollbar-hide pl-4 pb-2 [-webkit-overflow-scrolling:touch] [touch-action:pan-x]"
-        >
+        <div className="px-4 grid grid-cols-1 gap-3">
           {recentRestaurants.map((r) => (
-            <RestaurantCard key={r.id} restaurant={r} variant="horizontal" />
+            <RestaurantCard key={r.id} restaurant={r} variant="vertical" />
           ))}
-          <div aria-hidden className="shrink-0 w-4" />
         </div>
       </section>
 
