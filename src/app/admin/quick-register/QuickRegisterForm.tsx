@@ -14,11 +14,24 @@ import {
   RESTAURANT_PASTE_PLACEHOLDER,
 } from '@/lib/admin-restaurant-paste'
 import { setRestaurantPublished } from '../restaurants/actions'
+import { looksLikeTestRestaurant, TEST_PUBLISH_BLOCK_MESSAGE } from '@/lib/admin-test-guard'
 import {
   quickRegisterRestaurant,
   findPossibleDuplicates,
+  addAppearanceToRestaurant,
   type DuplicateMatch,
 } from './actions'
+
+const STRENGTH_LABEL: Record<DuplicateMatch['strength'], string> = {
+  strong: '거의 같은 식당 같아요',
+  medium: '같은 식당일 수 있어요',
+  weak: '비슷한 후보가 있어요',
+}
+const STRENGTH_STYLE: Record<DuplicateMatch['strength'], string> = {
+  strong: 'bg-red-100 text-red-700',
+  medium: 'bg-amber-100 text-amber-700',
+  weak: 'bg-gray-100 text-gray-600',
+}
 
 type FormState = {
   slug: string
@@ -90,18 +103,31 @@ export default function QuickRegisterForm() {
   const [publishedDone, setPublishedDone] = useState(false)
   const [publishError, setPublishError] = useState<string | null>(null)
 
+  // 기존 식당에 출연만 추가하는 흐름.
+  const [appending, startAppending] = useTransition()
+  const [appendingId, setAppendingId] = useState<string | null>(null)
+  const [appearanceDone, setAppearanceDone] = useState<{ slug: string; name: string; label: string } | null>(null)
+  const [appearanceError, setAppearanceError] = useState<string | null>(null)
+
   function set<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((f) => ({ ...f, [key]: value }))
     setError(null)
   }
 
-  function runDuplicateCheck(next: { name?: string; slug?: string; address?: string }) {
-    const name = (next.name ?? '').trim()
-    const slug = (next.slug ?? '').trim()
-    const address = (next.address ?? '').trim()
-    if (!name && !slug && !address) return
+  // 중복 점수에 쓸 필드를 form 에서 모은다.
+  function dupFields(f: FormState) {
+    return {
+      name: f.name, slug: f.slug, address: f.address, phone: f.phone,
+      kakao_map_url: f.kakao_map_url, lat: f.lat, lng: f.lng,
+      source_title: f.source_title, program_name: f.program_name,
+      creator_name: f.creator_name, episode_title: f.episode_title,
+    }
+  }
+
+  function runDuplicateCheck(fields: ReturnType<typeof dupFields>) {
+    if (!fields.name?.trim() && !fields.slug?.trim() && !fields.address?.trim()) return
     startChecking(async () => {
-      const res = await findPossibleDuplicates({ name, slug, address })
+      const res = await findPossibleDuplicates(fields)
       if (res.ok) {
         setDuplicates(res.matches)
         setChecked(true)
@@ -116,13 +142,44 @@ export default function QuickRegisterForm() {
     setPasteIgnored(ignored)
     if (Object.keys(fields).length > 0) {
       // setForm 업데이터는 순수하게 유지(부수효과 금지). 중복 확인은 업데이터 밖에서 호출.
-      setForm((f) => ({ ...f, ...fields }))
-      runDuplicateCheck({
-        name: fields.name ?? form.name,
-        slug: fields.slug ?? form.slug,
-        address: fields.address ?? form.address,
-      })
+      const merged = { ...form, ...fields }
+      setForm(merged)
+      runDuplicateCheck(dupFields(merged))
     }
+  }
+
+  // 기존 식당에 출연만 추가. 새 restaurant 를 만들지 않는다.
+  function onAddAppearance(match: DuplicateMatch) {
+    setAppearanceError(null)
+    if (!form.source_type) { setAppearanceError('소스 유형을 선택하세요.'); return }
+    if (!form.source_title.trim()) { setAppearanceError('출처명을 입력하세요.'); return }
+    if (!form.program_name.trim() && !form.creator_name.trim()) {
+      setAppearanceError('프로그램명 또는 크리에이터명이 있어야 출연을 추가할 수 있어요.')
+      return
+    }
+    setAppendingId(match.id)
+    startAppending(async () => {
+      const res = await addAppearanceToRestaurant({
+        restaurantId: match.id,
+        source_type: form.source_type,
+        source_title: form.source_title,
+        program_name: form.program_name,
+        creator_name: form.creator_name,
+        episode_title: form.episode_title,
+        broadcast_date: form.broadcast_date,
+        video_url: form.video_url,
+      })
+      if (res.ok) {
+        setAppearanceDone({
+          slug: res.slug,
+          name: res.name,
+          label: form.program_name || form.creator_name || form.source_title,
+        })
+      } else {
+        setAppearanceError(res.error)
+      }
+      setAppendingId(null)
+    })
   }
 
   function validate(): string | null {
@@ -206,6 +263,44 @@ export default function QuickRegisterForm() {
     setSuccessSlug(null)
     setPublishedDone(false)
     setPublishError(null)
+    setAppearanceDone(null)
+    setAppearanceError(null)
+    setAppendingId(null)
+  }
+
+  // 출연 추가 성공 화면.
+  if (appearanceDone) {
+    return (
+      <div className="rounded-lg border border-green-200 bg-green-50 p-4">
+        <p className="text-sm font-medium text-green-800">기존 식당에 출연을 추가했어요.</p>
+        <p className="mt-1 text-xs text-green-700">
+          {appearanceDone.name} · {appearanceDone.label}
+        </p>
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={resetForNext}
+            className="rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-700"
+          >
+            다음 식당 등록
+          </button>
+          <Link
+            href={`/admin/restaurants/${appearanceDone.slug}/preview`}
+            className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:border-gray-400"
+          >
+            관리자 미리보기로 보기
+          </Link>
+          <a
+            href={`/restaurants/${appearanceDone.slug}`}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-xs font-medium text-blue-600 hover:border-blue-400"
+          >
+            공개 페이지 보기 ↗
+          </a>
+        </div>
+      </div>
+    )
   }
 
   // 등록 성공 → 같은 화면에서 공개까지.
@@ -225,16 +320,21 @@ export default function QuickRegisterForm() {
           >
             다음 식당 등록
           </button>
-          {!publishedDone && (
-            <button
-              type="button"
-              disabled={publishing}
-              onClick={onPublish}
-              className="rounded-md bg-blue-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-700 disabled:opacity-50"
-            >
-              {publishing ? '공개 처리 중…' : '바로 공개하기'}
-            </button>
-          )}
+          {!publishedDone &&
+            (looksLikeTestRestaurant({ slug: successSlug, name: form.name, description: form.description }) ? (
+              <span className="rounded-md bg-gray-100 px-3 py-1.5 text-xs font-medium text-red-600">
+                {TEST_PUBLISH_BLOCK_MESSAGE}
+              </span>
+            ) : (
+              <button
+                type="button"
+                disabled={publishing}
+                onClick={onPublish}
+                className="rounded-md bg-blue-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+              >
+                {publishing ? '공개 처리 중…' : '바로 공개하기'}
+              </button>
+            ))}
           <Link
             href={`/admin/restaurants/${successSlug}/preview`}
             className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:border-gray-400"
@@ -303,39 +403,64 @@ export default function QuickRegisterForm() {
           <button
             type="button"
             disabled={checking}
-            onClick={() => runDuplicateCheck(form)}
+            onClick={() => runDuplicateCheck(dupFields(form))}
             className="rounded-md border border-gray-300 bg-white px-3 py-1 text-xs font-medium text-gray-700 hover:border-gray-400 disabled:opacity-50"
           >
             {checking ? '확인 중…' : '중복 확인'}
           </button>
           <span className="text-[11px] text-gray-400">
-            이름/slug/주소로 기존 식당을 조회해요.
+            이름/slug/주소/전화/카카오/좌표로 기존 식당을 조회해요.
           </span>
         </div>
         {duplicates.length > 0 ? (
           <div className="mt-2 rounded-md border border-amber-200 bg-amber-50 p-3">
             <p className="text-xs font-medium text-amber-800">
-              이미 등록된 식당일 수 있습니다. 새로 등록하지 말고 기존 식당에 방송 출연을
-              추가하세요.
-              <span className="block font-normal text-amber-700">
-                (출연 추가는 후보 검토 → 등록 준비(convert) 흐름을 사용하세요)
-              </span>
+              강한 중복이면 새로 만들지 말고 기존 식당에 방송 출연만 추가할 수 있어요.
             </p>
-            <ul className="mt-2 space-y-1">
+            {appearanceError && <p className="mt-1 text-[11px] text-red-600">{appearanceError}</p>}
+            <ul className="mt-2 space-y-2">
               {duplicates.map((m) => (
-                <li key={m.id} className="flex flex-wrap items-center gap-x-2 text-[11px] text-gray-700">
-                  <span className="font-medium">{m.name}</span>
-                  <span className="text-gray-400">/ {m.area}</span>
-                  <span className="text-gray-400 truncate max-w-[18rem]">/ {m.address}</span>
-                  <span className={m.is_published ? 'text-green-600' : 'text-amber-600'}>
-                    / {m.is_published ? '공개됨' : '비공개'}
-                  </span>
-                  <Link
-                    href={`/admin/restaurants/${m.slug}/preview`}
-                    className="text-blue-600 underline underline-offset-2"
-                  >
-                    상세보기
-                  </Link>
+                <li key={m.id} className="rounded-md border border-amber-200 bg-white px-3 py-2">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-gray-700">
+                    <span className={`rounded-full px-2 py-0.5 font-bold ${STRENGTH_STYLE[m.strength]}`}>
+                      {STRENGTH_LABEL[m.strength]} ({m.score})
+                    </span>
+                    <span className="font-medium text-gray-900">{m.name}</span>
+                    <span className="text-gray-400">/ {m.area}</span>
+                    <span className={m.is_published ? 'text-green-600' : 'text-amber-600'}>
+                      / {m.is_published ? '공개됨' : '비공개'}
+                    </span>
+                  </div>
+                  <div className="mt-0.5 text-[11px] text-gray-500 truncate">
+                    {m.address}
+                    {(m.program_name || m.creator_name || m.source_title) &&
+                      ` · 출처: ${m.program_name ?? m.creator_name ?? m.source_title}`}
+                  </div>
+                  <div className="mt-0.5 text-[10px] text-gray-400">사유: {m.reasons.join(', ') || '-'}</div>
+                  <div className="mt-1 flex flex-wrap items-center gap-2">
+                    {m.strength === 'strong' && (
+                      <button
+                        type="button"
+                        disabled={appending}
+                        onClick={() => onAddAppearance(m)}
+                        className="rounded-md bg-amber-600 px-2.5 py-1 text-[11px] font-medium text-white hover:bg-amber-700 disabled:opacity-50"
+                      >
+                        {appending && appendingId === m.id ? '추가 중…' : '기존 식당에 출연 추가'}
+                      </button>
+                    )}
+                    <Link
+                      href={`/admin/restaurants/${m.slug}/preview`}
+                      className="text-[11px] text-blue-600 underline underline-offset-2"
+                    >
+                      상세보기
+                    </Link>
+                    <Link
+                      href={`/admin/restaurants/${m.slug}/edit`}
+                      className="text-[11px] text-blue-600 underline underline-offset-2"
+                    >
+                      수정
+                    </Link>
+                  </div>
                 </li>
               ))}
             </ul>

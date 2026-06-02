@@ -15,6 +15,7 @@ import { AREA_TYPES, type AreaType } from '@/types/restaurant'
 import { isInBusanRange } from '@/lib/coords'
 import { isValidSlug, SLUG_INVALID_MESSAGE } from '@/lib/slug'
 import { revalidateRestaurantPublicPaths } from '@/lib/revalidate-restaurants'
+import { looksLikeTestRestaurant, TEST_PUBLISH_BLOCK_MESSAGE } from '@/lib/admin-test-guard'
 
 /** 빈/공백 문자열은 null 로 정규화. */
 function trimToNull(v: unknown): string | null {
@@ -70,13 +71,18 @@ export async function setRestaurantPublished(
   if (published) {
     const { data, error } = await supabase
       .from('restaurants')
-      .select('name, slug, address, category, main_menu, price_text, lat, lng')
+      .select('name, slug, address, category, main_menu, price_text, lat, lng, description')
       .eq('slug', idOrSlug)
       .single()
 
     if (error || !data) {
       console.error('[admin/restaurants] 공개 전 row 조회 실패:', error)
       return { ok: false, error: '필수 정보가 부족해 공개할 수 없어요.' }
+    }
+
+    // 테스트/더미로 보이는 식당은 공개 차단 (비공개 등록 자체는 허용).
+    if (looksLikeTestRestaurant({ slug: data.slug, name: data.name, description: data.description })) {
+      return { ok: false, error: TEST_PUBLISH_BLOCK_MESSAGE }
     }
 
     const requiredOk =
