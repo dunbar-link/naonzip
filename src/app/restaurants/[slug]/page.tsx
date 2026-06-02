@@ -9,6 +9,7 @@ import type { Restaurant, Appearance } from '@/types/restaurant'
 import ShareButtons from '@/components/restaurant/ShareButtons'
 import SaveButton from '@/components/restaurant/SaveButton'
 import RestaurantCard from '@/components/restaurant/RestaurantCard'
+import RestaurantImage from '@/components/restaurant/RestaurantImage'
 import ReportButton from '@/components/restaurant/ReportButton'
 
 const SITE_URL = 'https://naonzip.vercel.app'
@@ -308,10 +309,16 @@ export default async function RestaurantDetailPage({ params }: Props) {
         </ol>
       </nav>
 
-      {/* 상단 이미지 영역 */}
-      <div className="relative h-52 bg-gradient-to-br from-orange-50 to-amber-100 flex items-center justify-center">
-        <span className="text-7xl">{getCategoryEmoji(restaurant.category)}</span>
-        <div className="absolute top-4 right-4 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-sm border border-gray-100">
+      {/* 상단 이미지 영역 — thumbnail 있으면 표시, 없으면 카테고리 fallback */}
+      <div className="relative h-52">
+        <RestaurantImage
+          thumbnail={restaurant.thumbnail}
+          category={restaurant.category}
+          alt={restaurant.name}
+          className="h-52 w-full"
+          emojiClassName="text-7xl"
+        />
+        <div className="absolute top-4 right-4 z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-sm border border-gray-100">
           <SaveButton id={restaurant.id} size="md" />
         </div>
       </div>
@@ -575,22 +582,6 @@ export default async function RestaurantDetailPage({ params }: Props) {
       </div>
     </main>
   )
-}
-
-function getCategoryEmoji(category: string): string {
-  const map: Record<string, string> = {
-    '돼지국밥': '🍲',
-    '고기': '🥩',
-    '해산물': '🦀',
-    '밀면': '🍜',
-    '회': '🐟',
-    '분식/길거리': '🥢',
-    '한식': '🍱',
-    '버거/양식': '🍔',
-    '아시안': '🍜',
-    '베이커리/디저트': '🥐',
-  }
-  return map[category] ?? '🍽️'
 }
 
 export async function generateStaticParams() {

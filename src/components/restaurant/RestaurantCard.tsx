@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Restaurant } from '@/types/restaurant'
 import SaveButton from '@/components/restaurant/SaveButton'
+import RestaurantImage from '@/components/restaurant/RestaurantImage'
 import { getProgramSlugFromName } from '@/lib/programs'
 import { getAreaSlugFromName } from '@/lib/areas'
 
@@ -55,9 +56,15 @@ export default function RestaurantCard({ restaurant, variant = 'vertical' }: Pro
     return (
       <Link href={`/restaurants/${restaurant.slug}`} className="block shrink-0 min-w-[160px] w-40">
         <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm active:scale-95 transition-transform">
-          <div className="relative h-28 bg-gradient-to-br from-orange-50 to-amber-50 flex items-center justify-center">
-            <span className="text-4xl">{getCategoryEmoji(restaurant.category)}</span>
-            <div className="absolute top-2 right-2">
+          <div className="relative h-28">
+            <RestaurantImage
+              thumbnail={restaurant.thumbnail}
+              category={restaurant.category}
+              alt={restaurant.name}
+              className="h-28 w-full"
+              emojiClassName="text-4xl"
+            />
+            <div className="absolute top-2 right-2 z-10">
               <SaveButton id={restaurant.id} size="sm" />
             </div>
           </div>
@@ -85,9 +92,13 @@ export default function RestaurantCard({ restaurant, variant = 'vertical' }: Pro
   return (
     <Link href={`/restaurants/${restaurant.slug}`} className="block">
       <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm active:scale-[0.98] transition-transform flex">
-        <div className="w-24 bg-gradient-to-br from-orange-50 to-amber-50 flex items-center justify-center flex-shrink-0">
-          <span className="text-4xl">{getCategoryEmoji(restaurant.category)}</span>
-        </div>
+        <RestaurantImage
+          thumbnail={restaurant.thumbnail}
+          category={restaurant.category}
+          alt={restaurant.name}
+          className="w-24 flex-shrink-0"
+          emojiClassName="text-4xl"
+        />
         <div className="p-4 flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0">
@@ -123,20 +134,4 @@ export default function RestaurantCard({ restaurant, variant = 'vertical' }: Pro
       </div>
     </Link>
   )
-}
-
-function getCategoryEmoji(category: string): string {
-  const map: Record<string, string> = {
-    '돼지국밥': '🍲',
-    '고기': '🥩',
-    '해산물': '🦀',
-    '밀면': '🍜',
-    '회': '🐟',
-    '분식/길거리': '🥢',
-    '한식': '🍱',
-    '버거/양식': '🍔',
-    '아시안': '🍜',
-    '베이커리/디저트': '🥐',
-  }
-  return map[category] ?? '🍽️'
 }
