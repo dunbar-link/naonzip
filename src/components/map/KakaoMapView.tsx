@@ -204,18 +204,12 @@ export default function KakaoMapView({ restaurants }: Props) {
         </div>
       )}
 
-      {/* 키 없음 fallback */}
+      {/* 키 없음 fallback — 사용자 화면에는 개발자용 안내(.env 등)를 노출하지 않는다 */}
       {status === 'no-key' && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 px-8 gap-4">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 px-8 gap-3">
           <span className="text-5xl">🗺️</span>
-          <p className="text-base font-bold text-gray-800 text-center">카카오맵 키를 설정해주세요</p>
-          <div className="bg-gray-100 rounded-xl p-4 w-full">
-            <p className="text-xs text-gray-500 font-mono leading-relaxed">
-              .env.local 파일에<br />
-              NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY=<br />
-              를 추가하면 지도가 표시됩니다
-            </p>
-          </div>
+          <p className="text-base font-bold text-gray-800 text-center">지도를 잠시 불러올 수 없어요</p>
+          <p className="text-sm text-gray-400 text-center">잠시 후 다시 시도하거나,<br />목록에서 맛집을 확인해 주세요</p>
           <Link href="/restaurants" className="mt-2 px-6 py-3 bg-orange-500 text-white text-sm font-bold rounded-xl">
             목록으로 보기
           </Link>

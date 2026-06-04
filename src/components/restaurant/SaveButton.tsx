@@ -21,7 +21,7 @@ export default function SaveButton({ id, size = 'sm' }: Props) {
         toggle()
       }}
       aria-label={saved ? '저장 취소' : '저장'}
-      className="flex items-center justify-center"
+      className={`flex items-center justify-center ${size === 'sm' ? 'p-2' : ''}`}
     >
       <svg
         width={dim}
