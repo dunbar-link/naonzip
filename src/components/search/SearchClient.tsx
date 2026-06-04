@@ -230,10 +230,18 @@ export default function SearchClient({ restaurants }: Props) {
         </div>
       </div>
 
-      {/* 검색 전: 추천 검색어 */}
+      {/* 검색 전: 안내 + 추천 검색어 (빈 화면 느낌 완화) */}
       {!isSearching && (
         <section className="px-4 pt-6">
-          <h2 className="text-sm font-bold text-gray-900 mb-3">추천 검색어</h2>
+          <div className="mb-5">
+            <h2 className="text-base font-bold text-gray-900">무엇을 찾으세요?</h2>
+            <p className="mt-1.5 text-sm text-gray-500 leading-relaxed">
+              식당명, 메뉴, 방송명으로 찾아보세요.<br />
+              예: 돼지국밥, 밀면, 해운대, 전현무계획
+            </p>
+          </div>
+
+          <h3 className="text-sm font-bold text-gray-900 mb-3">추천 검색어</h3>
           <div className="flex flex-wrap gap-2">
             {SUGGESTED_QUERIES.map((q) => (
               <button
@@ -249,7 +257,7 @@ export default function SearchClient({ restaurants }: Props) {
           <div className="mt-8 text-center">
             <span className="text-4xl">🔍</span>
             <p className="mt-3 text-sm text-gray-500 leading-relaxed">
-              히밥, 성시경, 생활의달인<br />방송에 나온 부산 맛집을 찾아보세요
+              방송에 나온 부산 맛집만<br />모아두었어요
             </p>
           </div>
         </section>

@@ -234,7 +234,8 @@ export default async function RestaurantDetailPage({ params }: Props) {
 
   if (!restaurant) notFound()
 
-  const related = await getRelatedRestaurants(restaurant)
+  // 상세 하단 추천은 최대 3개로 제한 — 화면을 짧게 유지하고 반복 목록 느낌을 줄인다.
+  const related = await getRelatedRestaurants(restaurant, 3)
 
   const reportFormUrl = (() => {
     const tpl = process.env.NEXT_PUBLIC_REPORT_FORM_URL
