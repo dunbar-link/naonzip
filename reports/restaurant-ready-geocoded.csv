@@ -1,0 +1,11 @@
+status,slug,name,address,lat,lng,kakao_map_url,map_place_name,map_address,confidence,note
+geocoding_review,jeonhyun-namgu-suta-hyemi-kalguksu,수타혜미칼국수,부산 남구 문현금융로 4,35.1447874,129.0649287,,(미확인),"문현금융로, 문현2동, 남구, 부산광역시",medium,"Nominatim 도로수준 근사좌표(건물 정밀 아님). 구·도로 일치 확인. 등록 전 Admin Kakao 지오코딩으로 정밀화 필수. Kakao 검색 q=수타혜미칼국수"
+geocoding_review,sungsik-gwangalli-haejin-anago,해진아나고,부산 수영구 광서로10번길 47,35.164726,129.11369,,(미확인),"광서로10번길, 광안1동, 수영구, 부산광역시",medium,"Nominatim 도로수준 근사좌표. 일부 검색결과는 광안해변로 249로 표기되어 주소 재확인 권장. 등록 전 Admin 지오코딩 권장. Kakao 검색 q=해진아나고"
+geocoding_review,sungsik-gwangalli-manujang,만우장,부산 수영구 수영로594번길 28-2,35.1583852,129.1165095,,(미확인),"수영로594번길, 광안2동, 수영구, 부산광역시",medium,"Nominatim 도로수준 근사좌표. 구·도로 일치. 등록 전 Admin 지오코딩 권장. Kakao 검색 q=만우장 광안"
+geocoding_review,saengdal-gwangalli-boulangerie-lassence,블랑제리 라센,부산 수영구 남천바다로9번길 8,35.1510819,129.1122442,,블랑제리 라센(다이닝코드),"남천바다로9번길, 광안2동, 수영구, 부산광역시",medium,"Nominatim 도로수준 근사좌표. 다이닝코드가 동일 도로명주소·상호 확인(광안동 188-9). 등록 전 Admin 지오코딩 권장. Kakao 검색 q=블랑제리 라센"
+geocoding_review,tzuyang-gwangalli-darijip,다리집,부산 수영구 남천바다로10번길 70,35.1476721,129.1112859,,(미확인),"남천바다로10번길, 남천1동, 수영구, 부산광역시",medium,"Nominatim 도로수준 근사좌표. 구·도로 일치(남천동). 등록 전 Admin 지오코딩 권장. Kakao 검색 q=다리집 남천동"
+geocoding_review,tzuyang-haeundae-sanggukine,상국이네,부산 해운대구 구남로41번길 40-1,35.1615306,129.1623486,,(미확인),"구남로41번길, 중1동, 해운대구, 부산광역시",medium,"Nominatim 도로수준 근사좌표(해운대전통시장 인근). 등록 전 Admin 지오코딩 권장. Kakao 검색 q=상국이네 해운대"
+geocoding_review,tzuyang-yeongdo-dongbang-milmyeon,동방밀면,부산 영도구 꿈나무길 239,35.087669,129.0438004,,(미확인),"꿈나무길, 영선1동, 영도구, 부산광역시",medium,"Nominatim 도로수준 근사좌표. 구·도로 일치. 등록 전 Admin 지오코딩 권장. Kakao 검색 q=동방밀면 영도"
+geocoding_review,tzuyang-yeongdo-dongsamdong-buljjampong,동삼동불짬뽕,부산 영도구 동삼남로 21,35.0777552,129.0682257,,(미확인),"동삼남로, 동삼1동, 영도구, 부산광역시",medium,"Nominatim 도로수준 근사좌표. 구·도로 일치(동삼동). 등록 전 Admin 지오코딩 권장. Kakao 검색 q=동삼동불짬뽕"
+geocoding_failed,tzuyang-gangseo-samseong-galmijogae,삼성갈미조개,부산 강서구 르노삼성대로 602 2층,,,,(미확인),,low,"Nominatim이 르노삼성대로(장거리 도로)의 녹산동 구간을 매칭해 실제 명지동과 어긋남 → 좌표 신뢰 불가, 보류. 주소는 유효. Admin Kakao 지오코딩 필요. Kakao 검색 q=삼성갈미조개 명지"
+geocoding_failed,tzuyang-seomyeon-dongchuni-mandu,동춘이만두,부산 부산진구 당감로25번길 11,,,,(미확인),,low,"Nominatim 결과 없음(OSM 미수록) → 좌표 보류. 주소는 다이닝코드 확인. Admin Kakao 지오코딩 필요. Kakao 검색 q=동춘이만두 당감동"
