@@ -24,6 +24,7 @@ export function useHorizontalDragScroll<
     if (!el) return
 
     let isDragging = false
+    let captured = false
     let startX = 0
     let startScrollLeft = 0
     let movedDistance = 0
@@ -31,32 +32,45 @@ export function useHorizontalDragScroll<
     const onPointerDown = (e: PointerEvent) => {
       if (e.pointerType !== 'mouse') return
       isDragging = true
+      captured = false
       startX = e.clientX
       startScrollLeft = el.scrollLeft
       movedDistance = 0
-      try {
-        el.setPointerCapture(e.pointerId)
-      } catch {
-        // setPointerCapture 가 실패해도 드래그 자체는 진행 가능
-      }
-      el.style.cursor = 'grabbing'
-      el.style.userSelect = 'none'
+      // 주의: pointerdown 시점에 setPointerCapture 하지 않는다.
+      // 컨테이너가 포인터를 캡처하면 직후 click 이벤트가 자식 button 대신
+      // 컨테이너로 retarget 되어 PC 에서 지역칩 클릭이 동작하지 않는다.
+      // 실제 드래그(임계값 초과)가 시작될 때만 onPointerMove 에서 캡처한다.
     }
 
     const onPointerMove = (e: PointerEvent) => {
       if (!isDragging) return
       const dx = e.clientX - startX
       movedDistance = Math.max(movedDistance, Math.abs(dx))
+      // 임계값을 넘긴 실제 드래그에서만 capture → 이후 cursor 가 영역을
+      // 벗어나도 scroll 추적이 유지된다. 단순 click 은 capture 되지 않는다.
+      if (!captured && movedDistance > 5) {
+        try {
+          el.setPointerCapture(e.pointerId)
+          captured = true
+        } catch {
+          // setPointerCapture 가 실패해도 드래그 자체는 진행 가능
+        }
+        el.style.cursor = 'grabbing'
+        el.style.userSelect = 'none'
+      }
       el.scrollLeft = startScrollLeft - dx
     }
 
     const endDrag = (e: PointerEvent) => {
       if (!isDragging) return
       isDragging = false
-      try {
-        el.releasePointerCapture(e.pointerId)
-      } catch {
-        // pointer capture 해제 실패는 무시
+      if (captured) {
+        try {
+          el.releasePointerCapture(e.pointerId)
+        } catch {
+          // pointer capture 해제 실패는 무시
+        }
+        captured = false
       }
       el.style.cursor = ''
       el.style.userSelect = ''
