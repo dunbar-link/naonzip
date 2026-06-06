@@ -311,15 +311,15 @@ export default async function RestaurantDetailPage({ params }: Props) {
       </nav>
 
       {/* 상단 이미지 영역 — thumbnail 있으면 표시, 없으면 카테고리 fallback */}
-      <div className="relative h-48">
+      <div className="relative h-40">
         <RestaurantImage
           thumbnail={restaurant.thumbnail}
           category={restaurant.category}
           alt={restaurant.name}
-          className="h-48 w-full"
-          emojiClassName="text-7xl"
+          className="h-40 w-full"
+          emojiClassName="text-6xl"
         />
-        <div className="absolute top-4 right-4 z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-sm border border-gray-100">
+        <div className="absolute top-4 right-4 z-10 bg-white rounded-full w-9 h-9 flex items-center justify-center shadow-sm border border-gray-100">
           <SaveButton id={restaurant.id} size="md" />
         </div>
       </div>
