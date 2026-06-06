@@ -20,19 +20,19 @@ export default function HomeClient({ restaurants }: Props) {
   return (
     <main className="pt-14 pb-24">
       {/* 히어로 */}
-      <section className="px-4 py-6 bg-gradient-to-br from-orange-50 to-amber-50">
+      <section className="px-4 py-5 bg-gradient-to-br from-orange-50 to-amber-50">
         <p className="text-xs font-semibold text-orange-400 tracking-wide uppercase">Busan Naon-jip</p>
-        <h1 className="text-2xl font-bold text-gray-900 mt-1 leading-snug">
+        <h1 className="text-[26px] font-bold text-gray-900 mt-1 leading-tight">
           방송에 나온<br />
           <span className="text-orange-500">부산 맛집</span>
         </h1>
-        <p className="text-sm text-gray-500 mt-2">히밥·성시경·생활의달인이 다녀간 그 집</p>
+        <p className="text-sm text-gray-500 mt-1.5">히밥·성시경·생활의달인이 다녀간 그 집</p>
       </section>
 
       {/* 최근 방송 나온집 — 최신 5개. 가로스크롤 없이 세로로 배치. */}
-      <section className="mt-6">
-        <div className="px-4 mb-3">
-          <h2 className="text-base font-bold text-gray-900">최근 방송 나온집</h2>
+      <section className="mt-5">
+        <div className="px-4 mb-2.5">
+          <h2 className="text-lg font-bold text-gray-900">최근 방송 나온집</h2>
         </div>
         <div className="px-4 grid grid-cols-1 gap-3">
           {recentRestaurants.map((r) => (
@@ -42,7 +42,7 @@ export default function HomeClient({ restaurants }: Props) {
       </section>
 
       {/* 전체 목록은 목록 탭으로 유도 — 홈/목록 역할 분리로 중복 노출 제거 */}
-      <section className="mt-6 px-4">
+      <section className="mt-5 px-4">
         <Link
           href="/restaurants"
           className="flex items-center justify-center gap-1 w-full py-3.5 rounded-xl border border-orange-200 bg-orange-50 text-sm font-bold text-orange-600 active:bg-orange-100 transition-colors"

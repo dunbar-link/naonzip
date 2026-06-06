@@ -232,32 +232,31 @@ export default function SearchClient({ restaurants }: Props) {
 
       {/* 검색 전: 안내 + 추천 검색어 (빈 화면 느낌 완화) */}
       {!isSearching && (
-        <section className="px-4 pt-6">
-          <div className="mb-5">
-            <h2 className="text-base font-bold text-gray-900">무엇을 찾으세요?</h2>
-            <p className="mt-1.5 text-sm text-gray-500 leading-relaxed">
-              식당명, 메뉴, 방송명으로 찾아보세요.<br />
-              예: 돼지국밥, 밀면, 해운대, 전현무계획
+        <section className="px-4 pt-5">
+          <div className="mb-4">
+            <h2 className="text-lg font-bold text-gray-900">무엇을 찾으세요?</h2>
+            <p className="mt-1 text-sm text-gray-500">
+              식당명·메뉴·방송명으로 찾아보세요
             </p>
           </div>
 
-          <h3 className="text-sm font-bold text-gray-900 mb-3">추천 검색어</h3>
+          <h3 className="text-[13px] font-bold text-gray-500 mb-2.5">추천 검색어</h3>
           <div className="flex flex-wrap gap-2">
             {SUGGESTED_QUERIES.map((q) => (
               <button
                 key={q}
                 onClick={() => handleSuggest(q)}
-                className="text-sm px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 bg-white active:bg-gray-50 transition-colors"
+                className="text-sm font-medium px-3.5 py-2 rounded-full border border-gray-200 text-gray-700 bg-gray-50 active:bg-gray-100 transition-colors"
               >
                 {q}
               </button>
             ))}
           </div>
 
-          <div className="mt-8 text-center">
-            <span className="text-4xl">🔍</span>
-            <p className="mt-3 text-sm text-gray-500 leading-relaxed">
-              방송에 나온 부산 맛집만<br />모아두었어요
+          <div className="mt-7 flex flex-col items-center text-center">
+            <span className="text-3xl">🔍</span>
+            <p className="mt-2 text-sm text-gray-400">
+              방송에 나온 부산 맛집만 모아두었어요
             </p>
           </div>
         </section>

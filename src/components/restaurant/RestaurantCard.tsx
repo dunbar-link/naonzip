@@ -96,20 +96,25 @@ export default function RestaurantCard({ restaurant, variant = 'vertical' }: Pro
           thumbnail={restaurant.thumbnail}
           category={restaurant.category}
           alt={restaurant.name}
-          className="w-24 flex-shrink-0"
+          className="w-28 flex-shrink-0"
           emojiClassName="text-4xl"
         />
-        <div className="p-4 flex-1 min-w-0">
+        <div className="p-3 flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0">
-              <p
-                className={`text-xs text-gray-400 font-medium${areaHref ? ' cursor-pointer hover:text-gray-600' : ''}`}
-                onClick={areaHref ? (e) => { e.stopPropagation(); router.push(areaHref) } : undefined}
-              >
-                {restaurant.area}
+              <p className="text-[11px] text-gray-400 font-medium truncate">
+                <span
+                  className={areaHref ? 'cursor-pointer hover:text-gray-600' : undefined}
+                  onClick={areaHref ? (e) => { e.stopPropagation(); router.push(areaHref) } : undefined}
+                >
+                  {restaurant.area}
+                </span>
+                {restaurant.category && (
+                  <span className="text-gray-300"> · {restaurant.category}</span>
+                )}
               </p>
-              <p className="font-bold text-gray-900 mt-0.5 truncate">{restaurant.name}</p>
-              <p className="text-sm text-gray-500 mt-0.5">{restaurant.mainMenu}</p>
+              <p className="font-bold text-gray-900 leading-snug truncate mt-0.5">{restaurant.name}</p>
+              <p className="text-sm text-gray-500 truncate mt-0.5">{restaurant.mainMenu}</p>
             </div>
             <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
               <SaveButton id={restaurant.id} size="sm" />
@@ -121,14 +126,14 @@ export default function RestaurantCard({ restaurant, variant = 'vertical' }: Pro
               </span>
             </div>
           </div>
-          <div className="mt-2 flex items-center justify-between">
-            <p className="text-xs text-orange-500 font-semibold">{restaurant.priceText}</p>
+          <div className="mt-2 flex items-center justify-between gap-2">
+            <p className="text-[13px] text-orange-500 font-bold truncate">{restaurant.priceText}</p>
             {dateText && (
               <p className="text-[10px] text-gray-400 flex-shrink-0">{dateText} 방영</p>
             )}
           </div>
           {restaurant.episodeTitle && (
-            <p className="text-xs text-gray-400 mt-1 truncate">&ldquo;{restaurant.episodeTitle}&rdquo;</p>
+            <p className="text-[11px] text-gray-400 mt-1 truncate">&ldquo;{restaurant.episodeTitle}&rdquo;</p>
           )}
         </div>
       </div>

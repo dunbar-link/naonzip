@@ -311,12 +311,12 @@ export default async function RestaurantDetailPage({ params }: Props) {
       </nav>
 
       {/* 상단 이미지 영역 — thumbnail 있으면 표시, 없으면 카테고리 fallback */}
-      <div className="relative h-52">
+      <div className="relative h-48">
         <RestaurantImage
           thumbnail={restaurant.thumbnail}
           category={restaurant.category}
           alt={restaurant.name}
-          className="h-52 w-full"
+          className="h-48 w-full"
           emojiClassName="text-7xl"
         />
         <div className="absolute top-4 right-4 z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-sm border border-gray-100">
@@ -325,7 +325,7 @@ export default async function RestaurantDetailPage({ params }: Props) {
       </div>
 
       {/* 기본 정보 */}
-      <section className="px-4 py-5 bg-white">
+      <section className="px-4 py-4 bg-white">
         <div className="flex items-start justify-between gap-2">
           <div>
             {areaHref ? (
@@ -349,22 +349,22 @@ export default async function RestaurantDetailPage({ params }: Props) {
           )}
         </div>
 
-        <div className="mt-3">
+        <div className="mt-2.5">
           <span className="text-base font-bold text-orange-500">{restaurant.priceText}</span>
         </div>
 
         {restaurant.description && (
-          <p className="mt-3 text-sm text-gray-600 leading-relaxed">{restaurant.description}</p>
+          <p className="mt-2.5 text-sm text-gray-600 leading-relaxed">{restaurant.description}</p>
         )}
       </section>
 
       <div className="h-2 bg-gray-50" />
 
       {/* 방송 출처 */}
-      <section className="px-4 py-5 bg-white">
-        <h2 className="text-sm font-bold text-gray-900 mb-4">방송 정보</h2>
+      <section className="px-4 py-4 bg-white">
+        <h2 className="text-sm font-bold text-gray-900 mb-3">방송 정보</h2>
 
-        <div className="bg-gray-50 rounded-xl px-4 py-3 mb-3 flex items-center gap-3">
+        <div className="bg-gray-50 rounded-xl px-4 py-3 mb-2.5 flex items-center gap-3">
           <span className="text-2xl">
             {restaurant.sourceType === 'youtube' ? '📺' : '📡'}
           </span>
@@ -433,7 +433,7 @@ export default async function RestaurantDetailPage({ params }: Props) {
       {appearanceHistory.length >= 2 && (
         <>
           <div className="h-2 bg-gray-50" />
-          <section className="px-4 py-5 bg-white">
+          <section className="px-4 py-4 bg-white">
             <h2 className="text-sm font-bold text-gray-900 mb-3">이 식당이 나온 방송</h2>
             <ul className="flex flex-col gap-3">
               {appearanceHistory.map((ap) => {
@@ -478,7 +478,7 @@ export default async function RestaurantDetailPage({ params }: Props) {
       <div className="h-2 bg-gray-50" />
 
       {/* 위치 정보 */}
-      <section className="px-4 py-5 bg-white">
+      <section className="px-4 py-4 bg-white">
         <h2 className="text-sm font-bold text-gray-900 mb-3">위치 정보</h2>
         <div className="flex flex-col gap-2">
           <div className="flex items-start gap-2">
@@ -561,7 +561,7 @@ export default async function RestaurantDetailPage({ params }: Props) {
       {related.length > 0 && (
         <>
           <div className="h-2 bg-gray-50" />
-          <section className="px-4 py-5 bg-white">
+          <section className="px-4 py-4 bg-white">
             <h2 className="text-sm font-bold text-gray-900 mb-3">이런 맛집도 있어요</h2>
             <div className="flex flex-col gap-3">
               {related.map((r) => (
