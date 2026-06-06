@@ -3,23 +3,22 @@
 import { AreaType } from '@/types/restaurant'
 import { useHorizontalDragScroll } from '@/hooks/useHorizontalDragScroll'
 
-const areas: Array<AreaType | '전체'> = [
-  '전체', '해운대', '서면', '광안리', '남포동', '기장', '동래', '사상',
-]
-
 type Props = {
   selected: AreaType | '전체'
   onChange: (area: AreaType | '전체') => void
+  /** 실제 데이터에 존재하는 area 목록 (전체 제외). 없으면 전체만 표시. */
+  areas: AreaType[]
 }
 
-export default function AreaFilter({ selected, onChange }: Props) {
+export default function AreaFilter({ selected, onChange, areas }: Props) {
   const scrollRef = useHorizontalDragScroll<HTMLDivElement>()
+  const allAreas: Array<AreaType | '전체'> = ['전체', ...areas]
   return (
     <div
       ref={scrollRef}
       className="flex gap-2 overflow-x-auto scrollbar-hide px-4 pb-1"
     >
-      {areas.map((area) => (
+      {allAreas.map((area) => (
         <button
           key={area}
           onClick={() => onChange(area)}

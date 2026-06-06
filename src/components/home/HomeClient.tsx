@@ -25,18 +25,12 @@ export default function HomeClient({ restaurants }: Props) {
         </h1>
       </section>
 
-      {/* 최근 방송 나온집 — 방송일자 최신순 5개. 목록 탭(전체 탐색)과 역할 구분. */}
-      <section className="mt-4">
-        <div className="px-4 mb-2.5">
-          <h2 className="text-lg font-bold text-gray-900">최근 방송 나온집</h2>
-          <p className="text-xs text-gray-400 mt-0.5">방송일자 최신순</p>
-        </div>
-        <div className="px-4 grid grid-cols-1 gap-3">
-          {recentRestaurants.map((r) => (
-            <RestaurantCard key={r.id} restaurant={r} variant="vertical" />
-          ))}
-        </div>
-      </section>
+      {/* 방영일 최신순 5개 */}
+      <div className="mt-3 px-4 flex flex-col gap-3">
+        {recentRestaurants.map((r) => (
+          <RestaurantCard key={r.id} restaurant={r} variant="vertical" />
+        ))}
+      </div>
     </main>
   )
 }
