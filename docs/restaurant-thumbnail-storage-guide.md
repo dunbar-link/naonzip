@@ -199,3 +199,49 @@ slug는 운영 DB 스냅샷 리포트(`reports/`)에서 확인한 실제 값이�
 
 - 이 문서 단계에서는 **bucket 생성·사진 업로드·DB UPDATE를 실행하지 않는다.** 실제 적용은 별도 승인 후 진행한다.
 - SQL 템플릿(`scripts/restaurant-thumbnail-update-template.sql`)은 **그대로 실행하지 말고** `<PROJECT_REF>` 치환 + 업로드 완료 식당만 실행한다.
+
+---
+
+## 14. 일괄 업로드 스크립트 (자동화) — `scripts/upload-restaurant-thumbnails.mjs`
+
+8장의 "업로드 → DB 갱신"을 식당별 수작업 대신 한 번에 처리한다. (방법 A/B의 자동화 버전)
+
+### 준비
+1. 로컬에 입력 폴더를 만든다(기본 경로): `C:\work\naonzip-thumbnail-input`
+   - **repo 밖 경로다. 이미지 파일은 repo에 commit 하지 않는다.**
+2. 권리상 안전한 사진(직접 촬영/허락)을 **`{slug}.webp`** 이름으로 넣는다.
+   - 예: `wonjo-gaya-milmyeon.webp`, `naeho-naengmyeon.webp`
+   - **파일명(slug)이 곧 대상 식당**이다. `reports/` 또는 Admin에서 확인한 실제 slug와 정확히 일치해야 한다.
+   - 파일 규칙은 4장과 동일(webp, ~800px, ~150KB).
+3. `.env.local`에 `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`가 있어야 한다(쓰기 권한).
+
+### 실행
+```
+# 검증만(기본, 안전) — 실제 업로드/DB 변경 없음
+node scripts/upload-restaurant-thumbnails.mjs
+
+# 다른 입력 폴더로 검증
+node scripts/upload-restaurant-thumbnails.mjs C:\work\my-images
+
+# 실제 적용(업로드 + thumbnail UPDATE)
+node scripts/upload-restaurant-thumbnails.mjs --apply
+```
+
+### 스크립트가 하는 일
+1. 입력 폴더의 `.webp` 목록을 읽고 파일명에서 slug 추출
+2. `restaurants`에 slug 존재 확인(없으면 skip + 사유 기록)
+3. (`--apply` 시) Storage `restaurant-thumbnails/restaurants/{slug}/main.webp`로 **upsert** 업로드(`image/webp`)
+4. (`--apply` 시) `restaurants.thumbnail`을 public URL로 UPDATE
+5. 입력/성공/실패 수, 성공·실패 목록(+사유), URL 목록 출력
+
+### 안전장치
+- **기본은 dry-run**(검증만). `--apply` 없이는 업로드/DB를 변경하지 않는다.
+- `.webp`가 아니거나 0바이트이거나 DB에 없는 slug는 **skip**하고 이유를 출력한다.
+- `upsert: true`라 같은 식당 재실행 시 사진만 교체된다(경로·URL 동일 → DB 재갱신 불필요).
+- **service_role key 등 비밀값은 출력하지 않는다**(존재 여부만 ✓/✗ 표시). public URL은 `NEXT_PUBLIC_SUPABASE_URL`에서 파생한다.
+
+### 권장 순서
+1. 먼저 dry-run(기본)으로 slug 매칭·업로드 경로·예정 URL을 확인한다.
+2. 이상 없으면 `--apply`로 실제 적용한다.
+3. 공개 페이지에서 카드/상세 사진을 확인한다(ISR 최대 1시간, 즉시는 Vercel Redeploy).
+
