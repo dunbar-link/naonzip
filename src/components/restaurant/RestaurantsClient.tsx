@@ -19,12 +19,13 @@ export default function RestaurantsClient({ restaurants }: Props) {
 
   return (
     <main className="pt-14 pb-20">
-      <div className="px-4 py-4">
-        <h1 className="text-lg font-bold text-gray-900">부산 방송맛집 목록</h1>
-        <p className="text-xs text-gray-400 mt-0.5">총 {filtered.length}개</p>
+      <div className="px-4 pt-3 pb-2">
+        <h1 className="text-base font-bold text-gray-900">
+          방송맛집 <span className="text-orange-500">{filtered.length}곳</span>
+        </h1>
       </div>
       <AreaFilter selected={selectedArea} onChange={setSelectedArea} />
-      <div className="mt-4 px-4 flex flex-col gap-3">
+      <div className="mt-3 px-4 flex flex-col gap-3">
         {filtered.map((r) => (
           <RestaurantCard key={r.id} restaurant={r} variant="vertical" />
         ))}
