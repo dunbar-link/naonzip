@@ -1,0 +1,14 @@
+status,slug,name,restaurant_id,is_published,area,category,address,lat,lng,appearance_status,duplicate_status,field_status,note
+skipped_missing_required,jeonhyun-gwangalli-biwa-suljan,비와술잔,,,광안리,일식,부산 수영구 황령대로489번길 49-8 1층,,,,unique,누락: lat/lng(NOT NULL·좌표없음),필수필드 누락 → INSERT 불가. lat/lng(NOT NULL·좌표없음)
+skipped_missing_required,jeonhyun-yeongdo-watda-sikdang,왔다식당,,,영도,고기,부산 영도구 하나길 811,,,,unique,누락: lat/lng(NOT NULL·좌표없음),필수필드 누락 → INSERT 불가. lat/lng(NOT NULL·좌표없음)
+skipped_missing_required,jeonhyun-gwangalli-yeonhap-hoejip,연합횟집,,,광안리,회,부산 수영구 남천1동 192,,,,unique,누락: lat/lng(NOT NULL·좌표없음),필수필드 누락 → INSERT 불가. lat/lng(NOT NULL·좌표없음)
+skipped_duplicate,jeonhyun-nampo-yeosongje,여송제,,,남포동,한식,부산 중구 광복로18번길 5,,,,video_url,,강중복 의심: video_url
+skipped_missing_required,jeonhyun-nampo-mullebanga-jeukseokgui,물레방아 즉석구이,,,남포동,고기,부산 중구 중앙대로41번길 11-1,,,,unique,누락: lat/lng(NOT NULL·좌표없음),필수필드 누락 → INSERT 불가. lat/lng(NOT NULL·좌표없음)
+skipped_missing_required,2tv-sasang-yeonghui-halmae-jaecheopguk,영희할매재첩국,,,사상,한식,부산 사상구 낙동대로1530번길 20-15,,,,unique,누락: lat/lng(NOT NULL·좌표없음),필수필드 누락 → INSERT 불가. lat/lng(NOT NULL·좌표없음)
+skipped_missing_required,baekban-seogu-yetnal-guksujip,옛날국수집,,,기타,분식/길거리,부산 서구 까치고개로160번길 54,,,,unique,누락: lat/lng(NOT NULL·좌표없음),필수필드 누락 → INSERT 불가. lat/lng(NOT NULL·좌표없음)
+skipped_missing_required,baekban-nampo-subok-centa,수복센타,,,남포동,한식,부산 중구 남포길 25-3,,,,unique,누락: lat/lng(NOT NULL·좌표없음),필수필드 누락 → INSERT 불가. lat/lng(NOT NULL·좌표없음)
+skipped_missing_required,tzuyang-nampo-ijaemo-pizza,이재모피자 본점,,,남포동,양식,부산 중구 광복중앙로 31,,,,unique,누락: lat/lng(NOT NULL·좌표없음),필수필드 누락 → INSERT 불가. lat/lng(NOT NULL·좌표없음)
+skipped_missing_required,tzuyang-haeundae-chopilsal,초필살돼지구이 해운대본점,,,해운대,고기,부산 해운대구 마린시티3로 23 벽산E오렌지프라자 A동 107호,,,,unique,누락: lat/lng(NOT NULL·좌표없음),필수필드 누락 → INSERT 불가. lat/lng(NOT NULL·좌표없음)
+skipped_missing_required,ansungjae-yeonje-mapobonga,마포본가,,,연제,고기,부산 연제구 월드컵대로111번길 10,,,,unique,누락: lat/lng(NOT NULL·좌표없음),필수필드 누락 → INSERT 불가. lat/lng(NOT NULL·좌표없음)
+skipped_missing_required,saengdal-gwangalli-baegil-pyeongnaeng,백일평냉,,,광안리,한식,부산 수영구 남천바다로10번길 29 1층,,,,unique,"누락: price_text(NOT NULL), lat/lng(NOT NULL·좌표없음)","필수필드 누락 → INSERT 불가. price_text(NOT NULL), lat/lng(NOT NULL·좌표없음)"
+skipped_missing_required,saengdal-seomyeon-dammiok,담미옥,,,서면,한식,부산 부산진구 복지로 15 개금포르투나 103호,,,,unique,"누락: price_text(NOT NULL), lat/lng(NOT NULL·좌표없음)","필수필드 누락 → INSERT 불가. price_text(NOT NULL), lat/lng(NOT NULL·좌표없음)"
