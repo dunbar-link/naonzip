@@ -1,0 +1,7 @@
+slug,name,action,before_published,after_published,thumbnail_before,thumbnail_after,image_source,status,note
+live-today-suyeong-geumsin-jeonseon-sangyusibi,금신전선 상유십이,replace_thumbnail,true,true,일러스트(main.webp),실사진(main.webp 261KB),운영자 제공 사진,replaced_with_operator_photo,"놋그릇 메밀국수+양지 슬라이스+계란지단(실제 자가제면 국수와 일치). 운영자 제공 jpg→webp(1200x1142). 벌크 upload(upsert)가 기존 객체를 안 덮어써서 storage update()로 강제 교체, download API로 261214B 확인. 공개 URL 200."
+live-today-donggu-halme-gimbap,할매김밥,replace_thumbnail,true,true,일러스트(main.webp),실사진(main.webp 110KB),운영자 제공 사진,replaced_with_operator_photo,"김밥 단면(속재료/깨) 실사. 운영자 제공 jpg→webp(900x900). storage update()로 강제 교체, download API로 110672B 확인. 공개 URL 200."
+2tv-gijang-kimmida-myeol,김미다멸 본점,unpublish,true,false,(변경 안 함),(변경 안 함),N/A,unpublished_non_restaurant,"식당 아닌 판매점 성격 → 비공개 전환(is_published true→false, 영향 행 1). row/appearances/Storage 삭제 안 함. 공개 URL 404 확인. 홈/목록/검색/지도에서 제외."
+wonjo-gaya-milmyeon,원조가야밀면,none,true,true,실사진,실사진,기존,verified,"건드리지 않음(기존 실사 유지)."
+2tv-gwangan-kuromatsu,구로마쯔,none,true,true,실사진(IMG-F3),실사진,기존,verified,"건드리지 않음(IMG-F3 공식 실사 유지, stored 60424B 확인)."
+2tv-gumjeong-geumjukheon,금죽헌 금정산성점,report_only,true,true,없음,없음,N/A,verified,"김미다멸 비공개로 홈 신규 5위 진입. 썸네일 없음(fallback). §11에 따라 보고만, 이번에 자동 보강 안 함."
