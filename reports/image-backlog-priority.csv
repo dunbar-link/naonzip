@@ -1,0 +1,61 @@
+priority,slug,name,area,category,main_menu,source_title,broadcast_date,thumbnail_status,recommended_action,note
+1,saengdal-jeonpo-toda-park,토다공원,서면,일식,몬자야키/오코노미야키,SBS 생활의 달인,2026-05-04,none,safe_photo_search_candidate,공식 인스타 @toda_park(스캔 SAFE)
+2,saengdal-bukgu-shunsaikubo,슌사이쿠보 화명,북구,아시안,히츠마부시,생활의달인,2026-04-20,none,operator_photo_needed,공식채널 없음(플랫폼만)
+3,oneuln-nampo-sammi-jip,삼미집,남포동,한식,소갈비찜탕/닭계장,MBC 오늘N,2026-04-09,none,operator_photo_needed,국제시장 노포 공식채널 없음
+4,2tv-bupyeong-kkang-dwaehu,깡돼후,남포동,고기,돼지갈비후라이드,KBS 2TV 생생정보,2026-04-08,none,operator_photo_needed,공식채널 없음
+5,saengdal-gijang-ilgwangdang,일광당,기장,베이커리/디저트,찐빵·만두,생활의달인,2026-04-06,none,operator_photo_needed,노포 공식채널 없음
+6,saengdal-gijang-jeil-bunsik,제일분식,기장,분식/길거리,군만두,생활의달인,2026-03-30,none,operator_photo_needed,노포 공식채널 없음
+7,saengdal-gwangalli-jin-doejigomtang,진돼지곰탕,광안리,돼지국밥,돼지곰탕,생활의달인,2026-03-23,none,operator_photo_needed,공식채널 없음(미쉐린 등재)
+8,saengdal-centum-bulbaek-gosurak,불백고수락 센텀본점,해운대,한식,돈카츠/불백,SBS 생활의 달인,2026-02-23,none,safe_photo_search_candidate,점주 스레드 @bulbaekgosurack7(스캔 SAFE)
+9,baekban-yeonje-godeungeo-datchi,고등어다찌 연산본점,연제,회,모둠회,식객 허영만의 백반기행,2026-02-22,none,operator_photo_needed,공식채널 없음
+10,hanyakbang-gukbap-hyeongje-food,한약방돼지국밥 형제식품,서면,돼지국밥,돼지국밥,전현무계획3,2026-01-09,none,safe_photo_search_candidate,공식 인스타 @hanyakbang_gukbap(스캔 SAFE)
+11,mulkkong-sikdang,물꽁식당,남포동,해산물,아구찜,6시내고향,2025-12-23,none,safe_photo_search_candidate,VisitBusan 공공 페이지(스캔 SAFE)
+12,saengdal-haeundae-amisan,아미산,해운대,중식,해물누룽지탕,생활의달인,2025-08-18,none,safe_photo_search_candidate,공식홈 chineserestaurant.co.kr 직접 이미지(최강 SAFE)
+13,saengdal-namgu-daeyeon-milmyeon,대연밀면,남구,밀면,물밀면,생활의달인,2025-08-18,none,operator_photo_needed,공식채널 없음
+14,saengdal-yeonje-gukje-milmyeon,국제밀면 본점,연제,밀면,물밀면,생활의달인,2025-08-18,none,operator_photo_needed,공식채널 없음(블루리본)
+15,baekhwa-yanggopchang-1ho,백화양곱창 1호,남포동,한식,양곱창,쯔양,2025-07-09,none,operator_photo_needed,공식 SNS 불명확
+16,sungsik-nampodong-jungang-gomtang,중앙곰탕,남포동,한식,양수백,성시경의 먹을텐데,2025-07-08,none,operator_photo_needed,노포 공식채널 없음
+17,saengdal-suyeong-dongyang-sarada-namcheon,동양사라다 남천본점,광안리,베이커리/디저트,샐러드빵,생활의달인,2025-06-30,none,operator_photo_needed,공식 인스타 추정(@dongyang_sarada) 미검증→운영자확인
+18,tzuyang-haeundae-ppalgan-tteokbokki,빨간떡볶이,해운대,분식/길거리,떡볶이,쯔양,2025-06-25,none,operator_photo_needed,시장 노포 공식채널 없음
+19,saengdal-ssangdungyi-doejigukbap,쌍둥이돼지국밥,서면,돼지국밥,돼지국밥,생활의달인,2025-03-16,none,safe_photo_search_candidate,관광공사+VisitBusan 공공(스캔 SAFE), 지점 일치 확인
+20,hibab-cheongsa-hoe-center,청사포 회센터,해운대,회,광어회,히밥,2025-03-01,none,operator_photo_needed,상호 특정 불가→운영자 정확 상호 확인 필요
+21,sungsik-seomyeon-yanggopchang,문화양곱창,서면,한식,양곱창,성시경 먹을텐데,2025-01-20,none,operator_photo_needed,미스캔(상위20 외)
+22,jeonhyun-namgu-suta-hyemi-kalguksu,수타혜미칼국수,남구,분식/길거리,손칼국수,전현무계획2,2024-12-13,none,operator_photo_needed,미스캔. 상세 공개중
+23,saengdal-haeundae-missaem-ssalbbang,미쌤쌀빵,해운대,베이커리/디저트,비건 쌀빵,생활의달인,2024-12-09,none,operator_photo_needed,베이커리(공식채널 가능성, 미스캔)
+24,saengdal-geumjeong-songs-bakery,송스 베이커리,기타,베이커리/디저트,찹쌀도넛,생활의달인,2024-12-09,none,operator_photo_needed,미스캔
+25,saengdal-saha-cheramie,쉐라미과자점,기타,베이커리/디저트,애플파이,생활의달인,2024-12-09,none,operator_photo_needed,미스캔
+26,saengdal-gwangalli-boulangerie-lassence,블랑제리 라센,광안리,카페/베이커리,메밀쿠론,생활의 달인,2024-12-02,none,operator_photo_needed,IMG-F1 스캔=REVIEW(다이닝코드)
+27,sungsik-gaegeum-milmyeon,개금 밀면 본점,서면,밀면,물밀면,성시경 먹을텐데,2024-11-03,none,operator_photo_needed,미스캔
+28,tzuyang-nampo-ssiat-hotteok,남포동 씨앗호떡,남포동,분식/길거리,씨앗호떡,쯔양,2024-10-22,none,keep_fallback_for_now,노점성 길거리
+29,baekban-dongnae-pajeon,동래할매파전,동래,한식,동래파전,백반기행,2024-09-14,none,operator_photo_needed,노포(공식채널 가능성)
+30,sungsik-gwangalli-manujang,만우장,광안리,중식,탕수육/만두,성시경의 먹을텐데,2024-08-30,none,operator_photo_needed,IMG-F3 스캔=공식채널 없음
+31,matnyuk-sasang-doejigalbi,시골집명품석갈비,사상,고기,돼지갈비,맛있는녀석들,2024-07-17,none,keep_fallback_for_now,
+32,tzuyang-yeonje-yeonji-yanggopchang,연지가양곱창,연제,고기,양곱창 이모카세,쯔양,2024-07-10,none,keep_fallback_for_now,
+33,ddoganjip-hapcheon-ilryu-dwaeji-gukbap,합천일류돼지국밥,사상,돼지국밥,돼지국밥,풍자 또간집,2024-04-26,none,keep_fallback_for_now,
+34,pungja-namgu-hapcheon-gukbap,합천국밥집,남구,돼지국밥,돼지국밥,또간집,2024-04-26,none,keep_fallback_for_now,
+35,pungja-nampo-milyangjib,밀양집,남포동,돼지국밥,돼지국밥,또간집,2024-04-26,none,keep_fallback_for_now,
+36,kimyusun-daegu-bbol-jjim,김유순대구뽈찜전문점,남구,해산물,대구뽈찜,푸디랜드 FoodieLand,2023-08-14,none,keep_fallback_for_now,
+37,saengdal-yeongdo-sato-bunsik,사또분식,영도,분식/길거리,당면 비빔김밥,생활의달인,2023-05-22,none,keep_fallback_for_now,
+38,baekban-haeundae-yangs-yanggopchang,양가네 양곱창,해운대,고기,양곱창 모듬구이,식객 허영만의 백반기행,2022-03-25,none,keep_fallback_for_now,
+39,baekban-seomyeon-marathon-jib,마라톤집,서면,한식,해물부침,식객 허영만의 백반기행,2021-05-14,none,low_priority,
+40,baekban-yeongdo-jungri-haenyeochon,영도 중리해녀촌,영도,해산물,해녀 자연산,식객 허영만의 백반기행,2020-07-24,none,low_priority,
+41,baekban-yeongdo-jinju-sikdang,진주식당,영도,한식,고등어해장국,식객 허영만의 백반기행,2020-07-24,none,low_priority,
+42,baekban-nampo-18-wandang,18번완당집,남포동,한식,완당,식객 허영만의 백반기행,2020-07-24,none,low_priority,
+43,saengbang-gwangalli-sanhae-hoejip,산해횟집,광안리,회,활어회,생방송투데이 2221회,2018-12-04,none,low_priority,
+44,live-today-samjin-eomuk,삼진어묵 본점,영도,해산물,수제 어묵,생방송 투데이,2018-08-03,none,safe_photo_search_candidate,삼진어묵=대형 브랜드 공식홈 가능성(미스캔)
+45,subyeon-choego-doejigukbap-minrak,수변최고돼지국밥 민락본점,광안리,돼지국밥,돼지국밥,수요미식회,2018-03-21,none,low_priority,
+46,sokssiwonhan-daegutang-haeundae,속씨원한 대구탕 해운대 본점,해운대,해산물,대구탕,맛있는녀석들,2017-09-15,none,low_priority,
+47,saengsaeng-sasang-jurye-suyuk-kalguksu,주례수육칼국수 2호점,사상,한식,수육칼국수,2TV 생생정보,2017-08-09,none,low_priority,
+48,hoeguksu-halmaejip,회국수할매집,서면,한식,회국수,식객 허영만의 백반기행,2017-05-08,none,low_priority,
+49,samdae-seomyeon-gijang-son-kalguksu,기장손칼국수,서면,한식,손칼국수,백종원의 3대 천왕,2016-07-23,none,low_priority,
+50,samdae-seomyeon-wonjo-halmae-nakji,원조할매낙지,서면,한식,낙곱새,백종원의 3대 천왕,2015-10-02,none,low_priority,
+51,iganae-tteokbokki,이가네떡볶이 본점,남포동,분식/길거리,떡볶이,백종원의 3대천왕,2015-09-11,none,low_priority,IMG-E1 스캔=REVIEW
+52,tzuyang-seomyeon-dongchuni-mandu,동춘이만두,서면,분식/길거리,손수제비/만두,쯔양,,none,operator_photo_needed,방영일 미상(신규)
+53,tzuyang-gangseo-samseong-galmijogae,삼성갈미조개,기타,회/해산물,갈삼구이,쯔양,,none,operator_photo_needed,공식홈 ysamsung.79.ypage.kr(음식컷 없음)
+54,tzuyang-yeongdo-dongsamdong-buljjampong,동삼동불짬뽕,영도,중식,불짬뽕,쯔양,,none,operator_photo_needed,방영일 미상
+55,tzuyang-yeongdo-dongbang-milmyeon,동방밀면,영도,밀면,물밀면,쯔양,,none,operator_photo_needed,방영일 미상
+56,tzuyang-haeundae-sanggukine,상국이네,해운대,분식/길거리,떡볶이/김밥,쯔양,,none,operator_photo_needed,방영일 미상
+57,sungsik-gwangalli-haejin-anago,해진아나고,광안리,회/해산물,왕발이/아나고,성시경의 먹을텐데,,none,operator_photo_needed,방영일 미상
+58,ddoganjip-pungnyeon-gopchang,풍년곱창,남구,곱창,곱창구이,풍자 또간집,,none,keep_fallback_for_now,방영일 미상
+59,sungsik-gwangalli-geumson-1983,금손1983,광안리,한식,오마카세·꼬치,성시경의 먹을텐데,,none,operator_photo_needed,방영일 미상(오마카세)
+60,bapsang-gijang-haebyeon-jipbul-gomjangeo,해변짚불곰장어,기장,해산물,짚불곰장어,한국인의 밥상,,none,keep_fallback_for_now,방영일 미상

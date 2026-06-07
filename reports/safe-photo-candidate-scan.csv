@@ -1,0 +1,21 @@
+slug,name,search_status,best_source_type,best_source_url,risk_level,photo_candidate,note
+saengdal-jeonpo-toda-park,토다공원,safe_candidate_found,공식SNS,https://www.instagram.com/toda_park/,SAFE,페이지에 음식사진 있음,운영자 공식 인스타(핸들 일치). IG 동적로딩으로 직접 URL 미추출→운영자 원본 권장
+saengdal-bukgu-shunsaikubo,슌사이쿠보 화명,review_only,플랫폼,https://www.siksinhot.com/P/1023469,REVIEW,,미슐랭 노포지만 공식채널 없음(다이닝코드/식신)
+oneuln-nampo-sammi-jip,삼미집,review_only,플랫폼,https://www.diningcode.com/,REVIEW,,국제시장 노포 공식채널 없음
+2tv-bupyeong-kkang-dwaehu,깡돼후,review_only,플랫폼,https://www.diningcode.com/,REVIEW,,동명이지(인천 부평) 주의. 공식채널 없음
+saengdal-gijang-ilgwangdang,일광당,review_only,플랫폼,https://www.diningcode.com/,REVIEW,,기장 노포 공식채널 없음
+saengdal-gijang-jeil-bunsik,제일분식,review_only,플랫폼,https://www.siksinhot.com/P/263159,REVIEW,,기장 60년 노포 공식채널 없음
+saengdal-gwangalli-jin-doejigomtang,진돼지곰탕,review_only,플랫폼,https://www.diningcode.com/,REVIEW,,미쉐린 등재 공식채널 없음
+saengdal-centum-bulbaek-gosurak,불백고수락 센텀본점,safe_candidate_found,공식SNS,https://www.threads.com/@bulbaekgosurack7,SAFE,페이지에 음식사진 있음,점주 직접 운영 스레드(개인+홍보 혼합). 운영자 확인 권장
+baekban-yeonje-godeungeo-datchi,고등어다찌 연산본점,review_only,플랫폼,https://www.diningcode.com/,REVIEW,,동명 타지역 업체 혼동 주의. 공식채널 없음
+hanyakbang-gukbap-hyeongje-food,한약방돼지국밥 형제식품,safe_candidate_found,공식SNS,https://www.instagram.com/hanyakbang_gukbap/,SAFE,페이지에 음식사진 있음,운영자 공식 인스타(미인증). 직접 URL 미추출→운영자 원본 권장
+mulkkong-sikdang,물꽁식당,safe_candidate_found,공공기관,https://www.visitbusan.net/index.do?menuCd=DOM_000000201002001000&uc_seq=109,SAFE,갤러리 섹션 존재(JS 로드),부산관광공사 공식 페이지. 이미지 JS 동적로드→Admin 브라우저 확인 필요
+saengdal-haeundae-amisan,아미산,safe_candidate_found,공식홈,https://chineserestaurant.co.kr/,SAFE,베이징덕/인테리어/샤브샤브 직접 이미지(static.readdy.ai),최강 SAFE — 공식홈 직접 이미지 URL 확보 가능. 공식 인스타·부산시 관광 페이지도 보유
+saengdal-namgu-daeyeon-milmyeon,대연밀면,review_only,플랫폼,https://www.diningcode.com/,REVIEW,,공식채널 없음
+saengdal-yeonje-gukje-milmyeon,국제밀면 본점,review_only,플랫폼,https://www.diningcode.com/profile.php?rid=tUqSy5BVXUzP,REVIEW,,블루리본 노포지만 공식홈/SNS 미발견
+baekhwa-yanggopchang-1ho,백화양곱창 1호,review_only,플랫폼,https://www.diningcode.com/profile.php?rid=80jX1ehlNV0I,REVIEW,,1972 노포. 공식 SNS 불명확
+sungsik-nampodong-jungang-gomtang,중앙곰탕,review_only,플랫폼,https://www.diningcode.com/profile.php?rid=y0PHoZs4lsOv,REVIEW,,45년 노포 공식채널 없음
+saengdal-suyeong-dongyang-sarada-namcheon,동양사라다 남천본점,needs_operator_photo,공식SNS(추정),https://www.instagram.com/dongyang_sarada/,REVIEW,,상호 일치 인스타 존재하나 로그인 차단으로 운영주체 미검증. 공식 확인 시 SAFE 승격
+tzuyang-haeundae-ppalgan-tteokbokki,빨간떡볶이,needs_operator_photo,플랫폼,https://www.diningcode.com/profile.php?rid=irtFw3LkpTII,REVIEW,,시장 노포 공식채널 없음
+saengdal-ssangdungyi-doejigukbap,쌍둥이돼지국밥,safe_candidate_found,공공기관,https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=19ff9114-d5d7-40f3-9cd1-0564e8f023ee,SAFE,갤러리 존재(JS 로드),관광공사+VisitBusan 공공 페이지. 본점/분점 지점 일치 확인 필요. 공식 인스타(@twinsporksoup)도 존재
+hibab-cheongsa-hoe-center,청사포 회센터,no_candidate,없음,,none,,단일 상호 특정 불가(청사포 횟집촌 일반명). 운영자에게 정확 상호 확인 필요
