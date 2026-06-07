@@ -1,0 +1,11 @@
+slug,name,priority,current_thumbnail,status,image_risk_level,image_source_type,image_url,local_file,uploaded_url,note
+tzuyang-gwangalli-darijip,다리집,1,uploaded,uploaded_safe,SAFE,공식홈,http://darizip79.com/default/img/business_2_1.jpg,tzuyang-gwangalli-darijip.webp,https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/tzuyang-gwangalli-darijip/main.webp,"공식 사이트(darizip79.com) 자체 도메인 호스팅 떡볶이 사진. 식기에 '다리집' 자체 브랜딩 텍스트(제3자 워터마크 아님). 600x400 webp 변환 업로드. DB thumbnail·공개 URL 200 확인."
+tzuyang-gangseo-samseong-galmijogae,삼성갈미조개,1,none,review_only,REVIEW,공식홈(음식컷 없음),http://ysamsung.79.ypage.kr/bbs/board.php?bo_table=yp_gallery01,,,"공식 사이트 SAFE 출처는 있으나 갤러리=외관(이웃 점포 간판 노출)/건물/강 풍경, 메뉴=텍스트 배너로 깔끔한 음식 컷 없음. 운영자가 음식 사진 제공하거나 외관 사용 결정 필요."
+tzuyang-haeundae-sanggukine,상국이네,1,none,review_only,REVIEW,플랫폼/공식SNS(로그인월),https://www.ssg.com/disp/brandShop.ssg?brandId=3000085778,,,"공식 인스타(@sangcookine_official)는 로그인월로 접근 불가, SSG 브랜드샵은 밀키트 제품컷(플랫폼 자산·운영주체 불명확). 사용 허락 애매 → 미업로드."
+tzuyang-yeongdo-dongbang-milmyeon,동방밀면,1,none,review_only,REVIEW,기사,https://onna.busan.com/html/board/?board_idx=66&mode=read&idx=8852,,,"공식 홈/SNS 없음. 부산일보 기사 본문 물밀면 사진(핫링크 403, 라이선스 언론사 귀속) → 미사용."
+tzuyang-yeongdo-dongsamdong-buljjampong,동삼동불짬뽕,1,none,review_only,REVIEW,플랫폼,https://www.diningcode.com/profile.php?rid=ez7t77kVVXRv,,,"공식 홈/SNS 없음. 다이닝코드 프로필 음식 사진(플랫폼/사용자 업로드, 허락 불명) → 미사용."
+jeonhyun-namgu-suta-hyemi-kalguksu,수타혜미칼국수,1,none,review_only,REVIEW,플랫폼/방송,https://www.diningcode.com/list.dc?query=부산남구+손칼국수,,,"50년 노포 공식 홈/SNS 없음. 다이닝코드=REVIEW, 전현무계획2 방송 캡처=UNSAFE → 미사용."
+saengdal-gwangalli-boulangerie-lassence,블랑제리 라센,1,none,review_only,REVIEW,플랫폼,https://www.diningcode.com/profile.php?rid=i9NlGmkDZ8kX,,,"베이커리지만 공식 홈/스토어/공식 인스타 확인 실패. 다이닝코드=REVIEW, 생활의 달인 방송 캡처=UNSAFE → 미사용. (동명 신세계푸드 '블랑제리'는 무관 브랜드)"
+tzuyang-seomyeon-dongchuni-mandu,동춘이만두,1,none,review_only,REVIEW,플랫폼,https://www.diningcode.com/profile.php?rid=KgHB4hQJezfT,,,"당감동 노포 공식 홈/SNS 없음. 다이닝코드 프로필 음식 사진=REVIEW, 인스타/유튜브=UNSAFE → 미사용."
+sungsik-gwangalli-haejin-anago,해진아나고,1,none,no_candidate,none,플랫폼만,https://www.diningcode.com/profile.php?rid=zjYAMLO4LFe1,,,"공식 홈/SNS 없음. 다이닝코드·식신·테이블링 등 플랫폼 프로필만 존재 → SAFE 후보 없음."
+sungsik-gwangalli-manujang,만우장,1,none,no_candidate,none,플랫폼만,https://www.siksinhot.com/P/396630,,,"1978년 노포, 공식 홈/SNS 없음. 식신·다이닝코드 플랫폼 프로필만 존재 → SAFE 후보 없음."
