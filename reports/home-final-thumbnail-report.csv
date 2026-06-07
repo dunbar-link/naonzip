@@ -1,0 +1,2 @@
+slug,name,action,thumbnail_before,thumbnail_after,input_file,output_file,status,note
+2tv-gumjeong-geumjukheon,금죽헌 금정산성점,fill_thumbnail,없음(null),실사진(main.webp 146KB),2tv-gumjeong-geumjukheon.jpg,2tv-gumjeong-geumjukheon.webp,filled_with_operator_photo,"운영자 제공 소불고기 전골 실사(반찬·채소 포함, 실제 메뉴 일치). 900x900 jpg→webp(146,488B). 신규 객체 생성(덮어쓰기 아님), download API로 저장 바이트 확인, 공개 URL 200. 홈 상위 5개 fallback 0."
