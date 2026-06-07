@@ -8,6 +8,7 @@ import {
 } from '@/types/supabase'
 import { AREA_TYPES } from '@/types/restaurant'
 import { COORD_HINT, isInBusanRange } from '@/lib/coords'
+import { loadKakaoServices } from '@/lib/kakao-loader'
 import { isValidSlug, SLUG_HINT, SLUG_INVALID_MESSAGE } from '@/lib/slug'
 import {
   parseRestaurantPaste,
@@ -109,6 +110,10 @@ export default function QuickRegisterForm() {
   const [appearanceDone, setAppearanceDone] = useState<{ slug: string; name: string; label: string } | null>(null)
   const [appearanceError, setAppearanceError] = useState<string | null>(null)
 
+  // 주소 기반 Kakao 지오코딩(좌표 자동 채우기).
+  const [geocoding, setGeocoding] = useState(false)
+  const [geoMsg, setGeoMsg] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)
+
   function set<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((f) => ({ ...f, [key]: value }))
     setError(null)
@@ -143,8 +148,103 @@ export default function QuickRegisterForm() {
     if (Object.keys(fields).length > 0) {
       // setForm 업데이터는 순수하게 유지(부수효과 금지). 중복 확인은 업데이터 밖에서 호출.
       const merged = { ...form, ...fields }
+      // TV 방송은 방송명(출처명)이 곧 프로그램명이므로 program_name 이 비어 있을 때만 보강한다.
+      // youtube/sns 는 크리에이터/프로그램 구분이 모호해 자동 채우지 않는다(운영자가 직접 입력).
+      if (merged.source_type === 'tv' && merged.source_title.trim() && !merged.program_name.trim()) {
+        merged.program_name = merged.source_title.trim()
+      }
       setForm(merged)
       runDuplicateCheck(dupFields(merged))
+    }
+  }
+
+  // 주소 → 좌표(lat/lng) + 가능하면 Kakao 장소 URL 을 자동 채운다. (추정 금지: Kakao 결과만 사용)
+  function extractGu(addr: string): string | null {
+    const m = addr.match(/([가-힣]+[구군])/)
+    return m ? m[1] : null
+  }
+
+  async function onGeocode() {
+    const addr = form.address.trim()
+    if (!addr) {
+      setGeoMsg({ type: 'err', text: '주소를 먼저 입력해 주세요.' })
+      return
+    }
+    setGeoMsg(null)
+    setGeocoding(true)
+    try {
+      const services = await loadKakaoServices()
+      const gu = extractGu(addr)
+      const name = form.name.trim()
+      let lat: number | null = null
+      let lng: number | null = null
+      let placeUrl: string | null = null
+
+      // 1) 식당명으로 장소 검색 → 좌표 + place_url (구/부산범위 일치하는 결과만 채택).
+      if (name) {
+        const places = await new Promise<KakaoPlaceSearchResult[]>((resolve) => {
+          new services.Places().keywordSearch(name, (data, status) => {
+            resolve(status === services.Status.OK ? data : [])
+          })
+        })
+        const hit = places.find((p) => {
+          const y = Number(p.y)
+          const x = Number(p.x)
+          if (!Number.isFinite(y) || !Number.isFinite(x) || !isInBusanRange(y, x)) return false
+          const a = `${p.road_address_name} ${p.address_name}`
+          return gu ? a.includes(gu) : true
+        })
+        if (hit) {
+          lat = Number(hit.y)
+          lng = Number(hit.x)
+          placeUrl = hit.place_url || null
+        }
+      }
+
+      // 2) 장소 검색이 안 되면 주소 지오코딩으로 좌표만 확보.
+      if (lat === null || lng === null) {
+        const res = await new Promise<KakaoAddressSearchResult[]>((resolve) => {
+          new services.Geocoder().addressSearch(addr, (result, status) => {
+            resolve(status === services.Status.OK ? result : [])
+          })
+        })
+        if (res[0]) {
+          lat = Number(res[0].y)
+          lng = Number(res[0].x)
+        }
+      }
+
+      if (lat === null || lng === null || !Number.isFinite(lat) || !Number.isFinite(lng)) {
+        setGeoMsg({
+          type: 'err',
+          text: '주소로 좌표를 찾지 못했어요. 주소를 조금 더 정확히 입력해 주세요.',
+        })
+        return
+      }
+
+      const foundLat = lat
+      const foundLng = lng
+      setForm((f) => ({
+        ...f,
+        lat: String(foundLat),
+        lng: String(foundLng),
+        // place_url 을 확실히 얻었고 기존 입력이 없을 때만 채운다(가짜 URL 생성 금지).
+        kakao_map_url: f.kakao_map_url.trim() ? f.kakao_map_url : placeUrl ?? '',
+      }))
+      setError(null)
+      setGeoMsg({
+        type: 'ok',
+        text: placeUrl
+          ? '좌표와 카카오맵 장소를 찾았어요. 지도에서 위치를 확인해 주세요.'
+          : '좌표를 찾았어요. 지도에서 위치를 확인해 주세요.',
+      })
+    } catch {
+      setGeoMsg({
+        type: 'err',
+        text: '카카오 지도를 불러오지 못했어요. 잠시 후 다시 시도하거나 좌표를 직접 입력해 주세요.',
+      })
+    } finally {
+      setGeocoding(false)
     }
   }
 
@@ -266,6 +366,7 @@ export default function QuickRegisterForm() {
     setAppearanceDone(null)
     setAppearanceError(null)
     setAppendingId(null)
+    setGeoMsg(null)
   }
 
   // 출연 추가 성공 화면.
@@ -526,7 +627,40 @@ export default function QuickRegisterForm() {
         </div>
 
         <div className="sm:col-span-2">
-          <p className="text-xs text-gray-500">{COORD_HINT}</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              disabled={registering || geocoding || !form.address.trim()}
+              onClick={onGeocode}
+              className="rounded-md border border-blue-300 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700 hover:border-blue-400 disabled:opacity-50"
+            >
+              {geocoding ? '좌표 찾는 중…' : '주소로 좌표 찾기'}
+            </button>
+            <span className="text-[11px] text-gray-400">
+              주소를 입력한 뒤 누르면 위도/경도를 자동으로 채워요.
+            </span>
+          </div>
+          {geoMsg && (
+            <p className={`mt-1 text-[11px] ${geoMsg.type === 'ok' ? 'text-green-600' : 'text-red-600'}`}>
+              {geoMsg.text}
+              {geoMsg.type === 'err' && form.address.trim() && (
+                <>
+                  {' '}
+                  <a
+                    href={`https://map.kakao.com/?q=${encodeURIComponent(
+                      `${form.name} ${form.address}`.trim()
+                    )}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline underline-offset-2"
+                  >
+                    카카오맵에서 검색 ↗
+                  </a>
+                </>
+              )}
+            </p>
+          )}
+          <p className="mt-1 text-xs text-gray-500">{COORD_HINT}</p>
           {coordsOutOfRange && (
             <p className="mt-1 text-[10px] text-amber-600">
               좌표가 부산 범위를 벗어난 것 같아요. 값을 다시 확인해 주세요.

@@ -86,17 +86,19 @@ const FIELD_ALIASES: Record<string, PasteField> = {
   대표메뉴: 'main_menu',
   main_menu: 'main_menu',
   menu: 'main_menu',
-  // price_text
+  // price_text (가격정보/가격 정보 → 가격정보 로 정규화됨)
   가격대: 'price_text',
   가격: 'price_text',
+  가격정보: 'price_text',
   price_text: 'price_text',
   price: 'price_text',
   // source_type
   소스유형: 'source_type',
   출처유형: 'source_type',
   source_type: 'source_type',
-  // source_title (출처명/소스명/소스/출처/source_name)
+  // source_title (출처명/방송명/소스명/소스/출처/source_name)
   출처명: 'source_title',
+  방송명: 'source_title',
   소스명: 'source_title',
   소스: 'source_title',
   출처: 'source_title',
@@ -144,11 +146,16 @@ const FIELD_ALIASES: Record<string, PasteField> = {
   티맵url: 'tmap_url',
   tmap_url: 'tmap_url',
   tmapurl: 'tmap_url',
-  // description
+  // description (한줄소개/한 줄 소개/소개 → 한줄소개/소개 로 정규화됨)
   설명: 'description',
+  한줄소개: 'description',
+  소개: 'description',
   description: 'description',
   desc: 'description',
 }
+
+/** input type="date" 가 받는 완전한 날짜(YYYY-MM-DD)인지 검사. (월 01-12, 일 01-31) */
+const FULL_DATE_RE = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/
 
 // URL 자동 분류용 패턴. 라벨이 없거나 멀티라인으로 URL 만 있을 때 적절한 필드로 보낸다.
 const URL_RE = /https?:\/\/[^\s]+/gi
@@ -193,6 +200,14 @@ export function parseRestaurantPaste(text: string): {
     } else if (field === 'source_type') {
       if (isSourceTypeValue(value)) fields.source_type = value
       else ignored.push(`소스유형 “${value}”은(는) youtube/tv/sns 가 아니어서 무시했어요.`)
+    } else if (field === 'broadcast_date') {
+      // 방영일은 input type="date" 가 받는 완전한 날짜만 채운다.
+      // YYYY 나 YYYY-MM 같은 부분 날짜는 임의로 01 을 붙이지 않고 비워둔 뒤 안내한다.
+      if (FULL_DATE_RE.test(value)) fields.broadcast_date = value
+      else
+        ignored.push(
+          `방영일 “${value}”은(는) 정확한 날짜(YYYY-MM-DD)가 아니어서 비웠어요. 방영일을 직접 입력해 주세요.`
+        )
     } else {
       fields[field] = value
     }
