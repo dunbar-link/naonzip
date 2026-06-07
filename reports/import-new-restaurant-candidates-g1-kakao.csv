@@ -1,0 +1,14 @@
+status,slug,name,is_published,area,category,address,lat,lng,kakao_map_url,geocode_method,geocode_confidence,appearance_status,duplicate_status,price_needs_review,note
+inserted_private,jeonhyun-gwangalli-biwa-suljan,비와술잔,false,광안리,일식,부산 수영구 황령대로489번길 49-8 1층,35.140208,129.109264,,address,high,inserted,unique,false,
+inserted_private,jeonhyun-yeongdo-watda-sikdang,왔다식당,false,영도,고기,부산 영도구 하나길 811,35.094074,129.056330,,address,high,inserted,unique,false,
+inserted_private,jeonhyun-gwangalli-yeonhap-hoejip,연합횟집,false,광안리,회,부산 수영구 남천1동 192,35.140460,129.109763,,address,high,inserted,unique,false,
+inserted_private,jeonhyun-nampo-yeosongje,여송제,false,남포동,한식,부산 중구 광복로18번길 5,35.099318,129.027038,,address,high,inserted,weak:shared_video_url,false,기존 수타혜미칼국수와 같은 기사 URL 공유(약중복·등록 허용)
+inserted_private,jeonhyun-nampo-mullebanga-jeukseokgui,물레방아 즉석구이,false,남포동,고기,부산 중구 중앙대로41번길 11-1,35.101373,129.036245,,address,high,inserted,unique,false,
+inserted_private,2tv-sasang-yeonghui-halmae-jaecheopguk,영희할매재첩국,false,사상,한식,부산 사상구 낙동대로1530번길 20-15,35.194384,128.985120,,address,high,inserted,unique,false,
+inserted_private,baekban-seogu-yetnal-guksujip,옛날국수집,false,기타,분식/길거리,부산 서구 까치고개로160번길 54,35.099268,129.016100,,address,high,inserted,unique,false,area 서구→기타
+inserted_private,baekban-nampo-subok-centa,수복센타,false,남포동,한식,부산 중구 남포길 25-3,35.098851,129.031456,,address,high,inserted,unique,false,2019 방영
+inserted_private,tzuyang-nampo-ijaemo-pizza,이재모피자 본점,false,남포동,양식,부산 중구 광복중앙로 31,35.102103,129.030582,,address,high,inserted,unique,false,"방영일 ""2025""(부분날짜)→broadcast_date null"
+inserted_private,tzuyang-haeundae-chopilsal,초필살돼지구이 해운대본점,false,해운대,고기,부산 해운대구 마린시티3로 23 벽산E오렌지프라자 A동 107호,35.156647,129.146931,,address,high,inserted,unique,false,
+inserted_private,ansungjae-yeonje-mapobonga,마포본가,false,연제,고기,부산 연제구 월드컵대로111번길 10,35.184343,129.082279,,address,high,inserted,unique,false,출처=안성재 셰프 유튜브(부산일보)
+inserted_private,saengdal-gwangalli-baegil-pyeongnaeng,백일평냉,false,광안리,한식,부산 수영구 남천바다로10번길 29 1층,35.148563,129.111649,,address,high,inserted,unique,true,"price_text=""가격 확인 필요"""
+inserted_private,saengdal-seomyeon-dammiok,담미옥,false,서면,한식,부산 부산진구 복지로 15 개금포르투나 상가 103호,35.151751,129.020608,,address,high,inserted,unique,true,"price_text=""가격 확인 필요"""
