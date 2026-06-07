@@ -1,0 +1,11 @@
+status,slug,name,before_published,after_published,lat,lng,field_status,coordinate_status,duplicate_status,appearance_status,public_url_status,thumbnail_status,note
+published,sungsik-gwangalli-haejin-anago,해진아나고,false,true,35.166280,129.113921,ok,ok,unique,ok(1),200,missing,"공개 완료. 방영일 보완 필요(연도만→비움), creator_name 보완 권장(성시경). 이미지 미보유."
+published,sungsik-gwangalli-manujang,만우장,false,true,35.158507,129.114813,ok,ok,unique,ok(1),200,missing,"공개 완료. kakao_map_url 비어있음(공개 페이지가 좌표로 자동 생성). 이미지 미보유."
+published,tzuyang-gwangalli-darijip,다리집,false,true,35.146500,129.110687,ok,ok,unique,ok(1),200,missing,"공개 완료. 방영일 보완 필요. creator_name(쯔양) 보완 권장. 이미지 미보유."
+published,tzuyang-haeundae-sanggukine,상국이네,false,true,35.162016,129.162877,ok,ok,unique,ok(1),200,missing,"공개 완료. 방영일 보완 필요. creator_name(쯔양) 보완 권장. 이미지 미보유."
+published,tzuyang-yeongdo-dongbang-milmyeon,동방밀면,false,true,35.086684,129.043439,ok,ok,unique,ok(1),200,missing,"공개 완료. 방영일 보완 필요. creator_name(쯔양) 보완 권장. 이미지 미보유."
+published,tzuyang-yeongdo-dongsamdong-buljjampong,동삼동불짬뽕,false,true,35.077849,129.068051,ok,ok,unique,ok(1),200,missing,"공개 완료. 방영일 보완 필요. 가격 공식가 재확인 권장. 이미지 미보유."
+published,jeonhyun-namgu-suta-hyemi-kalguksu,수타혜미칼국수,false,true,35.143025,129.065121,ok,ok,unique,ok(1),200,missing,"재등록 후 공개 완료. tv/전현무계획2, 방영일 2024-12-13 보유. 이미지 미보유."
+published,saengdal-gwangalli-boulangerie-lassence,블랑제리 라센,false,true,35.150353,129.112123,ok,ok,unique,ok(1),200,missing,"공개 완료. tv/생활의 달인, program_name·방영일 2024-12-02 보유. 이미지 미보유."
+published,tzuyang-gangseo-samseong-galmijogae,삼성갈미조개,false,true,35.101555,128.929184,ok,ok,unique,ok(1),200,missing,"공개 완료(area 기타=강서/명지). 방영일 보완 필요. 이미지 미보유."
+published,tzuyang-seomyeon-dongchuni-mandu,동춘이만두,false,true,35.164055,129.038947,ok,ok,unique,ok(1),200,missing,"공개 완료(area 서면=부산진/당감). 방영일 보완 필요. 이미지 미보유."
