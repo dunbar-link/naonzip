@@ -1,0 +1,6 @@
+slug,name,thumbnail_before,thumbnail_after,updated,status,note
+live-today-suyeong-geumsin-jeonseon-sangyusibi,금신전선 상유십이,.../main.webp,.../main.webp?v=imgf6-real-photo-20260607,yes,cache_busted,"기존 query 없음→?v= 추가. 영향 행 1. 공개 URL(쿼리 포함) 200 image/webp 261214B(실사진). 모바일 새 URL로 강제 재fetch."
+live-today-donggu-halme-gimbap,할매김밥,.../main.webp,.../main.webp?v=imgf6-real-photo-20260607,yes,cache_busted,"기존 query 없음→?v= 추가. 영향 행 1. 공개 URL 200 image/webp 110672B(실사진)."
+2tv-gwangan-kuromatsu,구로마쯔,.../main.webp,.../main.webp?v=imgf6-real-photo-20260607,yes,cache_busted,"과거 일러스트→실사 덮어쓴 적 있어 version query 없어 대상. ?v= 추가, 영향 행 1. 공개 URL 200 image/webp 60424B(실사진)."
+2tv-gumjeong-geumjukheon,금죽헌 금정산성점,.../main.webp,.../main.webp,no,checked_no_change,"신규 객체 생성분(IMG-F5)이라 모바일 캐시 문제 없음 → 변경 안 함(확인만)."
+wonjo-gaya-milmyeon,원조가야밀면,.../main.webp,.../main.webp,no,checked_no_change,"대상 외 기존 실사진 → 변경 안 함(확인만)."
