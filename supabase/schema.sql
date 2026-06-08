@@ -316,3 +316,97 @@ WHERE r.source_type IS NOT NULL
       AND a.source_title = r.source_title
       AND coalesce(a.video_url, '') = coalesce(r.video_url, '')
   );
+
+-- ─────────────────────────────────────────────
+-- restaurant_trust_sources 테이블 (신뢰 출처 — restaurants 1:N)  [TRUST-H3]
+--   - 운영자가 확인한 "어디서 봤는지" 출처를 담는 그릇.
+--     방송/유튜브(appearances)뿐 아니라 가이드(블루리본)·로컬추천·예약인기·블로그·
+--     운영자확인 등 폭넓은 신뢰 출처를 1건씩 적재한다.
+--   - restaurant_appearances 를 "대체"하지 않고 "보완"한다. 방송 출연의 canonical 기록은
+--     계속 restaurant_appearances 가 담당한다(이 테이블로 일괄 이관/복제하지 않는다).
+--   - 외부 사이트를 무단 수집/복제하지 않는다. 운영자가 수동 확인한 값만 입력한다.
+--   - 공개 노출은 is_public=true 인 행만(부모 restaurant 가 is_published=true 일 때).
+--   - idempotent: CREATE ... IF NOT EXISTS, 정책/제약/트리거는 DROP IF EXISTS 후 CREATE.
+--   - ⚠ 이 블록은 운영 DB 에 아직 적용하지 않았다(TRUST-H3). Supabase SQL Editor 에서 1회 실행 필요.
+--     앱 런타임은 아직 이 테이블을 query 하지 않으므로, 미적용 상태에서도 사이트는 정상 동작한다.
+-- ─────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS public.restaurant_trust_sources (
+  id            uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  restaurant_id uuid NOT NULL REFERENCES public.restaurants(id) ON DELETE CASCADE,
+  source_kind   text NOT NULL
+                  CHECK (source_kind IN ('tv','youtube','guide','local','reservation','blog','operator','other')),
+  source_name   text NOT NULL,
+  source_url    text,
+  source_title  text,
+  source_note   text,
+  trust_label   text,
+  verified_at   date,
+  is_public     boolean NOT NULL DEFAULT true,
+  created_at    timestamptz NOT NULL DEFAULT now(),
+  updated_at    timestamptz NOT NULL DEFAULT now()
+);
+
+-- 인덱스
+--   - (restaurant_id, is_public): 식당별 공개 출처 조회(상세페이지 read 경로 대비).
+--   - source_kind: 종류별 필터/집계 대비.
+CREATE INDEX IF NOT EXISTS restaurant_trust_sources_restaurant_id_idx
+  ON public.restaurant_trust_sources (restaurant_id, is_public);
+CREATE INDEX IF NOT EXISTS restaurant_trust_sources_source_kind_idx
+  ON public.restaurant_trust_sources (source_kind);
+
+-- source_kind 화이트리스트(인라인 CHECK 의 idempotent 재적용 — 이미 존재하는 운영 DB 대비)
+ALTER TABLE public.restaurant_trust_sources
+  DROP CONSTRAINT IF EXISTS restaurant_trust_sources_source_kind_check;
+ALTER TABLE public.restaurant_trust_sources
+  ADD CONSTRAINT restaurant_trust_sources_source_kind_check
+  CHECK (source_kind IN ('tv','youtube','guide','local','reservation','blog','operator','other'));
+
+-- RLS
+ALTER TABLE public.restaurant_trust_sources ENABLE ROW LEVEL SECURITY;
+
+-- 공개 읽기: is_public=true 이고 부모 restaurant 가 is_published=true 인 출처만 anon 조회 가능.
+--   - restaurants/appearances 공개 정책과 동일하게 "공개 식당" 가시성에 종속시킨다.
+--   - 추가로 is_public=false(운영자 비공개 메모성 출처)는 anon 에게 보이지 않는다.
+DROP POLICY IF EXISTS "public trust sources of published restaurants are readable"
+  ON public.restaurant_trust_sources;
+CREATE POLICY "public trust sources of published restaurants are readable"
+  ON public.restaurant_trust_sources
+  FOR SELECT
+  TO anon, authenticated
+  USING (
+    is_public = true
+    AND EXISTS (
+      SELECT 1
+      FROM public.restaurants r
+      WHERE r.id = restaurant_trust_sources.restaurant_id
+        AND r.is_published = true
+    )
+  );
+
+-- 관리자 전체 접근: service_role 키 (Admin CMS 용).
+DROP POLICY IF EXISTS "service role has full access on trust sources"
+  ON public.restaurant_trust_sources;
+CREATE POLICY "service role has full access on trust sources"
+  ON public.restaurant_trust_sources
+  FOR ALL
+  TO service_role
+  USING (true)
+  WITH CHECK (true);
+
+-- updated_at 자동 갱신 trigger (재실행 안전)
+CREATE OR REPLACE FUNCTION public.restaurant_trust_sources_set_updated_at()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  NEW.updated_at := now();
+  RETURN NEW;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS restaurant_trust_sources_set_updated_at_trigger
+  ON public.restaurant_trust_sources;
+CREATE TRIGGER restaurant_trust_sources_set_updated_at_trigger
+  BEFORE UPDATE ON public.restaurant_trust_sources
+  FOR EACH ROW
+  EXECUTE FUNCTION public.restaurant_trust_sources_set_updated_at();

@@ -114,6 +114,43 @@ export type RestaurantAppearanceRow = {
 }
 
 /**
+ * restaurant_trust_sources.source_kind 허용 값. [TRUST-H3]
+ * DB CHECK 제약 (restaurant_trust_sources_source_kind_check) 과 일치시킬 것.
+ * 운영자가 확인한 "어디서 봤는지" 출처 종류. appearances(방송/유튜브)를 보완한다.
+ */
+export const TRUST_SOURCE_KINDS = [
+  'tv',
+  'youtube',
+  'guide', // 가이드북(블루리본 등)
+  'local', // 로컬 추천
+  'reservation', // 예약 인기
+  'blog', // 블로그
+  'operator', // 운영자 확인
+  'other',
+] as const
+export type TrustSourceKind = (typeof TRUST_SOURCE_KINDS)[number]
+
+/**
+ * restaurant_trust_sources 행 타입 (신뢰 출처 — restaurants 1:N)
+ * ⚠ TRUST-H3 단계에선 앱 read 경로에서 아직 query 하지 않는다(migration 미적용).
+ *    타입/구조만 준비하고 runtime 연동은 다음 Phase 로 분리한다.
+ */
+export type RestaurantTrustSourceRow = {
+  id: string
+  restaurant_id: string
+  source_kind: TrustSourceKind
+  source_name: string
+  source_url: string | null
+  source_title: string | null
+  source_note: string | null
+  trust_label: string | null
+  verified_at: string | null // ISO date 'YYYY-MM-DD'
+  is_public: boolean
+  created_at: string
+  updated_at: string
+}
+
+/**
  * Supabase 전체 DB 스키마 타입
  * createClient<Database>() 에 제네릭으로 사용
  */
@@ -174,6 +211,22 @@ export type Database = {
           created_at?: string
         }
         Update: Partial<Omit<RestaurantAppearanceRow, 'id' | 'created_at'>>
+        Relationships: []
+      }
+      restaurant_trust_sources: {
+        Row: RestaurantTrustSourceRow
+        Insert: Omit<
+          RestaurantTrustSourceRow,
+          'id' | 'is_public' | 'created_at' | 'updated_at'
+        > & {
+          id?: string
+          is_public?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: Partial<Omit<RestaurantTrustSourceRow, 'id' | 'created_at'>> & {
+          updated_at?: string
+        }
         Relationships: []
       }
     }
