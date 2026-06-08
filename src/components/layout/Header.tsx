@@ -14,7 +14,7 @@ export default function Header() {
     <header className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-full max-w-[430px] bg-white border-b border-gray-100 h-14 flex items-center px-4">
       <Link href="/" className="flex items-center gap-1">
         <span className="text-xl font-bold text-orange-500">나온집</span>
-        <span className="text-xs text-gray-400 font-medium mt-1">부산 방송맛집</span>
+        <span className="text-xs text-gray-400 font-medium mt-1">부산 맛집 큐레이션</span>
       </Link>
       <div className="ml-auto">
         <Link

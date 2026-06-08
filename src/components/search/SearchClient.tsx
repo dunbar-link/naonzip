@@ -256,7 +256,7 @@ export default function SearchClient({ restaurants }: Props) {
           <div className="mt-7 flex flex-col items-center text-center">
             <span className="text-3xl">🔍</span>
             <p className="mt-2 text-sm text-gray-400">
-              방송에 나온 부산 맛집만 모아두었어요
+              방송·유튜브에 소개된 부산 맛집을 모았어요
             </p>
           </div>
         </section>
@@ -321,7 +321,7 @@ export default function SearchClient({ restaurants }: Props) {
               </div>
 
               <div className="w-full px-2">
-                <p className="text-xs font-semibold text-gray-500 mb-2">방송으로 찾기</p>
+                <p className="text-xs font-semibold text-gray-500 mb-2">출처로 찾기</p>
                 <div className="flex flex-wrap gap-2">
                   {([
                     { label: '생활의달인', href: '/program/lifemaster' },

@@ -49,7 +49,7 @@ export default function RestaurantsClient({ restaurants }: Props) {
     <main className="pt-14 pb-20">
       <div className="px-4 pt-3 pb-2">
         <h1 className="text-base font-bold text-gray-900">
-          방송맛집 <span className="text-orange-500">{filtered.length}곳</span>
+          부산 맛집 <span className="text-orange-500">{filtered.length}곳</span>
         </h1>
       </div>
       <AreaFilter selected={selectedArea} onChange={handleAreaChange} areas={availableAreas} />

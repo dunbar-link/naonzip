@@ -27,12 +27,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!name || restaurants.length === 0) {
     return {
       title: '지역을 찾을 수 없습니다 | 나온집',
-      description: '요청하신 지역의 부산 방송맛집 목록을 찾을 수 없습니다.',
+      description: '요청하신 지역의 부산 맛집 목록을 찾을 수 없습니다.',
     }
   }
 
-  const title = `${name} 방송맛집 ${restaurants.length}곳 | 나온집`
-  const description = `부산 ${name}에서 방송에 소개된 맛집을 나온집에서 모아봤어요.`
+  const title = `부산 ${name} 맛집 ${restaurants.length}곳 | 나온집`
+  const description = `부산 ${name}에서 방송·유튜브에 소개된 맛집을 나온집에서 모아봤어요.`
   const path = `/area/${slug}`
 
   return {
@@ -80,10 +80,10 @@ export default async function AreaLandingPage({ params }: Props) {
     <main className="pt-14 pb-24">
       {/* Hero */}
       <section className="px-4 pt-6 pb-5 bg-white">
-        <p className="text-xs text-orange-500 font-semibold">지역별 방송맛집</p>
+        <p className="text-xs text-orange-500 font-semibold">지역별 모음</p>
         <h1 className="mt-1 text-2xl font-bold text-gray-900">부산 {name}</h1>
         <p className="mt-2 text-sm text-gray-500">
-          방송맛집 {restaurants.length}곳
+          부산 맛집 {restaurants.length}곳
         </p>
         <div className="mt-3 space-y-2">
           {getIntro('area', slug, name).paragraphs.map((p, i) => (

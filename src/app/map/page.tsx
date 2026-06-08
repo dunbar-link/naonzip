@@ -13,7 +13,7 @@ export default async function MapPage() {
       <section className="px-4 py-4 text-center">
         <p className="text-sm text-gray-500">
           지도 위 핀을 눌러{' '}
-          <span className="font-bold text-gray-900">방송맛집 {restaurants.length}곳</span>
+          <span className="font-bold text-gray-900">부산 맛집 {restaurants.length}곳</span>
           을 확인하세요
         </p>
       </section>

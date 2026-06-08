@@ -10,7 +10,7 @@ const websiteJsonLd = {
   '@type': 'WebSite',
   name: '나온집',
   url: SITE_URL,
-  description: '부산에서 방송·유튜브에 나온 맛집을 보고, 공유하고, 길찾기까지',
+  description: '방송·유튜브 출처와 함께 모아 보는 부산 맛집. 보고, 공유하고, 길찾기까지.',
   potentialAction: {
     '@type': 'SearchAction',
     target: {

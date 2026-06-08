@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 import { getRestaurantBySlug, getRestaurantSlugs } from '@/lib/restaurants'
 
-export const alt = '나온집 부산 방송맛집'
+export const alt = '나온집 부산 맛집 큐레이션'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -63,7 +63,7 @@ export default async function Image({ params }: ImageProps) {
               fontWeight: 700,
             }}
           >
-            부산 방송맛집
+            부산 맛집 큐레이션
           </div>
         </div>
       ),
@@ -240,7 +240,7 @@ export default async function Image({ params }: ImageProps) {
               fontWeight: 700,
             }}
           >
-            부산 방송맛집
+            부산 맛집 큐레이션
           </div>
         </div>
       </div>

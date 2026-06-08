@@ -51,7 +51,7 @@ function buildTmapUrl(info: MapInfo): string | null {
 }
 
 function buildShareText(info: ShareInfo): string {
-  return `부산 방송 나온집 찾았어.\n여기 어때?\n\n${info.name}\n${info.mainMenu}\n${info.address}\n\n나온집에서 보기:\n${info.pageUrl}`
+  return `부산 맛집 나온집에서 찾았어.\n여기 어때?\n\n${info.name}\n${info.mainMenu}\n${info.address}\n\n나온집에서 보기:\n${info.pageUrl}`
 }
 
 export default function ShareButtons({ mapInfo, shareInfo, phone }: Props) {
