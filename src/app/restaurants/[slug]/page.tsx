@@ -11,6 +11,7 @@ import SaveButton from '@/components/restaurant/SaveButton'
 import RestaurantCard from '@/components/restaurant/RestaurantCard'
 import RestaurantImage from '@/components/restaurant/RestaurantImage'
 import ReportButton from '@/components/restaurant/ReportButton'
+import { resolveSourceBadges, sourceToneClass } from '@/lib/sources'
 
 const SITE_URL = 'https://naonzip.vercel.app'
 
@@ -163,7 +164,7 @@ function buildBreadcrumbJsonLd(
   programHref: string | null,
 ): Record<string, unknown> {
   const items: Array<Record<string, unknown>> = [
-    { '@type': 'ListItem', position: 1, name: '부산 방송맛집', item: SITE_URL },
+    { '@type': 'ListItem', position: 1, name: '부산 맛집', item: SITE_URL },
   ]
   let pos = 2
   if (areaHref) {
@@ -274,6 +275,13 @@ export default async function RestaurantDetailPage({ params }: Props) {
     compareAppearancesForView,
   )
 
+  // 출처 칩(중복 제거) + 대표 방영일 + "방송 자세히" 접힘 노출 조건.
+  const sourceBadges = resolveSourceBadges(restaurant)
+  const repDate =
+    formatBroadcastDate(restaurant.broadcastDate) ?? restaurant.appearedAt ?? null
+  const hasHistory = appearanceHistory.length >= 2
+  const hasBroadcastDetails = hasHistory || Boolean(restaurant.episodeTitle)
+
   return (
     <main className="pt-14 pb-24">
       <script
@@ -324,175 +332,78 @@ export default async function RestaurantDetailPage({ params }: Props) {
         </div>
       </div>
 
-      {/* 기본 정보 */}
+      {/* 기본 정보 — 어디 / 뭐 먹음 / 왜 믿음 / 얼마 (첫 화면 압축) */}
       <section className="px-4 py-4 bg-white">
-        <div className="flex items-start justify-between gap-2">
-          <div>
-            {areaHref ? (
-              <Link href={areaHref} className="text-xs text-gray-400 font-medium hover:text-gray-600">
-                {restaurant.area}
-              </Link>
-            ) : (
-              <span className="text-xs text-gray-400 font-medium">{restaurant.area}</span>
-            )}
-            <h1 className="text-xl font-bold text-gray-900 mt-0.5">{restaurant.name}</h1>
-            <p className="text-sm text-gray-500 mt-1">{restaurant.mainMenu}</p>
-          </div>
-          {programHref ? (
-            <Link href={programHref} className={`flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full hover:opacity-75 transition-opacity ${getContentBadgeColor(restaurant.sourceType)}`}>
-              {getContentLabel(restaurant)}
+        <p className="text-xs text-gray-400 font-medium">
+          {areaHref ? (
+            <Link href={areaHref} className="hover:text-gray-600">
+              {restaurant.area}
             </Link>
           ) : (
-            <span className={`flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full ${getContentBadgeColor(restaurant.sourceType)}`}>
-              {getContentLabel(restaurant)}
-            </span>
+            <span>{restaurant.area}</span>
           )}
-        </div>
+          {restaurant.category && (
+            <span className="text-gray-300"> · {restaurant.category}</span>
+          )}
+        </p>
+        <h1 className="text-xl font-bold text-gray-900 mt-0.5">{restaurant.name}</h1>
+        <p className="text-sm text-gray-500 mt-1">{restaurant.mainMenu}</p>
+
+        {/* 출처 칩 — "어디서 봤는지" 한눈에 (기존 방송/유튜브 데이터에서만 파생) */}
+        {sourceBadges.length > 0 && (
+          <div className="mt-2.5 flex flex-wrap gap-1.5">
+            {sourceBadges.map((b) => (
+              <span
+                key={b.key}
+                className={`text-xs font-bold px-2.5 py-1 rounded-full ${sourceToneClass(b.tone)}`}
+              >
+                {b.label}
+              </span>
+            ))}
+          </div>
+        )}
 
         <div className="mt-2.5">
           <span className="text-base font-bold text-orange-500">{restaurant.priceText}</span>
         </div>
 
         {restaurant.description && (
-          <p className="mt-2.5 text-sm text-gray-600 leading-relaxed">{restaurant.description}</p>
+          <p className="mt-2 text-sm text-gray-600 leading-relaxed line-clamp-2">
+            {restaurant.description}
+          </p>
         )}
       </section>
 
-      <div className="h-2 bg-gray-50" />
-
-      {/* 방송 출처 */}
-      <section className="px-4 py-4 bg-white">
-        <h2 className="text-sm font-bold text-gray-900 mb-3">방송 정보</h2>
-
-        <div className="bg-gray-50 rounded-xl px-4 py-3 mb-2.5 flex items-center gap-3">
-          <span className="text-2xl">
-            {restaurant.sourceType === 'youtube' ? '📺' : '📡'}
-          </span>
-          <div className="min-w-0">
-            <p className="text-base font-bold text-gray-900 truncate">
-              {programHref ? (
-                <Link href={programHref} className="hover:underline">
-                  {restaurant.creatorName ?? restaurant.programName ?? restaurant.sourceTitle}
-                </Link>
-              ) : (
-                restaurant.creatorName ?? restaurant.programName ?? restaurant.sourceTitle
-              )}
-            </p>
-            {restaurant.creatorName && restaurant.programName && (
-              <p className="text-xs text-gray-500 mt-0.5">{restaurant.programName}</p>
-            )}
-          </div>
-          <span className={`ml-auto flex-shrink-0 text-[10px] font-bold px-2 py-0.5 rounded-full ${getContentBadgeColor(restaurant.sourceType)}`}>
-            {restaurant.sourceType === 'youtube' ? '유튜브' : 'TV방송'}
-          </span>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          {restaurant.episodeTitle && (
-            <div className="flex items-start gap-2">
-              <span className="text-xs text-gray-400 w-16 flex-shrink-0 pt-0.5">에피소드</span>
-              <span className="text-sm text-gray-800">{restaurant.episodeTitle}</span>
-            </div>
-          )}
-          {(restaurant.broadcastDate ?? restaurant.appearedAt) && (
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-gray-400 w-16 flex-shrink-0">방영일</span>
-              <span className="text-sm font-medium text-gray-800">
-                {formatBroadcastDate(restaurant.broadcastDate) ?? restaurant.appearedAt}
-              </span>
-            </div>
-          )}
-          {restaurant.videoUrl && (
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-gray-400 w-16 flex-shrink-0">영상</span>
-              <a
-                href={restaurant.videoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-red-500 font-semibold underline underline-offset-2"
-              >
-                유튜브에서 보기 →
-              </a>
-            </div>
-          )}
-          {programHref && (
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-gray-400 w-16 flex-shrink-0">더 보기</span>
-              <Link
-                href={programHref}
-                className="text-sm text-orange-500 font-semibold underline underline-offset-2"
-              >
-                {getContentLabel(restaurant)} 맛집 더 보기 →
-              </Link>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* 방송 기록 — 출연이 2건 이상일 때만 노출(대표 방송 섹션은 위에 그대로 유지) */}
-      {appearanceHistory.length >= 2 && (
-        <>
-          <div className="h-2 bg-gray-50" />
-          <section className="px-4 py-4 bg-white">
-            <h2 className="text-sm font-bold text-gray-900 mb-3">이 식당이 나온 방송</h2>
-            <ul className="flex flex-col gap-3">
-              {appearanceHistory.map((ap) => {
-                const label = ap.creatorName ?? ap.programName ?? ap.sourceTitle
-                const dateText = formatBroadcastDate(ap.broadcastDate)
-                return (
-                  <li key={ap.id} className="rounded-xl bg-gray-50 px-4 py-3">
-                    <div className="flex items-center gap-2">
-                      <p className="text-sm font-bold text-gray-900 truncate">{label}</p>
-                      <span
-                        className={`ml-auto flex-shrink-0 text-[10px] font-bold px-2 py-0.5 rounded-full ${getContentBadgeColor(ap.sourceType)}`}
-                      >
-                        {getSourceTypeLabel(ap.sourceType)}
-                      </span>
-                    </div>
-                    {ap.episodeTitle && (
-                      <p className="mt-1 text-sm text-gray-700">{ap.episodeTitle}</p>
-                    )}
-                    <div className="mt-1 flex flex-wrap items-center gap-2">
-                      <span className="text-xs text-gray-400">
-                        {dateText ?? '방영일 미확인'}
-                      </span>
-                      {ap.videoUrl && (
-                        <a
-                          href={ap.videoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs text-orange-500 font-semibold underline underline-offset-2"
-                        >
-                          출처 보기 →
-                        </a>
-                      )}
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
-          </section>
-        </>
-      )}
+      {/* 핵심 CTA — 길찾기 / 전화 / 공유 (첫 화면에서 "어떻게 감"이 바로 보이도록 상단 배치) */}
+      <ShareButtons
+        mapInfo={{
+          name: restaurant.name,
+          address: restaurant.address,
+          lat: restaurant.lat,
+          lng: restaurant.lng,
+          kakaoMapUrl: restaurant.kakaoMapUrl,
+          naverMapUrl: restaurant.naverMapUrl,
+          tmapUrl: restaurant.tmapUrl,
+        }}
+        shareInfo={{
+          name: restaurant.name,
+          mainMenu: restaurant.mainMenu,
+          address: restaurant.address,
+          pageUrl,
+        }}
+        phone={restaurant.phone}
+      />
 
       <div className="h-2 bg-gray-50" />
 
-      {/* 위치 정보 */}
+      {/* 위치 */}
       <section className="px-4 py-4 bg-white">
-        <h2 className="text-sm font-bold text-gray-900 mb-3">위치 정보</h2>
+        <h2 className="text-sm font-bold text-gray-900 mb-3">위치</h2>
         <div className="flex flex-col gap-2">
           <div className="flex items-start gap-2">
             <span className="text-xs text-gray-400 w-16 flex-shrink-0 pt-0.5">주소</span>
             <span className="text-sm text-gray-800">{restaurant.address}</span>
           </div>
-          {restaurant.phone && (
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-gray-400 w-16 flex-shrink-0">전화</span>
-              <a href={`tel:${restaurant.phone}`} className="text-sm text-blue-600">
-                {restaurant.phone}
-              </a>
-            </div>
-          )}
           {areaHref && (
             <div className="flex items-center gap-2">
               <span className="text-xs text-gray-400 w-16 flex-shrink-0">더 보기</span>
@@ -520,26 +431,114 @@ export default async function RestaurantDetailPage({ params }: Props) {
 
       <div className="h-2 bg-gray-50" />
 
-      {/* 길찾기 + 공유 (클라이언트 컴포넌트) */}
-      <ShareButtons
-        mapInfo={{
-          name: restaurant.name,
-          address: restaurant.address,
-          lat: restaurant.lat,
-          lng: restaurant.lng,
-          kakaoMapUrl: restaurant.kakaoMapUrl,
-          naverMapUrl: restaurant.naverMapUrl,
-          tmapUrl: restaurant.tmapUrl,
-        }}
-        shareInfo={{
-          name: restaurant.name,
-          mainMenu: restaurant.mainMenu,
-          address: restaurant.address,
-          pageUrl,
-        }}
-      />
+      {/* 어디서 봤나요 — 출처 요약(한 줄) + 방송 세부는 접힘으로 */}
+      <section className="px-4 py-4 bg-white">
+        <h2 className="text-sm font-bold text-gray-900 mb-3">어디서 봤나요</h2>
 
-      {/* 정보 수정 제보 (공유하기 바로 아래로 배치 — 발견성 ↑) */}
+        <div className="flex items-center gap-3">
+          <span className="text-2xl">
+            {restaurant.sourceType === 'youtube' ? '📺' : '📡'}
+          </span>
+          <div className="min-w-0">
+            <p className="text-base font-bold text-gray-900 truncate">
+              {programHref ? (
+                <Link href={programHref} className="hover:underline">
+                  {getContentLabel(restaurant)}
+                </Link>
+              ) : (
+                getContentLabel(restaurant)
+              )}
+            </p>
+            {repDate && <p className="text-xs text-gray-500 mt-0.5">{repDate}</p>}
+          </div>
+          <span
+            className={`ml-auto flex-shrink-0 text-[10px] font-bold px-2 py-0.5 rounded-full ${getContentBadgeColor(restaurant.sourceType)}`}
+          >
+            {getSourceTypeLabel(restaurant.sourceType)}
+          </span>
+        </div>
+
+        {(restaurant.videoUrl || programHref) && (
+          <div className="mt-3 flex flex-col gap-2">
+            {restaurant.videoUrl && (
+              <a
+                href={restaurant.videoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-red-500 font-semibold underline underline-offset-2"
+              >
+                유튜브에서 영상 보기 →
+              </a>
+            )}
+            {programHref && (
+              <Link
+                href={programHref}
+                className="text-sm text-orange-500 font-semibold underline underline-offset-2"
+              >
+                {getContentLabel(restaurant)} 맛집 더 보기 →
+              </Link>
+            )}
+          </div>
+        )}
+
+        {/* 방송 세부 (에피소드 / 여러 방송 출연) — 접힘 */}
+        {hasBroadcastDetails && (
+          <details className="mt-3">
+            <summary className="cursor-pointer text-sm font-semibold text-gray-500 py-1 marker:text-gray-400">
+              방송 자세히 보기
+            </summary>
+            <div className="mt-3">
+              {hasHistory ? (
+                <ul className="flex flex-col gap-3">
+                  {appearanceHistory.map((ap) => {
+                    const label = ap.creatorName ?? ap.programName ?? ap.sourceTitle
+                    const dateText = formatBroadcastDate(ap.broadcastDate)
+                    return (
+                      <li key={ap.id} className="rounded-xl bg-gray-50 px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <p className="text-sm font-bold text-gray-900 truncate">{label}</p>
+                          <span
+                            className={`ml-auto flex-shrink-0 text-[10px] font-bold px-2 py-0.5 rounded-full ${getContentBadgeColor(ap.sourceType)}`}
+                          >
+                            {getSourceTypeLabel(ap.sourceType)}
+                          </span>
+                        </div>
+                        {ap.episodeTitle && (
+                          <p className="mt-1 text-sm text-gray-700">{ap.episodeTitle}</p>
+                        )}
+                        <div className="mt-1 flex flex-wrap items-center gap-2">
+                          <span className="text-xs text-gray-400">
+                            {dateText ?? '방영일 미확인'}
+                          </span>
+                          {ap.videoUrl && (
+                            <a
+                              href={ap.videoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs text-orange-500 font-semibold underline underline-offset-2"
+                            >
+                              출처 보기 →
+                            </a>
+                          )}
+                        </div>
+                      </li>
+                    )
+                  })}
+                </ul>
+              ) : (
+                restaurant.episodeTitle && (
+                  <div className="rounded-xl bg-gray-50 px-4 py-3">
+                    <span className="text-xs text-gray-400">에피소드</span>
+                    <p className="mt-0.5 text-sm text-gray-800">{restaurant.episodeTitle}</p>
+                  </div>
+                )
+              )}
+            </div>
+          </details>
+        )}
+      </section>
+
+      {/* 정보 수정 제보 */}
       <div className="h-2 bg-gray-50" />
       <section className="px-4 py-4 bg-white text-center">
         <ReportButton slug={restaurant.slug} />
