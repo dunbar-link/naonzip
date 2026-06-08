@@ -7,8 +7,12 @@
  * 이 파일은 서버 컴포넌트 / 서버 함수에서만 호출한다.
  */
 
-import type { RestaurantRow, RestaurantAppearanceRow } from '@/types/supabase'
-import type { Restaurant, Appearance } from '@/types/restaurant'
+import type {
+  RestaurantRow,
+  RestaurantAppearanceRow,
+  RestaurantTrustSourceRow,
+} from '@/types/supabase'
+import type { Restaurant, Appearance, TrustSource } from '@/types/restaurant'
 import { mockRestaurants } from '@/data/mock-restaurants'
 import { isSupabaseConfigured, getSupabaseClient } from '@/lib/supabase'
 import {
@@ -71,6 +75,40 @@ function appearanceRowToAppearance(a: RestaurantAppearanceRow): Appearance {
     note: a.note ?? undefined,
     createdAt: a.created_at,
   }
+}
+
+// ─────────────────────────────────────────────
+// 신뢰 출처(trust source) 어댑터 [TRUST-H4]
+//   - restaurant_trust_sources 1행 → 앱 TrustSource. null 컬럼은 undefined 로.
+//   - source_kind 는 DB CHECK 화이트리스트로 보장되므로 그대로 사용한다.
+// ─────────────────────────────────────────────
+function trustSourceRowToTrustSource(row: RestaurantTrustSourceRow): TrustSource {
+  return {
+    id: row.id,
+    restaurantId: row.restaurant_id,
+    sourceKind: row.source_kind,
+    sourceName: row.source_name,
+    sourceUrl: row.source_url ?? undefined,
+    sourceTitle: row.source_title ?? undefined,
+    sourceNote: row.source_note ?? undefined,
+    trustLabel: row.trust_label ?? undefined,
+    verifiedAt: row.verified_at ?? undefined,
+    isPublic: row.is_public,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+  }
+}
+
+// restaurant_trust_sources 조회 실패(테이블 미적용/네트워크 등)는 1회만 경고한다(로그 스팸 방지).
+// 실패해도 throw 하지 않고, 사이트는 기존 appearances 출처 칩으로 계속 동작한다.
+let trustSourcesWarned = false
+function warnTrustSourcesOnce(detail: string): void {
+  if (trustSourcesWarned) return
+  trustSourcesWarned = true
+  console.warn(
+    '[restaurants] restaurant_trust_sources 조회 실패 — 기존 출처만 표시(테이블 미적용일 수 있음): ' +
+      detail,
+  )
 }
 
 /** restaurants row 의 방송 컬럼으로 만든 단일 fallback appearance. */
@@ -213,7 +251,32 @@ export async function getRestaurantBySlug(slug: string): Promise<Restaurant | nu
       .select('*')
       .eq('restaurant_id', data.id)
 
-    return rowToRestaurant(data, (appData as RestaurantAppearanceRow[]) ?? [])
+    const restaurant = rowToRestaurant(data, (appData as RestaurantAppearanceRow[]) ?? [])
+
+    // 신뢰 출처(공개분) 조회 — [TRUST-H4].
+    //   - is_public=true 만, verified_at desc(NULL 뒤) → created_at desc.
+    //   - 테이블 미적용/조회 실패해도 throw 하지 않고 기존 출처 칩을 유지한다
+    //     (trustSources 미설정 → sources.ts resolver 가 빈 배열로 처리, append-only).
+    try {
+      const { data: tsData, error: tsError } = await supabase
+        .from('restaurant_trust_sources')
+        .select('*')
+        .eq('restaurant_id', data.id)
+        .eq('is_public', true)
+        .order('verified_at', { ascending: false, nullsFirst: false })
+        .order('created_at', { ascending: false })
+      if (tsError) {
+        warnTrustSourcesOnce(tsError.message)
+      } else if (tsData) {
+        restaurant.trustSources = (tsData as RestaurantTrustSourceRow[]).map(
+          trustSourceRowToTrustSource,
+        )
+      }
+    } catch (e) {
+      warnTrustSourcesOnce(e instanceof Error ? e.message : String(e))
+    }
+
+    return restaurant
   } catch (err) {
     console.error('[restaurants] getRestaurantBySlug 예외, mock fallback:', err)
     return mockBySlug()
