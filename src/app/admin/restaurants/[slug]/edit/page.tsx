@@ -1,9 +1,14 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getSupabaseAdminClient } from '@/lib/supabase-admin'
-import type { RestaurantRow, RestaurantSourceType } from '@/types/supabase'
+import type {
+  RestaurantRow,
+  RestaurantSourceType,
+  RestaurantTrustSourceRow,
+} from '@/types/supabase'
 import { RESTAURANT_SOURCE_TYPES } from '@/types/supabase'
 import EditForm, { type EditPrefill } from './EditForm'
+import TrustSourcePanel from './TrustSourcePanel'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -69,6 +74,16 @@ export default async function RestaurantEditPage({ params }: Props) {
   const r = data as RestaurantRow
   const prefill = buildPrefill(r)
 
+  // 신뢰 출처 — is_public 무관 전체(service_role)를 조회해 Admin 패널에 전달.
+  // 공개 상세페이지(getRestaurantBySlug, anon)는 is_public=true 만 읽는다.
+  const { data: tsData } = await supabase
+    .from('restaurant_trust_sources')
+    .select('*')
+    .eq('restaurant_id', r.id)
+    .order('verified_at', { ascending: false, nullsFirst: false })
+    .order('created_at', { ascending: false })
+  const trustSources = (tsData ?? []) as RestaurantTrustSourceRow[]
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white border-b border-gray-200">
@@ -100,6 +115,12 @@ export default async function RestaurantEditPage({ params }: Props) {
           restaurantId={r.id}
           isPublished={r.is_published}
           prefill={prefill}
+        />
+
+        <TrustSourcePanel
+          restaurantId={r.id}
+          slug={r.slug}
+          initial={trustSources}
         />
       </main>
     </div>
