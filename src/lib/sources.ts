@@ -45,7 +45,7 @@ const TONE_CLASS: Record<SourceTone, string> = {
 }
 
 /** 신뢰 출처 종류 → tone. ('other' 는 sns tone 으로 fallback) */
-function trustSourceKindTone(kind: TrustSource['sourceKind']): SourceTone {
+export function trustSourceKindTone(kind: TrustSource['sourceKind']): SourceTone {
   switch (kind) {
     case 'tv':
       return 'tv'
@@ -63,6 +63,28 @@ function trustSourceKindTone(kind: TrustSource['sourceKind']): SourceTone {
       return 'operator'
     default:
       return 'sns'
+  }
+}
+
+/** 신뢰 출처 종류 → 짧은 공개 라벨. (과장 표현 없이 사실 범주만) */
+export function trustSourceKindLabel(kind: TrustSource['sourceKind']): string {
+  switch (kind) {
+    case 'tv':
+      return '방송'
+    case 'youtube':
+      return '유튜브'
+    case 'guide':
+      return '가이드'
+    case 'local':
+      return '로컬 추천'
+    case 'reservation':
+      return '예약 인기'
+    case 'blog':
+      return '블로그'
+    case 'operator':
+      return '운영자 확인'
+    default:
+      return '출처'
   }
 }
 
@@ -144,4 +166,78 @@ export function resolveSourceBadges(r: Restaurant, max = 3): SourceBadge[] {
   }
 
   return badges
+}
+
+// ─────────────────────────────────────────────
+// 신뢰 출처 상세 표시(추가 출처) — [TRUST-H6]
+//   상세페이지 "어디서 봤나요" 섹션에서 칩보다 한 단계 자세한 한 줄 요약 + 링크를 만든다.
+// ─────────────────────────────────────────────
+
+function isHttpUrl(v: string): boolean {
+  try {
+    const u = new URL(v)
+    return u.protocol === 'http:' || u.protocol === 'https:'
+  } catch {
+    return false
+  }
+}
+
+/** 빈값/중복(NFC) 제거 후 ' · ' 결합. */
+function joinDistinct(parts: Array<string | undefined>): string {
+  const out: string[] = []
+  const seen = new Set<string>()
+  for (const p of parts) {
+    const t = (p ?? '').trim()
+    if (!t) continue
+    const key = t.normalize('NFC')
+    if (seen.has(key)) continue
+    seen.add(key)
+    out.push(t)
+  }
+  return out.join(' · ')
+}
+
+export type TrustSourceView = {
+  key: string
+  tone: SourceTone
+  kindLabel: string
+  /** trust_label · source_name (중복 제거) */
+  primary: string
+  /** source_title · verified_at (중복 제거) 또는 null. */
+  meta: string | null
+  /** http/https URL 만. 없으면 null. */
+  url: string | null
+}
+
+/**
+ * 공개 상세페이지용 신뢰 출처 뷰 목록.
+ * - is_public=true 만 (anon 조회가 이미 거르지만 방어적으로 한 번 더).
+ * - source_name 이 비어 있으면(이론상 NOT NULL) 건너뛴다.
+ * - source_url 은 http/https 만 통과시킨다.
+ * - **source_note 는 공개 표시에서 의도적으로 제외한다**(내부 검증/메모 문구 노출 방지).
+ * - 과장 표현을 새로 만들지 않고, 입력된 사실 값만 조합한다.
+ */
+export function resolveTrustSourceViews(
+  trustSources: TrustSource[] | undefined,
+  max = 4,
+): TrustSourceView[] {
+  if (!trustSources || trustSources.length === 0) return []
+  const views: TrustSourceView[] = []
+  for (const t of trustSources) {
+    if (!t.isPublic) continue
+    const primary = joinDistinct([t.trustLabel, t.sourceName])
+    if (!primary) continue
+    const meta = joinDistinct([t.sourceTitle, t.verifiedAt]) || null
+    const url = t.sourceUrl && isHttpUrl(t.sourceUrl) ? t.sourceUrl : null
+    views.push({
+      key: t.id,
+      tone: trustSourceKindTone(t.sourceKind),
+      kindLabel: trustSourceKindLabel(t.sourceKind),
+      primary,
+      meta,
+      url,
+    })
+    if (views.length >= max) break
+  }
+  return views
 }

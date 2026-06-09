@@ -11,6 +11,7 @@ import SaveButton from '@/components/restaurant/SaveButton'
 import RestaurantCard from '@/components/restaurant/RestaurantCard'
 import RestaurantImage from '@/components/restaurant/RestaurantImage'
 import ReportButton from '@/components/restaurant/ReportButton'
+import TrustSources from '@/components/restaurant/TrustSources'
 import { resolveSourceBadges, sourceToneClass } from '@/lib/sources'
 
 const SITE_URL = 'https://naonzip.vercel.app'
@@ -480,6 +481,9 @@ export default async function RestaurantDetailPage({ params }: Props) {
             )}
           </div>
         )}
+
+        {/* 추가 출처 — 운영자가 확인한 신뢰 출처(있을 때만). 없으면 null → 기존과 동일 */}
+        <TrustSources trustSources={restaurant.trustSources} />
 
         {/* 방송 세부 (에피소드 / 여러 방송 출연) — 접힘 */}
         {hasBroadcastDetails && (
