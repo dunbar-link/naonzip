@@ -43,6 +43,12 @@
 - **C. 신뢰/출처 표시**: "어디서 소개/검증됐는지" 사실 기반 표시
 - **D. 콘텐츠화**: 결과를 case study/블로그/쇼츠로 정리
 
+## 증빙 이미지 (docs/portfolio/assets/)
+
+- `naonzip-a1-home.png` — 공개 서비스 홈("부산 맛집, 어디서 봤는지까지" + 출처 칩 카드)
+- `naonzip-a2-trust-source-detail.jpg` — 상세페이지의 신뢰 출처("추가 출처" + 비짓부산 + 출처 보기 링크)
+- `naonzip-a3-admin-trust-source.png` — Admin CMS(식당 편집 + 신뢰 출처 입력, 과장 표현 방지 안내)
+
 ## 주의 / 한계
 
 - **수익 보장·시장 검증 같은 표현은 쓰지 않는다.** 작게 시작 → 검증 → 확장 원칙.

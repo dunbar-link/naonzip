@@ -40,8 +40,14 @@
 
 ## 체크
 
-- [ ] A1~A3 캡처 완료 → one-pager/blog/shorts 1차 발행 가능
+- [x] A1~A3 캡처 완료 → one-pager/blog/shorts 1차 발행 가능 **(2026-06-10, PORT-P4)**
+  - 실제 파일(계획과 파일명 다름, `docs/portfolio/assets/`에 저장):
+    - A1 = `naonzip-a1-home.png`
+    - A2 = `naonzip-a2-trust-source-detail.jpg` (※ .png 아닌 .jpg)
+    - A3 = `naonzip-a3-admin-trust-source.png`
+  - 문서 삽입 완료: final-onepager(A1·A2·A3) / blog-final(A1→A2→A3) /
+    shorts-episode-01(컷별 매핑) / ai-ops-onepage-sales(증빙 목록)
 - [ ] B1~B5 캡처 완료 → case study/영업자료 보강
 - [ ] C1~C4 (선택)
-- [ ] Admin 캡처 시 민감정보(주소창/쿠키/비번) 가림 확인
-- [ ] 과장 표현 없는지 최종 확인("돈 된다"/"시장 검증 완료"/"성공한 서비스" 금지)
+- [x] Admin 캡처 시 민감정보(주소창/쿠키/비번) 가림 확인 (A3 — 주소창/쿠키 미포함 확인)
+- [x] 과장 표현 없는지 최종 확인("돈 된다"/"시장 검증 완료"/"성공한 서비스" 금지)
