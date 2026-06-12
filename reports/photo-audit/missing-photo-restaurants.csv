@@ -1,0 +1,84 @@
+id,name,slug,is_public,area,category,address,phone,current_thumbnail_url,photo_needed,suggested_image_filename
+f8560a38-de47-4618-b687-6ccfbb4bded0,금손1983,sungsik-gwangalli-geumson-1983,true,광안리,한식,부산 수영구 수영로680번길 54 1층,,,yes,sungsik-gwangalli-geumson-1983.jpg
+a2dbb9ed-7fe6-43ad-828c-c6d46278b09f,동양사라다 남천본점,saengdal-suyeong-dongyang-sarada-namcheon,true,광안리,베이커리/디저트,부산 수영구 남천서로20번길 31,0507-1356-5385,,yes,saengdal-suyeong-dongyang-sarada-namcheon.jpg
+54328dd5-2728-4451-ba77-8f09ddbe7d4d,만우장,sungsik-gwangalli-manujang,true,광안리,중식,부산 수영구 수영로594번길 28-2,,,yes,sungsik-gwangalli-manujang.jpg
+ea3ca318-62a3-46a9-ab0b-c49031affcfa,블랑제리 라센,saengdal-gwangalli-boulangerie-lassence,true,광안리,카페/베이커리,부산 수영구 남천바다로9번길 8,,,yes,saengdal-gwangalli-boulangerie-lassence.jpg
+02921b80-dd6a-4f41-9538-7ca1e8a68884,비와술잔,jeonhyun-gwangalli-biwa-suljan,true,광안리,일식,부산 수영구 황령대로489번길 49-8 1층,,,yes,jeonhyun-gwangalli-biwa-suljan.jpg
+37e8fa0a-be8e-4886-852d-9e982e16cae2,산해횟집,saengbang-gwangalli-sanhae-hoejip,true,광안리,회,부산 수영구 광안해변로344번길 17-20 풍경타워 8층,0507-1389-7718,,yes,saengbang-gwangalli-sanhae-hoejip.jpg
+5ad03bde-3af4-43ab-bcf9-e307d32521ae,수변최고돼지국밥 민락본점,subyeon-choego-doejigukbap-minrak,true,광안리,돼지국밥,부산 수영구 광안해변로370번길 9-32,,,yes,subyeon-choego-doejigukbap-minrak.jpg
+563dcfc8-0abe-4a3b-a32e-5385f1f8d870,연합횟집,jeonhyun-gwangalli-yeonhap-hoejip,true,광안리,회,부산 수영구 남천1동 192,,,yes,jeonhyun-gwangalli-yeonhap-hoejip.jpg
+db028631-6eae-4cf9-b497-80c897d612da,진돼지곰탕,saengdal-gwangalli-jin-doejigomtang,true,광안리,돼지국밥,"부산 수영구 광안해변로284번길 4, 2층 201호",0507-1468-1634,,yes,saengdal-gwangalli-jin-doejigomtang.jpg
+a6e2fab3-4fbb-44ba-a85d-26a16e04466a,해진아나고,sungsik-gwangalli-haejin-anago,true,광안리,회/해산물,부산 수영구 광서로10번길 47,,,yes,sungsik-gwangalli-haejin-anago.jpg
+dcd3d121-d898-4daa-8e37-d1797e4bac3c,일광당,saengdal-gijang-ilgwangdang,true,기장,베이커리/디저트,부산 기장군 일광읍 일광로 125-1,051-724-0039,,yes,saengdal-gijang-ilgwangdang.jpg
+6d2db73a-f31b-4a82-85aa-c4c55e6a76db,제일분식,saengdal-gijang-jeil-bunsik,true,기장,분식/길거리,부산 기장군 장안읍 좌천로 38,051-727-0132,,yes,saengdal-gijang-jeil-bunsik.jpg
+285d3c9e-7319-4378-92e5-c45ecc2a482e,해변짚불곰장어,bapsang-gijang-haebyeon-jipbul-gomjangeo,true,기장,해산물,부산 기장군 기장읍 공수2길 11,051-721-4539,,yes,bapsang-gijang-haebyeon-jipbul-gomjangeo.jpg
+87092201-5e92-4086-aaae-dbc21f814a29,삼성갈미조개,tzuyang-gangseo-samseong-galmijogae,true,기타,회/해산물,부산 강서구 르노삼성대로 602 2층,,,yes,tzuyang-gangseo-samseong-galmijogae.jpg
+534984b5-7b03-4945-9f1e-0d88fd57b7a3,송스 베이커리,saengdal-geumjeong-songs-bakery,true,기타,베이커리/디저트,부산 금정구 수림로 26,,,yes,saengdal-geumjeong-songs-bakery.jpg
+eadafd41-2633-4ead-aeeb-dd54c0d2e9de,쉐라미과자점,saengdal-saha-cheramie,true,기타,베이커리/디저트,부산 사하구 낙동대로 238,,,yes,saengdal-saha-cheramie.jpg
+ad2a5732-f633-4793-9f05-459ba9795f87,옛날국수집,baekban-seogu-yetnal-guksujip,true,기타,분식/길거리,부산 서구 까치고개로160번길 54,,,yes,baekban-seogu-yetnal-guksujip.jpg
+163516e4-449b-469c-ac55-bf80180f57a9,김유순대구뽈찜전문점,kimyusun-daegu-bbol-jjim,true,남구,해산물,부산 남구 진남로 15,,,yes,kimyusun-daegu-bbol-jjim.jpg
+140d3045-01ea-4994-9338-514c3e19376c,대연밀면,saengdal-namgu-daeyeon-milmyeon,true,남구,밀면,부산 남구 천제등로 55 1층,0507-1355-6120,,yes,saengdal-namgu-daeyeon-milmyeon.jpg
+cac8680a-5844-429f-8915-9080fda28df3,수타혜미칼국수,jeonhyun-namgu-suta-hyemi-kalguksu,true,남구,분식/길거리,부산 남구 문현금융로 4,,,yes,jeonhyun-namgu-suta-hyemi-kalguksu.jpg
+4f4203b7-ae0e-481b-b93a-c9ba0317c803,풍년곱창,ddoganjip-pungnyeon-gopchang,true,남구,곱창,부산 남구 용소로28번길 22-1,051-644-9302,,yes,ddoganjip-pungnyeon-gopchang.jpg
+6fa20bbf-ca29-4065-8eca-39d19b904d27,합천국밥집,pungja-namgu-hapcheon-gukbap,true,남구,돼지국밥,부산 남구 용호로 235,,,yes,pungja-namgu-hapcheon-gukbap.jpg
+4924d90c-a5c1-4d0a-8712-d63094586897,18번완당집,baekban-nampo-18-wandang,true,남포동,한식,부산 중구 비프광장로 31,051-245-0018,,yes,baekban-nampo-18-wandang.jpg
+c763888f-4927-4cc7-b7ed-a91958d01195,깡돼후,2tv-bupyeong-kkang-dwaehu,true,남포동,고기,부산광역시 중구 부평1길 57,051-244-2019,,yes,2tv-bupyeong-kkang-dwaehu.jpg
+f8e07f9d-1227-466f-981d-eed4b8713c96,남포동 씨앗호떡,tzuyang-nampo-ssiat-hotteok,true,남포동,분식/길거리,부산 중구 광복로 56,,,yes,tzuyang-nampo-ssiat-hotteok.jpg
+b7a9baa2-c394-4f3f-a47b-b93f02fb638c,물꽁식당,mulkkong-sikdang,true,남포동,해산물,부산광역시 중구 흥교로 55,,,yes,mulkkong-sikdang.jpg
+ebaaf480-2957-41a9-a7d8-51dd90f14575,물레방아 즉석구이,jeonhyun-nampo-mullebanga-jeukseokgui,true,남포동,고기,부산 중구 중앙대로41번길 11-1,,,yes,jeonhyun-nampo-mullebanga-jeukseokgui.jpg
+806a5428-1d73-421e-b878-cee596c76e36,밀양집,pungja-nampo-milyangjib,true,남포동,돼지국밥,부산 중구 중구로47번길 35,051-245-5137,,yes,pungja-nampo-milyangjib.jpg
+e7ce6a07-53e0-42e2-8cb1-62b9fca74cc8,백화양곱창 1호,baekhwa-yanggopchang-1ho,true,남포동,한식,부산 중구 자갈치로23번길 6,,,yes,baekhwa-yanggopchang-1ho.jpg
+8c4e722a-6b67-41ef-8ec0-fe3a68880d3d,삼미집,oneuln-nampo-sammi-jip,true,남포동,한식,부산 중구 광복로35번길 30-1,051-245-7776,,yes,oneuln-nampo-sammi-jip.jpg
+c97e4fe7-625f-4e6e-a20d-75f51b2521b2,수복센타,baekban-nampo-subok-centa,true,남포동,한식,부산 중구 남포길 25-3,,,yes,baekban-nampo-subok-centa.jpg
+6197c7b5-dbc0-41c5-b29f-0adb7fb8ed6c,여송제,jeonhyun-nampo-yeosongje,true,남포동,한식,부산 중구 광복로18번길 5,,,yes,jeonhyun-nampo-yeosongje.jpg
+168c8089-fc82-4c44-8009-fa9e80158d0d,이가네떡볶이 본점,iganae-tteokbokki,true,남포동,분식/길거리,부산 중구 부평1길 48,,,yes,iganae-tteokbokki.jpg
+62026b24-c99e-4dba-a023-2540c3226258,중앙곰탕,sungsik-nampodong-jungang-gomtang,true,남포동,한식,부산 중구 충장대로9번길 9 동영빌딩지하,0507-1396-4117,,yes,sungsik-nampodong-jungang-gomtang.jpg
+2cb55410-d8ca-4bc1-a2b7-d2aacfaa4fe1,동래할매파전,baekban-dongnae-pajeon,true,동래,한식,부산 동래구 명륜로94번길 43-10,051-567-8901,,yes,baekban-dongnae-pajeon.jpg
+34486e2a-fee3-4ed3-a6e3-c24bd84e4f3c,슌사이쿠보 화명,saengdal-bukgu-shunsaikubo,true,북구,아시안,부산 북구 양달로4번길 17 금샘빌딩 1층,0507-1315-2959,,yes,saengdal-bukgu-shunsaikubo.jpg
+e76f9e91-8352-4e49-9d8c-382e9f5d9605,시골집명품석갈비,matnyuk-sasang-doejigalbi,true,사상,고기,부산 사상구 괘법동 549,051-012-3456,,yes,matnyuk-sasang-doejigalbi.jpg
+b2db448e-57c1-455a-ad64-e5949c05df74,주례수육칼국수 2호점,saengsaeng-sasang-jurye-suyuk-kalguksu,true,사상,한식,부산 사상구 가야대로 290-18,,,yes,saengsaeng-sasang-jurye-suyuk-kalguksu.jpg
+0b3a8b91-d42b-4dbc-b980-230ee493feb1,합천일류돼지국밥,ddoganjip-hapcheon-ilryu-dwaeji-gukbap,true,사상,돼지국밥,부산 사상구 광장로 34,,,yes,ddoganjip-hapcheon-ilryu-dwaeji-gukbap.jpg
+7ce80665-1c3b-480e-a786-14e3ee60fa2d,개금 밀면 본점,sungsik-gaegeum-milmyeon,true,서면,밀면,부산 부산진구 가야대로 784,051-345-6789,,yes,sungsik-gaegeum-milmyeon.jpg
+ab83b139-74f4-40e4-a5f4-53eea8688981,기장손칼국수,samdae-seomyeon-gijang-son-kalguksu,true,서면,한식,부산 부산진구 서면로 56,051-806-6832,,yes,samdae-seomyeon-gijang-son-kalguksu.jpg
+4e22727f-a842-4126-9307-55110f5a7355,동춘이만두,tzuyang-seomyeon-dongchuni-mandu,true,서면,분식/길거리,부산 부산진구 당감로25번길 11,,,yes,tzuyang-seomyeon-dongchuni-mandu.jpg
+07193125-d1c3-4f98-8ddc-e7c6e7ff0004,마라톤집,baekban-seomyeon-marathon-jib,true,서면,한식,부산 부산진구 가야대로784번길 54,051-806-5914,,yes,baekban-seomyeon-marathon-jib.jpg
+4b58e611-2a84-4e19-9e42-a121e4bc3b97,문화양곱창,sungsik-seomyeon-yanggopchang,true,서면,한식,부산 부산진구 지게골로 75,051-345-0001,,yes,sungsik-seomyeon-yanggopchang.jpg
+99e9aaf9-23df-4a5b-8ad2-a209bbab23d0,쌍둥이돼지국밥,saengdal-ssangdungyi-doejigukbap,true,서면,돼지국밥,부산 부산진구 서면문화로 27,051-123-4567,,yes,saengdal-ssangdungyi-doejigukbap.jpg
+889f4bc5-cb01-40d3-aa7b-45f319a675bf,원조할매낙지,samdae-seomyeon-wonjo-halmae-nakji,true,서면,한식,부산 부산진구 골드테마길 10,,,yes,samdae-seomyeon-wonjo-halmae-nakji.jpg
+67053b94-6d0f-4bf8-ba48-70dbbd44bd9b,토다공원,saengdal-jeonpo-toda-park,true,서면,일식,부산 부산진구 전포대로210번길 36 1층,051-808-7736,,yes,saengdal-jeonpo-toda-park.jpg
+6bb141ff-de22-42de-92bf-e541ee559463,한약방돼지국밥 형제식품,hanyakbang-gukbap-hyeongje-food,true,서면,돼지국밥,부산 부산진구 범천동 839-407,,,yes,hanyakbang-gukbap-hyeongje-food.jpg
+4bb57c0f-1571-4c30-9e28-e5e89d062d93,회국수할매집,hoeguksu-halmaejip,true,서면,한식,부산 부산진구 서면문화로 5,,,yes,hoeguksu-halmaejip.jpg
+98f115ea-7870-43fc-a152-ef0a8e910ff8,고등어다찌 연산본점,baekban-yeonje-godeungeo-datchi,true,연제,회,부산 연제구 고분로31번길 42,051-853-9374,,yes,baekban-yeonje-godeungeo-datchi.jpg
+d83abb1b-2f00-4593-a66f-8dc2e782afb9,국제밀면 본점,saengdal-yeonje-gukje-milmyeon,true,연제,밀면,부산 연제구 중앙대로1235번길 23-6,051-501-5507,,yes,saengdal-yeonje-gukje-milmyeon.jpg
+8332e69a-dfef-4ddb-b96d-07655cef7ef5,연지가양곱창,tzuyang-yeonje-yeonji-yanggopchang,true,연제,고기,부산 연제구 반송로 18-6 1층,,,yes,tzuyang-yeonje-yeonji-yanggopchang.jpg
+9b6f52ef-9514-4359-be60-b3612aa4201f,동방밀면,tzuyang-yeongdo-dongbang-milmyeon,true,영도,밀면,부산 영도구 꿈나무길 239,,,yes,tzuyang-yeongdo-dongbang-milmyeon.jpg
+8ea1a75f-56f9-427c-b93d-56ad7302804e,동삼동불짬뽕,tzuyang-yeongdo-dongsamdong-buljjampong,true,영도,중식,부산 영도구 동삼남로 21,,,yes,tzuyang-yeongdo-dongsamdong-buljjampong.jpg
+b159834b-1ebe-467e-aecc-e3f24fc4675b,사또분식,saengdal-yeongdo-sato-bunsik,true,영도,분식/길거리,부산 영도구 절영로35번길 39,,,yes,saengdal-yeongdo-sato-bunsik.jpg
+1fc41847-7c8e-4586-bcca-96570e959486,삼진어묵 본점,live-today-samjin-eomuk,true,영도,해산물,부산광역시 영도구 태종로99번길 36,,,yes,live-today-samjin-eomuk.jpg
+cd695bb9-fb12-4824-b6c7-de5dcc0de631,영도 중리해녀촌,baekban-yeongdo-jungri-haenyeochon,true,영도,해산물,부산 영도구 중리남로 2-35 영도해녀문화전시관 1층,051-419-4505,,yes,baekban-yeongdo-jungri-haenyeochon.jpg
+c20c35e8-ab16-4988-8cdb-3d43c5aa81d6,왔다식당,jeonhyun-yeongdo-watda-sikdang,true,영도,고기,부산 영도구 하나길 811,,,yes,jeonhyun-yeongdo-watda-sikdang.jpg
+df042825-7247-47be-860e-9fb2af554903,진주식당,baekban-yeongdo-jinju-sikdang,true,영도,한식,부산 영도구 대평로 16,051-412-6799,,yes,baekban-yeongdo-jinju-sikdang.jpg
+9fa8c2f5-452d-4bc0-9c8e-6f2079c7dd65,미쌤쌀빵,saengdal-haeundae-missaem-ssalbbang,true,해운대,베이커리/디저트,"부산 해운대구 센텀중앙로 145, 1층",,,yes,saengdal-haeundae-missaem-ssalbbang.jpg
+f6c666a1-565e-435a-a6ea-89b01955f013,불백고수락 센텀본점,saengdal-centum-bulbaek-gosurak,true,해운대,한식,부산 해운대구 센텀중앙로 90 205호,0507-1354-7574,,yes,saengdal-centum-bulbaek-gosurak.jpg
+6cf98194-e08c-4af5-9495-6bbe7957a70c,빨간떡볶이,tzuyang-haeundae-ppalgan-tteokbokki,true,해운대,분식/길거리,부산 해운대구 우동1로20번가길 4 1층,,,yes,tzuyang-haeundae-ppalgan-tteokbokki.jpg
+d8dc7a0b-da48-411d-ad76-e9821b358563,상국이네,tzuyang-haeundae-sanggukine,true,해운대,분식/길거리,부산 해운대구 구남로41번길 40-1 (해운대전통시장),,,yes,tzuyang-haeundae-sanggukine.jpg
+081ea8e9-c0e1-49b2-bcc8-90369c730855,속씨원한 대구탕 해운대 본점,sokssiwonhan-daegutang-haeundae,true,해운대,해산물,부산 해운대구 해운대로570번길 11 2층,,,yes,sokssiwonhan-daegutang-haeundae.jpg
+5dc190c3-aa4c-4a5e-ae50-f829653a6fa4,아미산,saengdal-haeundae-amisan,true,해운대,중식,부산 해운대구 해운대해변로 154 마리나센터 8층,0507-1359-0141,,yes,saengdal-haeundae-amisan.jpg
+cc75a2f8-52cd-4c3b-a34d-7fac494e8a0b,양가네 양곱창,baekban-haeundae-yangs-yanggopchang,true,해운대,고기,부산 해운대구 구남로8번길 7-3,051-714-9515,,yes,baekban-haeundae-yangs-yanggopchang.jpg
+27629e61-cd14-4f00-a838-3f97298b12e1,청사포 회센터,hibab-cheongsa-hoe-center,true,해운대,회,부산 해운대구 청사포로 55,051-678-9012,,yes,hibab-cheongsa-hoe-center.jpg
+ce5f4ac1-520e-4ffe-b50f-12372d4d9554,초필살돼지구이 해운대본점,tzuyang-haeundae-chopilsal,true,해운대,고기,부산 해운대구 마린시티3로 23 벽산E오렌지프라자 A동 107호,,,yes,tzuyang-haeundae-chopilsal.jpg
+83060508-2554-49cf-bff0-2c7217a55561,광안리 낙곱새,matnyuk-gwangalli-nakgopsae,false,광안리,한식,부산 수영구 수영로 521,051-901-2345,,yes,matnyuk-gwangalli-nakgopsae.jpg
+2a67f21f-54a0-4283-9973-1929a0aa2912,광안리 조개구이 포차,hibab-gwangalli-jogae-gui-pocha,false,광안리,해산물,부산 수영구 광안해변로 190,,,yes,hibab-gwangalli-jogae-gui-pocha.jpg
+dfb1543a-33d3-4de2-9d9d-9e33708cb48f,광안리 참치회,hibab-gwangalli-chamchi-hoe,false,광안리,회,부산 수영구 광안해변로 219,051-234-8765,,yes,hibab-gwangalli-chamchi-hoe.jpg
+4af7b487-eaf1-45b4-8511-27e6089fd604,기장 대게찜 본점,matnyuk-gijang-daege-jjim,false,기장,해산물,부산 기장군 기장읍 기장대로 664,051-456-7890,,yes,matnyuk-gijang-daege-jjim.jpg
+0106a35c-6674-4c09-9963-4fb131f7449f,기장 멸치쌈밥,samdae-gijang-myeolchi-ssambap,false,기장,한식,부산 기장군 일광읍 이천로 45,051-890-1234,,yes,samdae-gijang-myeolchi-ssambap.jpg
+02114234-4586-4813-bac8-7e1697f492f2,기장 전복죽,baekban-gijang-jeonbok-juk,false,기장,해산물,부산 기장군 기장읍 차성로 149,051-567-2345,,yes,baekban-gijang-jeonbok-juk.jpg
+a84edf85-7e49-4822-851c-1a3d0fb9003e,남지라면천국,saengdal-namgu-namji-ramyeon,false,남구,라면,부산 남구 문현금융로18번길 6-7,,,yes,saengdal-namgu-namji-ramyeon.jpg
+895c1dbb-2ee3-44f9-90f1-bb5fe89c41fa,남포동 씨앗빵 본점,pani-nampo-ssiat-ppang,false,남포동,베이커리/디저트,부산 중구 보수대로 14,,,yes,pani-nampo-ssiat-ppang.jpg
+f49d8a47-a458-4636-98f6-9b244c80e383,자갈치 비빔당면,tzuyang-jagalchi-bibim-dangmyeon,false,남포동,분식/길거리,부산 중구 자갈치로 52,,,yes,tzuyang-jagalchi-bibim-dangmyeon.jpg
+dddc9249-aee2-480a-ad9b-2b7871f3071e,동래 곱창전골,saengdal-dongnae-gopchang-jungol,false,동래,한식,부산 동래구 명장동 345,051-123-9876,,yes,saengdal-dongnae-gopchang-jungol.jpg
+fdb05ce6-5755-4b40-88ee-ea206ef596ee,범어사 산채비빔밥,baekban-beomeosa-sanche-bibimbap,false,동래,한식,부산 금정구 청룡동 546,051-508-7777,,yes,baekban-beomeosa-sanche-bibimbap.jpg
+7f317fe2-92c3-4af5-bf32-5955ff85e32f,서면 소금구이 명가,sungsik-seomyeon-sogeumgui,false,서면,고기,부산 부산진구 서전로 55,051-789-0123,,yes,sungsik-seomyeon-sogeumgui.jpg
+712dff4f-dd54-4a5b-b25e-f0ec710d204b,전포 베트남쌀국수,jeonhyun-jeonpo-vietnam-ssal-guksu,false,서면,아시안,부산 부산진구 전포대로 173,,,yes,jeonhyun-jeonpo-vietnam-ssal-guksu.jpg
+7cd2953a-5f7b-481d-923e-30e7f3525561,해운대 수제버거,tzuyang-haeundae-sujeburger,false,해운대,버거/양식,부산 해운대구 중동1로 35,,,yes,tzuyang-haeundae-sujeburger.jpg
+d46a5c10-f620-40d0-a602-e49aacbc5999,해운대 해물파전,samdae-haeundae-haemul-pajeon,false,해운대,한식,부산 해운대구 해운대해변로 298,051-678-3456,,yes,samdae-haeundae-haemul-pajeon.jpg

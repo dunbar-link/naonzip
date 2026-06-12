@@ -1,30 +1,39 @@
 # 나온집 썸네일 업서트 결과
 
-- 모드: DRY-RUN
+- 모드: APPLY
 - 옵션: replace=false, include-private=false, only=(없음)
-- 입력 슬러그: 19, 결과: 19
-- status 분포: skipped_private=1, skipped_has_thumbnail=18
+- 입력 슬러그: 29, 결과: 29
+- status 분포: uploaded_new=29
 
 | slug | 식당명 | input | published | 기존썸네일 | action | status | 크기 | cache_bust | note |
 |---|---|---|---|---|---|---|---|---|---|
-| 2tv-gijang-kimmida-myeol | 김미다멸 본점 | 2tv-gijang-kimmida-myeol.webp | false | true | none | skipped_private | x | no |  |
-| 2tv-gumjeong-geumjukheon | 금죽헌 금정산성점 | 2tv-gumjeong-geumjukheon.jpg | true | true | none | skipped_has_thumbnail | 900x900 | no | 중복확장자 무시: 2tv-gumjeong-geumjukheon.webp |
-| 2tv-gwangan-kuromatsu | 구로마쯔 | 2tv-gwangan-kuromatsu.webp | true | true | none | skipped_has_thumbnail | 1200x600 | no |  |
-| baekban-namgu-chossijib | 궁중해물탕 조씨집 대연본점 | baekban-namgu-chossijib.webp | true | true | none | skipped_has_thumbnail | 1024x1280 | no |  |
-| baekban-seomyeon-masan-sikdang | 마산식당 | baekban-seomyeon-masan-sikdang.webp | true | true | none | skipped_has_thumbnail | 1280x852 | no |  |
-| baekban-yeongdo-gamasot-doejigukbap | 가마솥돼지국밥 영도점 | baekban-yeongdo-gamasot-doejigukbap.webp | true | true | none | skipped_has_thumbnail | 1280x1280 | no |  |
-| hibab-haeundae-amsogalbi | 해운대 암소갈비집 | hibab-haeundae-amsogalbi.webp | true | true | none | skipped_has_thumbnail | 800x449 | no |  |
-| jeonhyun-gijang-haenyeo-halmaejib | 5번 친구해녀할매집 | jeonhyun-gijang-haenyeo-halmaejib.webp | true | true | none | skipped_has_thumbnail | 960x1280 | no |  |
-| live-today-donggu-halme-gimbap | 할매김밥 | live-today-donggu-halme-gimbap.jpg | true | true | none | skipped_has_thumbnail | 900x900 | no | 중복확장자 무시: live-today-donggu-halme-gimbap.webp |
-| live-today-suyeong-geumsin-jeonseon-sangyusibi | 금신전선 상유십이 | live-today-suyeong-geumsin-jeonseon-sangyusibi.jpg | true | true | none | skipped_has_thumbnail | 1280x1218 | no | 중복확장자 무시: live-today-suyeong-geumsin-jeonseon-sangyusibi.webp |
-| matnyuk-seomyeon-songjeong-3dae-gukbap | 송정3대국밥 | matnyuk-seomyeon-songjeong-3dae-gukbap.webp | true | true | none | skipped_has_thumbnail | 1280x960 | no |  |
-| naeho-naengmyeon | 내호냉면 | naeho-naengmyeon.webp | true | true | none | skipped_has_thumbnail | 900x904 | no |  |
-| saengdal-sasang-peanut-bbangatgan | 피넛빵앗간 | saengdal-sasang-peanut-bbangatgan.webp | true | true | none | skipped_has_thumbnail | 900x978 | no |  |
-| saengdal-suyeong-sushibashiku | 스시바시쿠 | saengdal-suyeong-sushibashiku.webp | true | true | none | skipped_has_thumbnail | 900x676 | no |  |
-| samdae-haeundae-wonjo-halmae-gukbap | 해운대원조할매국밥 | samdae-haeundae-wonjo-halmae-gukbap.webp | true | true | none | skipped_has_thumbnail | 1024x1280 | no |  |
-| samdaecheonwang-shinbalwon | 신발원 | samdaecheonwang-shinbalwon.webp | true | true | none | skipped_has_thumbnail | 1024x1280 | no |  |
-| sungsik-gwangalli-jinmi-eonyang-bulgogi | 진미언양불고기 | sungsik-gwangalli-jinmi-eonyang-bulgogi.webp | true | true | none | skipped_has_thumbnail | 400x280 | no | 작은 이미지 경고(400x280) |
-| tzuyang-gwangalli-darijip | 다리집 | tzuyang-gwangalli-darijip.webp | true | true | none | skipped_has_thumbnail | 600x400 | no |  |
-| wonjo-gaya-milmyeon | 원조가야밀면 | wonjo-gaya-milmyeon.webp | true | true | none | skipped_has_thumbnail | 1024x1280 | no |  |
+| 2tv-bupyeong-kkang-dwaehu | 깡돼후 | 2tv-bupyeong-kkang-dwaehu.jpg | true | false | new | uploaded_new | 1280x960 | no |  |
+| baekban-nampo-18-wandang | 18번완당집 | baekban-nampo-18-wandang.png | true | false | new | uploaded_new | 1024x939 | no |  |
+| baekban-seogu-yetnal-guksujip | 옛날국수집 | baekban-seogu-yetnal-guksujip.jpg | true | false | new | uploaded_new | 1023x1280 | no |  |
+| baekhwa-yanggopchang-1ho | 백화양곱창 1호 | baekhwa-yanggopchang-1ho.jpg | true | false | new | uploaded_new | 1023x1081 | no |  |
+| bapsang-gijang-haebyeon-jipbul-gomjangeo | 해변짚불곰장어 | bapsang-gijang-haebyeon-jipbul-gomjangeo.jpg | true | false | new | uploaded_new | 970x776 | no |  |
+| ddoganjip-pungnyeon-gopchang | 풍년곱창 | ddoganjip-pungnyeon-gopchang.jpg | true | false | new | uploaded_new | 1024x1280 | no |  |
+| jeonhyun-gwangalli-biwa-suljan | 비와술잔 | jeonhyun-gwangalli-biwa-suljan.jpg | true | false | new | uploaded_new | 1280x853 | no |  |
+| jeonhyun-gwangalli-yeonhap-hoejip | 연합횟집 | jeonhyun-gwangalli-yeonhap-hoejip.jpg | true | false | new | uploaded_new | 1280x1280 | no |  |
+| jeonhyun-namgu-suta-hyemi-kalguksu | 수타혜미칼국수 | jeonhyun-namgu-suta-hyemi-kalguksu.jpg | true | false | new | uploaded_new | 880x660 | no |  |
+| jeonhyun-nampo-mullebanga-jeukseokgui | 물레방아 즉석구이 | jeonhyun-nampo-mullebanga-jeukseokgui.jpg | true | false | new | uploaded_new | 900x1200 | no |  |
+| kimyusun-daegu-bbol-jjim | 김유순대구뽈찜전문점 | kimyusun-daegu-bbol-jjim.jpg | true | false | new | uploaded_new | 1280x960 | no |  |
+| mulkkong-sikdang | 물꽁식당 | mulkkong-sikdang.jpg | true | false | new | uploaded_new | 1200x801 | no |  |
+| oneuln-nampo-sammi-jip | 삼미집 | oneuln-nampo-sammi-jip.jpg | true | false | new | uploaded_new | 1080x1000 | no |  |
+| pungja-namgu-hapcheon-gukbap | 합천국밥집 | pungja-namgu-hapcheon-gukbap.jpg | true | false | new | uploaded_new | 1280x1280 | no |  |
+| pungja-nampo-milyangjib | 밀양집 | pungja-nampo-milyangjib.jpg | true | false | new | uploaded_new | 1280x1280 | no |  |
+| saengbang-gwangalli-sanhae-hoejip | 산해횟집 | saengbang-gwangalli-sanhae-hoejip.jpg | true | false | new | uploaded_new | 1024x1280 | no |  |
+| saengdal-geumjeong-songs-bakery | 송스 베이커리 | saengdal-geumjeong-songs-bakery.jpg | true | false | new | uploaded_new | 960x1280 | no |  |
+| saengdal-gijang-ilgwangdang | 일광당 | saengdal-gijang-ilgwangdang.jpg | true | false | new | uploaded_new | 1280x853 | no |  |
+| saengdal-gijang-jeil-bunsik | 제일분식 | saengdal-gijang-jeil-bunsik.jpg | true | false | new | uploaded_new | 889x1280 | no |  |
+| saengdal-gwangalli-boulangerie-lassence | 블랑제리 라센 | saengdal-gwangalli-boulangerie-lassence.jpg | true | false | new | uploaded_new | 1280x1280 | no |  |
+| saengdal-gwangalli-jin-doejigomtang | 진돼지곰탕 | saengdal-gwangalli-jin-doejigomtang.jpg | true | false | new | uploaded_new | 1280x853 | no |  |
+| saengdal-namgu-daeyeon-milmyeon | 대연밀면 | saengdal-namgu-daeyeon-milmyeon.jpg | true | false | new | uploaded_new | 1114x786 | no |  |
+| saengdal-saha-cheramie | 쉐라미과자점 | saengdal-saha-cheramie.jpg | true | false | new | uploaded_new | 1023x1280 | no |  |
+| saengdal-suyeong-dongyang-sarada-namcheon | 동양사라다 남천본점 | saengdal-suyeong-dongyang-sarada-namcheon.jpg | true | false | new | uploaded_new | 900x1200 | no |  |
+| subyeon-choego-doejigukbap-minrak | 수변최고돼지국밥 민락본점 | subyeon-choego-doejigukbap-minrak.jpg | true | false | new | uploaded_new | 1280x1280 | no |  |
+| sungsik-gwangalli-geumson-1983 | 금손1983 | sungsik-gwangalli-geumson-1983.jpg | true | false | new | uploaded_new | 1280x828 | no |  |
+| sungsik-gwangalli-haejin-anago | 해진아나고 | sungsik-gwangalli-haejin-anago.jpg | true | false | new | uploaded_new | 1280x960 | no |  |
+| tzuyang-gangseo-samseong-galmijogae | 삼성갈미조개 | tzuyang-gangseo-samseong-galmijogae.jpg | true | false | new | uploaded_new | 1280x853 | no |  |
+| tzuyang-nampo-ssiat-hotteok | 남포동 씨앗호떡 | tzuyang-nampo-ssiat-hotteok.jpeg | true | false | new | uploaded_new | 740x612 | no |  |
 
-※ dry-run 입니다. 실제 반영은 --apply 를 붙여 실행하세요.
