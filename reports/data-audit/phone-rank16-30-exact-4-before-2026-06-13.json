@@ -1,0 +1,206 @@
+{
+  "generatedAt": "2026-06-13T13:45:46.123Z",
+  "note": "phone 16~30위 EXACT 4곳 변경 전 전체값 + 보호대상 15곳 핵심값. 비밀키 미포함.",
+  "rows": {
+    "hoeguksu-halmaejip": {
+      "id": "4bb57c0f-1571-4c30-9e28-e5e89d062d93",
+      "slug": "hoeguksu-halmaejip",
+      "name": "회국수할매집",
+      "area": "서면",
+      "address": "부산 부산진구 서면문화로 5",
+      "lat": 35.160999,
+      "lng": 129.055556,
+      "category": "한식",
+      "main_menu": "회국수",
+      "price_text": "회국수 10,000원대",
+      "phone": null,
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/hoeguksu-halmaejip/main.webp",
+      "creator_name": null,
+      "program_name": "식객 허영만의 백반기행",
+      "episode_title": null,
+      "broadcast_date": "2017-05-08",
+      "description": null,
+      "video_url": "https://programs.sbs.co.kr/culture/lifemaster/vod/55733/cu0207f0057200",
+      "kakao_map_url": "https://map.kakao.com/?map_type=TYPE_MAP&itemId=11260858&q=%ED%9A%8C%EA%B5%AD%EC%88%98%ED%95%A0%EB%A7%A4%EC%A7%91&urlLevel=3&urlX=968710&urlY=466468",
+      "naver_map_url": null,
+      "tmap_url": null,
+      "source_type": "tv",
+      "source_title": "식객 허영만의 백반기행",
+      "is_published": true,
+      "created_at": "2026-05-17T07:45:13.301972+00:00"
+    },
+    "samdae-seomyeon-wonjo-halmae-nakji": {
+      "id": "889f4bc5-cb01-40d3-aa7b-45f319a675bf",
+      "slug": "samdae-seomyeon-wonjo-halmae-nakji",
+      "name": "원조할매낙지",
+      "area": "서면",
+      "address": "부산 부산진구 골드테마길 10",
+      "lat": 35.1431201,
+      "lng": 129.0600424,
+      "category": "한식",
+      "main_menu": "낙곱새",
+      "price_text": "메뉴별 상이 (가격 확인 필요)",
+      "phone": null,
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/samdae-seomyeon-wonjo-halmae-nakji/main.webp",
+      "creator_name": null,
+      "program_name": "백종원의 3대 천왕",
+      "episode_title": null,
+      "broadcast_date": "2015-10-02",
+      "description": "부산진구 범일동 조방낙지 거리 55년 노포 백년가게. 낙곱새 원조로 알려진 식당. 백종원의 3대 천왕에 소개됨.",
+      "video_url": "https://programs.sbs.co.kr/enter/3kings/vod/53280/22000144385",
+      "kakao_map_url": "https://place.map.kakao.com/8035148",
+      "naver_map_url": null,
+      "tmap_url": null,
+      "source_type": "tv",
+      "source_title": "백종원의 3대 천왕",
+      "is_published": true,
+      "created_at": "2026-05-19T06:52:54.948326+00:00"
+    },
+    "iganae-tteokbokki": {
+      "id": "168c8089-fc82-4c44-8009-fa9e80158d0d",
+      "slug": "iganae-tteokbokki",
+      "name": "이가네떡볶이 본점",
+      "area": "남포동",
+      "address": "부산 중구 부평1길 48",
+      "lat": 35.1014825667343,
+      "lng": 129.025952334737,
+      "category": "분식/길거리",
+      "main_menu": "떡볶이",
+      "price_text": "떡볶이 5,000원 / 떡볶이튀김세트 5,000원 / 어묵 3개 3,000원 / 튀김 5,000원 / 핫도그 1,000원",
+      "phone": null,
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/iganae-tteokbokki/main.webp",
+      "creator_name": null,
+      "program_name": "백종원의 3대천왕",
+      "episode_title": "이가네떡볶이 방송 소개",
+      "broadcast_date": "2015-09-11",
+      "description": "부산 부평깡통시장 안에서 무즙이 들어간 양념과 쫄깃한 떡으로 유명한 대표 떡볶이 맛집입니다.\n",
+      "video_url": "https://programs.sbs.co.kr/enter/3kings/clip/53282/22000142252",
+      "kakao_map_url": "https://place.map.kakao.com/20204736",
+      "naver_map_url": null,
+      "tmap_url": null,
+      "source_type": "tv",
+      "source_title": "백종원의 3대천왕",
+      "is_published": true,
+      "created_at": "2026-05-17T03:24:09.147594+00:00"
+    },
+    "saengdal-geumjeong-songs-bakery": {
+      "id": "534984b5-7b03-4945-9f1e-0d88fd57b7a3",
+      "slug": "saengdal-geumjeong-songs-bakery",
+      "name": "송스 베이커리",
+      "area": "기타",
+      "address": "부산 금정구 수림로 26",
+      "lat": 35.2392341,
+      "lng": 129.0804266,
+      "category": "베이커리/디저트",
+      "main_menu": "찹쌀도넛",
+      "price_text": "메뉴별 상이 (가격 확인 필요)",
+      "phone": null,
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/saengdal-geumjeong-songs-bakery/main.webp",
+      "creator_name": null,
+      "program_name": "생활의달인",
+      "episode_title": "빵의 전쟁2",
+      "broadcast_date": "2024-12-09",
+      "description": "금정구 대통령상 수상 제과 명인의 베이커리 카페. 찹쌀도넛·고로케·소금빵 대표. 생활의달인 빵의 전쟁2에 소개됨.",
+      "video_url": "https://programs.sbs.co.kr/culture/lifemaster/clip/55731/OC473025008",
+      "kakao_map_url": "https://place.map.kakao.com/1678402588",
+      "naver_map_url": null,
+      "tmap_url": null,
+      "source_type": "tv",
+      "source_title": "생활의달인",
+      "is_published": true,
+      "created_at": "2026-05-17T11:43:22.599544+00:00"
+    }
+  },
+  "protected": {
+    "sokssiwonhan-daegutang-haeundae": {
+      "name": "속씨원한 대구탕 해운대 본점",
+      "phone": null,
+      "address": "부산 해운대구 해운대로570번길 11 2층",
+      "kakao_map_url": "https://map.kakao.com/?urlX=990988.0000004247&urlY=467668.00000001094&urlLevel=3&itemId=13299874&q=%EC%86%8D%EC%94%A8%EC%9B%90%ED%95%9C%20%EB%8C%80%EA%B5%AC%ED%83%95%20%ED%95%B4%EC%9A%B4%EB%8C%80%20%EB%B3%B8%EC%A0%90&srcid=13299874&map_type=TYPE_MAP"
+    },
+    "sungsik-gwangalli-geumson-1983": {
+      "name": "금손1983",
+      "phone": null,
+      "address": "부산 수영구 수영로680번길 54 1층",
+      "kakao_map_url": "https://place.map.kakao.com/855139094"
+    },
+    "sungsik-gwangalli-haejin-anago": {
+      "name": "해진아나고",
+      "phone": null,
+      "address": "부산 수영구 광서로10번길 47",
+      "kakao_map_url": "http://place.map.kakao.com/22205150"
+    },
+    "tzuyang-gwangalli-darijip": {
+      "name": "다리집",
+      "phone": null,
+      "address": "부산 수영구 남천바다로10번길 70 101호",
+      "kakao_map_url": "http://place.map.kakao.com/8849564"
+    },
+    "tzuyang-haeundae-sanggukine": {
+      "name": "상국이네",
+      "phone": null,
+      "address": "부산 해운대구 구남로41번길 40-1 (해운대전통시장)",
+      "kakao_map_url": "http://place.map.kakao.com/9089301"
+    },
+    "tzuyang-seomyeon-dongchuni-mandu": {
+      "name": "동춘이만두",
+      "phone": null,
+      "address": "부산 부산진구 당감로25번길 11",
+      "kakao_map_url": "http://place.map.kakao.com/27361254"
+    },
+    "baekban-yeongdo-gamasot-doejigukbap": {
+      "name": "가마솥돼지국밥 영도점",
+      "phone": null,
+      "address": "부산 영도구 절영로49번길 25",
+      "kakao_map_url": "https://place.map.kakao.com/15526776"
+    },
+    "ansungjae-yeonje-mapobonga": {
+      "name": "마포본가",
+      "phone": null,
+      "address": "부산 연제구 월드컵대로111번길 10",
+      "kakao_map_url": "https://place.map.kakao.com/17981818"
+    },
+    "jeonhyun-namgu-suta-hyemi-kalguksu": {
+      "name": "수타혜미칼국수",
+      "phone": null,
+      "address": "부산 남구 문현금융로 4",
+      "kakao_map_url": "http://place.map.kakao.com/26436780"
+    },
+    "wonjo-gaya-milmyeon": {
+      "name": "원조가야밀면",
+      "phone": null,
+      "address": "부산 사하구 낙동대로451번길 33",
+      "kakao_map_url": "https://place.map.kakao.com/505835564"
+    },
+    "hanyakbang-gukbap-hyeongje-food": {
+      "name": "한약방돼지국밥 형제식품",
+      "phone": null,
+      "address": "부산 부산진구 범천동 839-407",
+      "kakao_map_url": "https://map.kakao.com/link/search/한약방돼지국밥%20형제식품"
+    },
+    "jeonhyun-gwangalli-biwa-suljan": {
+      "name": "비와술잔",
+      "phone": null,
+      "address": "부산 수영구 황령대로489번길 49-8 1층",
+      "kakao_map_url": "https://place.map.kakao.com/1848137369"
+    },
+    "saengdal-gwangalli-boulangerie-lassence": {
+      "name": "블랑제리 라센",
+      "phone": null,
+      "address": "부산 수영구 남천바다로9번길 8",
+      "kakao_map_url": "http://place.map.kakao.com/748130607"
+    },
+    "tzuyang-nampo-ssiat-hotteok": {
+      "name": "남포동 씨앗호떡",
+      "phone": null,
+      "address": "부산 중구 광복로 56",
+      "kakao_map_url": "https://place.map.kakao.com/26889472"
+    },
+    "saengdal-seomyeon-dammiok": {
+      "name": "담미옥",
+      "phone": null,
+      "address": "부산 부산진구 복지로 15 개금포르투나 103호",
+      "kakao_map_url": null
+    }
+  }
+}
