@@ -45,3 +45,6 @@ next-env.d.ts
 
 # local sensitive files
 카카오 키.txt
+
+# ops-loop: 매 실행 덮어쓰는 로컬 운영 점검 산출물(폴더 전체가 아니라 이 파일만 제외)
+/reports/ops-loop/latest.md
