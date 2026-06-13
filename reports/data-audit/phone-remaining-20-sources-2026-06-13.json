@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-06-13",
+  "verified_date": "2026-06-13",
+  "mode": "read-only",
+  "note": "phone 누락 잔여 20곳 통합 재분류. 기존 감사 후보 종합 + Kakao 단독 항목만 네이버/다이닝 2차 추가. DB 미수정. 실제 API 키/env 미포함.",
+  "summary": { "target": 20, "PHONE_READY": 6, "DATA_CORRECTION_FIRST": 2, "PHONE_NOT_APPLICABLE": 1, "MANUAL_REVIEW": 10, "NO_MATCH": 1, "CLOSED_OR_MOVED": 0, "BLOCKED": 0 },
+  "restaurants": [
+    { "slug": "sokssiwonhan-daegutang-haeundae", "name": "속씨원한 대구탕 해운대 본점", "work_type": "PHONE_READY", "recommended_phone": "051-731-4222", "sources": ["Kakao Local API", "식신", "다이닝코드", "트립닷컴"], "note": "미포본점(051-744-0238) 구분. kakao_map_url 검색링크는 지도교정 별도" },
+    { "slug": "tzuyang-yeonje-yeonji-yanggopchang", "name": "연지가양곱창", "work_type": "PHONE_READY", "recommended_phone": "051-853-2345", "sources": ["Kakao Local API", "다이닝코드"] },
+    { "slug": "baekban-seogu-yetnal-guksujip", "name": "옛날국수집", "work_type": "PHONE_READY", "recommended_phone": "051-241-7454", "sources": ["Kakao Local API", "다이닝코드", "먹자"], "note": "제주·용인·대구 동명점 구분" },
+    { "slug": "tzuyang-seomyeon-dongchuni-mandu", "name": "동춘이만두", "work_type": "PHONE_READY", "recommended_phone": "051-896-1869", "sources": ["Kakao Local API", "다이닝코드"], "note": "인천 동춘 동명점 구분" },
+    { "slug": "jeonhyun-namgu-suta-hyemi-kalguksu", "name": "수타혜미칼국수", "work_type": "PHONE_READY", "recommended_phone": "051-635-8587", "sources": ["Kakao Local API", "다이닝코드", "전현무계획2 관련"] },
+    { "slug": "saengdal-yeongdo-sato-bunsik", "name": "사또분식", "work_type": "PHONE_READY", "recommended_phone": "051-415-3764", "sources": ["Kakao Local API", "다이닝코드", "여행의기술", "polle"], "note": "Kakao place 주소 37 vs DB 39 경미차" },
+    { "slug": "baekban-yeongdo-gamasot-doejigukbap", "name": "가마솥돼지국밥 영도점", "work_type": "DATA_CORRECTION_FIRST", "phone_candidate": "051-413-8609", "issues": ["DB주소 절영로49번길 25 vs Kakao place 남항시장길 350 충돌", "영도 동명 가마솥 다수"], "recommendation": "주소·Kakao 교정 선행 후 phone+지도 동시" },
+    { "slug": "saengdal-seomyeon-dammiok", "name": "담미옥", "work_type": "DATA_CORRECTION_FIRST", "phone_candidate": null, "issues": ["kakao_map_url null, 개금 담미옥 Kakao keyword 미출현(중구 해관로 담미옥 별개)"], "recommendation": "Kakao place 수동 확인 후 지도+phone" },
+    { "slug": "tzuyang-nampo-ssiat-hotteok", "name": "남포동 씨앗호떡", "work_type": "PHONE_NOT_APPLICABLE", "issues": ["BIF광장 거리 노점 통칭, 단일 점포 아님"], "recommendation": "운영점검 phone 예외 설계 검토(규칙 미변경)" },
+    { "slug": "hanyakbang-gukbap-hyeongje-food", "name": "한약방돼지국밥 형제식품", "work_type": "MANUAL_REVIEW", "phone_candidates": ["051-646-3102(지역)", "0507-1329-5026(안심)"], "issues": ["끝자리 불일치", "kakao_map_url 검색링크(place 연결 필요)", "주소는 동일장소 확정(범천동839-407=자유평화로21-11)"], "manual": "네이버 지역번호 + kakao place 연결" },
+    { "slug": "jeonhyun-gwangalli-biwa-suljan", "name": "비와술잔", "work_type": "MANUAL_REVIEW", "phone_candidates": ["051-621-2540(Kakao 단독)"], "issues": ["2차 출처 미확보(예약제 포차)"], "manual": "네이버지도" },
+    { "slug": "saengdal-gwangalli-boulangerie-lassence", "name": "블랑제리 라센", "work_type": "MANUAL_REVIEW", "phone_candidates": ["051-710-1417(Kakao 단독)"], "issues": ["2차 출처 미확보(상호 노출 약함)"], "manual": "네이버지도·공식SNS" },
+    { "slug": "sungsik-gwangalli-geumson-1983", "name": "금손1983", "work_type": "MANUAL_REVIEW", "phone_candidates": ["051-711-1983", "051-921-1983"], "issues": ["가운데자리 충돌"], "manual": "네이버지도" },
+    { "slug": "sungsik-gwangalli-haejin-anago", "name": "해진아나고", "work_type": "MANUAL_REVIEW", "phone_candidates": ["010-8599-1090(개인폰)", "051-757-9262(지역)"], "issues": ["개인폰 vs 지역번호 — 개인폰 추천 금지"], "manual": "네이버지도(지역번호 우선)" },
+    { "slug": "tzuyang-gwangalli-darijip", "name": "다리집", "work_type": "MANUAL_REVIEW", "phone_candidates": ["010-8898-6681(개인폰)"], "issues": ["개인폰만, 지역 대표번호 부재"], "manual": "네이버지도" },
+    { "slug": "tzuyang-haeundae-sanggukine", "name": "상국이네", "work_type": "MANUAL_REVIEW", "phone_candidates": ["051-742-9001", "070-7776-7715"], "issues": ["지역 vs 070 인터넷전화 충돌", "센텀점 별개"], "manual": "네이버지도" },
+    { "slug": "ansungjae-yeonje-mapobonga", "name": "마포본가", "work_type": "MANUAL_REVIEW", "phone_candidates": ["051-867-9252", "0507-1478-9253(안심)"], "issues": ["끝자리 9252/9253 불일치", "수원·서울 마포본가 별개"], "manual": "네이버지도" },
+    { "slug": "pungja-namgu-hapcheon-gukbap", "name": "합천국밥집", "work_type": "MANUAL_REVIEW", "phone_candidates": ["051-622-4898(Kakao 용호로237)", "051-628-4898(웹 용호로235=DB)"], "issues": ["가운데자리 충돌"], "manual": "네이버지도" },
+    { "slug": "saengsaeng-sasang-jurye-suyuk-kalguksu", "name": "주례수육칼국수 2호점", "work_type": "MANUAL_REVIEW", "phone_candidates": ["0502-5553-2589(안심)", "051-312-4628(지역)"], "issues": ["안심 vs 지역 끝자리 불일치"], "manual": "네이버지도(지역번호 우선)" },
+    { "slug": "wonjo-gaya-milmyeon", "name": "원조가야밀면", "work_type": "NO_MATCH", "phone_candidate": null, "issues": ["사하구 하단점 전화 Kakao·웹 미확보, 동명 다지점 혼입 위험"], "manual": "해당 지점 직접 확인" }
+  ]
+}
