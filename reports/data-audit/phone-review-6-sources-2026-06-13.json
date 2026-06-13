@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-06-13",
+  "verified_date": "2026-06-13",
+  "mode": "read-only",
+  "note": "phone 감사 REVIEW 6곳 2차 출처 검증. DB 미수정. 실제 API 키/env 미포함.",
+  "summary": { "target": 6, "EXACT_MATCH": 3, "REVIEW": 3, "NO_MATCH": 0, "CLOSED_OR_MOVED": 0, "BLOCKED": 0 },
+  "restaurants": [
+    { "slug": "saengdal-gwangalli-baegil-pyeongnaeng", "name": "백일평냉", "classification": "EXACT_MATCH", "recommended_phone": "051-625-5515",
+      "sources": [ {"name": "Kakao Local API", "type": "지도", "phone": "051-625-5515"}, {"name": "식신", "type": "맛집플랫폼", "phone": "0507-1419-5515(안심)"}, {"name": "미쉐린 공식 인스타", "type": "공식SNS", "note": "빕구르망, 영업중"} ],
+      "resolution": "0507-1419-5515는 네이버 안심번호이며 끝자리 5515가 Kakao 지역번호와 동일(동일업소 착신) → 지역번호 051-625-5515 우선" },
+    { "slug": "tzuyang-nampo-ijaemo-pizza", "name": "이재모피자 본점", "classification": "EXACT_MATCH", "recommended_phone": "051-255-9494",
+      "sources": [ {"name": "Kakao Local API", "type": "지도", "phone": "051-255-9494"}, {"name": "나무위키·비짓부산·캐치테이블·공식 인스타", "type": "복합", "phone": "051-255-9494"} ],
+      "resolution": "본점 051-255-9494 다수 일치. 051-245-1478은 1478계열 지점(부산역466·전포818·광복2호246·서면3호802)과 혼동된 값 → 본점 아님" },
+    { "slug": "hanyakbang-gukbap-hyeongje-food", "name": "한약방돼지국밥 형제식품", "classification": "REVIEW", "recommended_phone": "051-646-3102",
+      "sources": [ {"name": "Kakao Local API", "type": "지도", "phone": "051-646-3102", "addr_road": "부산 부산진구 자유평화로 21-11"}, {"name": "다이닝코드·캐치테이블", "type": "복합", "phone": "0507-1329-5026(안심)"} ],
+      "address_check": "지번 범천동 839-407 ↔ 도로명 자유평화로 21-11 = 거리 1m 동일장소 확정",
+      "conflicts": ["Kakao 지역번호 051-646-3102 vs 웹 0507-1329-5026 안심번호(끝자리 불일치) — 착신관계 불명확, 지역번호 2차 출처 부재"] },
+    { "slug": "baekhwa-yanggopchang-1ho", "name": "백화양곱창 1호", "classification": "EXACT_MATCH", "recommended_phone": "051-245-0105",
+      "sources": [ {"name": "Kakao Local API", "type": "지도", "phone": "051-245-0105", "note": "place '백화양곱창 1호' 2061622071"}, {"name": "다이닝코드·대한민국구석구석", "type": "복합", "phone": "051-245-0105"}, {"name": "식신", "type": "맛집플랫폼", "phone": "051-257-3352"} ],
+      "resolution": "Kakao 1호 + 다이닝 + 구석구석 051-245-0105 일치(자갈치 양곱창 골목 호수 공유 대표번호). 식신 051-257-3352는 타호수/구번호" },
+    { "slug": "jeonhyun-gwangalli-biwa-suljan", "name": "비와술잔", "classification": "REVIEW", "recommended_phone": "051-621-2540",
+      "sources": [ {"name": "Kakao Local API", "type": "지도", "phone": "051-621-2540"} ],
+      "conflicts": ["예약제 다찌 포차로 웹·다이닝코드 전화 미노출 — 2차 출처 미확보(네이버지도 직접 확인 필요)"] },
+    { "slug": "saengdal-gwangalli-boulangerie-lassence", "name": "블랑제리 라센", "classification": "REVIEW", "recommended_phone": "051-710-1417",
+      "sources": [ {"name": "Kakao Local API", "type": "지도", "phone": "051-710-1417"} ],
+      "conflicts": ["웹 검색 결과 없음(상호 노출 약함) — 2차 출처 미확보(네이버지도·공식 SNS 직접 확인 필요)"] }
+  ]
+}
