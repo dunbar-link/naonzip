@@ -1,0 +1,583 @@
+{
+  "generated_at": "2026-06-13T09:49:28.242Z",
+  "date": "2026-06-13",
+  "mode": "read-only",
+  "note": "Kakao raw 재조사. 최종 분류는 audit md 참조(웹조사 종합).",
+  "restaurants": {
+    "jeonhyun-gwangalli-yeonhap-hoejip": {
+      "db": {
+        "slug": "jeonhyun-gwangalli-yeonhap-hoejip",
+        "name": "연합횟집",
+        "area": "광안리",
+        "address": "부산 수영구 남천1동 192",
+        "phone": null,
+        "lat": 35.1404596901443,
+        "lng": 129.109762929823,
+        "kakao_map_url": null
+      },
+      "used": [
+        {
+          "type": "keyword",
+          "q": "연합횟집 부산",
+          "http": 200,
+          "count": 1
+        },
+        {
+          "type": "keyword",
+          "q": "연합횟집 남천동",
+          "http": 200,
+          "count": 1
+        }
+      ],
+      "cands": [
+        {
+          "id": "18833899",
+          "place_name": "연합횟집",
+          "road": "부산 수영구 황령대로489번길 59",
+          "jibun": "부산 수영구 남천동 193",
+          "phone": "051-623-6039",
+          "x": "129.109786937943",
+          "y": "35.1403230174367",
+          "lat": 35.1403230174367,
+          "lng": 129.109786937943,
+          "place_url": "http://place.map.kakao.com/18833899",
+          "cat": "음식점 > 한식 > 해물,생선 > 회",
+          "nm": "EXACT",
+          "am": "PARTIAL",
+          "pm": "MISSING",
+          "inBusan": true,
+          "dist": 15,
+          "score": 4.3
+        }
+      ],
+      "addrResults": [
+        {
+          "q": "부산 수영구 황령대로489번길 59",
+          "http": 200,
+          "count": 1,
+          "top": [
+            {
+              "jibun": "부산 수영구 황령대로489번길 59",
+              "road": "부산 수영구 황령대로489번길 59",
+              "x": "129.109837348817",
+              "y": "35.1402231925496"
+            }
+          ]
+        },
+        {
+          "q": "부산 수영구 남천동 192",
+          "http": 200,
+          "count": 1,
+          "top": [
+            {
+              "jibun": "부산 수영구 남천동 192",
+              "road": "부산 수영구 황령대로489번길 59-1",
+              "x": "129.109762929823",
+              "y": "35.1404596901443"
+            }
+          ]
+        }
+      ],
+      "nearby": []
+    },
+    "jeonhyun-yeongdo-watda-sikdang": {
+      "db": {
+        "slug": "jeonhyun-yeongdo-watda-sikdang",
+        "name": "왔다식당",
+        "area": "영도",
+        "address": "부산 영도구 하나길 811",
+        "phone": null,
+        "lat": 35.0940741825936,
+        "lng": 129.056330271999,
+        "kakao_map_url": null
+      },
+      "used": [
+        {
+          "type": "keyword",
+          "q": "왔다식당 영도",
+          "http": 200,
+          "count": 4
+        },
+        {
+          "type": "keyword",
+          "q": "왔다식당 하나길",
+          "http": 200,
+          "count": 2
+        }
+      ],
+      "cands": [
+        {
+          "id": "9291686",
+          "place_name": "왔다식당",
+          "road": "부산 영도구 하나길 811",
+          "jibun": "부산 영도구 청학동 386-197",
+          "phone": "051-412-2676",
+          "x": "129.0563445058958",
+          "y": "35.094025368019814",
+          "lat": 35.094025368019814,
+          "lng": 129.0563445058958,
+          "place_url": "http://place.map.kakao.com/9291686",
+          "cat": "음식점 > 한식 > 찌개,전골",
+          "nm": "EXACT",
+          "am": "EXACT",
+          "pm": "MISSING",
+          "inBusan": true,
+          "dist": 6,
+          "score": 6.3
+        },
+        {
+          "id": "848516451",
+          "place_name": "왔다식당 주차장",
+          "road": "부산 영도구 하나길 811",
+          "jibun": "부산 영도구 청학동 386-197",
+          "phone": null,
+          "x": "129.056357328307",
+          "y": "35.0939683766897",
+          "lat": 35.0939683766897,
+          "lng": 129.056357328307,
+          "place_url": "http://place.map.kakao.com/848516451",
+          "cat": "교통,수송 > 교통시설 > 주차장",
+          "nm": "EXACT",
+          "am": "EXACT",
+          "pm": "MISSING",
+          "inBusan": true,
+          "dist": 12,
+          "score": 6.3
+        },
+        {
+          "id": "10626507",
+          "place_name": "왔다칼국수",
+          "road": "부산 동구 초량상로 125",
+          "jibun": "부산 동구 초량동 92-24",
+          "phone": "051-468-9388",
+          "x": "129.04015754383818",
+          "y": "35.12265701138613",
+          "lat": 35.12265701138613,
+          "lng": 129.04015754383818,
+          "place_url": "http://place.map.kakao.com/10626507",
+          "cat": "음식점 > 한식 > 국수 > 칼국수",
+          "nm": "PARTIAL",
+          "am": "MISMATCH",
+          "pm": "MISSING",
+          "inBusan": true,
+          "dist": 3502,
+          "score": 1.8
+        },
+        {
+          "id": "1806623066",
+          "place_name": "왔다장금이",
+          "road": "부산 사하구 옥천로 32-2",
+          "jibun": "부산 사하구 감천동 20",
+          "phone": "010-2217-5291",
+          "x": "129.006367480453",
+          "y": "35.0902822855322",
+          "lat": 35.0902822855322,
+          "lng": 129.006367480453,
+          "place_url": "http://place.map.kakao.com/1806623066",
+          "cat": "음식점 > 한식",
+          "nm": "PARTIAL",
+          "am": "MISMATCH",
+          "pm": "MISSING",
+          "inBusan": true,
+          "dist": 4565,
+          "score": 1.8
+        }
+      ],
+      "addrResults": [
+        {
+          "q": "부산 영도구 하나길 811",
+          "http": 200,
+          "count": 1,
+          "top": [
+            {
+              "jibun": "부산 영도구 하나길 811",
+              "road": "부산 영도구 하나길 811",
+              "x": "129.056330271999",
+              "y": "35.0940741825936"
+            }
+          ]
+        }
+      ],
+      "nearby": []
+    },
+    "tzuyang-haeundae-chopilsal": {
+      "db": {
+        "slug": "tzuyang-haeundae-chopilsal",
+        "name": "초필살돼지구이 해운대본점",
+        "area": "해운대",
+        "address": "부산 해운대구 마린시티3로 23 벽산E오렌지프라자 A동 107호",
+        "phone": null,
+        "lat": 35.1566471472902,
+        "lng": 129.146930632686,
+        "kakao_map_url": null
+      },
+      "used": [
+        {
+          "type": "keyword",
+          "q": "초필살돼지구이 해운대본점",
+          "http": 200,
+          "count": 1
+        },
+        {
+          "type": "keyword",
+          "q": "초필살돼지구이 본점",
+          "http": 200,
+          "count": 1
+        },
+        {
+          "type": "keyword",
+          "q": "초필살돼지구이 마린시티",
+          "http": 200,
+          "count": 1
+        }
+      ],
+      "cands": [
+        {
+          "id": "27485287",
+          "place_name": "초필살돼지구이 본점",
+          "road": "부산 해운대구 마린시티3로 23",
+          "jibun": "부산 해운대구 우동 1435",
+          "phone": "051-747-5571",
+          "x": "129.14679979835628",
+          "y": "35.15633667920038",
+          "lat": 35.15633667920038,
+          "lng": 129.14679979835628,
+          "place_url": "http://place.map.kakao.com/27485287",
+          "cat": "음식점 > 한식 > 육류,고기",
+          "nm": "PARTIAL",
+          "am": "EXACT",
+          "pm": "MISSING",
+          "inBusan": true,
+          "dist": 37,
+          "score": 4.8
+        }
+      ],
+      "addrResults": [
+        {
+          "q": "부산 해운대구 마린시티3로 23",
+          "http": 200,
+          "count": 1,
+          "top": [
+            {
+              "jibun": "부산 해운대구 마린시티3로 23",
+              "road": "부산 해운대구 마린시티3로 23",
+              "x": "129.146930632686",
+              "y": "35.1566471472902"
+            }
+          ]
+        }
+      ],
+      "nearby": []
+    },
+    "2tv-sasang-yeonghui-halmae-jaecheopguk": {
+      "db": {
+        "slug": "2tv-sasang-yeonghui-halmae-jaecheopguk",
+        "name": "영희할매재첩국",
+        "area": "사상",
+        "address": "부산 사상구 낙동대로1530번길 20-15",
+        "phone": null,
+        "lat": 35.1943840522469,
+        "lng": 128.985120470772,
+        "kakao_map_url": null
+      },
+      "used": [
+        {
+          "type": "keyword",
+          "q": "영희할매재첩국",
+          "http": 200,
+          "count": 0
+        },
+        {
+          "type": "keyword",
+          "q": "영희할매 재첩국",
+          "http": 200,
+          "count": 0
+        },
+        {
+          "type": "keyword",
+          "q": "사상 재첩국",
+          "http": 200,
+          "count": 10
+        },
+        {
+          "type": "keyword",
+          "q": "재첩국 낙동대로",
+          "http": 200,
+          "count": 9
+        }
+      ],
+      "cands": [
+        {
+          "id": "1531629877",
+          "place_name": "할매재첩국",
+          "road": "부산 사상구 낙동대로1530번길 20-15",
+          "jibun": "부산 사상구 삼락동 69-4",
+          "phone": "051-301-5321",
+          "x": "128.98621754964088",
+          "y": "35.19325383111974",
+          "lat": 35.19325383111974,
+          "lng": 128.98621754964088,
+          "place_url": "http://place.map.kakao.com/1531629877",
+          "cat": "음식점 > 한식",
+          "nm": "EXACT",
+          "am": "EXACT",
+          "pm": "MISSING",
+          "inBusan": true,
+          "dist": 160,
+          "score": 6.3
+        },
+        {
+          "id": "12056162",
+          "place_name": "삼락재첩국",
+          "road": "부산 사상구 사상로233번길 10",
+          "jibun": "부산 사상구 괘법동 524-45",
+          "phone": "051-328-4140",
+          "x": "128.982190942537",
+          "y": "35.1659160328246",
+          "lat": 35.1659160328246,
+          "lng": 128.982190942537,
+          "place_url": "http://place.map.kakao.com/12056162",
+          "cat": "음식점 > 한식",
+          "nm": "PARTIAL",
+          "am": "PARTIAL",
+          "pm": "MISSING",
+          "inBusan": true,
+          "dist": 3177,
+          "score": 2.8
+        },
+        {
+          "id": "21311722",
+          "place_name": "하동재첩국",
+          "road": "부산 사상구 낙동대로1518번길 33",
+          "jibun": "부산 사상구 삼락동 70-21",
+          "phone": "051-301-7200",
+          "x": "128.98576122390503",
+          "y": "35.193268526726555",
+          "lat": 35.193268526726555,
+          "lng": 128.98576122390503,
+          "place_url": "http://place.map.kakao.com/21311722",
+          "cat": "음식점 > 한식 > 해물,생선",
+          "nm": "PARTIAL",
+          "am": "PARTIAL",
+          "pm": "MISSING",
+          "inBusan": true,
+          "dist": 137,
+          "score": 2.8
+        },
+        {
+          "id": "16752694",
+          "place_name": "하동재첩국",
+          "road": "부산 사상구 가야대로 290-12",
+          "jibun": "부산 사상구 주례동 509-1",
+          "phone": "051-315-5080",
+          "x": "129.004652999632",
+          "y": "35.1499956409678",
+          "lat": 35.1499956409678,
+          "lng": 129.004652999632,
+          "place_url": "http://place.map.kakao.com/16752694",
+          "cat": "음식점 > 한식",
+          "nm": "PARTIAL",
+          "am": "PARTIAL",
+          "pm": "MISSING",
+          "inBusan": true,
+          "dist": 5245,
+          "score": 2.8
+        },
+        {
+          "id": "9552829",
+          "place_name": "한라재첩국",
+          "road": "부산 사상구 낙동대로1530번길 36",
+          "jibun": "부산 사상구 삼락동 69-6",
+          "phone": "051-301-5252",
+          "x": "128.98670097494917",
+          "y": "35.19376587419687",
+          "lat": 35.19376587419687,
+          "lng": 128.98670097494917,
+          "place_url": "http://place.map.kakao.com/9552829",
+          "cat": "음식점 > 한식",
+          "nm": "PARTIAL",
+          "am": "PARTIAL",
+          "pm": "MISSING",
+          "inBusan": true,
+          "dist": 159,
+          "score": 2.8
+        }
+      ],
+      "addrResults": [
+        {
+          "q": "부산 사상구 낙동대로1530번길 20-15",
+          "http": 200,
+          "count": 1,
+          "top": [
+            {
+              "jibun": "부산 사상구 낙동대로1530번길 20-15",
+              "road": "부산 사상구 낙동대로1530번길 20-15",
+              "x": "128.986058759842",
+              "y": "35.1933735885902"
+            }
+          ]
+        }
+      ],
+      "nearby": [
+        {
+          "place_name": "진주반점",
+          "road": "부산 사상구 낙동대로1530번길 10",
+          "jibun": "부산 사상구 삼락동 70-14",
+          "phone": "051-301-4343",
+          "dist_m": 38,
+          "cat": "음식점 > 중식 > 중국요리"
+        }
+      ]
+    },
+    "saengdal-seomyeon-dammiok": {
+      "db": {
+        "slug": "saengdal-seomyeon-dammiok",
+        "name": "담미옥",
+        "area": "서면",
+        "address": "부산 부산진구 복지로 15 개금포르투나 103호",
+        "phone": null,
+        "lat": 35.1517508521743,
+        "lng": 129.020608015723,
+        "kakao_map_url": null
+      },
+      "used": [
+        {
+          "type": "keyword",
+          "q": "담미옥 개금",
+          "http": 200,
+          "count": 0
+        },
+        {
+          "type": "keyword",
+          "q": "담미옥 부산진구",
+          "http": 200,
+          "count": 1
+        },
+        {
+          "type": "keyword",
+          "q": "담미옥 복지로",
+          "http": 200,
+          "count": 0
+        }
+      ],
+      "cands": [
+        {
+          "id": "1712286950",
+          "place_name": "담미옥",
+          "road": "부산 중구 해관로 82-1",
+          "jibun": "부산 중구 중앙동4가 60-1",
+          "phone": null,
+          "x": "129.03559950812368",
+          "y": "35.10623230867698",
+          "lat": 35.10623230867698,
+          "lng": 129.03559950812368,
+          "place_url": "http://place.map.kakao.com/1712286950",
+          "cat": "음식점 > 한식 > 냉면",
+          "nm": "EXACT",
+          "am": "MISMATCH",
+          "pm": "MISSING",
+          "inBusan": true,
+          "dist": 5242,
+          "score": 3.3
+        }
+      ],
+      "addrResults": [
+        {
+          "q": "부산 부산진구 복지로 15",
+          "http": 200,
+          "count": 1,
+          "top": [
+            {
+              "jibun": "부산 부산진구 복지로 15",
+              "road": "부산 부산진구 복지로 15",
+              "x": "129.020608015723",
+              "y": "35.1517508521743"
+            }
+          ]
+        }
+      ],
+      "nearby": [
+        {
+          "place_name": "마라섬 개금점",
+          "road": "부산 부산진구 복지로 15",
+          "jibun": "부산 부산진구 개금동 523-27",
+          "phone": "",
+          "dist_m": 15,
+          "cat": "음식점 > 중식 > 중국요리 > 마라섬"
+        },
+        {
+          "place_name": "백양숯불가든",
+          "road": "부산 부산진구 복지로 15",
+          "jibun": "부산 부산진구 개금동 523-27",
+          "phone": "051-898-4885",
+          "dist_m": 17,
+          "cat": "음식점 > 한식 > 육류,고기"
+        },
+        {
+          "place_name": "반올림피자 주례개금점",
+          "road": "부산 부산진구 복지로 17",
+          "jibun": "부산 부산진구 개금동 523-33",
+          "phone": "051-891-8666",
+          "dist_m": 32,
+          "cat": "음식점 > 양식 > 피자 > 반올림피자"
+        },
+        {
+          "place_name": "아라치 부산개금점",
+          "road": "부산 부산진구 복지로 16-1",
+          "jibun": "부산 부산진구 개금동 523-14",
+          "phone": "051-898-0011",
+          "dist_m": 44,
+          "cat": "음식점 > 치킨 > 아라치"
+        },
+        {
+          "place_name": "개금뒷고기",
+          "road": "부산 부산진구 복지로21번길 5",
+          "jibun": "부산 부산진구 개금동 523-30",
+          "phone": "051-895-7833",
+          "dist_m": 46,
+          "cat": "음식점 > 한식 > 육류,고기"
+        },
+        {
+          "place_name": "밥심",
+          "road": "부산 부산진구 복지로21번길 5",
+          "jibun": "부산 부산진구 개금동 523-30",
+          "phone": "",
+          "dist_m": 46,
+          "cat": "음식점 > 한식"
+        },
+        {
+          "place_name": "대동반점",
+          "road": "부산 부산진구 복지로13번길 14",
+          "jibun": "부산 부산진구 개금동 177-326",
+          "phone": "051-893-8887",
+          "dist_m": 47,
+          "cat": "음식점 > 중식 > 중국요리"
+        },
+        {
+          "place_name": "김밥천국 개금역금강점",
+          "road": "부산 부산진구 가야대로 450",
+          "jibun": "부산 부산진구 개금동 875",
+          "phone": "051-995-2345",
+          "dist_m": 55,
+          "cat": "음식점 > 분식"
+        },
+        {
+          "place_name": "북경",
+          "road": "부산 부산진구 가야대로 450",
+          "jibun": "부산 부산진구 개금동 875",
+          "phone": "051-710-2702",
+          "dist_m": 58,
+          "cat": "음식점 > 중식 > 중국요리"
+        },
+        {
+          "place_name": "까투리 개금1점",
+          "road": "부산 부산진구 복지로 20",
+          "jibun": "부산 부산진구 개금동 523-67",
+          "phone": "051-892-9291",
+          "dist_m": 59,
+          "cat": "음식점 > 술집"
+        }
+      ]
+    }
+  }
+}
