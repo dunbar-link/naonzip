@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-06-13T10:49:01.958Z",
+  "note": "영희할매재첩국 변경 전 전체값 + 담미옥 보호 스냅샷. 비밀키 미포함.",
+  "row": {
+    "id": "eca38f0d-aa5d-413d-ae81-be24147d5350",
+    "slug": "2tv-sasang-yeonghui-halmae-jaecheopguk",
+    "name": "영희할매재첩국",
+    "area": "사상",
+    "address": "부산 사상구 낙동대로1530번길 20-15",
+    "lat": 35.1943840522469,
+    "lng": 128.985120470772,
+    "category": "한식",
+    "main_menu": "재첩국·재첩회·재첩비빔밥",
+    "price_text": "재첩국 약 7,000원",
+    "phone": null,
+    "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/2tv-sasang-yeonghui-halmae-jaecheopguk/main.webp",
+    "creator_name": null,
+    "program_name": "2TV 생생정보",
+    "episode_title": "할매 밥 됩니까 - 재첩국",
+    "broadcast_date": "2026-04-07",
+    "description": "1975년 3대째 삼락동 재첩골목 원조 재첩국집",
+    "video_url": "https://www.youtube.com/watch?v=irxUUuuzqcc",
+    "kakao_map_url": null,
+    "naver_map_url": null,
+    "tmap_url": null,
+    "source_type": "tv",
+    "source_title": "2TV 생생정보",
+    "is_published": true,
+    "created_at": "2026-06-07T12:05:38.9604+00:00"
+  },
+  "dammiok_protected": {
+    "name": "담미옥",
+    "kakao_map_url": null,
+    "phone": null,
+    "lat": 35.1517508521743,
+    "lng": 129.020608015723,
+    "is_published": true
+  },
+  "kakao_reverify": {
+    "place_id": "1531629877",
+    "place_name": "할매재첩국",
+    "road": "부산 사상구 낙동대로1530번길 20-15",
+    "phone": "051-301-5321",
+    "lat": 35.19325383111974,
+    "lng": 128.98621754964088
+  }
+}
