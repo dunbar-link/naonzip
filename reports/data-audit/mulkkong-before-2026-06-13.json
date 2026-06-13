@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-06-13T12:11:50.680Z",
+  "note": "물꽁식당 변경 전 전체값. 비밀키 미포함.",
+  "row": {
+    "id": "b7a9baa2-c394-4f3f-a47b-b93f02fb638c",
+    "slug": "mulkkong-sikdang",
+    "name": "물꽁식당",
+    "area": "남포동",
+    "address": "부산광역시 중구 흥교로 55",
+    "lat": 35.107223,
+    "lng": 129.022428,
+    "category": "해산물",
+    "main_menu": "아구찜",
+    "price_text": "아구찜 중 30,000원",
+    "phone": "051-257-3230",
+    "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/mulkkong-sikdang/main.webp",
+    "creator_name": null,
+    "program_name": "6시내고향",
+    "episode_title": null,
+    "broadcast_date": "2025-12-23",
+    "description": null,
+    "video_url": "https://iaudience.kbs.co.kr/broadcast/11116",
+    "kakao_map_url": "https://map.kakao.com/?map_type=TYPE_MAP&q=%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C+%EC%A4%91%EA%B5%AC+%ED%9D%91%EA%B5%90%EB%A1%9C+55&urlLevel=2&urlX=961466&urlY=451395",
+    "naver_map_url": null,
+    "tmap_url": null,
+    "source_type": "tv",
+    "source_title": "6시내고향",
+    "is_published": true,
+    "created_at": "2026-05-17T07:45:13.301972+00:00"
+  },
+  "kakao_reverify": {
+    "place_id": "11891969",
+    "place_name": "물꽁식당",
+    "road": "부산 중구 흑교로59번길 3",
+    "jibun": "부산 중구 보수동2가 89-6",
+    "phone": "051-257-3230",
+    "lat": 35.10450350366911,
+    "lng": 129.02437673744967
+  }
+}
