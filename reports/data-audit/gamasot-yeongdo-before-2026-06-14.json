@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-06-13T15:52:11.432Z",
+  "note": "가마솥돼지국밥 영도점 변경 전 전체값. 비밀키 미포함.",
+  "row": {
+    "id": "9d8c1860-f09b-43fb-9028-0e5ba72c513d",
+    "slug": "baekban-yeongdo-gamasot-doejigukbap",
+    "name": "가마솥돼지국밥 영도점",
+    "area": "영도",
+    "address": "부산 영도구 절영로49번길 25",
+    "lat": 35.0898602,
+    "lng": 129.0390491,
+    "category": "돼지국밥",
+    "main_menu": "돼지국밥",
+    "price_text": "돼지국밥 (가격 확인 필요)",
+    "phone": null,
+    "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/baekban-yeongdo-gamasot-doejigukbap/main.webp",
+    "creator_name": null,
+    "program_name": "식객 허영만의 백반기행",
+    "episode_title": null,
+    "broadcast_date": "2026-02-22",
+    "description": "영도 남항시장 인근 가마솥 돼지국밥 노포. 우유빛 진한 국물. 식객 허영만의 백반기행에 소개됨.",
+    "video_url": "https://www.youtube.com/watch?v=YP-SCqkcut0",
+    "kakao_map_url": "https://place.map.kakao.com/15526776",
+    "naver_map_url": null,
+    "tmap_url": null,
+    "source_type": "tv",
+    "source_title": "식객 허영만의 백반기행",
+    "is_published": true,
+    "created_at": "2026-05-17T11:43:22.599544+00:00"
+  },
+  "kakao_place": {
+    "id": "15526776",
+    "place_name": "가마솥돼지국밥",
+    "road": "부산 영도구 남항시장길 350",
+    "jibun": "부산 영도구 신선동2가 37-3",
+    "phone": "051-413-8609",
+    "lat": 35.0874972118328,
+    "lng": 129.044148012405
+  }
+}
