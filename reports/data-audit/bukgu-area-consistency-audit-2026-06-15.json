@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-06-15",
+  "mode": "read-only",
+  "note": "area=북구 1곳(슌사이쿠보 화명)의 AREA_TYPES 미지원 분류 불일치 점검. DB/앱 미수정. 실제 키/env 미포함.",
+  "target": {
+    "id": "34486e2a-fee3-4ed3-a6e3-c24bd84e4f3c",
+    "slug": "saengdal-bukgu-shunsaikubo",
+    "name": "슌사이쿠보 화명",
+    "area": "북구",
+    "address": "부산 북구 양달로4번길 17 금샘빌딩 1층",
+    "category": "아시안",
+    "main_menu": "히츠마부시",
+    "price_text": "메뉴별 상이 (가격 확인 필요)",
+    "kakao_place_id": "1645649718",
+    "kakao_map_url": "https://place.map.kakao.com/1645649718",
+    "lat": 35.2409591,
+    "lng": 129.0145566,
+    "is_published": true,
+    "duplicate_rows": 0
+  },
+  "area_system": {
+    "AREA_TYPES": ["해운대", "서면", "광안리", "남포동", "기장", "동래", "사상", "영도", "남구", "연제", "기타"],
+    "bukgu_in_area_types": false,
+    "area_slug_for_bukgu": null,
+    "etc_slug": null,
+    "landing_rule": "getAreaSlugs: area→slug(null 제외) + count>=3 필터 → 북구(매핑 null + 1곳) 이중 제외",
+    "unknown_area_runtime": "rowToRestaurant: row.area as AreaType (캐스팅만, 런타임 검증 없음) → 문자열 그대로 통과, 노출 정상",
+    "list_filter_source": "RestaurantsClient: new Set(restaurants.map(r=>r.area)) = DB area 고유값 → 북구 단독 칩",
+    "map_filter_source": "KakaoMapView: AREA_FILTERS = AreaType 고정 배열 → 북구 칩 없음(전체에서 노출)",
+    "home_filter": "없음(HomeClient 최근 5개만)"
+  },
+  "screen_impact": {
+    "detail": { "status": 200, "label": "북구 · 아시안", "area_link": "없음(getAreaSlugFromName=null, 기타 식당과 동일)" },
+    "list": { "exposed": true, "area_filter_chip": "북구 단독 노출(클릭 시 1곳)" },
+    "search": { "exposed": true, "matches": ["북구(area)", "슌사이쿠보(name)", "히츠마부시(mainMenu)", "화명(address)"] },
+    "map": { "exposed": "전체에서 마커 노출", "area_filter": "북구 칩 없음(고정 리스트)" },
+    "area_landing": { "url": "/area/bukgu", "status": 404, "note": "북구·기타 모두 랜딩 없음(3건 미만/매핑 null)" },
+    "sitemap": { "detail_url_included": true, "bukgu_landing_url": false, "total_detail": 90 },
+    "structural_missing": false
+  },
+  "comparison": {
+    "bukgu_published_count": 1,
+    "etc_count": 9,
+    "etc_examples": ["동구 할매김밥/신발원", "금정구 송스 베이커리/금죽헌", "사하구 원조가야밀면/쉐라미과자점", "서구 옛날국수집", "강서구 삼성갈미조개", "수영구 금신전선 상유십이"],
+    "operating_principle": "주요 10개 권역 + 그 외 구는 모두 기타로 흡수. 북구도 전용 area 없는 구 → 원칙상 기타.",
+    "add_area_overdesign": "식당 1곳 때문에 AREA_TYPES+매핑+intro+랜딩 추가는 과설계(랜딩은 3건 미만이라 추가해도 미생성). 북구 확장 계획 없음."
+  },
+  "verdict": "CANONICAL_REMAP_READY",
+  "recommendation": {
+    "canonical_area": "기타",
+    "db_change": "restaurants.area: 북구 → 기타 (1필드, 별도 승인 후)",
+    "app_change": "불필요(기타는 기존 운영 canonical)",
+    "user_effect": "목록 필터 북구 단독칩→기타 흡수(일관성↑), 상세 '기타·아시안'. 북구 키워드 검색 매칭 상실(식당명/메뉴/화명 검색은 유지)",
+    "risk": "낮음",
+    "add_area_review": "북구 AREA_TYPES 추가는 비권장(과설계)"
+  },
+  "code_paths": [
+    "src/types/restaurant.ts (AREA_TYPES)",
+    "src/lib/areas.ts (AREA_SLUGS/AREA_NAMES/getAreaSlugFromName)",
+    "src/lib/restaurants.ts (getAreaSlugs:460, getRestaurantsByAreaSlug:487, rowToRestaurant:165)",
+    "src/app/area/[slug]/page.tsx (랜딩 generateStaticParams/notFound)",
+    "src/app/sitemap.ts (areaRoutes=getAreaSlugs)",
+    "src/components/restaurant/RestaurantsClient.tsx (availableAreas=DB 고유값, AreaFilter)",
+    "src/components/map/KakaoMapView.tsx (AREA_FILTERS 고정)",
+    "src/components/search/SearchClient.tsx (area=CORE_FIELDS 검색대상)",
+    "src/components/home/HomeClient.tsx (area 필터 없음)"
+  ]
+}

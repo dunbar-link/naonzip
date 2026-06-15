@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-06-15",
+  "mode": "before-backup",
+  "note": "슌사이쿠보 화명 area 정합화 변경 전 전체 row + area 분포. 실제 키/env 미포함.",
+  "expected_after": {
+    "area": "기타"
+  },
+  "area_distribution_published": {
+    "서면": 11,
+    "사상": 5,
+    "영도": 8,
+    "해운대": 11,
+    "남구": 8,
+    "남포동": 14,
+    "기타": 9,
+    "기장": 4,
+    "광안리": 14,
+    "북구": 1,
+    "동래": 1,
+    "연제": 4
+  },
+  "row": {
+    "id": "34486e2a-fee3-4ed3-a6e3-c24bd84e4f3c",
+    "slug": "saengdal-bukgu-shunsaikubo",
+    "name": "슌사이쿠보 화명",
+    "area": "북구",
+    "address": "부산 북구 양달로4번길 17 금샘빌딩 1층",
+    "phone": "0507-1315-2959",
+    "kakao_map_url": "https://place.map.kakao.com/1645649718",
+    "lat": 35.2409591,
+    "lng": 129.0145566,
+    "category": "아시안",
+    "main_menu": "히츠마부시",
+    "price_text": "메뉴별 상이 (가격 확인 필요)",
+    "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/saengdal-bukgu-shunsaikubo/main.webp",
+    "is_published": true
+  }
+}
