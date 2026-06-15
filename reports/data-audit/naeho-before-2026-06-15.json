@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-06-15",
+  "mode": "before-backup",
+  "note": "내호냉면 주소·Kakao·좌표 정합화 변경 전 전체 row 백업. 실제 키/env 미포함.",
+  "expected_after": {
+    "address": "부산 남구 우암번영로26번길 17",
+    "kakao_map_url": "https://place.map.kakao.com/11023144",
+    "lat": 35.1264751024665,
+    "lng": 129.070867880766
+  },
+  "row": {
+    "id": "88dc61af-8218-48e9-a91f-c00e83bee6b8",
+    "slug": "naeho-naengmyeon",
+    "name": "내호냉면",
+    "address": "부산광역시 남구 장고개로 11-5",
+    "phone": "051-646-6195",
+    "kakao_map_url": "https://map.kakao.com/?map_type=TYPE_MAP&q=%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C+%EB%82%A8%EA%B5%AC+%EC%9E%A5%EA%B3%A0%EA%B0%9C%EB%A1%9C+11-5&urlLevel=2&urlX=971941&urlY=457722",
+    "lat": 35.129244,
+    "lng": 129.068934,
+    "area": "남구",
+    "category": "밀면",
+    "main_menu": "밀면",
+    "price_text": "밀면 9,000원",
+    "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/naeho-naengmyeon/main.webp",
+    "is_published": true
+  }
+}
