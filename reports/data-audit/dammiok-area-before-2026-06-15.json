@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-06-15",
+  "mode": "before-backup",
+  "note": "담미옥 area 정합화 변경 전 전체 row + area 분포. 실제 키/env 미포함.",
+  "expected_after": {
+    "area": "남포동"
+  },
+  "area_distribution_published": {
+    "서면": 12,
+    "사상": 5,
+    "영도": 8,
+    "해운대": 11,
+    "남구": 8,
+    "남포동": 13,
+    "기타": 9,
+    "기장": 4,
+    "광안리": 14,
+    "북구": 1,
+    "동래": 1,
+    "연제": 4
+  },
+  "row": {
+    "id": "f6255fb2-9255-4d60-9707-f5d050345b10",
+    "slug": "saengdal-seomyeon-dammiok",
+    "name": "담미옥",
+    "area": "서면",
+    "address": "부산 중구 해관로 82-1",
+    "phone": "051-710-5318",
+    "kakao_map_url": "https://place.map.kakao.com/1712286950",
+    "lat": 35.106232308677,
+    "lng": 129.035599508124,
+    "category": "한식",
+    "main_menu": "평양냉면",
+    "price_text": "평양냉면(물) 13,000원 / 녹두전 9,000원",
+    "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/saengdal-seomyeon-dammiok/main.webp",
+    "is_published": true
+  }
+}
