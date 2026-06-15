@@ -1,0 +1,163 @@
+{
+  "generated_at": "2026-06-15",
+  "mode": "before-backup",
+  "note": "가격 교정 7곳 변경 전 전체 row 백업. 실제 키/env 미포함.",
+  "targets": [
+    {
+      "slug": "sokssiwonhan-daegutang-haeundae",
+      "id": "081ea8e9-c0e1-49b2-bcc8-90369c730855",
+      "expected_before": "대구탕 14,000원",
+      "recommended_after": "대구탕 15,000원"
+    },
+    {
+      "slug": "saengdal-yeongdo-sato-bunsik",
+      "id": "b159834b-1ebe-467e-aecc-e3f24fc4675b",
+      "expected_before": "메뉴별 상이 (가격 확인 필요)",
+      "recommended_after": "당면 비빔김밥 6,500원 / 국수 6,000원"
+    },
+    {
+      "slug": "oneuln-nampo-sammi-jip",
+      "id": "8c4e722a-6b67-41ef-8ec0-fe3a68880d3d",
+      "expected_before": "소갈비찜탕, 소갈비찜, 닭계장",
+      "recommended_after": "소갈비찜탕 9,000원 / 소갈비찜 30,000원~ / 닭계장 7,000원"
+    },
+    {
+      "slug": "hanyakbang-gukbap-hyeongje-food",
+      "id": "6bb141ff-de22-42de-92bf-e541ee559463",
+      "expected_before": "1만원대",
+      "recommended_after": "수육국밥 한상 10,000원 / 얼큰국밥 한상 12,000원"
+    },
+    {
+      "slug": "saengdal-sasang-peanut-bbangatgan",
+      "id": "2b3ba8cc-c936-4389-aae4-7329501d75f0",
+      "expected_before": "메뉴별 상이 (가격 확인 필요)",
+      "recommended_after": "플레인 소금빵 3,300원~"
+    },
+    {
+      "slug": "saengdal-centum-bulbaek-gosurak",
+      "id": "f6c666a1-565e-435a-a6ea-89b01955f013",
+      "expected_before": "돈카츠, 불백, 덮밥류",
+      "recommended_after": "소고기불백 8,000원~ / 고수락돈카츠 10,000원 / 눈꽃치즈돈카츠 12,000원"
+    },
+    {
+      "slug": "baekban-namgu-chossijib",
+      "id": "48b964a1-9de6-4716-8c29-1455a37e7b91",
+      "expected_before": "메뉴별 상이 (가격 확인 필요)",
+      "recommended_after": "궁중해물탕(소) 35,000원~ / 백년해물탕(소) 42,000원 / 모듬회(소) 50,000원~"
+    }
+  ],
+  "rows": [
+    {
+      "id": "081ea8e9-c0e1-49b2-bcc8-90369c730855",
+      "slug": "sokssiwonhan-daegutang-haeundae",
+      "name": "속씨원한 대구탕 해운대 본점",
+      "address": "부산 해운대구 해운대로570번길 11 2층",
+      "main_menu": "대구탕",
+      "price_text": "대구탕 14,000원",
+      "kakao_map_url": "https://map.kakao.com/?urlX=990988.0000004247&urlY=467668.00000001094&urlLevel=3&itemId=13299874&q=%EC%86%8D%EC%94%A8%EC%9B%90%ED%95%9C%20%EB%8C%80%EA%B5%AC%ED%83%95%20%ED%95%B4%EC%9A%B4%EB%8C%80%20%EB%B3%B8%EC%A0%90&srcid=13299874&map_type=TYPE_MAP",
+      "phone": "051-731-4222",
+      "lat": 35.163622,
+      "lng": 129.153411,
+      "area": "해운대",
+      "category": "해산물",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/sokssiwonhan-daegutang-haeundae/main.webp",
+      "is_published": true
+    },
+    {
+      "id": "b159834b-1ebe-467e-aecc-e3f24fc4675b",
+      "slug": "saengdal-yeongdo-sato-bunsik",
+      "name": "사또분식",
+      "address": "부산 영도구 절영로35번길 39",
+      "main_menu": "당면 비빔김밥",
+      "price_text": "메뉴별 상이 (가격 확인 필요)",
+      "kakao_map_url": "https://place.map.kakao.com/9808354",
+      "phone": "051-415-3764",
+      "lat": 35.0905236,
+      "lng": 129.0412957,
+      "area": "영도",
+      "category": "분식/길거리",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/saengdal-yeongdo-sato-bunsik/main.webp",
+      "is_published": true
+    },
+    {
+      "id": "8c4e722a-6b67-41ef-8ec0-fe3a68880d3d",
+      "slug": "oneuln-nampo-sammi-jip",
+      "name": "삼미집",
+      "address": "부산 중구 광복로35번길 30-1",
+      "main_menu": "소갈비찜탕, 소갈비찜, 닭계장",
+      "price_text": "소갈비찜탕, 소갈비찜, 닭계장",
+      "kakao_map_url": "https://map.kakao.com/link/search/삼미집",
+      "phone": "051-245-7776",
+      "lat": 35.0998,
+      "lng": 129.0308,
+      "area": "남포동",
+      "category": "한식",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/oneuln-nampo-sammi-jip/main.webp",
+      "is_published": true
+    },
+    {
+      "id": "6bb141ff-de22-42de-92bf-e541ee559463",
+      "slug": "hanyakbang-gukbap-hyeongje-food",
+      "name": "한약방돼지국밥 형제식품",
+      "address": "부산 부산진구 범천동 839-407",
+      "main_menu": "돼지국밥",
+      "price_text": "1만원대",
+      "kakao_map_url": "https://map.kakao.com/link/search/한약방돼지국밥%20형제식품",
+      "phone": null,
+      "lat": 35.141445,
+      "lng": 129.062135,
+      "area": "서면",
+      "category": "돼지국밥",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/hanyakbang-gukbap-hyeongje-food/main.webp",
+      "is_published": true
+    },
+    {
+      "id": "2b3ba8cc-c936-4389-aae4-7329501d75f0",
+      "slug": "saengdal-sasang-peanut-bbangatgan",
+      "name": "피넛빵앗간",
+      "address": "부산 사상구 사상로148번길 11 1층",
+      "main_menu": "소금빵",
+      "price_text": "메뉴별 상이 (가격 확인 필요)",
+      "kakao_map_url": "https://place.map.kakao.com/1585286643",
+      "phone": "0507-1384-4057",
+      "lat": 35.1594472,
+      "lng": 128.9889712,
+      "area": "사상",
+      "category": "베이커리/디저트",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/saengdal-sasang-peanut-bbangatgan/main.webp",
+      "is_published": true
+    },
+    {
+      "id": "f6c666a1-565e-435a-a6ea-89b01955f013",
+      "slug": "saengdal-centum-bulbaek-gosurak",
+      "name": "불백고수락 센텀본점",
+      "address": "부산 해운대구 센텀중앙로 90 205호",
+      "main_menu": "왕치즈두툼돈카츠, 소고기짬뽕불백, 제육고추장불백, 치즈치킨불백",
+      "price_text": "돈카츠, 불백, 덮밥류",
+      "kakao_map_url": "https://map.kakao.com/link/search/불백고수락%20센텀본점",
+      "phone": "0507-1354-7574",
+      "lat": 35.1739,
+      "lng": 129.1263,
+      "area": "해운대",
+      "category": "한식",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/saengdal-centum-bulbaek-gosurak/main.webp",
+      "is_published": true
+    },
+    {
+      "id": "48b964a1-9de6-4716-8c29-1455a37e7b91",
+      "slug": "baekban-namgu-chossijib",
+      "name": "궁중해물탕 조씨집 대연본점",
+      "address": "부산 남구 진남로 7-11",
+      "main_menu": "궁중해물탕",
+      "price_text": "메뉴별 상이 (가격 확인 필요)",
+      "kakao_map_url": "https://place.map.kakao.com/11552847",
+      "phone": "051-627-4749",
+      "lat": 35.1355345,
+      "lng": 129.0912059,
+      "area": "남구",
+      "category": "해산물",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/baekban-namgu-chossijib/main.webp",
+      "is_published": true
+    }
+  ]
+}

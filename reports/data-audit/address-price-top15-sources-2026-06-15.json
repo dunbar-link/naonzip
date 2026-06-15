@@ -1,0 +1,288 @@
+{
+  "generated_at": "2026-06-15",
+  "verified_date": "2026-06-15",
+  "mode": "read-only",
+  "note": "공개 90곳 중 주소·가격 우선순위 상위 15곳 외부 사실검증. DB/Storage/앱코드 미수정. 실제 API 키/env 미포함. Kakao Local API(이름·주소·전화 3중대조)=1차, 웹(다이닝코드·공식·비짓부산·생활의달인/생생정보/백반기행 등)=가격 보강.",
+  "summary": {
+    "public": 90, "scanned": 90, "audited": 15,
+    "EXACT_CURRENT": 4, "ADDRESS_CORRECTION_CANDIDATE": 1, "PRICE_CORRECTION_CANDIDATE": 7,
+    "BOTH_CORRECTION_CANDIDATE": 0, "REVIEW": 2, "CLOSED_OR_MOVED": 1, "BLOCKED": 0,
+    "db_writes": 0, "app_code_changes": 0
+  },
+  "restaurants": [
+    {
+      "rank": 1, "slug": "sokssiwonhan-daegutang-haeundae", "name": "속씨원한 대구탕 해운대 본점",
+      "queries": ["속씨원한 대구탕 해운대 본점", "속씨원한대구탕 해운대 본점 대구탕 가격 2025"],
+      "business_status": "영업중(다이닝코드 최근리뷰 2026-05-23, 4.1/35명)",
+      "db": {"address": "부산 해운대구 해운대로570번길 11 2층", "main_menu": "대구탕", "price_text": "대구탕 14,000원", "kakao_map_url": "검색링크(itemId 13299874)"},
+      "kakao": {"place_id": "13299874", "place_name": "속씨원한 대구탕 해운대 본점", "road_address": "부산 해운대구 해운대로570번길 11", "jibun_address": "부산 해운대구 우동 643-5", "phone": "051-731-4222", "name_match": true, "addr_match": true, "phone_match": true, "dist_from_db_m": 359},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "address": "해운대로570번길 11", "checked": "2026-06-15"},
+        {"name": "다이닝코드(해운대본점 rid qSqtXOfikFAV)", "type": "맛집플랫폼", "menu": "대구탕 15,000원 / 알말이 10,000원 / 대구찜 40,000원", "posted": "최근리뷰 2026-05-23", "checked": "2026-06-15"}
+      ],
+      "address_match": "EXACT(도로명 일치)",
+      "price_match": "불일치(DB 14,000 vs 해운대본점 현행 15,000)",
+      "price_freshness": "높음(2026-05 리뷰 기준 본점 메뉴)",
+      "coordinate_issue": "DB-Kakao 359m 이격(별도 좌표 점검 권장)",
+      "classification": "PRICE_CORRECTION_CANDIDATE",
+      "recommendation": {"price_text": "대구탕 15,000원", "kakao_map_url": "https://place.map.kakao.com/13299874 (검색링크→place URL, 별도 범위)"},
+      "conflicts": ["미포본점(place 7958381, 달맞이길62번길 28)과 혼동 주의 — 본점=해운대로570번길 11"]
+    },
+    {
+      "rank": 2, "slug": "hibab-cheongsa-hoe-center", "name": "청사포 도희네 조개구이",
+      "queries": ["청사포 도희네 조개구이", "청사포 도희네 조개구이 모듬조개구이 가격 2025"],
+      "business_status": "영업중",
+      "db": {"address": "부산 해운대구 청사포로 157", "main_menu": "모듬조개구이", "price_text": "모듬조개구이 40,000원~", "kakao_map_url": "https://place.map.kakao.com/510744836"},
+      "kakao": {"place_id": "510744836", "place_name": "도희네", "road_address": "부산 해운대구 청사포로 157", "jibun_address": "부산 해운대구 중동 509-9", "phone": "051-704-0113", "name_match": true, "addr_match": true, "phone_match": true, "dist_from_db_m": 0, "is_db_place": true},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "address": "청사포로 157", "checked": "2026-06-15"},
+        {"name": "다이닝코드(도희네 조개구이)", "type": "맛집플랫폼", "menu": "모듬조개구이 40,000원", "posted": "2025-03 기준", "checked": "2026-06-15"},
+        {"name": "비짓부산", "type": "공공관광", "note": "도희네 조개구이 소개", "checked": "2026-06-15"}
+      ],
+      "address_match": "EXACT(2026-06-13 round2 정합화 완료)",
+      "price_match": "일치(모듬조개구이 40,000원~ 현행 부합)",
+      "price_freshness": "보통~높음(2025-03 기준 동일)",
+      "coordinate_issue": "없음(0m)",
+      "classification": "EXACT_CURRENT",
+      "recommendation": {"note": "수정 불필요. 공식 메뉴판 직접 확인 시 가격 보강만 선택"},
+      "conflicts": []
+    },
+    {
+      "rank": 3, "slug": "saengdal-seomyeon-dammiok", "name": "담미옥",
+      "queries": ["담미옥", "담미옥 부산진구", "담미옥 서면", "담미옥 개금", "담미옥 평양냉면", "담미옥 개금 중앙동 이전 폐업 2026"],
+      "business_status": "영업중이나 이전(개금→중구 중앙동)",
+      "db": {"address": "부산 부산진구 복지로 15 개금포르투나 103호", "main_menu": "평양냉면", "price_text": "평양냉면(물) 13,000원 / 녹두전 8,000원", "kakao_map_url": null},
+      "kakao": {"place_id": "1712286950", "place_name": "담미옥", "road_address": "부산 중구 해관로 82-1", "jibun_address": "부산 중구 중앙동4가 60-1", "phone": null, "name_match": true, "addr_match": false, "note": "개금(DB) 주소 무매칭 — 현 중구 단일 후보. DB 좌표(개금)와 5.2km 이격"},
+      "sources": [
+        {"name": "다이닝코드(rid vfAsLN2MDD21)", "type": "맛집플랫폼", "address": "부산 중구 해관로 82-1", "phone": "051-710-5318", "menu": "평양냉면(물/비빔) 13,000원 / 녹두전 9,000원 / 들기름메밀면 12,000원 / 냉제육 27,000원", "posted": "최근리뷰 2026-05-25", "note": "‘개금에서 중앙동으로 이전’ 명시", "checked": "2026-06-15"},
+        {"name": "미쉐린 가이드", "type": "가이드", "note": "빕구르망 2024·2025 등재", "checked": "2026-06-15"}
+      ],
+      "address_match": "불일치(DB=개금 구주소, 현행=중구 해관로 82-1)",
+      "price_match": "거의 일치(녹두전 8,000→9,000 변동)",
+      "price_freshness": "높음(2026-05)",
+      "coordinate_issue": "DB 좌표=개금(구위치) — 이전 시 좌표/지도 재설정 필요",
+      "classification": "CLOSED_OR_MOVED",
+      "recommendation": {"address": "부산 중구 해관로 82-1", "kakao_map_url": "https://place.map.kakao.com/1712286950", "price_text": "평양냉면(물) 13,000원 / 녹두전 9,000원", "phone": "051-710-5318(별도 범위)", "note": "이전 확정 — 공개상태 유지하되 주소·지도·좌표 일괄 갱신을 별도 승인건으로 처리"},
+      "conflicts": ["미쉐린 2025 등재명은 개금 시절 명칭 — 현 운영지는 중구로 이전됨(다이닝코드 현주소·이전 명시로 확정)"]
+    },
+    {
+      "rank": 4, "slug": "saengdal-yeongdo-sato-bunsik", "name": "사또분식",
+      "queries": ["사또분식", "사또분식 부산 영도 절영로 당면비빔김밥 가격"],
+      "business_status": "영업중(수~일 16:30~22:00, 화 휴무)",
+      "db": {"address": "부산 영도구 절영로35번길 39", "main_menu": "당면 비빔김밥", "price_text": "메뉴별 상이 (가격 확인 필요)", "kakao_map_url": "https://place.map.kakao.com/9808354"},
+      "kakao": {"place_id": "9808354", "place_name": "사또분식", "road_address": "부산 영도구 절영로35번길 37", "jibun_address": "부산 영도구 대교동2가 178-3", "phone": "051-415-3764", "name_match": true, "addr_match": false, "phone_match": true, "dist_from_db_m": 14, "is_db_place": true},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "address": "절영로35번길 37(공식 도로명)", "phone": "051-415-3764", "checked": "2026-06-15"},
+        {"name": "인스타그램 reel/식신", "type": "SNS/맛집플랫폼", "menu": "(당면)비빔김밥 6,500원 / 국수 6,000원", "address": "절영로35번길 39", "posted": "2024~2025", "checked": "2026-06-15"},
+        {"name": "생활의 달인", "type": "방송", "note": "이색 비빔김밥 맛집 출연", "checked": "2026-06-15"}
+      ],
+      "address_match": "REVIEW(같은 place 9808354·전화일치인데 Kakao 번지 37 vs DB/블로그 39, 14m)",
+      "price_match": "불일치(DB 모호 → 대표가 확인)",
+      "price_freshness": "보통(SNS/식신 2024~2025)",
+      "coordinate_issue": "없음(14m)",
+      "classification": "PRICE_CORRECTION_CANDIDATE",
+      "recommendation": {"price_text": "당면 비빔김밥 6,500원 / 국수 6,000원", "address_review": "도로명 번지 Kakao 37 우선 검토(블로그 39 혼재) — 단정 보류"},
+      "conflicts": ["도로명 번지 37(Kakao 공식) vs 39(DB·블로그) — 동일 업소·필지로 14m, 추가 확인 후 결정"]
+    },
+    {
+      "rank": 5, "slug": "naeho-naengmyeon", "name": "내호냉면",
+      "queries": ["내호냉면", "내호냉면 부산 우암동 밀면 가격 60년 전통"],
+      "business_status": "영업중(부산 최초 밀면집, 1919년~, 백년가게)",
+      "db": {"address": "부산광역시 남구 장고개로 11-5", "main_menu": "밀면", "price_text": "밀면 9,000원", "kakao_map_url": "검색링크(q=장고개로 11-5)"},
+      "kakao": {"place_id": "11023144", "place_name": "내호냉면", "road_address": "부산 남구 우암번영로26번길 17", "jibun_address": "부산 남구 우암동 189-671", "phone": "051-646-6195", "name_match": true, "addr_match": false, "phone_match": true, "dist_from_db_m": 355},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "address": "우암번영로26번길 17", "phone": "051-646-6195(DB와 동일)", "checked": "2026-06-15"},
+        {"name": "다이닝코드/식신/대한민국구석구석/busan.go.kr", "type": "복합", "address": "남구 우암동(우암시장)", "menu": "밀면 6,000원 / 만두 5,000원 / 물·비빔냉면 大 13,000 小 11,000", "posted": "혼재(노포 기사)", "checked": "2026-06-15"}
+      ],
+      "address_match": "불일치→교정(전화일치 동일업소, 현행 도로명=우암번영로26번길 17, DB 장고개로 11-5는 오류/구표기)",
+      "price_match": "REVIEW(DB 밀면 9,000 vs 일부 출처 6,000 — 최신성 충돌)",
+      "price_freshness": "낮음(밀면 단가 출처 시점 불명확)",
+      "coordinate_issue": "DB-Kakao 355m 이격(주소 교정 시 좌표 함께 점검)",
+      "classification": "ADDRESS_CORRECTION_CANDIDATE",
+      "recommendation": {"address": "부산 남구 우암번영로26번길 17", "kakao_map_url": "https://place.map.kakao.com/11023144", "price_text_review": "밀면 단가 9,000/6,000 충돌 → 메뉴판 직접 확인 후 결정(이번 미반영)"},
+      "conflicts": ["밀면 가격 9,000(DB) vs 6,000(노포 기사) — 시점 불명확으로 가격 보류, 주소만 교정후보"]
+    },
+    {
+      "rank": 6, "slug": "oneuln-nampo-sammi-jip", "name": "삼미집",
+      "queries": ["삼미집", "삼미집 부산 남포동 광복로 소갈비찜탕 닭계장 가격"],
+      "business_status": "영업중(국제시장 골목, 일명 김춘자 할머니식당)",
+      "db": {"address": "부산 중구 광복로35번길 30-1", "main_menu": "소갈비찜탕, 소갈비찜, 닭계장", "price_text": "소갈비찜탕, 소갈비찜, 닭계장(가격 없음)", "kakao_map_url": "검색링크(link/search/삼미집)"},
+      "kakao": {"place_id": "16214505", "place_name": "삼미집", "road_address": "부산 중구 광복로35번길 30-1", "jibun_address": "부산 중구 신창동3가 6-1", "phone": "051-245-7776", "name_match": true, "addr_match": true, "phone_match": true, "dist_from_db_m": 294},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "address": "광복로35번길 30-1(DB와 EXACT)", "checked": "2026-06-15"},
+        {"name": "다이닝코드(rid HJ0KkmtgxW4e)", "type": "맛집플랫폼", "menu": "소갈비찜탕 9,000원 / 닭계장 7,000원 / 소갈비찜 소 30,000 대 40,000원", "checked": "2026-06-15"},
+        {"name": "위키푸디(생생정보)", "type": "방송기사", "note": "소갈비찜탕 맛집", "checked": "2026-06-15"}
+      ],
+      "address_match": "EXACT",
+      "price_match": "불일치(DB price_text=메뉴명만, 가격 없음)",
+      "price_freshness": "보통(다이닝코드)",
+      "coordinate_issue": "DB-Kakao 294m 이격(경미)",
+      "classification": "PRICE_CORRECTION_CANDIDATE",
+      "recommendation": {"price_text": "소갈비찜탕 9,000원 / 소갈비찜 30,000원~ / 닭계장 7,000원", "kakao_map_url": "https://place.map.kakao.com/16214505 (검색링크→place URL, 별도 범위)"},
+      "conflicts": []
+    },
+    {
+      "rank": 7, "slug": "saengdal-suyeong-sushibashiku", "name": "스시바시쿠",
+      "queries": ["스시바시쿠", "스시바시쿠 부산 민락 광안리 오마카세 가격"],
+      "business_status": "영업중(미슐랭 출신 일본인 셰프, 예약필수)",
+      "db": {"address": "부산 수영구 민락동 168-13", "main_menu": "초밥", "price_text": "오마카세 / 매장 문의", "kakao_map_url": "https://place.map.kakao.com/629144469"},
+      "kakao": {"place_id": "629144469", "place_name": "스시바시쿠", "road_address": "부산 수영구 광안해변로255번길 45", "jibun_address": "부산 수영구 민락동 168-13", "phone": null, "name_match": true, "addr_match": "지번일치(DB 지번=Kakao 지번)", "dist_from_db_m": 600, "is_db_place": true},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "jibun": "민락동 168-13(DB와 일치)", "road": "광안해변로255번길 45", "checked": "2026-06-15"},
+        {"name": "다이닝코드/캐치테이블/판다랭크", "type": "맛집플랫폼", "note": "오마카세 구체 가격 미공개(구성·취향 조절형)", "checked": "2026-06-15"}
+      ],
+      "address_match": "일치(DB 지번=Kakao 지번; 도로명 형태로 보강 가능)",
+      "price_match": "확인 불가(오마카세 가격 비공개)",
+      "price_freshness": "확인 불가",
+      "coordinate_issue": "DB-Kakao 600m 이격(같은 place인데 좌표 차이 — 별도 좌표 점검 권장)",
+      "classification": "REVIEW",
+      "recommendation": {"price_text": "현행 ‘오마카세 / 매장 문의’ 유지(가격 비공개)", "address_optional": "부산 수영구 광안해변로255번길 45(도로명 보강 선택)", "note": "좌표 600m 이격은 지도 정확도 위해 별도 점검"},
+      "conflicts": ["오마카세 단가 공개 출처 없음 → 가격 단정 불가"]
+    },
+    {
+      "rank": 8, "slug": "hanyakbang-gukbap-hyeongje-food", "name": "한약방돼지국밥 형제식품",
+      "queries": ["한약방돼지국밥 형제식품", "한약방돼지국밥 형제식품 범천동 돼지국밥 가격"],
+      "business_status": "영업중(월 휴무, 옛 ‘형제식품’ 한약방 자리)",
+      "db": {"address": "부산 부산진구 범천동 839-407", "main_menu": "돼지국밥", "price_text": "1만원대", "kakao_map_url": "검색링크(link/search)"},
+      "kakao": {"place_id": "2017689767", "place_name": "한약방돼지국밥 형제식품", "road_address": "부산 부산진구 자유평화로 21-11", "jibun_address": "부산 부산진구 범천동 839-407", "phone": "051-646-3102", "name_match": true, "addr_match": "지번일치(DB 지번=Kakao 지번)", "dist_from_db_m": 51},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "jibun": "범천동 839-407(DB와 일치)", "road": "자유평화로 21-11", "checked": "2026-06-15"},
+        {"name": "다이닝코드(rid EzK2YnN7xqzD)", "type": "맛집플랫폼", "menu": "한돈 오겹수육 국밥 한상 10,000원 / 얼큰국밥 한상 12,000원 / 추가 미니수육 7,000원", "posted": "최근리뷰(4.7/8명)", "checked": "2026-06-15"}
+      ],
+      "address_match": "일치(DB 지번=Kakao 지번; 도로명 자유평화로 21-11로 보강 가능)",
+      "price_match": "불일치(DB ‘1만원대’ 모호 → 구체화)",
+      "price_freshness": "보통~높음(다이닝코드 메뉴판)",
+      "coordinate_issue": "없음(51m)",
+      "classification": "PRICE_CORRECTION_CANDIDATE",
+      "recommendation": {"price_text": "수육국밥 한상 10,000원 / 얼큰국밥 한상 12,000원", "address_optional": "부산 부산진구 자유평화로 21-11(도로명 보강 선택)", "kakao_map_url": "https://place.map.kakao.com/2017689767 (검색링크→place URL, 별도 범위)"},
+      "conflicts": ["1차 웹검색의 ‘22,000원’은 오독 — 다이닝코드 메뉴판 기준 한상 10,000/12,000원이 정확"]
+    },
+    {
+      "rank": 9, "slug": "2tv-gwangan-kuromatsu", "name": "구로마쯔",
+      "queries": ["구로마쯔", "구로마쯔 광안점 런치특선 가격 철판요리"],
+      "business_status": "영업중(센트럴베이호텔 3층, 예약필수)",
+      "db": {"address": "부산 수영구 광안해변로 189 센트럴베이호텔 3층", "main_menu": "철판요리 런치특선 외", "price_text": "런치특선 38,000원, 소고기 안심 스테이크 25,000원, 활전복 2마리 20,000원 …", "kakao_map_url": "검색링크(link/search/구로마쯔 광안점)"},
+      "kakao": {"place_id": "1553493687", "place_name": "구로마쯔 광안점", "road_address": "부산 수영구 광안해변로 189", "jibun_address": "부산 수영구 광안동 197-2", "phone": "051-753-7792", "name_match": true, "addr_match": true, "dist_from_db_m": 310},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "address": "광안해변로 189(DB와 일치)", "checked": "2026-06-15"},
+        {"name": "다이닝코드(광안점 rid ta39NAephRIJ)/트립닷컴/mistyfriday", "type": "복합", "note": "철판 코스점 — 런치 단가 공개 제한적, DB 상세가와 모순 신호 없음", "checked": "2026-06-15"}
+      ],
+      "address_match": "일치(광안해변로 189; 송정점 place 1092116394와 구분됨)",
+      "price_match": "일치 추정(DB 상세가, 반증 없음)",
+      "price_freshness": "보통(상세 메뉴 기입값 유지)",
+      "coordinate_issue": "DB-Kakao 310m 이격(경미)",
+      "classification": "EXACT_CURRENT",
+      "recommendation": {"note": "수정 불필요", "kakao_map_url": "https://place.map.kakao.com/1553493687 (검색링크→place URL, 별도 범위)"},
+      "conflicts": ["동명 송정점(해운대구 송정광어골로 41)과 구분 필요 — 본건은 광안점"]
+    },
+    {
+      "rank": 10, "slug": "saengdal-jeonpo-toda-park", "name": "토다공원",
+      "queries": ["토다공원", "토다공원 부산 전포 몬자야키 오코노미야키 가격"],
+      "business_status": "영업중(일본식 주점/몬자야키)",
+      "db": {"address": "부산 부산진구 전포대로210번길 36 1층", "main_menu": "오징어먹물 몬자 외", "price_text": "오징어먹물 몬자 21,000원, 명란모찌몬자 19,800원, 오코노미야키 12,000원, 게살카니미소몬자 21,000원", "kakao_map_url": "검색링크(link/search/토다공원)"},
+      "kakao": {"place_id": "536870603", "place_name": "토다공원", "road_address": "부산 부산진구 전포대로210번길 36", "jibun_address": "부산 부산진구 전포동 334-44", "phone": "051-622-7736", "name_match": true, "addr_match": true, "dist_from_db_m": 251},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "address": "전포대로210번길 36(DB와 일치)", "checked": "2026-06-15"},
+        {"name": "다이닝코드(rid CGf5plptsnzz)/비짓부산", "type": "복합", "menu": "오징어먹물 몬자 21,000원 / 명란모찌몬자 19,800원(DB와 일치)", "checked": "2026-06-15"}
+      ],
+      "address_match": "일치",
+      "price_match": "일치(대표가 DB와 부합)",
+      "price_freshness": "보통",
+      "coordinate_issue": "DB-Kakao 251m 이격(경미)",
+      "classification": "EXACT_CURRENT",
+      "recommendation": {"note": "수정 불필요", "kakao_map_url": "https://place.map.kakao.com/536870603 (검색링크→place URL, 별도 범위)", "phone_note": "DB 051-808-7736 vs Kakao 051-622-7736 — phone 감사(별도 범위)"},
+      "conflicts": []
+    },
+    {
+      "rank": 11, "slug": "saengdal-sasang-peanut-bbangatgan", "name": "피넛빵앗간",
+      "queries": ["피넛빵앗간", "피넛빵앗간 부산 사상 소금빵 가격", "생활의 달인 1026회 피넛빵앗간"],
+      "business_status": "영업중(생활의 달인 1026회, 2026-04 방영; 당일생산 한정판매)",
+      "db": {"address": "부산 사상구 사상로148번길 11 1층", "main_menu": "소금빵", "price_text": "메뉴별 상이 (가격 확인 필요)", "kakao_map_url": "https://place.map.kakao.com/1585286643"},
+      "kakao": {"place_id": "1585286643", "place_name": "피넛빵앗간", "road_address": "부산 사상구 사상로148번길 11", "jibun_address": "부산 사상구 괘법동 552-20", "name_match": true, "addr_match": true, "dist_from_db_m": 82, "is_db_place": true},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "address": "사상로148번길 11(DB와 일치)", "checked": "2026-06-15"},
+        {"name": "thinkaloudblog(생활의 달인 1026회)", "type": "방송기사", "menu": "플레인 소금빵 3,300원(그 외 앙버터·크림브륄레 등은 라인업 매일 변동·개별가 비공개)", "posted": "2026-04", "checked": "2026-06-15"}
+      ],
+      "address_match": "EXACT",
+      "price_match": "불일치(DB 모호 → 대표가 플레인 3,300원 확인)",
+      "price_freshness": "높음(2026-04 방송 기준)",
+      "coordinate_issue": "없음(82m)",
+      "classification": "PRICE_CORRECTION_CANDIDATE",
+      "recommendation": {"price_text": "플레인 소금빵 3,300원~ (메뉴 매일 변동)", "note": "대표 1종(플레인)만 공개가 확보 — ‘부터~’ 표기 유지"},
+      "conflicts": ["앙버터·크림브륄레 등 변동 메뉴는 개별 공개가 없음 → 대표가 1줄로만 권장"]
+    },
+    {
+      "rank": 12, "slug": "2tv-bupyeong-kkang-dwaehu", "name": "깡돼후",
+      "queries": ["깡돼후", "깡돼후 부산 부평동 야시장 돼갈후라이드 가격"],
+      "business_status": "영업중(부평깡통시장, 생생정보 2513회 2026-04)",
+      "db": {"address": "부산광역시 중구 부평1길 57", "main_menu": "돼갈후라이드 외", "price_text": "돼갈후라이드 소 13,000원, 중 18,000원, 대 23,000원, 돼갈반반 대 24,000원, 갈비강정 중 19,000원", "kakao_map_url": "검색링크(link/search)"},
+      "kakao": {"place_id": "213124109", "place_name": "깡돼후야시장", "road_address": "부산 중구 부평1길 57", "jibun_address": "부산 중구 부평동2가 75-1", "phone": "051-244-2019", "name_match": true, "addr_match": true, "phone_match": true, "dist_from_db_m": 221},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "address": "부평1길 57(DB와 일치)", "phone": "051-244-2019(DB와 동일)", "checked": "2026-06-15"},
+        {"name": "다이닝코드/트립닷컴/생생정보 2513회", "type": "복합", "menu": "돼갈후라이드 소~대 13,000~23,000원 / 콘샐러드 1,000원(DB와 일치)", "posted": "2026-04", "checked": "2026-06-15"}
+      ],
+      "address_match": "일치",
+      "price_match": "일치(DB 상세가와 부합)",
+      "price_freshness": "높음(2026-04)",
+      "coordinate_issue": "DB-Kakao 221m 이격(경미)",
+      "classification": "EXACT_CURRENT",
+      "recommendation": {"note": "가격·주소 수정 불필요", "name_note": "공식 표기 ‘깡돼후 야시장’ — DB ‘깡돼후’ 유지 가능", "kakao_map_url": "https://place.map.kakao.com/213124109 (검색링크→place URL, 별도 범위)"},
+      "conflicts": []
+    },
+    {
+      "rank": 13, "slug": "saengdal-gijang-ilgwangdang", "name": "일광당",
+      "queries": ["일광당", "일광당 기장 일광 찐빵 만두 가격"],
+      "business_status": "영업중(기장 일광 만두·찐빵 노포)",
+      "db": {"address": "부산 기장군 일광읍 일광로 125-1", "main_menu": "찐빵·만두", "price_text": "찐빵 5개 6,000원 / 만두 6개 6,000원", "kakao_map_url": "https://place.map.kakao.com/14723726"},
+      "kakao": {"place_id": "14723726", "place_name": "일광당", "road_address": "부산 기장군 일광읍 일광로 125-1", "jibun_address": "부산 기장군 일광읍 이천리 836-5", "phone": "051-724-0039", "name_match": true, "addr_match": true, "phone_match": true, "dist_from_db_m": 1722, "is_db_place": true},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "address": "일광로 125-1(DB와 일치)", "phone": "051-724-0039(DB와 동일)", "checked": "2026-06-15"},
+        {"name": "다이닝코드(rid 8Jem2qVNNZgD)/Steemit", "type": "복합", "menu": "찐빵 5개 5,500원 / 각종 만두 5,500원(전 품목 5,500원)", "checked": "2026-06-15"}
+      ],
+      "address_match": "EXACT",
+      "price_match": "REVIEW(DB 6,000 vs 다이닝코드 5,500 — 500원 충돌, 최신성 불명확)",
+      "price_freshness": "불명확(인상/인하 방향 확인 불가)",
+      "coordinate_issue": "DB-Kakao 1722m 이격(중대 — 같은 place·주소 일치인데 좌표 1.7km 오차 → 지도/길찾기 오류, 별도 좌표 교정 강력 권장)",
+      "classification": "REVIEW",
+      "recommendation": {"price_text": "확정 보류(5,500/6,000 충돌 → 매장·공식 확인 후 결정)", "coordinate": "DB lat/lng를 Kakao place 14723726 좌표로 별도 교정 권장(주소·가격과 분리)"},
+      "conflicts": ["가격 5,500 vs 6,000 — 시점 불명확", "좌표 1722m 이격 — 주소는 맞으나 핀 위치 오류"]
+    },
+    {
+      "rank": 14, "slug": "saengdal-centum-bulbaek-gosurak", "name": "불백고수락 센텀본점",
+      "queries": ["불백고수락 센텀본점", "불백고수락 센텀본점 메뉴 가격 돈카츠 불백"],
+      "business_status": "영업중(센텀/재송동, 공식 SNS 운영)",
+      "db": {"address": "부산 해운대구 센텀중앙로 90 205호", "main_menu": "왕치즈두툼돈카츠, 소고기짬뽕불백, 제육고추장불백, 치즈치킨불백", "price_text": "돈카츠, 불백, 덮밥류(가격 없음)", "kakao_map_url": "검색링크(link/search)"},
+      "kakao": {"place_id": "987828015", "place_name": "불백고수락 센텀본점", "road_address": "부산 해운대구 센텀중앙로 90", "jibun_address": "부산 해운대구 재송동 1212", "phone": "051-781-7574", "name_match": true, "addr_match": true, "dist_from_db_m": 172},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "address": "센텀중앙로 90(DB와 일치)", "checked": "2026-06-15"},
+        {"name": "다이닝코드(rid 0IZXvRLFlKce)/공식 Threads", "type": "맛집플랫폼/공식SNS", "menu": "소고기간장불백 8,000원 / 소고기알파불백 9,500원 / 고수락돈카츠 10,000원 / 일본식돈카츠 10,000원 / 눈꽃치즈돈카츠 12,000원", "checked": "2026-06-15"}
+      ],
+      "address_match": "일치(센텀중앙로 90; 큐비e센텀 205호)",
+      "price_match": "불일치(DB price_text=카테고리만, 가격 없음)",
+      "price_freshness": "높음(공식 SNS·다이닝코드)",
+      "coordinate_issue": "없음(172m)",
+      "classification": "PRICE_CORRECTION_CANDIDATE",
+      "recommendation": {"price_text": "소고기불백 8,000원~ / 고수락돈카츠 10,000원 / 눈꽃치즈돈카츠 12,000원", "kakao_map_url": "https://place.map.kakao.com/987828015 (검색링크→place URL, 별도 범위)"},
+      "conflicts": ["DB category ‘한식’ vs 실제 ‘일식>돈까스’ 성격 — 분류는 이번 범위 밖"]
+    },
+    {
+      "rank": 15, "slug": "baekban-namgu-chossijib", "name": "궁중해물탕 조씨집 대연본점",
+      "queries": ["조씨집", "궁중해물탕 조씨집", "조씨집 대연", "궁중해물탕 조씨집 대연 부산 가격 메뉴"],
+      "business_status": "영업중(1959년~, 일 휴무, 백반기행 출연)",
+      "db": {"address": "부산 남구 진남로 7-11", "main_menu": "궁중해물탕", "price_text": "메뉴별 상이 (가격 확인 필요)", "kakao_map_url": "https://place.map.kakao.com/11552847"},
+      "kakao": {"place_id": "11552847", "place_name": "궁중해물탕조씨집", "road_address": "부산 남구 진남로 7-11", "jibun_address": "부산 남구 대연동 1745-14", "phone": "051-627-4749", "name_match": true, "addr_match": true, "phone_match": true, "is_db_place": true, "note": "전체 상호 검색 0건 → ‘조씨집/궁중해물탕 조씨집’ 단축 질의로 단일 확정"},
+      "sources": [
+        {"name": "Kakao Local API", "type": "지도", "address": "진남로 7-11(DB와 EXACT)", "phone": "051-627-4749(DB와 동일)", "checked": "2026-06-15"},
+        {"name": "다이닝코드(rid mSDjdv5yUe97)", "type": "맛집플랫폼", "menu": "궁중해물탕 소 35,000/중 50,000/대 65,000원 · 백년해물탕 소 42,000/중 58,000/대 75,000원 · 모듬회 소 50,000원~", "posted": "최근리뷰 2025-02-23", "checked": "2026-06-15"},
+        {"name": "공식 fordining/비짓부산/백반기행", "type": "공식/공공/방송", "note": "메뉴·가격 교차 확인", "checked": "2026-06-15"}
+      ],
+      "address_match": "EXACT",
+      "price_match": "불일치(DB 모호 → 대표가 확인)",
+      "price_freshness": "보통~높음(다이닝코드 메뉴판, 2025-02 리뷰)",
+      "coordinate_issue": "place 일치(DB place_id=11552847) — 좌표 미수집이나 이슈 가능성 낮음",
+      "classification": "PRICE_CORRECTION_CANDIDATE",
+      "recommendation": {"price_text": "궁중해물탕(소) 35,000원~ / 백년해물탕(소) 42,000원 / 모듬회(소) 50,000원~", "note": "main_menu ‘궁중해물탕’ 유지 가능(대표는 백년해물탕)"},
+      "conflicts": []
+    }
+  ]
+}
