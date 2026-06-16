@@ -1,0 +1,12 @@
+matched_slug,matched_restaurant_name,current_source_type,official_source_group,official_source_name,selection_grade,kakao_place_id,recommended_action,reason
+michelin-haeundae-moemiljip,뫼밀집,guide,michelin,미쉐린 가이드 부산 2026,bib_gourmand,973360722,ALREADY_REGISTERED,직전 회차 guide 등록 완료(대표 출처가 미쉐린)
+baekban-yeonje-godeungeo-datchi,고등어다찌 연산본점,tv,busan_official,2026 부산의 맛,수록,12743016,LINK_TRUST_SOURCE,대표 tv 유지·부산공식 출처를 trust_sources 로 추가
+saengdal-yeonje-gukje-milmyeon,국제밀면 본점,tv,busan_official,2026 부산의 맛,수록,25041331,LINK_TRUST_SOURCE,대표 tv 유지·부산공식 trust_sources 추가
+mulkkong-sikdang,물꽁식당,tv,busan_official,2026 부산의 맛,수록,11891969,LINK_TRUST_SOURCE,대표 tv 유지·부산공식 trust_sources 추가
+saengdal-gwangalli-baegil-pyeongnaeng,백일평냉,tv,busan_official,2026 부산의 맛,수록,1174747976,LINK_TRUST_SOURCE,대표 tv 유지·부산공식 trust_sources 추가
+samdaecheonwang-shinbalwon,신발원,tv,busan_official,2026 부산의 맛,수록,8407645,LINK_TRUST_SOURCE,대표 tv 유지·부산공식 trust_sources 추가
+saengdal-ssangdungyi-doejigukbap,쌍둥이돼지국밥 본점,tv,busan_official,2026 부산의 맛,수록,349525135,LINK_TRUST_SOURCE,대표 tv 유지·부산공식 trust_sources 추가
+samdae-seomyeon-wonjo-halmae-nakji,원조할매낙지,tv,busan_official,2026 부산의 맛,수록,8035148,LINK_TRUST_SOURCE,대표 tv 유지·부산공식 trust_sources 추가
+bapsang-gijang-haebyeon-jipbul-gomjangeo,해변짚불곰장어,tv,busan_official,2026 부산의 맛,수록,10020270,LINK_TRUST_SOURCE,대표 tv 유지·부산공식 trust_sources 추가
+kimyusun-daegu-bbol-jjim,김유순대구뽈찜전문점,youtube,busan_official,2026 부산의 맛,수록,8116757,LINK_TRUST_SOURCE,대표 youtube 유지·부산공식 trust_sources 추가
+tzuyang-nampo-ijaemo-pizza,이재모피자 본점,youtube,busan_official,2026 부산의 맛,수록,10070964,LINK_TRUST_SOURCE,대표 youtube 유지·부산공식 trust_sources 추가

@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-06-16",
+  "mode": "read-only",
+  "db_total": 109,
+  "db_published": 92,
+  "michelin": {
+    "official_total_busan_2026": 55,
+    "breakdown": { "stars": 4, "bib_gourmand": 20, "selected_approx": 31 },
+    "extracted": 7,
+    "extracted_detail": { "bib_gourmand_new": 3, "one_star": 4 },
+    "not_extracted": 48,
+    "fully_verified": false,
+    "block_reason": "guide.michelin.com HTTP 403 봇차단. 보도자료는 신규 빕구르망 3곳만 공개"
+  },
+  "busan_official": {
+    "source": "2026 부산의 맛 (Taste of Busan), 부산광역시 발행, 2025-12 기준",
+    "official_total": 146,
+    "phones_extracted_unique": 142,
+    "phones_breakdown": { "051": 93, "0507": 39, "010": 10 },
+    "hangul_names_extracted": 0,
+    "extract_block_reason": "본문 한글이 Adobe-Korea1 CID폰트 → pdftotext 상호/주소 미추출(전화만 추출)",
+    "matched_db_by_phone": 10,
+    "unmatched_phones": 132
+  },
+  "overlaps": {
+    "busan_official_x_tv": 8,
+    "busan_official_x_youtube": 2,
+    "michelin_x_tv": "unknown (빕구르망 기존 17 미확보)",
+    "michelin_x_youtube": "unknown",
+    "michelin_x_busan_official": "unknown (양쪽 전체 명단 부재)",
+    "note": "수치는 확보 범위의 하한. 0507 안심번호·전화누락·상호 미추출로 실제 교집합은 더 클 수 있음"
+  },
+  "classification_counts": {
+    "EXISTING_already_registered": 1,
+    "EXISTING_LINKABLE": 10,
+    "READY_FOR_IMAGE": 2,
+    "NOT_RECOMMENDED": 4,
+    "REVIEW_unmatched_phone": 132,
+    "NO_MATCH_not_extracted": 48
+  },
+  "final_report_metrics": {
+    "busan_official_total": 146,
+    "busan_official_names_extracted": 0,
+    "busan_official_phones_extracted": 142,
+    "db_already_registered_from_official": 11,
+    "db_not_registered_official_candidates": "미상(상호 미추출) — 전화 미매칭 132 중 일부",
+    "name_only_needs_review": "판정 불가(상호 미추출)",
+    "michelin_busan_extracted": 7,
+    "michelin_fully_verified": false,
+    "search_tab_data_sufficient": false,
+    "next_step": "추가 데이터 대조(상호 확보) 우선 — 검색 탭 구현은 trust_sources 데이터 입력 후",
+    "objective_met_without_full_ocr": "부분 — 전화 대조로 교집합 10곳·자료 메타 확정. 전수 대조(상호 전체)는 미달"
+  }
+}

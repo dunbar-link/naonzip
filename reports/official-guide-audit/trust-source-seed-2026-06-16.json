@@ -1,0 +1,99 @@
+{
+  "generated_at": "2026-06-16",
+  "mode": "APPLY",
+  "target": 11,
+  "to_insert": 11,
+  "skip_exists": 0,
+  "review_no_match": 0,
+  "inserted": 11,
+  "plan": [
+    {
+      "slug": "baekban-yeonje-godeungeo-datchi",
+      "name": "고등어다찌 연산본점",
+      "source_type": "tv",
+      "source_name": "2026 부산의 맛",
+      "trust_label": null,
+      "status": "to_insert"
+    },
+    {
+      "slug": "saengdal-yeonje-gukje-milmyeon",
+      "name": "국제밀면 본점",
+      "source_type": "tv",
+      "source_name": "2026 부산의 맛",
+      "trust_label": null,
+      "status": "to_insert"
+    },
+    {
+      "slug": "mulkkong-sikdang",
+      "name": "물꽁식당",
+      "source_type": "tv",
+      "source_name": "2026 부산의 맛",
+      "trust_label": null,
+      "status": "to_insert"
+    },
+    {
+      "slug": "saengdal-gwangalli-baegil-pyeongnaeng",
+      "name": "백일평냉",
+      "source_type": "tv",
+      "source_name": "2026 부산의 맛",
+      "trust_label": null,
+      "status": "to_insert"
+    },
+    {
+      "slug": "samdaecheonwang-shinbalwon",
+      "name": "신발원",
+      "source_type": "tv",
+      "source_name": "2026 부산의 맛",
+      "trust_label": null,
+      "status": "to_insert"
+    },
+    {
+      "slug": "saengdal-ssangdungyi-doejigukbap",
+      "name": "쌍둥이돼지국밥 본점",
+      "source_type": "tv",
+      "source_name": "2026 부산의 맛",
+      "trust_label": null,
+      "status": "to_insert"
+    },
+    {
+      "slug": "samdae-seomyeon-wonjo-halmae-nakji",
+      "name": "원조할매낙지",
+      "source_type": "tv",
+      "source_name": "2026 부산의 맛",
+      "trust_label": null,
+      "status": "to_insert"
+    },
+    {
+      "slug": "bapsang-gijang-haebyeon-jipbul-gomjangeo",
+      "name": "해변짚불곰장어",
+      "source_type": "tv",
+      "source_name": "2026 부산의 맛",
+      "trust_label": null,
+      "status": "to_insert"
+    },
+    {
+      "slug": "kimyusun-daegu-bbol-jjim",
+      "name": "김유순대구뽈찜전문점",
+      "source_type": "youtube",
+      "source_name": "2026 부산의 맛",
+      "trust_label": null,
+      "status": "to_insert"
+    },
+    {
+      "slug": "tzuyang-nampo-ijaemo-pizza",
+      "name": "이재모피자 본점",
+      "source_type": "youtube",
+      "source_name": "2026 부산의 맛",
+      "trust_label": null,
+      "status": "to_insert"
+    },
+    {
+      "slug": "michelin-haeundae-moemiljip",
+      "name": "뫼밀집",
+      "source_type": "guide",
+      "source_name": "미쉐린 가이드 부산 2026",
+      "trust_label": "빕 구르망",
+      "status": "to_insert"
+    }
+  ]
+}

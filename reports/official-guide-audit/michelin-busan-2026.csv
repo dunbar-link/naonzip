@@ -1,0 +1,10 @@
+source_group,source_name,source_year,selection_grade,official_restaurant_name,matched_restaurant_name,matched_slug,match_status,kakao_place_id,address,phone,official_url,classification,reason,proposed_slug,recommended_image_filename
+michelin,미쉐린 가이드 서울&부산,2026,bib_gourmand,뫼밀집,뫼밀집,michelin-haeundae-moemiljip,MATCHED_DB,973360722,부산 해운대구 마린시티3로 23,051-744-9944,https://guide.michelin.com/kr/ko,EXISTING,이미 source_type=guide 로 등록 완료(직전 회차),,
+michelin,미쉐린 가이드 서울&부산,2026,bib_gourmand,송헌집,,,NO_MATCH_DB,1559134124,부산 수영구 민락로19번길 18,Kakao미등록,https://guide.michelin.com/kr/ko,READY_FOR_IMAGE,빕구르망 신규·DB 미등록·Kakao 검증됨(분점 사직구장점 존재, 본점은 민락),michelin-gwangalli-songheonjip,michelin-gwangalli-songheonjip.jpg
+michelin,미쉐린 가이드 서울&부산,2026,bib_gourmand,평양집,,,NO_MATCH_DB,12293207,부산 북구 금곡대로20번길 21,051-331-5455,https://guide.michelin.com/kr/ko,READY_FOR_IMAGE,빕구르망 신규·DB 미등록·이북식 만둣국,michelin-bukgu-pyeongyangjip,michelin-bukgu-pyeongyangjip.jpg
+michelin,미쉐린 가이드 서울&부산,2026,one_star,모리(Mori),,,NO_MATCH_DB,,(미확보),,https://guide.michelin.com/kr/ko,NOT_RECOMMENDED,파인다이닝 코스 중심→나온집 포지셔닝 부적합,,
+michelin,미쉐린 가이드 서울&부산,2026,one_star,팔레트(Palette),,,NO_MATCH_DB,,(미확보),,https://guide.michelin.com/kr/ko,NOT_RECOMMENDED,파인다이닝 코스 중심→나온집 포지셔닝 부적합,,
+michelin,미쉐린 가이드 서울&부산,2026,one_star,피오또(Fiotto),,,NO_MATCH_DB,,(미확보),,https://guide.michelin.com/kr/ko,NOT_RECOMMENDED,파인다이닝 코스 중심→나온집 포지셔닝 부적합,,
+michelin,미쉐린 가이드 서울&부산,2026,one_star,르도헤(Le DORER),,,NO_MATCH_DB,,(미확보),,https://guide.michelin.com/kr/ko,NOT_RECOMMENDED,신규 1스타 승급·파인다이닝→나온집 포지셔닝 부적합,,
+michelin,미쉐린 가이드 서울&부산,2026,bib_gourmand,(빕구르망 기존 17곳),,,NOT_EXTRACTED,,,,https://guide.michelin.com/kr/ko,NO_MATCH,미쉐린 공식 403 봇차단으로 전체 명단 추출 불가(보도자료는 신규 3곳만 공개),,
+michelin,미쉐린 가이드 서울&부산,2026,selected,(셀렉티드 약 31곳),,,NOT_EXTRACTED,,,,https://guide.michelin.com/kr/ko,NO_MATCH,미쉐린 공식 403 봇차단으로 명단 추출 불가,,

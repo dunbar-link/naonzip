@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-06-16",
+  "michelin": {
+    "official_home": "https://guide.michelin.com/kr/ko",
+    "access": "HTTP 403 (봇차단) — 자동 추출 불가",
+    "press_bib_gourmand_2026": "https://guide.michelin.com/kr/ko/article/michelin-guide-ceremony/korea-bib-gourmand-2026",
+    "press_stars_2026": "https://guide.michelin.com/kr/ko/article/michelin-guide-ceremony/all-the-stars-michelin-guide-seoul-busan-2026",
+    "press_highlights_2026": "https://guide.michelin.com/kr/ko/article/michelin-guide-ceremony/michelin-guide-seoul-busan-2026-highlights",
+    "press_transcript_sources": [
+      "https://www.hotelrestaurant.co.kr/news/articleView.html?idxno=21384",
+      "https://www.newswire.co.kr/newsRead.php?no=1029250"
+    ],
+    "note": "보도자료는 미쉐린 공식 발표 전재이나 부산 빕구르망은 신규 3곳만 명단 게재"
+  },
+  "busan_official": {
+    "portal_guidebooks": "https://www.visitbusan.net/board/list.do?boardId=BBS_0000007&menuCd=DOM_000000203001000000",
+    "taste_of_busan_2026_pdf": "https://www.visitbusan.net/board/download.do?boardId=BBS_0000007&dataSid=5445&fileSid=10322",
+    "taste_of_busan_2025_pdf": "https://www.visitbusan.net/board/download.do?boardId=BBS_0000007&dataSid=4208&fileSid=7458",
+    "publisher": "부산광역시(부산관광공사 운영)",
+    "year": "2026 (2025-12 기준)",
+    "count": 146,
+    "languages": "한/영/중/일",
+    "note": "PDF 본문 한글 CID폰트(Adobe-Korea1) → 텍스트 추출 시 상호/주소 깨짐. 전화번호만 추출 가능"
+  },
+  "blue_ribbon": {
+    "busan_100_selection": "https://www.bluer.co.kr/magazine/344",
+    "busan_nopo": "https://www.bluer.co.kr/magazine/547",
+    "access": "HTTP 403 — 부산관광공사×블루리본서베이 협업(부산의 맛에 반영)",
+    "note": "부산의 맛 가이드가 블루리본 선정 100선을 포함 — 별도 추출 불요"
+  }
+}
