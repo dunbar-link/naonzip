@@ -1,0 +1,113 @@
+{
+  "generated_at": "2026-06-15",
+  "mode": "before-backup",
+  "note": "Kakao EXACT 4곳 kakao_map_url·lat·lng 변경 전 전체 row + 보호 2곳 핵심값. 실제 키/env 미포함.",
+  "expected_after": [
+    {
+      "slug": "sokssiwonhan-daegutang-haeundae",
+      "kakao_map_url": "https://place.map.kakao.com/13299874",
+      "lat": 35.16084233038125,
+      "lng": 129.1554279612453
+    },
+    {
+      "slug": "oneuln-nampo-sammi-jip",
+      "kakao_map_url": "https://place.map.kakao.com/16214505",
+      "lat": 35.10197482606437,
+      "lng": 129.0289559350778
+    },
+    {
+      "slug": "hanyakbang-gukbap-hyeongje-food",
+      "kakao_map_url": "https://place.map.kakao.com/2017689767",
+      "lat": 35.1418955972729,
+      "lng": 129.062005706056
+    },
+    {
+      "slug": "2tv-bupyeong-kkang-dwaehu",
+      "kakao_map_url": "https://place.map.kakao.com/213124109",
+      "lat": 35.102069493716535,
+      "lng": 129.02577496381926
+    }
+  ],
+  "rows": [
+    {
+      "id": "081ea8e9-c0e1-49b2-bcc8-90369c730855",
+      "slug": "sokssiwonhan-daegutang-haeundae",
+      "name": "속씨원한 대구탕 해운대 본점",
+      "address": "부산 해운대구 해운대로570번길 11 2층",
+      "phone": "051-731-4222",
+      "kakao_map_url": "https://map.kakao.com/?urlX=990988.0000004247&urlY=467668.00000001094&urlLevel=3&itemId=13299874&q=%EC%86%8D%EC%94%A8%EC%9B%90%ED%95%9C%20%EB%8C%80%EA%B5%AC%ED%83%95%20%ED%95%B4%EC%9A%B4%EB%8C%80%20%EB%B3%B8%EC%A0%90&srcid=13299874&map_type=TYPE_MAP",
+      "lat": 35.163622,
+      "lng": 129.153411,
+      "area": "해운대",
+      "category": "해산물",
+      "main_menu": "대구탕",
+      "price_text": "대구탕 15,000원",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/sokssiwonhan-daegutang-haeundae/main.webp",
+      "is_published": true
+    },
+    {
+      "id": "8c4e722a-6b67-41ef-8ec0-fe3a68880d3d",
+      "slug": "oneuln-nampo-sammi-jip",
+      "name": "삼미집",
+      "address": "부산 중구 광복로35번길 30-1",
+      "phone": "051-245-7776",
+      "kakao_map_url": "https://map.kakao.com/link/search/삼미집",
+      "lat": 35.0998,
+      "lng": 129.0308,
+      "area": "남포동",
+      "category": "한식",
+      "main_menu": "소갈비찜탕, 소갈비찜, 닭계장",
+      "price_text": "소갈비찜탕 9,000원 / 소갈비찜 30,000원~ / 닭계장 7,000원",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/oneuln-nampo-sammi-jip/main.webp",
+      "is_published": true
+    },
+    {
+      "id": "6bb141ff-de22-42de-92bf-e541ee559463",
+      "slug": "hanyakbang-gukbap-hyeongje-food",
+      "name": "한약방돼지국밥 형제식품",
+      "address": "부산 부산진구 범천동 839-407",
+      "phone": null,
+      "kakao_map_url": "https://map.kakao.com/link/search/한약방돼지국밥%20형제식품",
+      "lat": 35.141445,
+      "lng": 129.062135,
+      "area": "서면",
+      "category": "돼지국밥",
+      "main_menu": "돼지국밥",
+      "price_text": "수육국밥 한상 10,000원 / 얼큰국밥 한상 12,000원",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/hanyakbang-gukbap-hyeongje-food/main.webp",
+      "is_published": true
+    },
+    {
+      "id": "c763888f-4927-4cc7-b7ed-a91958d01195",
+      "slug": "2tv-bupyeong-kkang-dwaehu",
+      "name": "깡돼후",
+      "address": "부산광역시 중구 부평1길 57",
+      "phone": "051-244-2019",
+      "kakao_map_url": "https://map.kakao.com/link/search/깡돼후%20부산%20부평1길%2057",
+      "lat": 35.1011,
+      "lng": 129.0279,
+      "area": "남포동",
+      "category": "고기",
+      "main_menu": "돼갈후라이드, 돼갈반반, 갈비강정, 콘샐러드",
+      "price_text": "돼갈후라이드 소 13,000원, 돼갈후라이드 중 18,000원, 돼갈후라이드 대 23,000원, 돼갈반반 대 24,000원, 갈비강정 중 19,000원",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/2tv-bupyeong-kkang-dwaehu/main.webp",
+      "is_published": true
+    }
+  ],
+  "protected": [
+    {
+      "slug": "saengdal-jeonpo-toda-park",
+      "name": "토다공원",
+      "kakao_map_url": "https://map.kakao.com/link/search/토다공원",
+      "lat": 35.1559,
+      "lng": 129.0648
+    },
+    {
+      "slug": "2tv-gwangan-kuromatsu",
+      "name": "구로마쯔",
+      "kakao_map_url": "https://map.kakao.com/link/search/구로마쯔%20광안점",
+      "lat": 35.1537,
+      "lng": 129.1185
+    }
+  ]
+}

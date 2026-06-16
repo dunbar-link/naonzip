@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-06-15",
+  "verified_date": "2026-06-15",
+  "mode": "read-only",
+  "note": "kakao_map_url이 검색링크 형태인 공개 6곳의 정확 place ID·좌표 Kakao Local API 재검증. DB/앱 미수정. 실제 키/env 미포함. 외부 교차는 동일 작업일(2026-06-15) 가격감사 sources 재사용.",
+  "summary": { "target": 6, "search_link": 6, "EXACT_MATCH": 4, "REVIEW": 2, "NO_MATCH": 0, "CLOSED_OR_MOVED": 0, "BLOCKED": 0, "db_writes": 0, "app_changes": 0 },
+  "restaurants": [
+    {
+      "slug": "sokssiwonhan-daegutang-haeundae", "name": "속씨원한 대구탕 해운대 본점",
+      "db": { "address": "부산 해운대구 해운대로570번길 11 2층", "phone": "051-731-4222", "kakao_map_url": "검색링크(itemId=13299874)", "lat": 35.163622, "lng": 129.153411 },
+      "url_type": "검색링크(itemId있음)",
+      "selected": { "place_id": "13299874", "place_name": "속씨원한 대구탕 해운대 본점", "category": "한식>해물,생선>매운탕,해물탕", "road_address": "부산 해운대구 해운대로570번길 11", "jibun_address": "부산 해운대구 우동 643-5", "phone": "051-731-4222", "lat": 35.16084233038125, "lng": 129.1554279612453 },
+      "name_match": true, "address_match": true, "phone_match": true, "branch_match": "본점 확정(미포/사상/장유/여의도/주차장 배제)", "coordinate_distance_m": 359, "business_status": "영업중(다이닝코드 2026-05)",
+      "classification": "EXACT_MATCH",
+      "recommended": { "kakao_map_url": "https://place.map.kakao.com/13299874", "lat": 35.16084233038125, "lng": 129.1554279612453 },
+      "rejected_candidates": ["7958381 미포본점(달맞이길62번길 28, 051-744-0238, 1.7km)", "1794613771 해운대점 주차장(카테고리=주차장)", "13113874 사상점(광장로 56)", "708131625 장유직영점(경남 김해)", "1340475924 여의도점(서울)"],
+      "sources": ["Kakao Local API(2026-06-15)", "2026-06-15 가격감사 sources(영업중·본점 13299874 확인)"]
+    },
+    {
+      "slug": "oneuln-nampo-sammi-jip", "name": "삼미집",
+      "db": { "address": "부산 중구 광복로35번길 30-1", "phone": "051-245-7776", "kakao_map_url": "link/search/삼미집", "lat": 35.0998, "lng": 129.0308 },
+      "url_type": "검색링크",
+      "selected": { "place_id": "16214505", "place_name": "삼미집", "category": "한식", "road_address": "부산 중구 광복로35번길 30-1", "jibun_address": "부산 중구 신창동3가 6-1", "phone": "051-245-7776", "lat": 35.10197482606437, "lng": 129.0289559350778 },
+      "name_match": true, "address_match": true, "phone_match": true, "branch_match": "단일(국제시장)", "coordinate_distance_m": 294, "business_status": "영업중",
+      "classification": "EXACT_MATCH",
+      "recommended": { "kakao_map_url": "https://place.map.kakao.com/16214505", "lat": 35.10197482606437, "lng": 129.0289559350778 },
+      "rejected_candidates": [],
+      "sources": ["Kakao Local API(2026-06-15, 단일 후보)", "2026-06-15 가격감사 sources(다이닝코드·생생정보)"]
+    },
+    {
+      "slug": "hanyakbang-gukbap-hyeongje-food", "name": "한약방돼지국밥 형제식품",
+      "db": { "address": "부산 부산진구 범천동 839-407", "phone": null, "kakao_map_url": "link/search/한약방돼지국밥 형제식품", "lat": 35.141445, "lng": 129.062135 },
+      "url_type": "검색링크",
+      "selected": { "place_id": "2017689767", "place_name": "한약방돼지국밥 형제식품", "category": "한식>국밥", "road_address": "부산 부산진구 자유평화로 21-11", "jibun_address": "부산 부산진구 범천동 839-407", "phone": "051-646-3102", "lat": 35.1418955972729, "lng": 129.062005706056 },
+      "name_match": true, "address_match": "지번 완전일치(범천동 839-407=DB 주소)", "phone_match": "교차불가(DB phone null)", "branch_match": "단일", "coordinate_distance_m": 51, "business_status": "영업중(월휴무, 다이닝코드 2026-05)",
+      "classification": "EXACT_MATCH",
+      "recommended": { "kakao_map_url": "https://place.map.kakao.com/2017689767", "lat": 35.1418955972729, "lng": 129.062005706056 },
+      "rejected_candidates": [],
+      "note": "DB 주소=지번(범천동 839-407), Kakao=도로명(자유평화로 21-11)+동일 지번. 51m·단일후보·이름 완전일치 → place 확정. 주소·phone은 이번 범위 밖(미수정).",
+      "sources": ["Kakao Local API(2026-06-15, 단일·jibun 일치)", "2026-06-15 가격감사 sources(다이닝코드 메뉴판)"]
+    },
+    {
+      "slug": "2tv-gwangan-kuromatsu", "name": "구로마쯔",
+      "db": { "address": "부산 수영구 광안해변로 189 센트럴베이호텔 3층", "phone": "0507-1371-7816", "kakao_map_url": "link/search/구로마쯔 광안점", "lat": 35.1537, "lng": 129.1185 },
+      "url_type": "검색링크",
+      "candidate": { "place_id": "1553493687", "place_name": "구로마쯔 광안점", "category": "일식", "road_address": "부산 수영구 광안해변로 189", "jibun_address": "부산 수영구 광안동 197-2", "phone": "051-753-7792", "lat": 35.1514786694312, "lng": 129.116434385139 },
+      "name_match": true, "address_match": true, "phone_match": false, "branch_match": "광안점(송정점 1092116394와 구분)", "coordinate_distance_m": 310, "business_status": "영업중(광안점)",
+      "classification": "REVIEW",
+      "review_reason": "DB phone 0507-1371-7816(안심번호) vs Kakao 051-753-7792(지역번호) — 안심번호 특성상 직접 교차 불가(충돌은 아님). road(광안해변로 189)+지점명+단일후보로 place 1553493687 유력. phone 확인 후 EXACT 승격 권장.",
+      "tentative_recommended": { "kakao_map_url": "https://place.map.kakao.com/1553493687", "lat": 35.1514786694312, "lng": 129.116434385139 },
+      "sources": ["Kakao Local API(2026-06-15)", "2026-06-15 가격감사 sources(광안점 EXACT_CURRENT, 송정점 구분)"]
+    },
+    {
+      "slug": "saengdal-jeonpo-toda-park", "name": "토다공원",
+      "db": { "address": "부산 부산진구 전포대로210번길 36 1층", "phone": "051-808-7736", "kakao_map_url": "link/search/토다공원", "lat": 35.1559, "lng": 129.0648 },
+      "url_type": "검색링크",
+      "candidate": { "place_id": "536870603", "place_name": "토다공원", "category": "술집>일본식주점", "road_address": "부산 부산진구 전포대로210번길 36", "jibun_address": "부산 부산진구 전포동 334-44", "phone": "051-622-7736", "lat": 35.1553485785214, "lng": 129.067478259407 },
+      "name_match": true, "address_match": true, "phone_match": false, "branch_match": "단일", "coordinate_distance_m": 251, "business_status": "영업중",
+      "classification": "REVIEW",
+      "review_reason": "DB phone 051-808-7736 vs Kakao 051-622-7736 — 둘 다 지역번호인데 다름(실충돌). road(전포대로210번길 36)+name 일치+단일후보로 place 536870603 유력하나, phone 충돌 미해소. DB phone 출처 확인 후 EXACT 판정. phone은 이번 범위 밖이나 place 동일성 판단에 필요.",
+      "tentative_recommended": { "kakao_map_url": "https://place.map.kakao.com/536870603", "lat": 35.1553485785214, "lng": 129.067478259407 },
+      "sources": ["Kakao Local API(2026-06-15)", "2026-06-15 가격감사 sources(다이닝코드·비짓부산, 가격 일치)"]
+    },
+    {
+      "slug": "2tv-bupyeong-kkang-dwaehu", "name": "깡돼후",
+      "db": { "address": "부산광역시 중구 부평1길 57", "phone": "051-244-2019", "kakao_map_url": "link/search/깡돼후 부산 부평1길 57", "lat": 35.1011, "lng": 129.0279 },
+      "url_type": "검색링크",
+      "selected": { "place_id": "213124109", "place_name": "깡돼후야시장", "category": "한식>육류,고기", "road_address": "부산 중구 부평1길 57", "jibun_address": "부산 중구 부평동2가 75-1", "phone": "051-244-2019", "lat": 35.102069493716535, "lng": 129.02577496381926 },
+      "name_match": true, "address_match": true, "phone_match": true, "branch_match": "단일(DB '깡돼후'=Kakao '깡돼후야시장' 정식명)", "coordinate_distance_m": 221, "business_status": "영업중(생생정보 2513회 2026-04)",
+      "classification": "EXACT_MATCH",
+      "recommended": { "kakao_map_url": "https://place.map.kakao.com/213124109", "lat": 35.102069493716535, "lng": 129.02577496381926 },
+      "rejected_candidates": [],
+      "note": "Kakao 정식명 '깡돼후야시장', DB는 '깡돼후' 약칭(name은 수정 범위 밖). road+phone 완전일치로 place 확정.",
+      "sources": ["Kakao Local API(2026-06-15, 단일·phone 일치)", "2026-06-15 가격감사 sources(생생정보 2513회)"]
+    }
+  ]
+}
