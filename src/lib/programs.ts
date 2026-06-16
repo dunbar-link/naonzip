@@ -95,6 +95,11 @@ const RAW_PROGRAM_SLUGS: Record<string, string> = {
 
   // 수요미식회 (tvN)
   '수요미식회': 'wednesday-food-talk',
+
+  // 미친맛집: 미식가 친구의 맛집 (넷플릭스 — 성시경·마츠시게 유타카)
+  '미친맛집': 'michinmatjip',
+  '미친맛집 미식가 친구의 맛집': 'michinmatjip',
+  '미친맛집: 미식가 친구의 맛집': 'michinmatjip',
 }
 
 // 정규화된 키 형태로 변환해 두면 lookup이 빠르고 표기 흔들림에 강함
@@ -124,6 +129,7 @@ export const PROGRAM_NAMES: Record<string, string> = {
   'foodieland': '푸디랜드 FoodieLand',
   'six-oclock-hometown': '6시 내고향',
   'wednesday-food-talk': '수요미식회',
+  'michinmatjip': '미친맛집',
 }
 
 // ─────────────────────────────────────────────

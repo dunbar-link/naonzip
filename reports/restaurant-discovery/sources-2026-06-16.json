@@ -1,0 +1,197 @@
+{
+  "generated_at": "2026-06-16",
+  "mode": "read-only",
+  "method": "기존 restaurants 107곳(공개90+비공개17) 전수 대조 + Kakao Local API keyword 검증(이름·주소·전화 3중 대조, y=lat/x=lng)",
+  "db_write": 0,
+  "storage_write": 0,
+  "image_download": 0,
+  "summary": {
+    "discovered": 18,
+    "ready_for_image": 1,
+    "review": 7,
+    "duplicate": 8,
+    "closed_or_moved": 0,
+    "no_match": 0
+  },
+  "candidates": [
+    {
+      "rank": 1,
+      "classification": "READY_FOR_IMAGE",
+      "name": "신창국밥 본점",
+      "proposed_slug": "michinmatjip-seogu-sinchang-gukbap",
+      "area": "기타",
+      "category": "돼지국밥",
+      "kakao": {
+        "place_id": "7979137",
+        "place_url": "https://place.map.kakao.com/7979137",
+        "road_address": "부산 서구 보수대로 53",
+        "jibun_address": "부산 서구 토성동1가 4-1",
+        "phone": "051-244-1112",
+        "lat": 35.1009583984265,
+        "lng": 129.022588312598,
+        "category_name": "음식점 > 한식 > 국밥"
+      },
+      "sources": [
+        { "kind": "tv", "name": "넷플릭스 미친맛집: 미식가 친구의 맛집 (시즌4 11화)", "url": "https://histale.com/i/넷플릭스-미친맛집-식당-리스트/A", "published_at": "2026-01", "note": "성시경·마츠시게 유타카. 시즌4 시작 2025-11-13 기준 11화 2026-01 추정" },
+        { "kind": "local", "name": "부산 맛집기행(다음카페) - 신창국밥 토성동 본점", "url": "https://m.cafe.daum.net/pusangoodfood/WkKN/990", "published_at": null }
+      ],
+      "duplicate_check": "no_match_in_db",
+      "current_business_status": "영업중"
+    },
+    {
+      "rank": 2,
+      "classification": "REVIEW",
+      "review_reason": "출처 2025년(미친맛집 시즌3 8화) → 2026 기준 미충족 / 가격 미확정",
+      "name": "승하집",
+      "proposed_slug": "michinmatjip-dongnae-seungha-jip",
+      "area": "동래",
+      "category": "한식",
+      "kakao": {
+        "place_id": "2020452181",
+        "place_url": "https://place.map.kakao.com/2020452181",
+        "road_address": "부산 동래구 사직북로5번길 31",
+        "jibun_address": "부산 동래구 사직동 89-3",
+        "phone": "010-9102-5535",
+        "lat": 35.1960653454399,
+        "lng": 129.059141057486,
+        "category_name": "음식점 > 술집 > 실내포장마차"
+      },
+      "sources": [
+        { "kind": "tv", "name": "넷플릭스 미친맛집 시즌3 8화", "url": "https://histale.com/i/넷플릭스-미친맛집-식당-리스트/A", "published_at": "2025-10" }
+      ],
+      "duplicate_check": "no_match_in_db",
+      "current_business_status": "영업중"
+    },
+    {
+      "rank": 3,
+      "classification": "REVIEW",
+      "review_reason": "출처 2025-12(미친맛집 시즌4 6화) → 2026 기준 약 2주 미달 / 가격 미확정",
+      "name": "갈치회관",
+      "proposed_slug": "michinmatjip-sasang-galchi-hoegwan",
+      "area": "사상",
+      "category": "해산물",
+      "kakao": {
+        "place_id": "593120865",
+        "place_url": "https://place.map.kakao.com/593120865",
+        "road_address": "부산 사상구 낙동대로 1402",
+        "jibun_address": "부산 사상구 삼락동 356-1",
+        "phone": "051-301-8292",
+        "lat": 35.1852347394636,
+        "lng": 128.977382420717,
+        "category_name": "음식점 > 한식 > 해물,생선"
+      },
+      "sources": [
+        { "kind": "tv", "name": "넷플릭스 미친맛집 시즌4 6화(43화)", "url": "https://histale.com/i/넷플릭스-미친맛집-식당-리스트/A", "published_at": "2025-12" }
+      ],
+      "duplicate_check": "no_match_in_db",
+      "current_business_status": "영업중"
+    },
+    {
+      "rank": 4,
+      "classification": "REVIEW",
+      "review_reason": "출처 2025년(미친맛집 시즌3 6화) → 2026 기준 미충족 / 가격 미확정",
+      "name": "섬진강재첩국 기장본점",
+      "proposed_slug": "michinmatjip-gijang-seomjingang-jaecheopguk",
+      "area": "기장",
+      "category": "한식",
+      "kakao": {
+        "place_id": "1819628693",
+        "place_url": "https://place.map.kakao.com/1819628693",
+        "road_address": "부산 기장군 기장읍 차성남로51번길 28",
+        "jibun_address": "부산 기장군 기장읍 대라리 775-5",
+        "phone": "051-724-3336",
+        "lat": 35.242594019227134,
+        "lng": 129.21599930571622,
+        "category_name": "음식점 > 한식"
+      },
+      "sources": [
+        { "kind": "tv", "name": "넷플릭스 미친맛집 시즌3 6화", "url": "https://histale.com/i/넷플릭스-미친맛집-식당-리스트/A", "published_at": "2025-09" }
+      ],
+      "duplicate_check": "no_match_in_db (사상 할매재첩국·영희할매재첩국과 별개)",
+      "current_business_status": "영업중"
+    },
+    {
+      "rank": 5,
+      "classification": "REVIEW",
+      "review_reason": "Kakao 분류=방앗간(떡 제조소)으로 식당 아님 / 출처 2025년 / area 기타 → fit 약함, 등록 비권장",
+      "name": "부산떡방앗간",
+      "proposed_slug": "michinmatjip-gangseo-busan-tteok-bangatgan",
+      "area": "기타",
+      "category": "베이커리/디저트",
+      "kakao": {
+        "place_id": "10459604",
+        "place_url": "https://place.map.kakao.com/10459604",
+        "road_address": "부산 강서구 제도로 1205",
+        "jibun_address": "부산 강서구 강동동 112-13",
+        "phone": "051-971-7096",
+        "lat": 35.2172655882688,
+        "lng": 128.937177139748,
+        "category_name": "서비스,산업 > 식품 > 전통식품제조 > 방앗간"
+      },
+      "sources": [
+        { "kind": "tv", "name": "넷플릭스 미친맛집 시즌3 2화", "url": "https://histale.com/i/넷플릭스-미친맛집-식당-리스트/A", "published_at": "2025-08" }
+      ],
+      "duplicate_check": "no_match_in_db",
+      "current_business_status": "영업중"
+    },
+    {
+      "rank": 6,
+      "classification": "REVIEW",
+      "review_reason": "방송 상호 미공개 → Kakao place 특정 실패 / 기존 원조가야밀면(DB) 중복 가능",
+      "name": "(상호 미확정) 하단동 밀면",
+      "area": "기타",
+      "category": "밀면",
+      "kakao": null,
+      "sources": [
+        { "kind": "tv", "name": "생활의 달인 1032회 은둔식달", "url": "https://www.topstarnews.net/news/articleView.html?idxno=16070969", "published_at": "2026-05-25" },
+        { "kind": "tv", "name": "생활의달인 1032회 정리(다음)", "url": "https://v.daum.net/v/20260525210618874", "published_at": "2026-05-25" }
+      ],
+      "duplicate_check": "possible_duplicate_wonjo-gaya-milmyeon",
+      "current_business_status": "미확정"
+    },
+    {
+      "rank": 7,
+      "classification": "REVIEW",
+      "review_reason": "대변항 해녀 좌판 다수로 지점 특정 어려움 / 기존 5번친구해녀할매집(DB) 유사·중복 가능",
+      "name": "(상호 미확정) 기장 대변항 해녀촌",
+      "area": "기장",
+      "category": "해산물",
+      "kakao": null,
+      "sources": [
+        { "kind": "tv", "name": "전현무계획3 부산편(김혜은·곽튜브)", "url": "https://m.news.nate.com/view/20260110n03681", "published_at": "2026-01" }
+      ],
+      "duplicate_check": "possible_duplicate_jeonhyun-gijang-haenyeo-halmaejib",
+      "current_business_status": "미확정"
+    },
+    {
+      "rank": 8,
+      "classification": "REVIEW",
+      "review_reason": "2026 권위 출처이나 파인다이닝 → 나온집(방송 노포·로컬 맛집) 포지셔닝 fit 약함",
+      "name": "르도헤 (Le DORER)",
+      "area": null,
+      "category": "파인다이닝",
+      "kakao": null,
+      "sources": [
+        { "kind": "guide", "name": "미쉐린 가이드 서울&부산 2026 (신규 1스타)", "url": "https://www.marieclairekorea.com/culture/2026/03/2026-michelin-guide-seoul-busan/", "published_at": "2026-03" }
+      ],
+      "duplicate_check": "no_match_in_db",
+      "current_business_status": "영업중"
+    }
+  ],
+  "duplicates": [
+    { "name": "스시바시쿠", "db_slug": "saengdal-suyeong-sushibashiku", "source_2026": "생활의 달인 1027회(2026-04-20)" },
+    { "name": "슌사이쿠보 화명", "db_slug": "saengdal-bukgu-shunsaikubo", "source_2026": "생활의 달인 1027회(2026-04-20)" },
+    { "name": "궁중해물탕 조씨집 대연본점", "db_slug": "baekban-namgu-chossijib", "source_2026": "백반기행 부산편(2026-02-22)" },
+    { "name": "마산식당", "db_slug": "baekban-seomyeon-masan-sikdang", "source_2026": "백반기행 부산편(2026-02-22)" },
+    { "name": "고등어다찌 연산본점", "db_slug": "baekban-yeonje-godeungeo-datchi", "source_2026": "백반기행 부산편(2026-02-22)" },
+    { "name": "중앙곰탕", "db_slug": "sungsik-nampodong-jungang-gomtang", "source_2026": "전현무계획3(2026-01)" },
+    { "name": "김유순대구뽈찜전문점", "db_slug": "kimyusun-daegu-bbol-jjim", "source_2026": "전현무계획3(2026-01)" },
+    { "name": "빨간떡볶이", "db_slug": "tzuyang-haeundae-ppalgan-tteokbokki", "source_2026": "미친맛집 시즌3 2화(2025)" }
+  ],
+  "notes": [
+    "넷플릭스 미친맛집 시즌3=2025-08-14 시작, 시즌4=2025-11-13 시작, 시즌5=2026-03(부산 미포함).",
+    "신창국밥(시즌4 11화)만 엄격한 2026-01-01 이후 기준 충족.",
+    "미친맛집은 programs.ts 미등록 프로그램(등록 시 michinmatjip 매핑 추가 필요). source_type는 tv 권장.",
+    "좌표는 전부 Kakao Local API 결과(y=lat, x=lng). 추정 없음."
+  ]
+}

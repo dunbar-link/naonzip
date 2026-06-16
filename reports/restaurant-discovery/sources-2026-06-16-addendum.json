@@ -1,0 +1,141 @@
+{
+  "generated_at": "2026-06-16",
+  "mode": "read-only",
+  "purpose": "1차 보고서 보완: 미쉐린 빕구르망 부산 신규 3곳 누락 보강 + 섬진강재첩국 지점 정정 + 신창국밥 필드 재확인",
+  "db_write": 0,
+  "storage_write": 0,
+  "image_download": 0,
+  "michelin_miss_reason": "1차는 marieclairekorea 기사 1건만 조회했고 그 기사는 1스타 변동만 다룸. 미쉐린 빕구르망 공식 발표 기사를 조회하지 않아 부산 신규 3곳 누락.",
+  "structural_note": "restaurants.source_type CHECK는 (youtube,tv,sns)뿐. 미쉐린=guide, 넷플릭스=OTT라 맞는 값 없음 → 등록 정책 결정 필요(이번 미수정).",
+  "candidates": [
+    {
+      "rank": 1,
+      "classification": "READY_FOR_IMAGE",
+      "name": "신창국밥 본점",
+      "proposed_slug": "michinmatjip-seogu-sinchang-gukbap",
+      "area": "기타",
+      "category": "돼지국밥",
+      "kakao": {
+        "place_id": "7979137",
+        "place_url": "https://place.map.kakao.com/7979137",
+        "road_address": "부산 서구 보수대로 53",
+        "phone": "051-244-1112",
+        "lat": 35.1009583984265,
+        "lng": 129.022588312598
+      },
+      "price_sources": [
+        { "menu": "국밥", "price": 10000, "source": "다이닝코드/visitkorea/histale(미친맛집)", "checked": "2026-06-16" },
+        { "menu": "따로밥", "price": 11000, "source": "다이닝코드/visitkorea", "checked": "2026-06-16" },
+        { "menu": "수육밥", "price": 13000, "source": "다이닝코드/visitkorea/histale", "checked": "2026-06-16" },
+        { "menu": "수육(대/소)", "price": "48000/32000", "source": "다이닝코드/visitkorea", "checked": "2026-06-16" }
+      ],
+      "price_conflict": false,
+      "business_status": "영업중(09:00~21:00, 일요휴무)",
+      "sources": [
+        { "kind": "tv", "name": "미친맛집(넷플릭스) 시즌4 11화", "url": "https://histale.com/i/넷플릭스-미친맛집-식당-리스트/A", "published_at": "2026-01" }
+      ],
+      "blocking": ["programs.ts michinmatjip 매핑 필요", "source_type(넷플릭스→tv) 정책 결정"]
+    },
+    {
+      "rank": 2,
+      "classification": "READY_FOR_IMAGE",
+      "name": "뫼밀집",
+      "proposed_slug": "michelin-haeundae-moemiljip",
+      "area": "해운대",
+      "category": "한식",
+      "main_menu": "들기름 메밀국수·편육",
+      "kakao": {
+        "place_id": "973360722",
+        "place_url": "https://place.map.kakao.com/973360722",
+        "road_address": "부산 해운대구 마린시티3로 23",
+        "phone": "051-744-9944",
+        "lat": 35.156647053329,
+        "lng": 129.146930849669
+      },
+      "duplicate_check": "DB미등록 (초필살돼지구이 해운대본점과 동일 건물·별개 가게)",
+      "business_status": "영업중",
+      "sources": [
+        { "kind": "guide", "name": "미쉐린 가이드 서울&부산 2026 빕구르망(신규)", "url": "https://guide.michelin.com/kr/ko/article/michelin-guide-ceremony/korea-bib-gourmand-2026", "published_at": "2026" }
+      ],
+      "blocking": ["source_type 화이트리스트에 guide 없음", "가격 미확정", "좌표 초필살과 동일건물(미세조정)"]
+    },
+    {
+      "rank": 3,
+      "classification": "READY_FOR_IMAGE",
+      "name": "평양집",
+      "proposed_slug": "michelin-bukgu-pyeongyangjip",
+      "area": "기타",
+      "category": "한식",
+      "main_menu": "이북식 만둣국·녹두전",
+      "kakao": {
+        "place_id": "12293207",
+        "place_url": "https://place.map.kakao.com/12293207",
+        "road_address": "부산 북구 금곡대로20번길 21",
+        "phone": "051-331-5455",
+        "lat": 35.2120978207824,
+        "lng": 129.005911099211,
+        "kakao_name": "평양집 덕천food"
+      },
+      "duplicate_check": "DB미등록 (백일평냉과 별개)",
+      "business_status": "영업중",
+      "sources": [
+        { "kind": "guide", "name": "미쉐린 가이드 서울&부산 2026 빕구르망(신규)", "url": "https://guide.michelin.com/kr/ko/article/michelin-guide-ceremony/korea-bib-gourmand-2026", "published_at": "2026" }
+      ],
+      "blocking": ["source_type 화이트리스트에 guide 없음", "가격 미확정", "Kakao 등록명 꼬리표 확인"]
+    },
+    {
+      "rank": 4,
+      "classification": "READY_FOR_IMAGE",
+      "name": "송헌집",
+      "proposed_slug": "michelin-gwangalli-songheonjip",
+      "area": "광안리",
+      "category": "고기",
+      "main_menu": "숯불 떡갈비 정식",
+      "kakao": {
+        "place_id": "1559134124",
+        "place_url": "https://place.map.kakao.com/1559134124",
+        "road_address": "부산 수영구 민락로19번길 18",
+        "phone": null,
+        "lat": 35.1565520222494,
+        "lng": 129.121437717475
+      },
+      "duplicate_check": "DB미등록 (송헌집 사직구장점 분점과 별개·미쉐린은 민락본점)",
+      "business_status": "영업중",
+      "sources": [
+        { "kind": "guide", "name": "미쉐린 가이드 서울&부산 2026 빕구르망(신규)", "url": "https://guide.michelin.com/kr/ko/article/michelin-guide-ceremony/korea-bib-gourmand-2026", "published_at": "2026" }
+      ],
+      "blocking": ["전화 Kakao 미등록", "source_type 이슈", "가격 미확정", "분점 존재"]
+    },
+    {
+      "rank": 5,
+      "classification": "REVIEW",
+      "name": "섬진강재첩국",
+      "kakao_registered_name": "섬진강재첩전문점",
+      "proposed_slug": "michinmatjip-nampo-seomjingang-jaecheop",
+      "area": "남포동",
+      "category": "해산물",
+      "main_menu": "재첩국 정식·재첩국 비빔밥",
+      "price_text": "재첩국정식 14,000 / 비빔밥 17,000",
+      "broadcast_branch": {
+        "road_address": "부산 중구 광복로85번길 15-1 (동광동2가 10-4)",
+        "place_id": "10488926",
+        "place_url": "https://place.map.kakao.com/10488926",
+        "phone": "051-246-6471",
+        "lat": 35.09976889685181,
+        "lng": 129.034752338281
+      },
+      "other_branches": [
+        { "name": "섬진강재첩국", "road_address": "부산 중구 보수대로 58", "place_id": "19976515" },
+        { "name": "섬진강재첩국", "road_address": "부산 기장군 기장읍 차성남로51번길 28", "place_id": "1819628693", "note": "1차 보고서가 잘못 잡은 지점" }
+      ],
+      "correction": "1차 보고서 '기장본점' → 방송 방문 지점은 '중구 동광동(광복로85번길 15-1)'으로 정정",
+      "duplicate_check": "DB미등록 (사상 할매재첩국·영희할매재첩국 및 기장/부평동 지점과 별개)",
+      "business_status": "영업중",
+      "sources": [
+        { "kind": "tv", "name": "미친맛집(넷플릭스) 시즌3 6화", "url": "https://histale.com/i/넷플릭스-미친맛집-식당-리스트/A", "published_at": "2025-09" },
+        { "kind": "tv", "name": "부산일보 미친맛집① (주소 명시)", "url": "https://www.busan.com/view/busan/view.php?code=2026020410372017215", "published_at": "2026-02-04" }
+      ],
+      "review_reason": "Kakao 상호 표기차이(섬진강재첩전문점) + 출처 2025-09(시즌3 6화) → 2026 기준 미충족"
+    }
+  ]
+}
