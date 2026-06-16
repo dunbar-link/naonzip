@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-06-16",
+  "mode": "before-backup",
+  "note": "Kakao EXACT 최종 3곳 변경 전 row + 보호 금죽헌 핵심값 + 검색링크 전수집계. 실제 키/env 미포함.",
+  "before_search_links": 4,
+  "expected_after": [
+    {
+      "slug": "2tv-gwangan-kuromatsu",
+      "kakao_map_url": "https://place.map.kakao.com/1553493687",
+      "lat": 35.1514786694312,
+      "lng": 129.116434385139
+    },
+    {
+      "slug": "live-today-donggu-halme-gimbap",
+      "kakao_map_url": "https://place.map.kakao.com/16286242",
+      "lat": 35.1282569731002,
+      "lng": 129.04640374595
+    },
+    {
+      "slug": "saengdal-jeonpo-toda-park",
+      "kakao_map_url": "https://place.map.kakao.com/536870603",
+      "lat": 35.1553485785214,
+      "lng": 129.067478259407
+    }
+  ],
+  "rows": [
+    {
+      "id": "2a2807f4-670e-45d2-b6e0-b2a7b9e46efc",
+      "slug": "2tv-gwangan-kuromatsu",
+      "name": "구로마쯔",
+      "address": "부산 수영구 광안해변로 189 센트럴베이호텔 3층",
+      "phone": "0507-1371-7816",
+      "kakao_map_url": "https://map.kakao.com/link/search/구로마쯔%20광안점",
+      "lat": 35.1537,
+      "lng": 129.1185,
+      "area": "광안리",
+      "category": "일식",
+      "main_menu": "철판요리 런치특선, 소고기 안심 스테이크, 활전복, 새우, 가리비관자",
+      "price_text": "런치특선 38,000원, 소고기 안심 스테이크 25,000원, 활전복 2마리 20,000원, 새우 3마리 15,000원, 가리비관자 3마리 15,000원",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/2tv-gwangan-kuromatsu/main.webp?v=imgf6-real-photo-20260607",
+      "is_published": true
+    },
+    {
+      "id": "1479cdb2-dc14-4dac-b3e8-519a3affb43c",
+      "slug": "live-today-donggu-halme-gimbap",
+      "name": "할매김밥",
+      "address": "부산 동구 고관로 106 상가아파트 상가안",
+      "phone": "0507-1349-0547",
+      "kakao_map_url": "https://map.kakao.com/link/search/할매김밥%20부산%20동구%20고관로%20106",
+      "lat": 35.12985,
+      "lng": 129.04645,
+      "area": "기타",
+      "category": "분식",
+      "main_menu": "김밥, 햄김밥, 유부초밥, 초밥",
+      "price_text": "김밥 2줄 4,000원, 햄김밥 3,500원, 유부초밥 4,500원, 초밥 5,000원",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/live-today-donggu-halme-gimbap/main.webp?v=imgf6-real-photo-20260607",
+      "is_published": true
+    },
+    {
+      "id": "67053b94-6d0f-4bf8-ba48-70dbbd44bd9b",
+      "slug": "saengdal-jeonpo-toda-park",
+      "name": "토다공원",
+      "address": "부산 부산진구 전포대로210번길 36 1층",
+      "phone": "051-808-7736",
+      "kakao_map_url": "https://map.kakao.com/link/search/토다공원",
+      "lat": 35.1559,
+      "lng": 129.0648,
+      "area": "서면",
+      "category": "일식",
+      "main_menu": "오징어먹물 몬자, 명란모찌몬자, 오코노미야키, 게살카니미소몬자",
+      "price_text": "오징어먹물 몬자 21,000원, 명란모찌몬자 19,800원, 오코노미야키 12,000원, 게살카니미소몬자 21,000원",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/saengdal-jeonpo-toda-park/main.webp",
+      "is_published": true
+    }
+  ],
+  "protected": [
+    {
+      "slug": "2tv-gumjeong-geumjukheon",
+      "name": "금죽헌 금정산성점",
+      "kakao_map_url": "https://map.kakao.com/link/search/금죽헌%20금정산성점",
+      "lat": 35.2441819922083,
+      "lng": 129.056711994585,
+      "phone": "0507-1347-5448"
+    }
+  ]
+}

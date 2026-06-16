@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-06-16",
+  "verified_date": "2026-06-16",
+  "mode": "read-only",
+  "note": "검색링크 잔여 REVIEW 4곳 실번호·place 동일성 집중 검증. DB/앱 미수정. 실제 키/env 미포함. 전화·주소·상호는 반영 범위 밖(Kakao url·lat·lng만 대상).",
+  "summary": { "target": 4, "EXACT_MATCH": 3, "REVIEW": 1, "NO_MATCH": 0, "CLOSED_OR_MOVED": 0, "BLOCKED": 0, "db_writes": 0, "app_changes": 0 },
+  "restaurants": [
+    {
+      "slug": "2tv-gwangan-kuromatsu", "name": "구로마쯔",
+      "db": { "address": "부산 수영구 광안해변로 189 센트럴베이호텔 3층", "phone": "0507-1371-7816", "kakao_map_url": "link/search/구로마쯔 광안점" },
+      "phones": { "db_phone": "0507-1371-7816", "kakao_phone": "051-753-7792", "naver_phone": "미확인", "official_phone": "미확인", "safe_number": "0507-1371-7816", "local_number": "051-753-7792", "relation": "DB 0507 안심번호 ↔ 실 지역번호 051-753-7792(triple.guide 광안점·Kakao 일치) 착신 관계. 실번호 확인됨" },
+      "selected": { "place_id": "1553493687", "place_name": "구로마쯔 광안점", "address": "부산 수영구 광안해변로 189", "lat": 35.1514786694312, "lng": 129.116434385139 },
+      "branch_match": "광안점(광안해변로 189 HOTEL CENTRALBAY 3층). 송정점(1092116394, 송정광어골로 41) 명확 배제",
+      "business_status": "영업중",
+      "classification": "EXACT_MATCH",
+      "recommended": { "kakao_map_url": "https://place.map.kakao.com/1553493687", "lat": 35.1514786694312, "lng": 129.116434385139 },
+      "phone_db_change_needed": false, "kakao_fields_applicable": true,
+      "sources": ["triple.guide(광안해변로 189 HOTEL CENTRALBAY 3층, 051-753-7792)", "Kakao Local API(051-753-7792)", "다이닝코드(광안점 rid ta39NAephRIJ)"]
+    },
+    {
+      "slug": "live-today-donggu-halme-gimbap", "name": "할매김밥",
+      "db": { "address": "부산 동구 고관로 106 상가아파트 상가안", "phone": "0507-1349-0547", "kakao_map_url": "link/search/할매김밥 부산 동구 고관로 106" },
+      "phones": { "db_phone": "0507-1349-0547", "kakao_phone": "051-467-0547", "naver_phone": "미확인", "official_phone": "미확인", "safe_number": "0507-1349-0547", "local_number": "051-467-0547", "relation": "끝 4자리 0547 동일(0507-1349-0547 ↔ 051-467-0547). DB 안심번호 → 실 지역번호 051-467-0547(다이닝코드·Kakao 일치) 착신. 실번호 확인됨" },
+      "selected": { "place_id": "16286242", "place_name": "할매김밥", "address": "부산 동구 고관로 106", "lat": 35.1282569731002, "lng": 129.04640374595 },
+      "branch_match": "고관로 106 한정 단일(다이닝코드 주소=DB 동일). '할매김밥' 동명 17곳은 타 주소(중앙대로·수정로·대청로 등) 배제",
+      "business_status": "영업중(수정동시장 30년)",
+      "classification": "EXACT_MATCH",
+      "recommended": { "kakao_map_url": "https://place.map.kakao.com/16286242", "lat": 35.1282569731002, "lng": 129.04640374595 },
+      "phone_db_change_needed": false, "kakao_fields_applicable": true,
+      "sources": ["다이닝코드(고관로 106, 051-467-0547, 30년)", "Kakao Local API(051-467-0547)"]
+    },
+    {
+      "slug": "saengdal-jeonpo-toda-park", "name": "토다공원",
+      "db": { "address": "부산 부산진구 전포대로210번길 36 1층", "phone": "051-808-7736", "kakao_map_url": "link/search/토다공원" },
+      "phones": { "db_phone": "051-808-7736", "kakao_phone": "051-622-7736", "naver_phone": "미확인", "official_phone": "미확인", "safe_number": "없음", "local_number": "051-808-7736", "relation": "DB 051-808-7736 = 다이닝코드 현재 실번호(최근리뷰 2025-12-26). Kakao 051-622-7736은 과거 번호/오입력 추정. 충돌 해소: DB가 현행" },
+      "selected": { "place_id": "536870603", "place_name": "토다공원", "address": "부산 부산진구 전포대로210번길 36", "lat": 35.1553485785214, "lng": 129.067478259407 },
+      "branch_match": "단일(전포대로210번길 36). 도로명·상호·지번·주소 다이닝코드와 일치",
+      "business_status": "영업중(다이닝코드 최근리뷰 2025-12-26)",
+      "classification": "EXACT_MATCH",
+      "recommended": { "kakao_map_url": "https://place.map.kakao.com/536870603", "lat": 35.1553485785214, "lng": 129.067478259407 },
+      "phone_db_change_needed": false, "kakao_fields_applicable": true,
+      "note": "place 동일성은 도로명·상호·주소·영업으로 확정. phone은 DB(051-808-7736)가 현행 실번호이므로 변경 불필요. Kakao place의 phone(622)이 구번호일 뿐 place 식별엔 무관. URL·좌표만 반영.",
+      "sources": ["다이닝코드(rid CGf5plptsnzz, 051-808-7736, 2025-12-26)", "Kakao Local API(place 536870603, phone 622=구)"]
+    },
+    {
+      "slug": "2tv-gumjeong-geumjukheon", "name": "금죽헌 금정산성점",
+      "db": { "address": "부산 금정구 산성로 531 1층", "phone": "0507-1347-5448", "kakao_map_url": "link/search/금죽헌 금정산성점" },
+      "phones": { "db_phone": "0507-1347-5448", "kakao_phone": "0503-7153-6423", "naver_phone": "미확인", "official_phone": "미확인", "safe_number": "0507-1347-5448 / 0503-7153-6423 (양쪽 안심·가상번호)", "local_number": "미확보", "relation": "DB 0507·Kakao 0503 모두 안심(가상)번호. 실 지역번호/공식 대표번호 외부 미확보 → 착신 관계 확인 불가" },
+      "candidate": { "place_id": "1229339566", "place_name": "금죽헌 금정산성점", "address": "부산 금정구 산성로 531", "lat": 35.2441692502157, "lng": 129.056686942073 },
+      "branch_match": "단일(산성로 531). 도로명·상호 완전일치, dist 3m, 생생정보 출연",
+      "business_status": "영업중(생생정보·catchtable·polle)",
+      "classification": "REVIEW",
+      "review_reason": "place 1229339566는 도로명·상호 완전일치+3m+단일+생생정보 출연으로 동일 업소 매우 유력하나, DB(0507)·Kakao(0503) 전화가 모두 안심번호이고 실 지역번호/공식 대표번호를 공식·네이버·외부에서 확보하지 못함 → EXACT 승격 기준(실번호 확인) 미충족. 실번호 확인 시 즉시 EXACT.",
+      "tentative_recommended": { "kakao_map_url": "https://place.map.kakao.com/1229339566", "lat": 35.2441692502157, "lng": 129.056686942073 },
+      "sources": ["Kakao Local API(0503-7153-6423)", "생생정보·catchtable·polle(영업중, 산성로 531, 소불고기전골)"]
+    }
+  ]
+}
