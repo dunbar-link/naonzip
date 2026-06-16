@@ -1,0 +1,128 @@
+{
+  "generated_at": "2026-06-16",
+  "mode": "before-backup",
+  "note": "Kakao 신규 EXACT 4곳 변경 전 row + 보호 4곳 핵심값 + 검색링크 전수집계. 실제 키/env 미포함.",
+  "before_search_links": 8,
+  "expected_after": [
+    {
+      "slug": "hoeguksu-halmaejip",
+      "kakao_map_url": "https://place.map.kakao.com/11260858",
+      "lat": 35.1582241900753,
+      "lng": 129.057583103138
+    },
+    {
+      "slug": "live-today-suyeong-geumsin-jeonseon-sangyusibi",
+      "kakao_map_url": "https://place.map.kakao.com/1905565479",
+      "lat": 35.1574229558888,
+      "lng": 129.114560618088
+    },
+    {
+      "slug": "ddoganjip-hapcheon-ilryu-dwaeji-gukbap",
+      "kakao_map_url": "https://place.map.kakao.com/10928210",
+      "lat": 35.162262056483875,
+      "lng": 128.98007978034923
+    },
+    {
+      "slug": "saengdal-centum-bulbaek-gosurak",
+      "kakao_map_url": "https://place.map.kakao.com/987828015",
+      "lat": 35.1754435363346,
+      "lng": 129.126430643978
+    }
+  ],
+  "rows": [
+    {
+      "id": "4bb57c0f-1571-4c30-9e28-e5e89d062d93",
+      "slug": "hoeguksu-halmaejip",
+      "name": "회국수할매집",
+      "address": "부산 부산진구 서면문화로 5",
+      "phone": "051-817-9260",
+      "kakao_map_url": "https://map.kakao.com/?map_type=TYPE_MAP&itemId=11260858&q=%ED%9A%8C%EA%B5%AD%EC%88%98%ED%95%A0%EB%A7%A4%EC%A7%91&urlLevel=3&urlX=968710&urlY=466468",
+      "lat": 35.160999,
+      "lng": 129.055556,
+      "area": "서면",
+      "category": "한식",
+      "main_menu": "회국수",
+      "price_text": "회국수 10,000원대",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/hoeguksu-halmaejip/main.webp",
+      "is_published": true
+    },
+    {
+      "id": "0973e171-eaa3-4aed-a281-e0616f44dbb4",
+      "slug": "live-today-suyeong-geumsin-jeonseon-sangyusibi",
+      "name": "금신전선 상유십이",
+      "address": "부산 수영구 수영로582번길 28",
+      "phone": "0507-1426-2201",
+      "kakao_map_url": "https://map.kakao.com/link/search/금신전선%20상유십이",
+      "lat": 35.1563,
+      "lng": 129.1148,
+      "area": "기타",
+      "category": "한식",
+      "main_menu": "노량첨자진 섬멸, 노량첨자진 분멸, 노량도진도, 한산 학익진, 명량 일자진",
+      "price_text": "메밀면류 12,000원, 계절 메뉴 12,000원",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/live-today-suyeong-geumsin-jeonseon-sangyusibi/main.webp?v=imgf6-real-photo-20260607",
+      "is_published": true
+    },
+    {
+      "id": "0b3a8b91-d42b-4dbc-b980-230ee493feb1",
+      "slug": "ddoganjip-hapcheon-ilryu-dwaeji-gukbap",
+      "name": "합천일류돼지국밥",
+      "address": "부산 사상구 광장로 34",
+      "phone": "051-317-2478",
+      "kakao_map_url": "https://kko.to/Eua2eCZtIf",
+      "lat": 35.1633,
+      "lng": 128.9818,
+      "area": "사상",
+      "category": "돼지국밥",
+      "main_menu": "돼지국밥",
+      "price_text": "고기국밥 9,500원 / 돼지우동 10,000원 / 수육백반 13,000원",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/ddoganjip-hapcheon-ilryu-dwaeji-gukbap/main.webp",
+      "is_published": true
+    },
+    {
+      "id": "f6c666a1-565e-435a-a6ea-89b01955f013",
+      "slug": "saengdal-centum-bulbaek-gosurak",
+      "name": "불백고수락 센텀본점",
+      "address": "부산 해운대구 센텀중앙로 90 205호",
+      "phone": "0507-1354-7574",
+      "kakao_map_url": "https://map.kakao.com/link/search/불백고수락%20센텀본점",
+      "lat": 35.1739,
+      "lng": 129.1263,
+      "area": "해운대",
+      "category": "한식",
+      "main_menu": "왕치즈두툼돈카츠, 소고기짬뽕불백, 제육고추장불백, 치즈치킨불백",
+      "price_text": "소고기불백 8,000원~ / 고수락돈카츠 10,000원 / 눈꽃치즈돈카츠 12,000원",
+      "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/saengdal-centum-bulbaek-gosurak/main.webp",
+      "is_published": true
+    }
+  ],
+  "protected": [
+    {
+      "slug": "saengdal-jeonpo-toda-park",
+      "name": "토다공원",
+      "kakao_map_url": "https://map.kakao.com/link/search/토다공원",
+      "lat": 35.1559,
+      "lng": 129.0648
+    },
+    {
+      "slug": "live-today-donggu-halme-gimbap",
+      "name": "할매김밥",
+      "kakao_map_url": "https://map.kakao.com/link/search/할매김밥%20부산%20동구%20고관로%20106",
+      "lat": 35.12985,
+      "lng": 129.04645
+    },
+    {
+      "slug": "2tv-gwangan-kuromatsu",
+      "name": "구로마쯔",
+      "kakao_map_url": "https://map.kakao.com/link/search/구로마쯔%20광안점",
+      "lat": 35.1537,
+      "lng": 129.1185
+    },
+    {
+      "slug": "2tv-gumjeong-geumjukheon",
+      "name": "금죽헌 금정산성점",
+      "kakao_map_url": "https://map.kakao.com/link/search/금죽헌%20금정산성점",
+      "lat": 35.2441819922083,
+      "lng": 129.056711994585
+    }
+  ]
+}

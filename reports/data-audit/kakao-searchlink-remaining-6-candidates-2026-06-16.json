@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-06-16",
+  "verified_date": "2026-06-16",
+  "mode": "read-only",
+  "note": "직전 EXACT4 반영 중 발견된 검색링크 신규 6곳(구로마쯔·토다공원 제외) place ID·좌표 재검증. DB/앱 미수정. 실제 키/env 미포함.",
+  "summary": { "public_search_links": 8, "review_excluded": 2, "new_target": 6, "EXACT_MATCH": 4, "REVIEW": 2, "NO_MATCH": 0, "CLOSED_OR_MOVED": 0, "BLOCKED": 0, "db_writes": 0, "app_changes": 0 },
+  "full_search_link_recount": ["saengdal-jeonpo-toda-park(REVIEW 제외)", "2tv-gwangan-kuromatsu(REVIEW 제외)", "live-today-donggu-halme-gimbap", "hoeguksu-halmaejip", "live-today-suyeong-geumsin-jeonseon-sangyusibi", "ddoganjip-hapcheon-ilryu-dwaeji-gukbap", "2tv-gumjeong-geumjukheon", "saengdal-centum-bulbaek-gosurak"],
+  "restaurants": [
+    {
+      "slug": "hoeguksu-halmaejip", "name": "회국수할매집",
+      "db": { "address": "부산 부산진구 서면문화로 5", "phone": "051-817-9260", "kakao_map_url": "검색링크(itemId=11260858)", "lat": 35.160999, "lng": 129.055556 },
+      "url_type": "검색링크(itemId있음)",
+      "selected": { "place_id": "11260858", "place_name": "회국수할매집", "category": "한식>국수", "road_address": "부산 부산진구 서면문화로 5", "jibun_address": "부산 부산진구 부전동 486-1", "phone": "051-817-9260", "lat": 35.1582241900753, "lng": 129.057583103138 },
+      "name_match": true, "address_match": true, "phone_match": true, "branch_match": "단일(중구 '할매집'과 구분)", "coordinate_distance_m": 359, "business_status": "영업중",
+      "classification": "EXACT_MATCH",
+      "recommended": { "kakao_map_url": "https://place.map.kakao.com/11260858", "lat": 35.1582241900753, "lng": 129.057583103138 },
+      "sources": ["Kakao Local API(2026-06-16, itemId·전화 일치)"]
+    },
+    {
+      "slug": "live-today-suyeong-geumsin-jeonseon-sangyusibi", "name": "금신전선 상유십이",
+      "db": { "address": "부산 수영구 수영로582번길 28", "phone": "0507-1426-2201", "kakao_map_url": "link/search/금신전선 상유십이", "lat": 35.1563, "lng": 129.1148 },
+      "url_type": "검색링크",
+      "selected": { "place_id": "1905565479", "place_name": "금신전선상유십이 금상", "category": "한식", "road_address": "부산 수영구 수영로582번길 28", "jibun_address": "부산 수영구 광안동 144-16", "phone": "0507-1426-2201", "lat": 35.1574229558888, "lng": 129.114560618088 },
+      "name_match": true, "address_match": true, "phone_match": true, "branch_match": "단일", "coordinate_distance_m": 127, "business_status": "영업중",
+      "classification": "EXACT_MATCH",
+      "recommended": { "kakao_map_url": "https://place.map.kakao.com/1905565479", "lat": 35.1574229558888, "lng": 129.114560618088 },
+      "note": "Kakao 표기 '금신전선상유십이 금상', DB '금신전선 상유십이' — 핵심 동일(name 범위 밖). phone 0507 안심번호 DB·Kakao 정확 일치.",
+      "sources": ["Kakao Local API(2026-06-16, 전화 정확 일치, 단일)"]
+    },
+    {
+      "slug": "ddoganjip-hapcheon-ilryu-dwaeji-gukbap", "name": "합천일류돼지국밥",
+      "db": { "address": "부산 사상구 광장로 34", "phone": "051-317-2478", "kakao_map_url": "kko.to 단축링크", "lat": 35.1633, "lng": 128.9818 },
+      "url_type": "검색링크(kko.to 단축)",
+      "selected": { "place_id": "10928210", "place_name": "합천일류돼지국밥 사상점", "category": "한식>국밥", "road_address": "부산 사상구 광장로 34", "jibun_address": "부산 사상구 괘법동 565-6", "phone": "051-317-2478", "lat": 35.162262056483875, "lng": 128.98007978034923 },
+      "name_match": true, "address_match": true, "phone_match": true, "branch_match": "사상점(주차장 후보 배제)", "coordinate_distance_m": 194, "business_status": "영업중",
+      "classification": "EXACT_MATCH",
+      "recommended": { "kakao_map_url": "https://place.map.kakao.com/10928210", "lat": 35.162262056483875, "lng": 128.98007978034923 },
+      "note": "DB는 kko.to 단축링크(place id 추출 불가). Kakao name+road+전화 완전 일치. 동일주소 '주차장' 후보(1322584246)는 카테고리 배제.",
+      "sources": ["Kakao Local API(2026-06-16, 전화 일치)"]
+    },
+    {
+      "slug": "saengdal-centum-bulbaek-gosurak", "name": "불백고수락 센텀본점",
+      "db": { "address": "부산 해운대구 센텀중앙로 90 205호", "phone": "0507-1354-7574", "kakao_map_url": "link/search/불백고수락 센텀본점", "lat": 35.1739, "lng": 129.1263 },
+      "url_type": "검색링크",
+      "selected": { "place_id": "987828015", "place_name": "불백고수락 센텀본점", "category": "일식>돈까스,우동", "road_address": "부산 해운대구 센텀중앙로 90", "jibun_address": "부산 해운대구 재송동 1212", "phone": "051-781-7574", "lat": 35.1754435363346, "lng": 129.126430643978 },
+      "name_match": true, "address_match": true, "phone_match": "DB 안심번호 vs Kakao 지역번호 — Kakao 051-781-7574=공식 Threads 일치(신뢰출처 보강)", "branch_match": "단일", "coordinate_distance_m": 172, "business_status": "영업중",
+      "classification": "EXACT_MATCH",
+      "recommended": { "kakao_map_url": "https://place.map.kakao.com/987828015", "lat": 35.1754435363346, "lng": 129.126430643978 },
+      "note": "DB phone 0507-1354-7574(안심) vs Kakao 051-781-7574(지역). Kakao phone이 공식 Threads(2026-06-15 가격감사 sources)와 일치 → place 확정. name·road 완전일치·단일. price_text는 별도(가격감사 PRICE_CORRECTION 대상, 이번 무관).",
+      "sources": ["Kakao Local API(2026-06-16)", "2026-06-15 가격감사 sources(공식 Threads 051-781-7574, place 987828015)"]
+    },
+    {
+      "slug": "2tv-gumjeong-geumjukheon", "name": "금죽헌 금정산성점",
+      "db": { "address": "부산 금정구 산성로 531 1층", "phone": "0507-1347-5448", "kakao_map_url": "link/search/금죽헌 금정산성점", "lat": 35.2441819922083, "lng": 129.056711994585 },
+      "url_type": "검색링크",
+      "candidate": { "place_id": "1229339566", "place_name": "금죽헌 금정산성점", "category": "한식>육류,고기>불고기,두루치기", "road_address": "부산 금정구 산성로 531", "jibun_address": "부산 금정구 금성동 928-2", "phone": "0503-7153-6423", "lat": 35.2441692502157, "lng": 129.056686942073 },
+      "name_match": true, "address_match": true, "phone_match": false, "branch_match": "단일", "coordinate_distance_m": 3, "business_status": "영업중(생생정보 출연, catchtable)",
+      "classification": "REVIEW",
+      "review_reason": "DB phone 0507-1347-5448 vs Kakao 0503-7153-6423 — 둘 다 안심(가상)번호라 직접 교차 불가, 외부 실번호 미확인. 단 name·도로명(산성로 531) 완전일치 + dist 3m(동일좌표) + 단일후보 + 생생정보 출연으로 place 1229339566은 매우 유력. 실번호 확인 시 즉시 EXACT 승격.",
+      "tentative_recommended": { "kakao_map_url": "https://place.map.kakao.com/1229339566", "lat": 35.2441692502157, "lng": 129.056686942073 },
+      "sources": ["Kakao Local API(2026-06-16, 단일·3m)", "생생정보·다이닝코드·catchtable(영업중, 금정산성 소불고기전골)"]
+    },
+    {
+      "slug": "live-today-donggu-halme-gimbap", "name": "할매김밥",
+      "db": { "address": "부산 동구 고관로 106 상가아파트 상가안", "phone": "0507-1349-0547", "kakao_map_url": "link/search/할매김밥 부산 동구 고관로 106", "lat": 35.12985, "lng": 129.04645 },
+      "url_type": "검색링크",
+      "candidate": { "place_id": "16286242", "place_name": "할매김밥", "category": "분식", "road_address": "부산 동구 고관로 106", "jibun_address": "부산 동구 수정동 170-1", "phone": "051-467-0547", "lat": 35.1282569731002, "lng": 129.04640374595 },
+      "name_match": true, "address_match": true, "phone_match": false, "branch_match": "고관로 106 한정 단일(동명 17곳은 타 주소)", "coordinate_distance_m": 177, "business_status": "영업중(수정동시장 30년, 다이닝코드)",
+      "classification": "REVIEW",
+      "review_reason": "DB phone 0507-1349-0547(안심) vs Kakao 051-467-0547(지역) — 직접 교차 불가, 외부 실번호 미확인. '할매김밥' 동명 18곳 검색됨(노이즈). 단 도로명(고관로 106) 완전일치 + 다이닝코드 주소(고관로 106 상가아파트=DB와 동일) 교차 + 영업중으로 place 16286242 유력. 실번호 확인 시 EXACT 승격.",
+      "tentative_recommended": { "kakao_map_url": "https://place.map.kakao.com/16286242", "lat": 35.1282569731002, "lng": 129.04640374595 },
+      "rejected_candidates": ["청도할매김밥·우리할매충무김밥·이대충무할매김밥·할매손충무김밥·영도할매꼬마김밥·남천할매떡볶이 등 17곳(타 주소·타 상호)"],
+      "sources": ["Kakao Local API(2026-06-16)", "다이닝코드(고관로 106 상가아파트, 30년 전통, 영업중)"]
+    }
+  ]
+}
