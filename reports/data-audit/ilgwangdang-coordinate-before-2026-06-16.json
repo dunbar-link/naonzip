@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-06-16",
+  "mode": "before-backup",
+  "note": "일광당 lat/lng 교정 변경 전 전체 row + 사또분식 보호값. 실제 키/env 미포함.",
+  "expected_after": {
+    "lat": 35.2665874736785,
+    "lng": 129.235227867827
+  },
+  "row": {
+    "id": "dcd3d121-d898-4daa-8e37-d1797e4bac3c",
+    "slug": "saengdal-gijang-ilgwangdang",
+    "name": "일광당",
+    "address": "부산 기장군 일광읍 일광로 125-1",
+    "phone": "051-724-0039",
+    "kakao_map_url": "https://place.map.kakao.com/14723726",
+    "lat": 35.2725716,
+    "lng": 129.2527211,
+    "area": "기장",
+    "category": "베이커리/디저트",
+    "main_menu": "찐빵·만두",
+    "price_text": "찐빵 5개 6,000원 / 만두 6개 6,000원",
+    "thumbnail": "https://dnbkvchlytpvmtzisoux.supabase.co/storage/v1/object/public/restaurant-thumbnails/restaurants/saengdal-gijang-ilgwangdang/main.webp",
+    "is_published": true
+  },
+  "protected_sato": {
+    "slug": "saengdal-yeongdo-sato-bunsik",
+    "name": "사또분식",
+    "address": "부산 영도구 절영로35번길 39",
+    "phone": "051-415-3764",
+    "kakao_map_url": "https://place.map.kakao.com/9808354",
+    "lat": 35.0905236,
+    "lng": 129.0412957
+  }
+}

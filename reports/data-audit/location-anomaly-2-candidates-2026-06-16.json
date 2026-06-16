@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-06-16",
+  "verified_date": "2026-06-16",
+  "mode": "read-only",
+  "note": "사또분식 번지 37/39 + 일광당 좌표 1.7km 위치 정합성 검증. DB/앱 미수정. 실제 키/env 미포함. 가격·전화·상호는 범위 밖.",
+  "summary": { "target": 2, "EXACT_CURRENT": 1, "ADDRESS_CORRECTION_READY": 0, "COORDINATE_CORRECTION_READY": 1, "LOCATION_CORRECTION_READY": 0, "REVIEW": 0, "CLOSED_OR_MOVED": 0, "BLOCKED": 0, "db_writes": 0, "app_changes": 0 },
+  "restaurants": [
+    {
+      "slug": "saengdal-yeongdo-sato-bunsik", "name": "사또분식",
+      "queries": ["사또분식 영도", "사또분식 절영로35번길", "사또분식 대교동", "사또분식 영도 절영로35번길 37 39 도로명주소"],
+      "db": { "address": "부산 영도구 절영로35번길 39", "phone": "051-415-3764", "kakao_map_url": "https://place.map.kakao.com/9808354", "lat": 35.0905236, "lng": 129.0412957 },
+      "selected": { "place_id": "9808354", "place_name": "사또분식", "category": "분식", "road_address": "부산 영도구 절영로35번길 37", "jibun_address": "부산 영도구 대교동2가 178-3", "phone": "051-415-3764", "lat": 35.0906183194013, "lng": 129.041186690822 },
+      "is_db_place": true, "name_match": true, "phone_match": true, "coordinate_distance_m": 14, "business_status": "영업중(화 휴무, 생활의 달인)",
+      "address_37_vs_39": "39가 공식 도로명주소로 확정 — dorojuso.kr(도로명주소 DB) '절영로35번길 39 (대교동2가)' + 인스타·식신 모두 39. Kakao place 9808354의 road 표기(37)만 부정확(Kakao 자체 오등록). place 자체는 동일 업소(전화일치·14m·is_db_place)",
+      "classification": "EXACT_CURRENT",
+      "correction_fields": [],
+      "recommendation": "수정 불필요. DB 주소 39=공식, kakao_map_url(place/9808354)·좌표(14m) 정확. (Kakao의 road 37은 Kakao DB측 표기 오류이며 우리 DB 교정 대상 아님)",
+      "sources": ["dorojuso.kr(도로명주소 '절영로35번길 39 (대교동2가)')", "Kakao Local API(place 9808354, 전화 051-415-3764)", "인스타 reel·식신·triple(절영로35번길 39, 대교동2가 178-3)"]
+    },
+    {
+      "slug": "saengdal-gijang-ilgwangdang", "name": "일광당",
+      "queries": ["일광당 기장 일광", "일광당 일광로", "일광당 찐빵 기장", "일광당 일광로 125-1 일광해수욕장"],
+      "db": { "address": "부산 기장군 일광읍 일광로 125-1", "phone": "051-724-0039", "kakao_map_url": "https://place.map.kakao.com/14723726", "lat": 35.2725716, "lng": 129.2527211 },
+      "selected": { "place_id": "14723726", "place_name": "일광당", "category": "간식", "road_address": "부산 기장군 일광읍 일광로 125-1", "jibun_address": "부산 기장군 일광읍 이천리 836-5", "phone": "051-724-0039", "lat": 35.2665874736785, "lng": 129.235227867827 },
+      "is_db_place": true, "name_match": true, "phone_match": true, "coordinate_distance_m": 1722, "business_status": "영업중(일광해수욕장 인근, 다이닝코드/식신)",
+      "coordinate_anomaly": "DB 주소(일광로 125-1)·place(14723726)·전화(051-724-0039) 모두 정확·동일 업소이나, DB lat/lng(35.2725716, 129.2527211)가 Kakao 공식 좌표(35.2665874736785, 129.235227867827)에서 1722m 벗어남. 과거 지오코딩 오입력 추정. 외부(식신·다이닝코드) 일광로 125-1=일광해수욕장 인근 = Kakao 좌표와 일치. DB 좌표가 실제 위치에서 이격",
+      "classification": "COORDINATE_CORRECTION_READY",
+      "correction_fields": ["lat", "lng"],
+      "recommendation": { "lat": 35.2665874736785, "lng": 129.235227867827, "kakao_map_url": "(유지) https://place.map.kakao.com/14723726 — 이미 정확", "note": "lat/lng만 Kakao 공식 좌표로 교정. 주소·전화·상호·가격 무변경. 가격(찐빵/만두 5,500 vs 6,000)은 별도 REVIEW 유지" },
+      "sources": ["Kakao Local API(place 14723726, road 일광로 125-1, 전화 051-724-0039)", "다이닝코드·식신·triple(일광로 125-1, 일광해수욕장 인근, 영업중)"]
+    }
+  ]
+}
