@@ -21,7 +21,7 @@ export const AREA_TYPES = [
 
 export type AreaType = (typeof AREA_TYPES)[number]
 
-export type SourceType = 'youtube' | 'tv' | 'sns'
+export type SourceType = 'youtube' | 'tv' | 'sns' | 'guide'
 
 /**
  * 방송 출연 기록 (restaurant_appearances 1행 ↔ 앱 타입).

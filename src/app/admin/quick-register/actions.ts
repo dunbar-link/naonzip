@@ -6,7 +6,9 @@ import { getSupabaseAdminClient } from '@/lib/supabase-admin'
 import { ADMIN_COOKIE_NAME, verifyAdminSessionToken } from '@/lib/admin-auth'
 import {
   RESTAURANT_SOURCE_TYPES,
+  APPEARANCE_SOURCE_TYPES,
   type RestaurantSourceType,
+  type AppearanceSourceType,
 } from '@/types/supabase'
 import { AREA_TYPES, type AreaType } from '@/types/restaurant'
 import { isInBusanRange } from '@/lib/coords'
@@ -22,6 +24,11 @@ function trimToNull(v: unknown): string | null {
 
 function isValidRestaurantSourceType(s: unknown): s is RestaurantSourceType {
   return typeof s === 'string' && (RESTAURANT_SOURCE_TYPES as readonly string[]).includes(s)
+}
+
+// appearances 는 방송 출연 전용이라 guide 를 받지 않는다(youtube/tv/sns 만).
+function isValidAppearanceSourceType(s: unknown): s is AppearanceSourceType {
+  return typeof s === 'string' && (APPEARANCE_SOURCE_TYPES as readonly string[]).includes(s)
 }
 
 function isValidArea(s: unknown): s is AreaType {
@@ -285,7 +292,9 @@ export async function quickRegisterRestaurant(
   }
 
   // 2) restaurant_appearances dual-write. 실패 시 restaurant 롤백(ON DELETE CASCADE).
-  {
+  //    가이드(guide) 출처는 방송 출연이 아니므로 appearance 를 만들지 않는다
+  //    (appearance 0건이면 read 어댑터가 restaurants 방송컬럼으로 단일 출처를 fallback).
+  if (payload.source_type !== 'guide') {
     const { error: appErr } = await supabase.from('restaurant_appearances').insert(
       {
         restaurant_id: inserted.id,
@@ -319,7 +328,7 @@ export async function quickRegisterRestaurant(
     }
     const { error: candErr } = await supabase.from('candidate_queue').insert(
       {
-        source_type: payload.source_type,
+        source_type: payload.source_type === 'guide' ? 'other' : payload.source_type,
         source_name: sourceTitle,
         restaurant_name: name,
         area_guess: payload.area,
@@ -373,7 +382,7 @@ export async function addAppearanceToRestaurant(
   if (!input.restaurantId || typeof input.restaurantId !== 'string') {
     return { ok: false, error: '대상 식당이 선택되지 않았어요.' }
   }
-  if (!isValidRestaurantSourceType(input.source_type)) {
+  if (!isValidAppearanceSourceType(input.source_type)) {
     return { ok: false, error: '소스 유형은 youtube/tv/sns 중에서 선택해주세요.' }
   }
   const sourceTitle = trimToNull(input.source_title)

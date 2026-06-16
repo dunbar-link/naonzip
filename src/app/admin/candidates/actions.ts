@@ -11,9 +11,11 @@ import {
   CANDIDATE_STATUSES,
   CANDIDATE_SOURCE_TYPES,
   RESTAURANT_SOURCE_TYPES,
+  APPEARANCE_SOURCE_TYPES,
   type CandidateStatus,
   type CandidateSourceType,
   type RestaurantSourceType,
+  type AppearanceSourceType,
 } from '@/types/supabase'
 import { AREA_TYPES, type AreaType } from '@/types/restaurant'
 import { isInBusanRange } from '@/lib/coords'
@@ -30,6 +32,11 @@ function isValidSourceType(s: unknown): s is CandidateSourceType {
 
 function isValidRestaurantSourceType(s: unknown): s is RestaurantSourceType {
   return typeof s === 'string' && (RESTAURANT_SOURCE_TYPES as readonly string[]).includes(s)
+}
+
+// appearances 는 방송 출연 전용이라 guide 를 받지 않는다(youtube/tv/sns 만).
+function isValidAppearanceSourceType(s: unknown): s is AppearanceSourceType {
+  return typeof s === 'string' && (APPEARANCE_SOURCE_TYPES as readonly string[]).includes(s)
 }
 
 function isValidArea(s: unknown): s is AreaType {
@@ -405,7 +412,8 @@ export async function convertCandidateToRestaurant(
   //   - 새 식당의 "대표 출연" 을 read 어댑터의 row fallback 이 아니라 실제 appearance 로 남긴다.
   //   - 둘 다 성공해야 정상 완료. appearance 실패 시 방금 만든 draft 를 롤백 삭제하고 에러 반환.
   //   - candidate converted 마킹은 appearance 성공 이후에만 수행한다.
-  {
+  //   - 가이드(guide) 출처는 방송 출연이 아니므로 appearance 를 만들지 않는다(read 어댑터 fallback).
+  if (payload.source_type !== 'guide') {
     const { error: appErr } = await supabase.from('restaurant_appearances').insert(
       {
         restaurant_id: insertedRestaurant.id,
@@ -503,7 +511,7 @@ export async function addCandidateAppearanceToRestaurant(
   }
 
   // source_type: youtube/tv/sns 화이트리스트 (candidate 의 'other' 는 불가).
-  if (!isValidRestaurantSourceType(input.source_type)) {
+  if (!isValidAppearanceSourceType(input.source_type)) {
     return { ok: false, error: '소스 유형은 youtube/tv/sns 중에서 선택해주세요.' }
   }
 

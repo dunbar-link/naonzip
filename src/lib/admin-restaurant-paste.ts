@@ -199,7 +199,7 @@ export function parseRestaurantPaste(text: string): {
       else ignored.push(`지역 “${value}”은(는) 허용 목록에 없어 무시했어요.`)
     } else if (field === 'source_type') {
       if (isSourceTypeValue(value)) fields.source_type = value
-      else ignored.push(`소스유형 “${value}”은(는) youtube/tv/sns 가 아니어서 무시했어요.`)
+      else ignored.push(`소스유형 “${value}”은(는) youtube/tv/sns/guide 가 아니어서 무시했어요.`)
     } else if (field === 'broadcast_date') {
       // 방영일은 input type="date" 가 받는 완전한 날짜만 채운다.
       // YYYY 나 YYYY-MM 같은 부분 날짜는 임의로 01 을 붙이지 않고 비워둔 뒤 안내한다.

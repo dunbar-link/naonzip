@@ -96,6 +96,7 @@ export function sourceToneClass(tone: SourceTone): string {
 function sourceTypeTone(t: SourceType): SourceTone {
   if (t === 'youtube') return 'youtube'
   if (t === 'tv') return 'tv'
+  if (t === 'guide') return 'guide'
   return 'sns'
 }
 
@@ -103,6 +104,7 @@ function sourceTypeTone(t: SourceType): SourceTone {
 export function sourceTypeLabel(t: SourceType): string {
   if (t === 'youtube') return '유튜브'
   if (t === 'tv') return '방송'
+  if (t === 'guide') return '가이드'
   return 'SNS'
 }
 

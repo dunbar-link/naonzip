@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS public.restaurants (
   kakao_map_url text,
   naver_map_url text,
   tmap_url      text,
-  source_type   text NOT NULL CHECK (source_type IN ('youtube', 'tv', 'sns')),
+  source_type   text NOT NULL CHECK (source_type IN ('youtube', 'tv', 'sns', 'guide')),
   source_title  text NOT NULL,
   is_published  boolean NOT NULL DEFAULT false,
   created_at    timestamptz NOT NULL DEFAULT now()
@@ -63,6 +63,18 @@ CREATE POLICY "service role has full access"
   TO service_role
   USING (true)
   WITH CHECK (true);
+
+-- ─────────────────────────────────────────────
+-- restaurants.source_type 화이트리스트 — 'guide'(미쉐린 등 가이드 출처) 추가.
+--   - 기존 허용값(youtube/tv/sns) 보존 + guide 추가. 방송 전용 appearances 와 달리
+--     restaurants 는 가이드 단독 출처(미쉐린 빕구르망 등)도 등록 가능해야 한다.
+--   - 이미 존재하는 운영 DB 에도 안전하게 재적용(idempotent: DROP IF EXISTS → ADD).
+-- ─────────────────────────────────────────────
+ALTER TABLE public.restaurants
+  DROP CONSTRAINT IF EXISTS restaurants_source_type_check;
+ALTER TABLE public.restaurants
+  ADD CONSTRAINT restaurants_source_type_check
+  CHECK (source_type IN ('youtube', 'tv', 'sns', 'guide'));
 
 -- ─────────────────────────────────────────────
 -- restaurant_reports 테이블 (정보 수정 제보)

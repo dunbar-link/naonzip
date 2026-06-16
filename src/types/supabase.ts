@@ -23,7 +23,7 @@ export type RestaurantRow = {
   kakao_map_url: string | null
   naver_map_url: string | null
   tmap_url: string | null
-  source_type: 'youtube' | 'tv' | 'sns'
+  source_type: 'youtube' | 'tv' | 'sns' | 'guide'
   source_title: string
   is_published: boolean
   created_at: string
@@ -31,12 +31,21 @@ export type RestaurantRow = {
 
 /**
  * restaurants.source_type 허용 값.
- * DB CHECK 제약 (source_type IN ('youtube','tv','sns')) 과 일치시킬 것.
+ * DB CHECK 제약 (source_type IN ('youtube','tv','sns','guide')) 과 일치시킬 것.
  * 후보 변환 폼/서버 액션에서 화이트리스트로 공유한다.
- * (candidate_queue 의 'other' 는 restaurant 로 등록할 수 없다.)
+ * - 'guide': 미쉐린 등 편집 주체가 명확한 전문 가이드 출처(방송 아님).
+ * - (candidate_queue 의 'other' 는 restaurant 로 등록할 수 없다.)
  */
-export const RESTAURANT_SOURCE_TYPES = ['youtube', 'tv', 'sns'] as const
+export const RESTAURANT_SOURCE_TYPES = ['youtube', 'tv', 'sns', 'guide'] as const
 export type RestaurantSourceType = (typeof RESTAURANT_SOURCE_TYPES)[number]
+
+/**
+ * restaurant_appearances.source_type 허용 값(방송 출연 전용 — guide 제외).
+ * appearances 는 방송/유튜브/SNS 출연 기록이므로 가이드(guide)는 포함하지 않는다.
+ * DB CHECK 제약 (source_type IN ('youtube','tv','sns')) 과 일치시킬 것.
+ */
+export const APPEARANCE_SOURCE_TYPES = ['youtube', 'tv', 'sns'] as const
+export type AppearanceSourceType = (typeof APPEARANCE_SOURCE_TYPES)[number]
 
 /**
  * restaurant_reports.status 허용 값.
@@ -101,7 +110,7 @@ export type CandidateQueueRow = {
 export type RestaurantAppearanceRow = {
   id: string
   restaurant_id: string
-  source_type: RestaurantSourceType
+  source_type: AppearanceSourceType
   source_title: string
   program_name: string | null
   creator_name: string | null

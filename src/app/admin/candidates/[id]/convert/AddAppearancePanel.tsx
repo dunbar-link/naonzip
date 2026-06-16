@@ -4,7 +4,7 @@ import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
-  RESTAURANT_SOURCE_TYPES,
+  APPEARANCE_SOURCE_TYPES,
   type RestaurantSourceType,
 } from '@/types/supabase'
 import { addCandidateAppearanceToRestaurant } from '../../actions'
@@ -189,7 +189,7 @@ export default function AddAppearancePanel({ candidateId, matches, prefill }: Pr
                       className={inputClass}
                     >
                       <option value="">선택하세요</option>
-                      {RESTAURANT_SOURCE_TYPES.map((s) => (
+                      {APPEARANCE_SOURCE_TYPES.map((s) => (
                         <option key={s} value={s}>
                           {s}
                         </option>
