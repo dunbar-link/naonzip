@@ -17,6 +17,9 @@ const SUGGESTED_QUERIES = [
   '해운대', '광안리', '곱창', '회',
 ]
 
+// 마지막으로 선택한 출처 탭 저장 키 — 목록 페이지(naonzip:last-area-filter)와 동일한 네이밍 규칙.
+const LS_TAB_KEY = 'naonzip:last-source-tab'
+
 // 검색 동의어 맵 — 토큰이 key와 정확히 일치하면 expansion 배열로 OR 매칭한다.
 const SYNONYMS: Record<string, string[]> = {
   '빵집': ['빵집', '베이커리', '디저트', '빵'],
@@ -176,13 +179,40 @@ export default function SearchClient({ restaurants }: Props) {
   const searchParams = useSearchParams()
 
   const initialQuery = searchParams.get('q') ?? ''
-  const initialTabRaw = searchParams.get('tab')
-  const initialTab: SourceTab = isSourceTab(initialTabRaw) ? initialTabRaw : 'all'
+  const tabParam = searchParams.get('tab')
+  const urlHasTabParam = tabParam !== null
+  const initialTab: SourceTab = isSourceTab(tabParam) ? tabParam : 'all'
 
   const [query, setQuery] = useState(initialQuery)
   const [tab, setTab] = useState<SourceTab>(initialTab)
+  const [showSuggest, setShowSuggest] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
-  const topRef = useRef<HTMLDivElement>(null)
+  const restoredRef = useRef(false)
+
+  // 마운트 후 출처 탭 복원(읽기) — URL의 tab이 우선, 없으면 저장된 마지막 탭.
+  // (서버 렌더는 항상 URL 기준 initialTab 으로 일치 → hydration 안전, 복원은 클라이언트 1회)
+  useEffect(() => {
+    if (restoredRef.current) return
+    restoredRef.current = true
+    // URL이 tab을 명시하면(유효/무효 모두) 저장값보다 우선 → initialTab 유지.
+    if (urlHasTabParam) return
+    // URL에 tab이 없으면 저장된 마지막 탭 복원. 유효한 값만 적용(잘못된 값은 아래 sync가 정리).
+    try {
+      const saved = window.localStorage.getItem(LS_TAB_KEY)
+      if (isSourceTab(saved)) setTab(saved)
+    } catch {
+      // localStorage 미지원 환경(시크릿 브라우저 등) — 무시
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // 확정된 출처 탭을 localStorage에 동기화(쓰기) — URL 직접 접근·복원·클릭 모두 일관 저장.
+  // 복원 effect(위에서 먼저 선언)가 저장값을 읽은 뒤 setTab 하므로 항상 최종값으로 수렴한다.
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(LS_TAB_KEY, tab)
+    } catch {}
+  }, [tab])
 
   const queryResults = useMemo(
     () => searchRestaurants(query, restaurants),
@@ -222,22 +252,28 @@ export default function SearchClient({ restaurants }: Props) {
     router.replace(qs ? `/search?${qs}` : '/search', { scroll: false })
   }, [query, tab]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  // 탭 선택 — state 갱신(localStorage 저장은 위 sync effect 가 담당).
+  const handleTabChange = (key: SourceTab) => {
+    setTab(key)
+  }
+
   const handleSuggest = (q: string) => {
     setQuery(q)
-    // 추천어를 누르면 키보드가 결과를 가리지 않도록 입력창 포커스를 해제.
+    // 추천어를 누르면 추천 영역을 접고, 키보드가 결과를 가리지 않도록 입력창 포커스를 해제.
+    setShowSuggest(false)
     inputRef.current?.blur()
   }
 
   const handleClear = () => {
     setQuery('')
+    setShowSuggest(true)
     inputRef.current?.focus()
   }
 
-  // 검색창 focus 시 상단(검색창+추천+필터)을 키보드 위 가시영역으로.
-  const handleFocus = () => {
-    window.setTimeout(() => {
-      topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 120)
+  // 검색창 focus 시 추천 검색어 펼침. blur 시 약간 지연 후 접기(칩/토글 클릭 보호).
+  const handleFocus = () => setShowSuggest(true)
+  const handleBlur = () => {
+    window.setTimeout(() => setShowSuggest(false), 150)
   }
 
   const isActive = query.trim().length > 0 || tab !== 'all'
@@ -250,100 +286,119 @@ export default function SearchClient({ restaurants }: Props) {
     return `${activeTabLabel} 맛집 ${results.length}곳`
   })()
 
+  const renderTab = ({ key, label }: { key: SourceTab; label: string }) => {
+    const selected = tab === key
+    const count = tabCounts[key]
+    return (
+      <button
+        key={key}
+        onClick={() => handleTabChange(key)}
+        aria-pressed={selected}
+        className={`flex items-center justify-center gap-1 min-h-[44px] text-[15px] px-2 py-2 rounded-xl border transition-colors ${
+          selected
+            ? 'bg-orange-500 border-orange-500 text-white font-bold'
+            : 'bg-white border-gray-300 text-gray-800 font-medium active:bg-gray-100'
+        }`}
+      >
+        {selected && (
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" aria-hidden>
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        )}
+        <span>{label}</span>
+        <span className={`text-xs font-semibold ${selected ? 'text-orange-100' : 'text-gray-400'}`}>
+          {count}
+        </span>
+      </button>
+    )
+  }
+
   return (
     <main className="pt-14 pb-20">
-      <div ref={topRef}>
-        {/* 1. 검색 입력창 */}
-        <div className="sticky top-14 z-10 bg-white border-b border-gray-100 px-4 py-3">
-          <div className="relative flex items-center gap-2 bg-gray-100 rounded-xl px-3 py-2.5">
-            <svg
-              className="w-4 h-4 text-gray-400 flex-shrink-0"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+      {/* 1. 검색 입력창 (sticky) */}
+      <div className="sticky top-14 z-10 bg-white border-b border-gray-100 px-4 py-3">
+        <div className="relative flex items-center gap-2 bg-gray-100 rounded-xl px-3 py-2.5">
+          <svg
+            className="w-4 h-4 text-gray-400 flex-shrink-0"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input
+            ref={inputRef}
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            placeholder="식당명, 메뉴, 방송·출처..."
+            autoFocus
+            className="flex-1 bg-transparent text-base text-gray-900 placeholder-gray-400 outline-none"
+          />
+          {query.trim().length > 0 && (
+            <button
+              onClick={handleClear}
+              className="w-5 h-5 flex items-center justify-center rounded-full bg-gray-300 text-gray-600 flex-shrink-0"
+              aria-label="검색어 지우기"
             >
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.35-4.35" />
-            </svg>
-            <input
-              ref={inputRef}
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onFocus={handleFocus}
-              placeholder="식당명, 메뉴, 방송·출처..."
-              autoFocus
-              className="flex-1 bg-transparent text-base text-gray-900 placeholder-gray-400 outline-none"
-            />
-            {query.trim().length > 0 && (
-              <button
-                onClick={handleClear}
-                className="w-5 h-5 flex items-center justify-center rounded-full bg-gray-300 text-gray-600 flex-shrink-0"
-                aria-label="검색어 지우기"
-              >
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
-            )}
-          </div>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          )}
         </div>
+      </div>
 
-        {/* 2. 추천 검색어 — 검색창 바로 아래, 한 줄 가로 스크롤 */}
-        <section className="pt-3">
-          <h3 className="px-4 text-[13px] font-bold text-gray-600 mb-2">추천 검색어</h3>
-          <div className="flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [-ms-overflow-style:none]">
+      {/* 2. 추천 검색어 — 기본 접힘. 검색창 focus 또는 토글로 펼침. */}
+      <section className="px-4 pt-2.5">
+        <button
+          type="button"
+          onClick={() => setShowSuggest((v) => !v)}
+          aria-expanded={showSuggest}
+          aria-controls="suggest-panel"
+          className="inline-flex items-center gap-1 min-h-[40px] text-[13px] font-bold text-gray-600"
+        >
+          <span>추천 검색어</span>
+          <svg
+            className={`w-3.5 h-3.5 transition-transform ${showSuggest ? 'rotate-90' : ''}`}
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </button>
+        {showSuggest && (
+          <div id="suggest-panel" className="mt-1.5 flex flex-wrap gap-2">
             {SUGGESTED_QUERIES.map((q) => (
               <button
                 key={q}
                 onClick={() => handleSuggest(q)}
-                className="flex-shrink-0 min-h-[40px] text-[15px] font-medium px-4 py-2 rounded-full border border-gray-300 text-gray-800 bg-white active:bg-gray-100 transition-colors"
+                className="min-h-[40px] text-[15px] font-medium px-4 py-2 rounded-full border border-gray-300 text-gray-800 bg-white active:bg-gray-100 transition-colors"
               >
                 {q}
               </button>
             ))}
           </div>
-        </section>
+        )}
+      </section>
 
-        {/* 3. 출처 필터 블록 — 카드형 강조 */}
-        <section className="px-4 pt-3">
-          <div className="rounded-2xl border border-orange-200 bg-orange-50/60 p-4">
-            <h2 className="text-base font-extrabold text-gray-900">어디에 나온 맛집인가요?</h2>
-            <p className="mt-0.5 text-xs text-gray-500">방송·미슐랭·부산공식·유튜브 출처로 찾아보세요.</p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {SOURCE_TABS.map(({ key, label }) => {
-                const selected = tab === key
-                const count = tabCounts[key]
-                return (
-                  <button
-                    key={key}
-                    onClick={() => setTab(key)}
-                    aria-pressed={selected}
-                    className={`inline-flex items-center gap-1 min-h-[44px] text-[15px] px-4 py-2 rounded-full border transition-colors ${
-                      selected
-                        ? 'bg-orange-500 border-orange-500 text-white font-bold'
-                        : 'bg-white border-gray-300 text-gray-800 font-medium active:bg-gray-100'
-                    }`}
-                  >
-                    {selected && (
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" aria-hidden>
-                        <path d="M20 6 9 17l-5-5" />
-                      </svg>
-                    )}
-                    <span>{label}</span>
-                    <span className={`text-xs font-semibold ${selected ? 'text-orange-100' : 'text-gray-400'}`}>
-                      {count}
-                    </span>
-                  </button>
-                )
-              })}
-            </div>
+      {/* 3. 출처 필터 — 카드형 강조 유지, 2줄 고정 배치(가로 스크롤 없음) */}
+      <section className="px-4 pt-2.5">
+        <div className="rounded-2xl border border-orange-200 bg-orange-50/60 p-3">
+          <h2 className="text-[15px] font-extrabold text-gray-900">어디에 나온 맛집인가요?</h2>
+          <div className="mt-2.5 grid grid-cols-3 gap-2">
+            {SOURCE_TABS.slice(0, 3).map(renderTab)}
           </div>
-        </section>
-      </div>
+          <div className="mt-2 grid grid-cols-2 gap-2">
+            {SOURCE_TABS.slice(3).map(renderTab)}
+          </div>
+        </div>
+      </section>
 
       {/* 4. 결과 / 안내 */}
       {isActive ? (
-        <section className="px-4 pt-4">
+        <section className="px-4 pt-3">
           <p className="text-xs text-gray-500 mb-3 font-medium">{conditionLabel}</p>
           {results.length > 0 ? (
             <div className="flex flex-col gap-3">
@@ -363,7 +418,7 @@ export default function SearchClient({ restaurants }: Props) {
               )}
               {tab !== 'all' && (
                 <button
-                  onClick={() => setTab('all')}
+                  onClick={() => handleTabChange('all')}
                   className="text-sm px-4 py-2 rounded-full border border-orange-300 text-orange-600 bg-orange-50 active:bg-orange-100 font-medium"
                 >
                   전체에서 다시 보기
