@@ -7,6 +7,7 @@ import SaveButton from '@/components/restaurant/SaveButton'
 import RestaurantImage from '@/components/restaurant/RestaurantImage'
 import { getProgramSlugFromName } from '@/lib/programs'
 import { getAreaSlugFromName } from '@/lib/areas'
+import { toDisplayLabel } from '@/lib/sources'
 
 function getContentLabel(r: Restaurant): string {
   return r.creatorName ?? r.programName ?? r.sourceTitle
@@ -32,7 +33,7 @@ type Props = {
 
 export default function RestaurantCard({ restaurant, variant = 'vertical' }: Props) {
   const router = useRouter()
-  const label = getContentLabel(restaurant)
+  const label = toDisplayLabel(getContentLabel(restaurant))
   const badgeColor = getContentBadgeColor(restaurant)
   const dateText = formatBroadcastDate(restaurant.broadcastDate ?? restaurant.appearedAt)
   const isYoutubeCreator =

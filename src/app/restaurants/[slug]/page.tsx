@@ -12,7 +12,7 @@ import RestaurantCard from '@/components/restaurant/RestaurantCard'
 import RestaurantImage from '@/components/restaurant/RestaurantImage'
 import ReportButton from '@/components/restaurant/ReportButton'
 import TrustSources from '@/components/restaurant/TrustSources'
-import { resolveSourceBadges, sourceToneClass } from '@/lib/sources'
+import { resolveSourceBadges, sourceToneClass, toDisplayLabel } from '@/lib/sources'
 
 const SITE_URL = 'https://naonzip.vercel.app'
 
@@ -370,7 +370,7 @@ export default async function RestaurantDetailPage({ params }: Props) {
 
         {restaurant.description && (
           <p className="mt-2 text-sm text-gray-600 leading-relaxed line-clamp-2">
-            {restaurant.description}
+            {toDisplayLabel(restaurant.description)}
           </p>
         )}
       </section>

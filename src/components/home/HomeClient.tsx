@@ -21,7 +21,7 @@ export default function HomeClient({ restaurants }: Props) {
       {/* 히어로 */}
       <section className="px-4 py-3 bg-gradient-to-br from-orange-50 to-amber-50">
         <h1 className="text-xl font-bold text-gray-900 leading-tight">
-          부산 맛집, <span className="text-orange-500">어디서 봤는지까지</span>
+          방송나온 부산맛집, <span className="text-orange-500">어디까지 봤어?</span>
         </h1>
         <p className="mt-1.5 text-sm text-gray-500">방송·유튜브 출처를 모아 빠르게 골라요</p>
       </section>

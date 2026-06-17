@@ -147,7 +147,8 @@ export function resolveSourceBadges(r: Restaurant, max = 3): SourceBadge[] {
   const badges: SourceBadge[] = []
   const seen = new Set<string>()
 
-  const pushBadge = (label: string, tone: SourceTone) => {
+  const pushBadge = (rawLabel: string, tone: SourceTone) => {
+    const label = toDisplayLabel(rawLabel)
     const key = label.normalize('NFC')
     if (!key || seen.has(key) || badges.length >= max) return
     seen.add(key)
@@ -227,9 +228,9 @@ export function resolveTrustSourceViews(
   const views: TrustSourceView[] = []
   for (const t of trustSources) {
     if (!t.isPublic) continue
-    const primary = joinDistinct([t.trustLabel, t.sourceName])
+    const primary = toDisplayLabel(joinDistinct([t.trustLabel, t.sourceName]))
     if (!primary) continue
-    const meta = joinDistinct([t.sourceTitle, t.verifiedAt]) || null
+    const meta = toDisplayLabel(joinDistinct([t.sourceTitle, t.verifiedAt])) || null
     const url = t.sourceUrl && isHttpUrl(t.sourceUrl) ? t.sourceUrl : null
     views.push({
       key: t.id,
@@ -254,13 +255,21 @@ export type SourceTab = 'all' | 'tv' | 'michelin' | 'busan' | 'youtube'
 export const SOURCE_TABS: ReadonlyArray<{ key: SourceTab; label: string }> = [
   { key: 'all', label: '전체' },
   { key: 'tv', label: '방송' },
-  { key: 'michelin', label: '미쉐린' },
+  { key: 'michelin', label: '미슐랭' },
   { key: 'busan', label: '부산공식' },
   { key: 'youtube', label: '유튜브' },
 ]
 
 export function isSourceTab(v: string | null | undefined): v is SourceTab {
   return v === 'all' || v === 'tv' || v === 'michelin' || v === 'busan' || v === 'youtube'
+}
+
+/**
+ * 사용자 표시용 라벨 변환 — 내부 데이터(source_name 등)의 '미쉐린/미쉘린'을
+ * 화면에는 '미슐랭'으로 통일한다. DB/필터키/동의어는 그대로 유지(표시만 변환).
+ */
+export function toDisplayLabel(s: string): string {
+  return s.replace(/미쉐린|미쉘린/g, '미슐랭')
 }
 
 /** 미쉐린 출처 판정 — source_kind=guide 만으론 부족(부산의 맛도 guide). 출처명/공식 도메인 사용. */
