@@ -19,6 +19,8 @@ const SUGGESTED_QUERIES = [
 
 // 마지막으로 선택한 출처 탭 저장 키 — 목록 페이지(naonzip:last-area-filter)와 동일한 네이밍 규칙.
 const LS_TAB_KEY = 'naonzip:last-source-tab'
+// 추천 검색어 펼침/접힘 상태 저장 키.
+const LS_SUGGEST_KEY = 'naonzip:search-suggestions-open'
 
 // 검색 동의어 맵 — 토큰이 key와 정확히 일치하면 expansion 배열로 OR 매칭한다.
 const SYNONYMS: Record<string, string[]> = {
@@ -188,6 +190,7 @@ export default function SearchClient({ restaurants }: Props) {
   const [showSuggest, setShowSuggest] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const restoredRef = useRef(false)
+  const suggestRestoredRef = useRef(false)
 
   // 마운트 후 출처 탭 복원(읽기) — URL의 tab이 우선, 없으면 저장된 마지막 탭.
   // (서버 렌더는 항상 URL 기준 initialTab 으로 일치 → hydration 안전, 복원은 클라이언트 1회)
@@ -213,6 +216,24 @@ export default function SearchClient({ restaurants }: Props) {
       window.localStorage.setItem(LS_TAB_KEY, tab)
     } catch {}
   }, [tab])
+
+  // 마운트 후 추천 검색어 펼침 상태 복원(읽기) — 저장값 'true' 만 펼침, 없거나 잘못된 값은 접힘.
+  // (서버 렌더는 항상 접힘으로 일치 → hydration 안전, 펼침으로의 전환만 클라이언트 1회)
+  useEffect(() => {
+    if (suggestRestoredRef.current) return
+    suggestRestoredRef.current = true
+    try {
+      if (window.localStorage.getItem(LS_SUGGEST_KEY) === 'true') setShowSuggest(true)
+    } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // 추천 검색어 펼침 상태를 localStorage에 동기화(쓰기). 토글·추천어 선택만 상태를 바꾼다(focus 무관).
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(LS_SUGGEST_KEY, showSuggest ? 'true' : 'false')
+    } catch {}
+  }, [showSuggest])
 
   const queryResults = useMemo(
     () => searchRestaurants(query, restaurants),
@@ -259,21 +280,14 @@ export default function SearchClient({ restaurants }: Props) {
 
   const handleSuggest = (q: string) => {
     setQuery(q)
-    // 추천어를 누르면 추천 영역을 접고, 키보드가 결과를 가리지 않도록 입력창 포커스를 해제.
+    // 추천어 선택 시: 검색 적용 + 추천 영역 접힘(상태 저장) + 키보드 닫기.
     setShowSuggest(false)
     inputRef.current?.blur()
   }
 
   const handleClear = () => {
     setQuery('')
-    setShowSuggest(true)
     inputRef.current?.focus()
-  }
-
-  // 검색창 focus 시 추천 검색어 펼침. blur 시 약간 지연 후 접기(칩/토글 클릭 보호).
-  const handleFocus = () => setShowSuggest(true)
-  const handleBlur = () => {
-    window.setTimeout(() => setShowSuggest(false), 150)
   }
 
   const isActive = query.trim().length > 0 || tab !== 'all'
@@ -294,19 +308,19 @@ export default function SearchClient({ restaurants }: Props) {
         key={key}
         onClick={() => handleTabChange(key)}
         aria-pressed={selected}
-        className={`flex items-center justify-center gap-1 min-h-[44px] text-[15px] px-2 py-2 rounded-xl border transition-colors ${
+        className={`flex items-center justify-center gap-1 min-h-[38px] text-[14px] px-2 py-1.5 rounded-xl border transition-colors ${
           selected
             ? 'bg-orange-500 border-orange-500 text-white font-bold'
             : 'bg-white border-gray-300 text-gray-800 font-medium active:bg-gray-100'
         }`}
       >
         {selected && (
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" aria-hidden>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" aria-hidden>
             <path d="M20 6 9 17l-5-5" />
           </svg>
         )}
         <span>{label}</span>
-        <span className={`text-xs font-semibold ${selected ? 'text-orange-100' : 'text-gray-400'}`}>
+        <span className={`text-[11px] font-semibold ${selected ? 'text-orange-100' : 'text-gray-400'}`}>
           {count}
         </span>
       </button>
@@ -316,7 +330,7 @@ export default function SearchClient({ restaurants }: Props) {
   return (
     <main className="pt-14 pb-20">
       {/* 1. 검색 입력창 (sticky) */}
-      <div className="sticky top-14 z-10 bg-white border-b border-gray-100 px-4 py-3">
+      <div className="sticky top-14 z-10 bg-white border-b border-gray-100 px-4 py-2.5">
         <div className="relative flex items-center gap-2 bg-gray-100 rounded-xl px-3 py-2.5">
           <svg
             className="w-4 h-4 text-gray-400 flex-shrink-0"
@@ -330,8 +344,6 @@ export default function SearchClient({ restaurants }: Props) {
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
             placeholder="식당명, 메뉴, 방송·출처..."
             autoFocus
             className="flex-1 bg-transparent text-base text-gray-900 placeholder-gray-400 outline-none"
@@ -351,14 +363,14 @@ export default function SearchClient({ restaurants }: Props) {
         </div>
       </div>
 
-      {/* 2. 추천 검색어 — 기본 접힘. 검색창 focus 또는 토글로 펼침. */}
-      <section className="px-4 pt-2.5">
+      {/* 2. 추천 검색어 — 기본 접힘. 토글로만 펼침(focus 자동 펼침 없음). 상태는 localStorage 기억. */}
+      <section className="px-4 pt-2">
         <button
           type="button"
           onClick={() => setShowSuggest((v) => !v)}
           aria-expanded={showSuggest}
           aria-controls="suggest-panel"
-          className="inline-flex items-center gap-1 min-h-[40px] text-[13px] font-bold text-gray-600"
+          className="inline-flex items-center gap-1 min-h-[38px] text-[14px] font-medium text-gray-600"
         >
           <span>추천 검색어</span>
           <svg
@@ -369,12 +381,12 @@ export default function SearchClient({ restaurants }: Props) {
           </svg>
         </button>
         {showSuggest && (
-          <div id="suggest-panel" className="mt-1.5 flex flex-wrap gap-2">
+          <div id="suggest-panel" className="mt-1.5 flex flex-wrap gap-1.5">
             {SUGGESTED_QUERIES.map((q) => (
               <button
                 key={q}
                 onClick={() => handleSuggest(q)}
-                className="min-h-[40px] text-[15px] font-medium px-4 py-2 rounded-full border border-gray-300 text-gray-800 bg-white active:bg-gray-100 transition-colors"
+                className="min-h-[38px] text-[14px] font-medium px-3 py-1.5 rounded-full border border-gray-300 text-gray-800 bg-white active:bg-gray-100 transition-colors"
               >
                 {q}
               </button>
@@ -383,14 +395,14 @@ export default function SearchClient({ restaurants }: Props) {
         )}
       </section>
 
-      {/* 3. 출처 필터 — 카드형 강조 유지, 2줄 고정 배치(가로 스크롤 없음) */}
-      <section className="px-4 pt-2.5">
-        <div className="rounded-2xl border border-orange-200 bg-orange-50/60 p-3">
-          <h2 className="text-[15px] font-extrabold text-gray-900">어디에 나온 맛집인가요?</h2>
-          <div className="mt-2.5 grid grid-cols-3 gap-2">
+      {/* 3. 출처 필터 — 카드형 강조 유지, 2줄 고정 배치(가로 스크롤 없음), 조밀하게 축소 */}
+      <section className="px-4 pt-2">
+        <div className="rounded-2xl border border-orange-200 bg-orange-50/60 p-2">
+          <h2 className="text-[15px] font-semibold text-gray-900">어디에 나온 맛집?</h2>
+          <div className="mt-2 grid grid-cols-3 gap-2">
             {SOURCE_TABS.slice(0, 3).map(renderTab)}
           </div>
-          <div className="mt-2 grid grid-cols-2 gap-2">
+          <div className="mt-1.5 grid grid-cols-2 gap-2">
             {SOURCE_TABS.slice(3).map(renderTab)}
           </div>
         </div>
@@ -398,8 +410,8 @@ export default function SearchClient({ restaurants }: Props) {
 
       {/* 4. 결과 / 안내 */}
       {isActive ? (
-        <section className="px-4 pt-3">
-          <p className="text-xs text-gray-500 mb-3 font-medium">{conditionLabel}</p>
+        <section className="px-4 pt-2">
+          <p className="text-xs text-gray-500 mb-2 font-medium">{conditionLabel}</p>
           {results.length > 0 ? (
             <div className="flex flex-col gap-3">
               {results.map((r) => (
