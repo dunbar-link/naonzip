@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-06-16",
+  "task": "미쉐린 비공개 trust_sources 3건 표적 검증 + 공식 URL 정합 행 공개 전환",
+  "judgement_basis": "guide.michelin.com 개별 식당 페이지 URL + 식당명 로마자 일치. 403 미우회(페이지 실존·등급 직접검증 불가). TRUST-H8 staged import 운영자 확인.",
+  "results": [
+    {
+      "restaurant": "백일평냉",
+      "slug": "saengdal-gwangalli-baegil-pyeongnaeng",
+      "source_type": "tv",
+      "source_name": "미쉐린 가이드",
+      "trust_label": "미쉐린 빕구르망",
+      "source_url": "https://guide.michelin.com/us/en/busan-region/busan_1025838/restaurant/100-1-pyeongnaeng",
+      "url_domain_ok": true,
+      "name_romanization_match": true,
+      "before_is_public": false,
+      "decision": "PUBLISH",
+      "after_is_public": true
+    },
+    {
+      "restaurant": "담미옥",
+      "slug": "saengdal-seomyeon-dammiok",
+      "source_type": "tv",
+      "source_name": "미쉐린 가이드",
+      "trust_label": "미쉐린 빕구르망",
+      "source_url": "https://guide.michelin.com/us/en/busan-region/busan_1025838/restaurant/damiok",
+      "url_domain_ok": true,
+      "name_romanization_match": true,
+      "before_is_public": false,
+      "decision": "PUBLISH",
+      "after_is_public": true
+    },
+    {
+      "restaurant": "해운대 암소갈비집",
+      "slug": "hibab-haeundae-amsogalbi",
+      "source_type": "youtube",
+      "source_name": "미쉐린 가이드",
+      "trust_label": "미쉐린 가이드 등재",
+      "source_url": "https://guide.michelin.com/us/en/busan-region/busan_1025838/restaurant/haeundae-rib-barbecue-restaurant",
+      "url_domain_ok": true,
+      "name_romanization_match": true,
+      "before_is_public": false,
+      "decision": "PUBLISH",
+      "after_is_public": true,
+      "note": "trust_label 이 '등재'(빕구르망 아닌 셀렉티드 가능성). 미쉐린 탭엔 포함."
+    }
+  ],
+  "summary": {
+    "candidates": 3,
+    "url_domain_ok": 3,
+    "published": 3,
+    "review_kept_false": 0,
+    "restaurants_modified": 0,
+    "trust_total_after": 17,
+    "public_michelin_after": 4,
+    "public_busan_official_after": 11
+  },
+  "limitation": "미쉐린 공식 명단 403 미확보로 등급(빕구르망/셀렉티드) 및 페이지 실존은 직접검증 불가. URL 정합성 기준 공개."
+}

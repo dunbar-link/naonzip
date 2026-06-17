@@ -243,3 +243,65 @@ export function resolveTrustSourceViews(
   }
   return views
 }
+
+// ─────────────────────────────────────────────
+// 검색 출처 탭 — 대표 source_type(방송/유튜브) + 공개 trust_sources(미쉐린/부산공식)
+//   다중 출처: 한 식당이 여러 탭에 동시 노출될 수 있다(배타적 아님).
+// ─────────────────────────────────────────────
+
+export type SourceTab = 'all' | 'tv' | 'michelin' | 'busan' | 'youtube'
+
+export const SOURCE_TABS: ReadonlyArray<{ key: SourceTab; label: string }> = [
+  { key: 'all', label: '전체' },
+  { key: 'tv', label: '방송' },
+  { key: 'michelin', label: '미쉐린' },
+  { key: 'busan', label: '부산공식' },
+  { key: 'youtube', label: '유튜브' },
+]
+
+export function isSourceTab(v: string | null | undefined): v is SourceTab {
+  return v === 'all' || v === 'tv' || v === 'michelin' || v === 'busan' || v === 'youtube'
+}
+
+/** 미쉐린 출처 판정 — source_kind=guide 만으론 부족(부산의 맛도 guide). 출처명/공식 도메인 사용. */
+function isMichelinTrust(t: TrustSource): boolean {
+  if (!t.isPublic) return false
+  return /미쉐린|michelin/i.test(t.sourceName) || (t.sourceUrl ?? '').includes('guide.michelin.com')
+}
+
+/** 부산공식(부산시·부산관광공사·비짓부산) 출처 판정. 일반 로컬/운영자확인은 제외. */
+function isBusanOfficialTrust(t: TrustSource): boolean {
+  if (!t.isPublic) return false
+  return (
+    /부산의\s*맛|비짓\s*부산|visit\s*busan/i.test(t.sourceName) ||
+    (t.sourceUrl ?? '').includes('visitbusan.net')
+  )
+}
+
+export function restaurantHasMichelin(r: Restaurant): boolean {
+  return (r.trustSources ?? []).some(isMichelinTrust)
+}
+
+export function restaurantHasBusanOfficial(r: Restaurant): boolean {
+  return (r.trustSources ?? []).some(isBusanOfficialTrust)
+}
+
+/** 식당이 해당 출처 탭에 노출되는지. 대표 source_type 우선, 없으면 appearances 보조. */
+export function restaurantMatchesSourceTab(r: Restaurant, tab: SourceTab): boolean {
+  switch (tab) {
+    case 'all':
+      return true
+    case 'tv':
+      return r.sourceType === 'tv' || (r.appearances ?? []).some((a) => a.sourceType === 'tv')
+    case 'youtube':
+      return (
+        r.sourceType === 'youtube' || (r.appearances ?? []).some((a) => a.sourceType === 'youtube')
+      )
+    case 'michelin':
+      return restaurantHasMichelin(r)
+    case 'busan':
+      return restaurantHasBusanOfficial(r)
+    default:
+      return true
+  }
+}

@@ -340,7 +340,40 @@ export async function getRestaurants(): Promise<Restaurant[]> {
       }
     }
 
-    return rows.map((r) => rowToRestaurant(r, byRestaurant.get(r.id) ?? []))
+    // 신뢰 출처(공개분) 일괄 조회 — 검색 출처 필터(미쉐린/부산공식)용.
+    //   - is_public=true 만. .in 일괄 1쿼리(N+1 아님).
+    //   - 실패해도 throw 하지 않고 빈 맵 → 검색은 기존대로 동작(append-only).
+    const tsByRestaurant = new Map<string, RestaurantTrustSourceRow[]>()
+    try {
+      const { data: tsData, error: tsError } = await supabase
+        .from('restaurant_trust_sources')
+        .select('*')
+        .in(
+          'restaurant_id',
+          rows.map((r) => r.id),
+        )
+        .eq('is_public', true)
+      if (tsError) {
+        warnTrustSourcesOnce(tsError.message)
+      } else {
+        for (const t of (tsData as RestaurantTrustSourceRow[]) ?? []) {
+          const arr = tsByRestaurant.get(t.restaurant_id) ?? []
+          arr.push(t)
+          tsByRestaurant.set(t.restaurant_id, arr)
+        }
+      }
+    } catch (e) {
+      warnTrustSourcesOnce(e instanceof Error ? e.message : String(e))
+    }
+
+    return rows.map((r) => {
+      const restaurant = rowToRestaurant(r, byRestaurant.get(r.id) ?? [])
+      const ts = tsByRestaurant.get(r.id)
+      if (ts && ts.length > 0) {
+        restaurant.trustSources = ts.map(trustSourceRowToTrustSource)
+      }
+      return restaurant
+    })
   } catch (err) {
     console.error('[restaurants] getRestaurants 예외, mock fallback:', err)
     return mockList()
