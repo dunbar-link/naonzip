@@ -190,7 +190,6 @@ export default function SearchClient({ restaurants }: Props) {
   const [showSuggest, setShowSuggest] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const restoredRef = useRef(false)
-  const suggestRestoredRef = useRef(false)
 
   // 마운트 후 출처 탭 복원(읽기) — URL의 tab이 우선, 없으면 저장된 마지막 탭.
   // (서버 렌더는 항상 URL 기준 initialTab 으로 일치 → hydration 안전, 복원은 클라이언트 1회)
@@ -217,23 +216,13 @@ export default function SearchClient({ restaurants }: Props) {
     } catch {}
   }, [tab])
 
-  // 마운트 후 추천 검색어 펼침 상태 복원(읽기) — 저장값 'true' 만 펼침, 없거나 잘못된 값은 접힘.
-  // (서버 렌더는 항상 접힘으로 일치 → hydration 안전, 펼침으로의 전환만 클라이언트 1회)
+  // 추천 검색어 펼침은 이 페이지에 머무는 동안만 쓰는 임시 상태다(저장·복원하지 않음).
+  // 과거 버전이 남긴 저장값이 있으면 mount 시 1회 정리 → 재진입·새로고침 시 항상 접힘.
   useEffect(() => {
-    if (suggestRestoredRef.current) return
-    suggestRestoredRef.current = true
     try {
-      if (window.localStorage.getItem(LS_SUGGEST_KEY) === 'true') setShowSuggest(true)
+      window.localStorage.removeItem(LS_SUGGEST_KEY)
     } catch {}
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  // 추천 검색어 펼침 상태를 localStorage에 동기화(쓰기). 토글·추천어 선택만 상태를 바꾼다(focus 무관).
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(LS_SUGGEST_KEY, showSuggest ? 'true' : 'false')
-    } catch {}
-  }, [showSuggest])
 
   const queryResults = useMemo(
     () => searchRestaurants(query, restaurants),
@@ -345,7 +334,6 @@ export default function SearchClient({ restaurants }: Props) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="식당명, 메뉴, 방송·출처..."
-            autoFocus
             className="flex-1 bg-transparent text-base text-gray-900 placeholder-gray-400 outline-none"
           />
           {query.trim().length > 0 && (
@@ -363,7 +351,7 @@ export default function SearchClient({ restaurants }: Props) {
         </div>
       </div>
 
-      {/* 2. 추천 검색어 — 기본 접힘. 토글로만 펼침(focus 자동 펼침 없음). 상태는 localStorage 기억. */}
+      {/* 2. 추천 검색어 — 기본 접힘. 토글로만 펼침(focus 자동 펼침 없음). 진입 동안만 쓰는 임시 상태(저장 안 함). */}
       <section className="px-4 pt-2">
         <button
           type="button"
