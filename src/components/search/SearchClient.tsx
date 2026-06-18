@@ -188,6 +188,7 @@ export default function SearchClient({ restaurants }: Props) {
   const [query, setQuery] = useState(initialQuery)
   const [tab, setTab] = useState<SourceTab>(initialTab)
   const [showSuggest, setShowSuggest] = useState(false)
+  const [showSourceFilter, setShowSourceFilter] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const restoredRef = useRef(false)
 
@@ -262,9 +263,10 @@ export default function SearchClient({ restaurants }: Props) {
     router.replace(qs ? `/search?${qs}` : '/search', { scroll: false })
   }, [query, tab]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // 탭 선택 — state 갱신(localStorage 저장은 위 sync effect 가 담당).
+  // 탭 선택 — state 갱신(localStorage 저장은 위 sync effect 가 담당) + 방송 검색 메뉴 자동 접힘.
   const handleTabChange = (key: SourceTab) => {
     setTab(key)
+    setShowSourceFilter(false)
   }
 
   const handleSuggest = (q: string) => {
@@ -289,6 +291,7 @@ export default function SearchClient({ restaurants }: Props) {
     return `${activeTabLabel} 맛집 ${results.length}곳`
   })()
 
+  // 한 줄(grid-cols-5) 출처 필터 칩 — 필터명 위, 결과 수 아래(세로). 줄바꿈/잘림 방지.
   const renderTab = ({ key, label }: { key: SourceTab; label: string }) => {
     const selected = tab === key
     const count = tabCounts[key]
@@ -297,19 +300,16 @@ export default function SearchClient({ restaurants }: Props) {
         key={key}
         onClick={() => handleTabChange(key)}
         aria-pressed={selected}
-        className={`flex items-center justify-center gap-1 min-h-[38px] text-[14px] px-2 py-1.5 rounded-xl border transition-colors ${
+        className={`flex flex-col items-center justify-center min-h-[38px] px-0.5 py-1 rounded-md border transition-colors ${
           selected
-            ? 'bg-orange-500 border-orange-500 text-white font-bold'
-            : 'bg-white border-gray-300 text-gray-800 font-medium active:bg-gray-100'
+            ? 'bg-orange-500 border-orange-500 text-white'
+            : 'bg-white border-gray-300 text-gray-800 active:bg-gray-100'
         }`}
       >
-        {selected && (
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" aria-hidden>
-            <path d="M20 6 9 17l-5-5" />
-          </svg>
-        )}
-        <span>{label}</span>
-        <span className={`text-[11px] font-semibold ${selected ? 'text-orange-100' : 'text-gray-400'}`}>
+        <span className={`text-[12px] leading-tight whitespace-nowrap ${selected ? 'font-semibold' : 'font-medium'}`}>
+          {label}
+        </span>
+        <span className={`text-[10px] leading-tight ${selected ? 'text-orange-100' : 'text-gray-400'}`}>
           {count}
         </span>
       </button>
@@ -358,11 +358,11 @@ export default function SearchClient({ restaurants }: Props) {
           onClick={() => setShowSuggest((v) => !v)}
           aria-expanded={showSuggest}
           aria-controls="suggest-panel"
-          className="inline-flex items-center gap-1 min-h-[38px] text-[14px] font-medium text-gray-600"
+          className="flex w-full items-center justify-between min-h-[38px] text-[14px] font-medium text-gray-600"
         >
           <span>추천 검색어</span>
           <svg
-            className={`w-3.5 h-3.5 transition-transform ${showSuggest ? 'rotate-90' : ''}`}
+            className={`w-3.5 h-3.5 text-gray-400 transition-transform ${showSuggest ? 'rotate-90' : ''}`}
             viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden
           >
             <path d="m9 18 6-6-6-6" />
@@ -383,17 +383,32 @@ export default function SearchClient({ restaurants }: Props) {
         )}
       </section>
 
-      {/* 3. 출처 필터 — 카드형 강조 유지, 2줄 고정 배치(가로 스크롤 없음), 조밀하게 축소 */}
+      {/* 3. 방송 검색 — 추천 검색어와 같은 접힘 토글. 펼치면 5개 출처 필터 한 줄(저장 안 함). */}
       <section className="px-4 pt-2">
-        <div className="rounded-2xl border border-orange-200 bg-orange-50/60 p-2">
-          <h2 className="text-[15px] font-semibold text-gray-900">어디에 나온 맛집?</h2>
-          <div className="mt-2 grid grid-cols-3 gap-2">
-            {SOURCE_TABS.slice(0, 3).map(renderTab)}
+        <button
+          type="button"
+          onClick={() => setShowSourceFilter((v) => !v)}
+          aria-expanded={showSourceFilter}
+          aria-controls="source-filter-panel"
+          className="flex w-full items-center justify-between min-h-[38px] text-[14px] font-medium text-gray-600"
+        >
+          <span>방송 검색</span>
+          <span className="flex items-center gap-1">
+            <span className="text-[13px] font-semibold text-orange-600">{activeTabLabel}</span>
+            <span className="text-[12px] text-gray-400">{tabCounts[tab]}</span>
+            <svg
+              className={`w-3.5 h-3.5 text-gray-400 transition-transform ${showSourceFilter ? 'rotate-90' : ''}`}
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </span>
+        </button>
+        {showSourceFilter && (
+          <div id="source-filter-panel" className="mt-1.5 grid grid-cols-5 gap-1">
+            {SOURCE_TABS.map(renderTab)}
           </div>
-          <div className="mt-1.5 grid grid-cols-2 gap-2">
-            {SOURCE_TABS.slice(3).map(renderTab)}
-          </div>
-        </div>
+        )}
       </section>
 
       {/* 4. 결과 / 안내 */}
