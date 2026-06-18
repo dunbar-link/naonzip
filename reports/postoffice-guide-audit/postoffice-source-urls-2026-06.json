@@ -1,0 +1,13 @@
+{
+ "source_name": "우체국 추천 맛집가이드 2026",
+ "publisher": "부산지방우정청",
+ "publication_date": "2026-06",
+ "source_kind": "guide",
+ "user_alias": "우슐랭",
+ "internal_filter_key": "postoffice",
+ "publisher_official_domain": "https://www.koreapost.go.kr/bs/index.do",
+ "official_pdf_url": "OFFICIAL_URL_REVIEW",
+ "official_url_status": "OFFICIAL_URL_REVIEW",
+ "note": "발행처 공식 도메인(부산지방우정청)은 확인. 책자 PDF 공식 게시 URL 은 공식 사이트에서 미확인 → 임의 URL 입력 금지. 근거: 발행처/발행일/PDF 원본 파일(2026-postoffice-guide.pdf).",
+ "evidence_pdf_local": "C:\\work\\naonzip-source-input\\2026-postoffice-guide.pdf (저장소 미포함)"
+}

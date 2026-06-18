@@ -1,0 +1,93 @@
+﻿post_office,rec,name,classification,match_reason,matched_restaurant_name,matched_slug,current_source_type,kakao_place_id
+부산우체국,1,다무치아,READY_FOR_IMAGE,kakao_verified,,,,1297139609
+부산우체국,2,된장한상,READY_FOR_IMAGE,kakao_verified,,,,715154557
+부산우체국,3,황태를벗삼아,READY_FOR_IMAGE,kakao_verified,,,,19337206
+부산우체국,4,분식회계,REVIEW,kakao_no_match,,,,
+동래우체국,1,쿠루미과자점,READY_FOR_IMAGE,kakao_verified,,,,27364090
+동래우체국,2,수안커피컴퍼니,READY_FOR_IMAGE,kakao_verified,,,,988686782
+동래우체국,3,동래밀면,READY_FOR_IMAGE,kakao_verified,,,,12519573
+동래우체국,4,영남식육식당 동래점,READY_FOR_IMAGE,kakao_verified,,,,21965019
+동래우체국,5,봉식당,READY_FOR_IMAGE,kakao_verified,,,,1679524259
+동래우체국,6,리바이브,READY_FOR_IMAGE,kakao_verified,,,,1838232516
+동래우체국,7,더라이스,READY_FOR_IMAGE,kakao_verified,,,,161869871
+동래우체국,8,베르,REVIEW,kakao_gu_mismatch,,,,1853942946
+남부산우체국,1,황령산 보쌈,READY_FOR_IMAGE,kakao_verified,,,,10966906
+남부산우체국,2,스위스제과,READY_FOR_IMAGE,kakao_verified,,,,9224093
+남부산우체국,3,구름고개카페,READY_FOR_IMAGE,kakao_verified,,,,16465882
+남부산우체국,4,소바재우재,READY_FOR_IMAGE,kakao_verified,,,,1280383204
+남부산우체국,5,지밀레니얼,READY_FOR_IMAGE,kakao_verified,,,,279644293
+남부산우체국,6,구자윤 과자점,READY_FOR_IMAGE,kakao_verified,,,,26428257
+남부산우체국,7,부산돼지국밥,READY_FOR_IMAGE,kakao_verified,,,,15894478
+남부산우체국,8,금강 복아구전문점,READY_FOR_IMAGE,kakao_verified,,,,638676502
+부산사상우체국,1,수연이네,READY_FOR_IMAGE,kakao_verified,,,,1264144799
+부산사상우체국,2,호포장어마을,READY_FOR_IMAGE,kakao_verified,,,,9603663
+부산사상우체국,3,설화회초밥,READY_FOR_IMAGE,kakao_verified,,,,10486602
+부산사상우체국,4,순풍삼계탕,READY_FOR_IMAGE,kakao_verified,,,,16669936
+부산사상우체국,5,첨단돌솥감자탕 엄궁점,REVIEW,kakao_no_match,,,,
+부산사상우체국,6,밥짓는부엌 한식뷔페,READY_FOR_IMAGE,kakao_verified,,,,1010027728
+부산금정우체국,1,대박손칼국수,READY_FOR_IMAGE,kakao_verified,,,,24574146
+부산금정우체국,2,유림정,READY_FOR_IMAGE,kakao_verified,,,,19375448
+부산금정우체국,3,북문국수,READY_FOR_IMAGE,kakao_verified,,,,15713974
+부산금정우체국,4,LAB 이흥용과자점 두실점,REVIEW,kakao_no_match,,,,
+부산금정우체국,5,국수가,READY_FOR_IMAGE,kakao_verified,,,,16217388
+부산금정우체국,6,강명장요리가,REVIEW,kakao_no_match,,,,
+부산사하우체국,1,해주냉면,READY_FOR_IMAGE,kakao_verified,,,,21295360
+부산사하우체국,2,남해영양보리밥,READY_FOR_IMAGE,kakao_verified,,,,1263759699
+부산사하우체국,3,한우지존,READY_FOR_IMAGE,kakao_verified,,,,653379672
+부산사하우체국,4,화반,READY_FOR_IMAGE,kakao_verified,,,,1568379577
+해운대우체국,1,해운대 하선집,READY_FOR_IMAGE,kakao_verified,,,,1267052758
+해운대우체국,2,송정횟집,READY_FOR_IMAGE,kakao_verified,,,,1300768661
+해운대우체국,3,꽃도새기 센텀점,READY_FOR_IMAGE,kakao_verified,,,,542359032
+해운대우체국,4,방갈로끝집,READY_FOR_IMAGE,kakao_verified,,,,18424364
+해운대우체국,5,윤가네 신토불이보쌈,READY_FOR_IMAGE,kakao_verified,,,,10605895
+해운대우체국,6,충무김밥 김치수제비,READY_FOR_IMAGE,kakao_verified,,,,9463372
+해운대우체국,7,비안리안,READY_FOR_IMAGE,kakao_verified,,,,1980103217
+해운대우체국,8,그집한우,READY_FOR_IMAGE,kakao_verified,,,,1116729068
+부산진우체국,1,당감우체국카페,READY_FOR_IMAGE,kakao_verified,,,,1116758841
+부산진우체국,2,대성각,READY_FOR_IMAGE,kakao_verified,,,,1715419634
+부산진우체국,3,조방낙지 가야점,READY_FOR_IMAGE,kakao_verified,,,,26884360
+부산진우체국,4,심청이왕족발,READY_FOR_IMAGE,kakao_verified,,,,1953683526
+부산진우체국,5,연돼지국밥,READY_FOR_IMAGE,kakao_verified,,,,1415088420
+부산진우체국,6,왕짜장,READY_FOR_IMAGE,kakao_verified,,,,16731631
+부산진우체국,7,하이까눌레,READY_FOR_IMAGE,kakao_verified,,,,1395960900
+부산진우체국,8,부자집생고기,READY_FOR_IMAGE,kakao_verified,,,,1521889363
+북부산우체국,1,바보엄마칼국수,READY_FOR_IMAGE,kakao_verified,,,,729277084
+북부산우체국,2,소설가,READY_FOR_IMAGE,kakao_verified,,,,158216113
+북부산우체국,3,윤가네산오징어,READY_FOR_IMAGE,kakao_verified,,,,15837083
+북부산우체국,4,금용만두,READY_FOR_IMAGE,kakao_verified,,,,8792300
+북부산우체국,5,첸차이나,READY_FOR_IMAGE,kakao_verified,,,,491752023
+북부산우체국,6,아낙촌,READY_FOR_IMAGE,kakao_verified,,,,1029695066
+북부산우체국,7,숙향,READY_FOR_IMAGE,kakao_verified,,,,16869220
+북부산우체국,8,가마솥추어탕,REVIEW,kakao_gu_mismatch,,,,16401309
+부산연제우체국,1,팔팔연제장어,READY_FOR_IMAGE,kakao_verified,,,,91948145
+부산연제우체국,2,차애전할매칼국수,REVIEW,kakao_gu_mismatch,,,,10927442
+부산연제우체국,3,쏘이472,READY_FOR_IMAGE,kakao_verified,,,,1004468974
+부산연제우체국,4,큰바위횟집,READY_FOR_IMAGE,kakao_verified,,,,8567679
+부산연제우체국,5,만포장회전문점,READY_FOR_IMAGE,kakao_verified,,,,9767286
+부산연제우체국,6,콤파운드,READY_FOR_IMAGE,kakao_verified,,,,875394409
+동부산우체국,1,좋은집,READY_FOR_IMAGE,kakao_verified,,,,1272733952
+동부산우체국,2,명가,REVIEW,kakao_gu_mismatch,,,,7995054
+동부산우체국,3,감포참가자미,REVIEW,kakao_gu_mismatch,,,,1919080146
+동부산우체국,4,마파람해물찜해물탕,READY_FOR_IMAGE,kakao_verified,,,,1741111954
+동부산우체국,5,수미식당,READY_FOR_IMAGE,kakao_verified,,,,9155598
+동부산우체국,6,용궁횟집,REVIEW,kakao_gu_mismatch,,,,10619007
+부산영도우체국,1,봉래화로,READY_FOR_IMAGE,kakao_verified,,,,1972140778
+부산영도우체국,2,모디포차 1호점,READY_FOR_IMAGE,kakao_verified,,,,1464004388
+부산영도우체국,3,우리이모집,READY_FOR_IMAGE,kakao_verified,,,,27388472
+부산영도우체국,4,육미당찬,READY_FOR_IMAGE,kakao_verified,,,,1812651304
+부산영도우체국,5,등대횟집,READY_FOR_IMAGE,kakao_verified,,,,23612298
+부산영도우체국,6,장어마을,READY_FOR_IMAGE,kakao_verified,,,,618407940
+부산강서우체국,1,고귀관,READY_FOR_IMAGE,kakao_verified,,,,802014363
+부산강서우체국,2,공항족발,READY_FOR_IMAGE,kakao_verified,,,,1688432879
+부산강서우체국,3,다금정,READY_FOR_IMAGE,kakao_verified,,,,743075558
+부산강서우체국,4,시골추어탕,REVIEW,kakao_gu_mismatch,,,,16493498
+부산강서우체국,5,주화횟집,READY_FOR_IMAGE,kakao_verified,,,,1791507878
+부산강서우체국,6,옥이감자탕,READY_FOR_IMAGE,kakao_verified,,,,440993096
+부산강서우체국,7,복오네,READY_FOR_IMAGE,kakao_verified,,,,1387540824
+부산강서우체국,8,뒷고기 상회,READY_FOR_IMAGE,kakao_verified,,,,1733812790
+기장우체국,1,가마솥생복집,READY_FOR_IMAGE,kakao_verified,,,,8732558
+기장우체국,2,소달구지,READY_FOR_IMAGE,kakao_verified,,,,24012010
+기장우체국,3,한양횟집,READY_FOR_IMAGE,kakao_verified,,,,13092015
+기장우체국,4,해녀조씨할매집,READY_FOR_IMAGE,kakao_verified,,,,19736636
+기장우체국,5,청기와 식육식당,REVIEW,kakao_gu_mismatch,,,,15409140
+기장우체국,6,나누리생선구이,READY_FOR_IMAGE,kakao_verified,,,,21724248
