@@ -1,0 +1,107 @@
+{
+ "batch": "postoffice-batch1",
+ "mode": "dry-run",
+ "generated_basis": "reports/postoffice-guide-audit/postoffice-busan-2026.csv (commit 02e46e3)",
+ "official_source": {
+  "source_type": "guide",
+  "source_title": "우체국 추천 맛집가이드 2026",
+  "source_name": "우체국 추천 맛집가이드 2026",
+  "user_alias": "우슐랭",
+  "internal_filter_key": "postoffice",
+  "publisher": "부산지방우정청",
+  "source_url": null,
+  "official_url_status": "OFFICIAL_URL_REVIEW"
+ },
+ "restaurants": [
+  {
+   "name": "금강 복아구전문점",
+   "slug": "postoffice-gwangalli-geumgang-bokagu",
+   "area": "광안리",
+   "category": "해산물",
+   "main_menu": "복탕 ₩15,000 | 생밀복 ₩20,000 | 아구찜(중) ₩50,000",
+   "price_text": "복탕 ₩15,000 | 생밀복 ₩20,000 | 아구찜(중) ₩50,000",
+   "price_note": "PDF 수록값(2026), 현재값 등록 전 재확인",
+   "address": "부산광역시 수영구 남천동로9번길 62",
+   "phone": "051-623-1193",
+   "lat": 35.1451902896209,
+   "lng": 129.111588995976,
+   "kakao_map_url": "http://place.map.kakao.com/638676502",
+   "kakao_place_id": "638676502",
+   "source_type": "guide",
+   "source_title": "우체국 추천 맛집가이드 2026",
+   "source_url": null,
+   "thumbnail_filename": "postoffice-gwangalli-geumgang-bokagu.jpg",
+   "is_published": false,
+   "trust_source": {
+    "source_kind": "guide",
+    "source_name": "우체국 추천 맛집가이드 2026",
+    "trust_label": "부산지방우정청 추천",
+    "source_url": null,
+    "is_public": "PENDING(공식 URL 정책 결정 후)",
+    "verified_at": "apply 시 등록일"
+   }
+  },
+  {
+   "name": "팔팔연제장어",
+   "slug": "postoffice-yeonje-palpal-jangeo",
+   "area": "연제",
+   "category": "해산물",
+   "main_menu": "민물장어구이(1인분) ₩32,000 | 바다장어구이 ₩23,000 | 장어추어탕 ₩12,000",
+   "price_text": "민물장어구이(1인분) ₩32,000 | 바다장어구이 ₩23,000 | 장어추어탕 ₩12,000",
+   "price_note": "PDF 수록값(2024|2025|2026), 현재값 등록 전 재확인",
+   "address": "부산광역시 연제구 황새알로 21-1",
+   "phone": "051-507-5244",
+   "lat": 35.1940969366645,
+   "lng": 129.074936860493,
+   "kakao_map_url": "http://place.map.kakao.com/91948145",
+   "kakao_place_id": "91948145",
+   "source_type": "guide",
+   "source_title": "우체국 추천 맛집가이드 2026",
+   "source_url": null,
+   "thumbnail_filename": "postoffice-yeonje-palpal-jangeo.jpg",
+   "is_published": false,
+   "trust_source": {
+    "source_kind": "guide",
+    "source_name": "우체국 추천 맛집가이드 2026",
+    "trust_label": "부산지방우정청 추천",
+    "source_url": null,
+    "is_public": "PENDING(공식 URL 정책 결정 후)",
+    "verified_at": "apply 시 등록일"
+   }
+  },
+  {
+   "name": "해녀조씨할매집",
+   "slug": "postoffice-gijang-haenyeo-jossi-halmaejip",
+   "area": "기장",
+   "category": "해산물",
+   "main_menu": "전복죽세트 2인/3인/4인 ₩55,000/₩75,000/₩95,000 | 전복죽 ₩12,000",
+   "price_text": "전복죽세트 2인/3인/4인 ₩55,000/₩75,000/₩95,000 | 전복죽 ₩12,000",
+   "price_note": "PDF 수록값(2025|2026), 현재값 등록 전 재확인. PDF 원문 ₩가 일부 백슬래시로 추출돼 ₩로 정리.",
+   "address": "부산광역시 기장군 기장읍 연화1길 187",
+   "phone": "051-721-2972",
+   "lat": 35.2183389825916,
+   "lng": 129.227556761787,
+   "kakao_map_url": "http://place.map.kakao.com/19736636",
+   "kakao_place_id": "19736636",
+   "source_type": "guide",
+   "source_title": "우체국 추천 맛집가이드 2026",
+   "source_url": null,
+   "thumbnail_filename": "postoffice-gijang-haenyeo-jossi-halmaejip.jpg",
+   "is_published": false,
+   "trust_source": {
+    "source_kind": "guide",
+    "source_name": "우체국 추천 맛집가이드 2026",
+    "trust_label": "부산지방우정청 추천",
+    "source_url": null,
+    "is_public": "PENDING(공식 URL 정책 결정 후)",
+    "verified_at": "apply 시 등록일"
+   }
+  }
+ ],
+ "expected_db_change": { "restaurants_insert": 3, "trust_sources_insert": 3, "appearances_insert": 0, "existing_update": 0 },
+ "expected_storage_change": { "thumbnail_upload": 3, "status": "IMAGE_PENDING (현재 0개 존재)" },
+ "apply_blockers": [
+  "IMAGE_PENDING: 3곳 썸네일 미존재 — 사진 확보 후에만 apply",
+  "OFFICIAL_URL_REVIEW: 공식 PDF URL 미확인 — trust_source.is_public 공개 여부 대장 결정 필요(source_url nullable이라 기술적 INSERT는 가능)"
+ ]
+}
