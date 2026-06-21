@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useEffect, useRef } from 'react'
+import { useState, useMemo, useEffect, useRef, useSyncExternalStore } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Restaurant } from '@/types/restaurant'
 import RestaurantCard from '@/components/restaurant/RestaurantCard'
@@ -21,6 +21,29 @@ const SUGGESTED_QUERIES = [
 const LS_TAB_KEY = 'naonzip:last-source-tab'
 // 추천 검색어 펼침/접힘 상태 저장 키.
 const LS_SUGGEST_KEY = 'naonzip:search-suggestions-open'
+
+// 출처 탭(localStorage)을 외부 스토어로 노출 — useSyncExternalStore 로 구독해
+// setState-in-effect 없이 hydration 안전하게 복원한다(getServerSnapshot 은 'all').
+const TAB_CHANGE_EVENT = 'naonzip:source-tab-change'
+function subscribeStoredTab(onChange: () => void) {
+  window.addEventListener(TAB_CHANGE_EVENT, onChange)
+  return () => window.removeEventListener(TAB_CHANGE_EVENT, onChange)
+}
+function readStoredTab(): SourceTab {
+  try {
+    const saved = window.localStorage.getItem(LS_TAB_KEY)
+    if (isSourceTab(saved)) return saved
+  } catch {
+    // localStorage 미지원 환경(시크릿 브라우저 등) — 무시
+  }
+  return 'all'
+}
+function writeStoredTab(tab: SourceTab) {
+  try {
+    window.localStorage.setItem(LS_TAB_KEY, tab)
+  } catch {}
+  window.dispatchEvent(new Event(TAB_CHANGE_EVENT))
+}
 
 // 검색 동의어 맵 — 토큰이 key와 정확히 일치하면 expansion 배열로 OR 매칭한다.
 const SYNONYMS: Record<string, string[]> = {
@@ -186,36 +209,27 @@ export default function SearchClient({ restaurants }: Props) {
   const initialTab: SourceTab = isSourceTab(tabParam) ? tabParam : 'all'
 
   const [query, setQuery] = useState(initialQuery)
-  const [tab, setTab] = useState<SourceTab>(initialTab)
+  // 출처 탭 상태 분리 — effect 안에서 setState 하지 않고 파생값(tab)으로 결정한다.
+  //  · userTab : 이 세션의 명시 선택 탭. URL 에 tab 파라미터가 있으면 그 값으로 마운트 시드
+  //    (URL 우선 + hydration 안전). 없으면 null → 저장 탭(storedTab)으로 복원.
+  //  · storedTab: localStorage 저장 탭(useSyncExternalStore). userTab 이 없을 때만 적용.
+  const [userTab, setUserTab] = useState<SourceTab | null>(() =>
+    urlHasTabParam ? initialTab : null,
+  )
+  const storedTab = useSyncExternalStore<SourceTab>(subscribeStoredTab, readStoredTab, () => 'all')
+  const tab: SourceTab = userTab ?? storedTab
+
   const [showSuggest, setShowSuggest] = useState(false)
   const [showSourceFilter, setShowSourceFilter] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
-  const restoredRef = useRef(false)
 
-  // 마운트 후 출처 탭 복원(읽기) — URL의 tab이 우선, 없으면 저장된 마지막 탭.
-  // (서버 렌더는 항상 URL 기준 initialTab 으로 일치 → hydration 안전, 복원은 클라이언트 1회)
+  // 확정된 출처 탭을 localStorage 에 저장 — URL 직접 접근·복원·클릭 모두 일관 저장.
+  // (setState 가 아니라 외부 시스템 동기화라 effect 가 적절. deps 완전 명시 → eslint-disable 불필요.)
+  // 복원 전 초기 'all'(선택·복원·URL 모두 없음) 상태에서는 저장값을 덮어쓰지 않는다.
   useEffect(() => {
-    if (restoredRef.current) return
-    restoredRef.current = true
-    // URL이 tab을 명시하면(유효/무효 모두) 저장값보다 우선 → initialTab 유지.
-    if (urlHasTabParam) return
-    // URL에 tab이 없으면 저장된 마지막 탭 복원. 유효한 값만 적용(잘못된 값은 아래 sync가 정리).
-    try {
-      const saved = window.localStorage.getItem(LS_TAB_KEY)
-      if (isSourceTab(saved)) setTab(saved)
-    } catch {
-      // localStorage 미지원 환경(시크릿 브라우저 등) — 무시
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  // 확정된 출처 탭을 localStorage에 동기화(쓰기) — URL 직접 접근·복원·클릭 모두 일관 저장.
-  // 복원 effect(위에서 먼저 선언)가 저장값을 읽은 뒤 setTab 하므로 항상 최종값으로 수렴한다.
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(LS_TAB_KEY, tab)
-    } catch {}
-  }, [tab])
+    if (tab === 'all' && !urlHasTabParam && userTab === null) return
+    writeStoredTab(tab)
+  }, [tab, urlHasTabParam, userTab])
 
   // 추천 검색어 펼침은 이 페이지에 머무는 동안만 쓰는 임시 상태다(저장·복원하지 않음).
   // 과거 버전이 남긴 저장값이 있으면 mount 시 1회 정리 → 재진입·새로고침 시 항상 접힘.
@@ -263,9 +277,9 @@ export default function SearchClient({ restaurants }: Props) {
     router.replace(qs ? `/search?${qs}` : '/search', { scroll: false })
   }, [query, tab]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // 탭 선택 — state 갱신(localStorage 저장은 위 sync effect 가 담당) + 방송 검색 메뉴 자동 접힘.
+  // 탭 선택 — userTab 갱신(localStorage 저장은 위 effect 가 담당) + 방송 검색 메뉴 자동 접힘.
   const handleTabChange = (key: SourceTab) => {
-    setTab(key)
+    setUserTab(key)
     setShowSourceFilter(false)
   }
 

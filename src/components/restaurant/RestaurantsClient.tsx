@@ -1,43 +1,57 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useMemo, useSyncExternalStore } from 'react'
 import type { Restaurant, AreaType } from '@/types/restaurant'
 import { AREA_TYPES } from '@/types/restaurant'
 import AreaFilter from '@/components/home/AreaFilter'
 import RestaurantCard from '@/components/restaurant/RestaurantCard'
 
 const LS_KEY = 'naonzip:last-area-filter'
+const AREA_CHANGE_EVENT = 'naonzip:area-filter-change'
+
+// 최근 선택 지역(localStorage)을 외부 스토어로 노출 — 변경 시 이벤트로 구독자에게 알린다.
+function subscribeAreaFilter(onChange: () => void) {
+  window.addEventListener(AREA_CHANGE_EVENT, onChange)
+  return () => window.removeEventListener(AREA_CHANGE_EVENT, onChange)
+}
+function writeAreaFilter(area: AreaType | '전체') {
+  try {
+    window.localStorage.setItem(LS_KEY, area)
+  } catch {}
+  window.dispatchEvent(new Event(AREA_CHANGE_EVENT))
+}
 
 type Props = {
   restaurants: Restaurant[]
 }
 
 export default function RestaurantsClient({ restaurants }: Props) {
-  const [selectedArea, setSelectedArea] = useState<AreaType | '전체'>('전체')
-
   // 실제 데이터에 있는 area만 AREA_TYPES 순서대로 파생
   const availableAreas = useMemo<AreaType[]>(() => {
     const present = new Set(restaurants.map((r) => r.area))
     return AREA_TYPES.filter((a) => present.has(a))
   }, [restaurants])
 
-  // 마운트 후 localStorage에서 최근 선택 지역 복원
-  useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem(LS_KEY)
-      if (saved === '전체' || (saved && availableAreas.includes(saved as AreaType))) {
-        setSelectedArea(saved as AreaType | '전체')
+  // 최근 선택 지역을 localStorage 외부 스토어로 구독 — setState-in-effect 없이 hydration 안전.
+  // 서버/최초 렌더는 '전체', 마운트 후 저장값으로 복원(유효하지 않으면 '전체').
+  const selectedArea = useSyncExternalStore<AreaType | '전체'>(
+    subscribeAreaFilter,
+    () => {
+      try {
+        const saved = window.localStorage.getItem(LS_KEY)
+        if (saved === '전체' || (saved && availableAreas.includes(saved as AreaType))) {
+          return saved as AreaType | '전체'
+        }
+      } catch {
+        // localStorage 미지원 환경 (시크릿 브라우저 등) — 무시
       }
-    } catch {
-      // localStorage 미지원 환경 (시크릿 브라우저 등) — 무시
-    }
-  }, [availableAreas])
+      return '전체'
+    },
+    () => '전체',
+  )
 
   const handleAreaChange = (area: AreaType | '전체') => {
-    setSelectedArea(area)
-    try {
-      window.localStorage.setItem(LS_KEY, area)
-    } catch {}
+    writeAreaFilter(area)
   }
 
   const filtered = useMemo(() => {

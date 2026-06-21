@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useCallback, useSyncExternalStore } from 'react'
 import { getSavedIds, toggleSaved as toggleSavedUtil } from '@/lib/saved'
 
 // 탭 간 동기화를 위한 custom event
@@ -10,23 +10,36 @@ function dispatchSaveChange() {
   window.dispatchEvent(new Event(SAVE_CHANGE_EVENT))
 }
 
+// localStorage 기반 저장 상태를 외부 스토어로 구독한다(useSyncExternalStore).
+// hydration 안전: getServerSnapshot 은 기본값을 반환하고, 마운트 후 실제 값으로 동기화된다.
+function subscribeSaveChange(onChange: () => void) {
+  window.addEventListener(SAVE_CHANGE_EVENT, onChange)
+  return () => window.removeEventListener(SAVE_CHANGE_EVENT, onChange)
+}
+
+// getSnapshot 은 값이 바뀌지 않으면 같은 참조를 돌려줘야 한다(배열은 내용 동일 시 캐시 재사용).
+const EMPTY_IDS: string[] = []
+let cachedIdsKey = ''
+let cachedIds: string[] = EMPTY_IDS
+function getSavedIdsSnapshot(): string[] {
+  const ids = getSavedIds()
+  const key = ids.join(',')
+  if (key !== cachedIdsKey) {
+    cachedIdsKey = key
+    cachedIds = ids
+  }
+  return cachedIds
+}
+
 export function useSaved(id: string) {
-  const [saved, setSaved] = useState(false)
-
-  // hydration 안전: mount 후 localStorage 읽기
-  useEffect(() => {
-    setSaved(getSavedIds().includes(id))
-
-    const onExternalChange = () => {
-      setSaved(getSavedIds().includes(id))
-    }
-    window.addEventListener(SAVE_CHANGE_EVENT, onExternalChange)
-    return () => window.removeEventListener(SAVE_CHANGE_EVENT, onExternalChange)
-  }, [id])
+  const saved = useSyncExternalStore(
+    subscribeSaveChange,
+    () => getSavedIds().includes(id),
+    () => false,
+  )
 
   const toggle = useCallback(() => {
-    const next = toggleSavedUtil(id)
-    setSaved(next)
+    toggleSavedUtil(id)
     dispatchSaveChange()
   }, [id])
 
@@ -34,15 +47,9 @@ export function useSaved(id: string) {
 }
 
 export function useSavedIds() {
-  const [ids, setIds] = useState<string[]>([])
-
-  useEffect(() => {
-    setIds(getSavedIds())
-
-    const onExternalChange = () => setIds(getSavedIds())
-    window.addEventListener(SAVE_CHANGE_EVENT, onExternalChange)
-    return () => window.removeEventListener(SAVE_CHANGE_EVENT, onExternalChange)
-  }, [])
-
-  return ids
+  return useSyncExternalStore(
+    subscribeSaveChange,
+    getSavedIdsSnapshot,
+    () => EMPTY_IDS,
+  )
 }

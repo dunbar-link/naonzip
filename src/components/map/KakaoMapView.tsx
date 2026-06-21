@@ -72,7 +72,10 @@ export default function KakaoMapView({ restaurants }: Props) {
   const mapRef = useRef<KakaoMap | null>(null)
   const markersRef = useRef<MarkerEntry[]>([])
 
-  const [status, setStatus] = useState<Status>('loading')
+  // 초기 status 는 env(빌드 상수, 서버=클라 일치)로 결정 → effect 안에서 setState('no-key') 불필요.
+  const [status, setStatus] = useState<Status>(() =>
+    process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY ? 'loading' : 'no-key',
+  )
   const [selected, setSelected] = useState<Restaurant | null>(null)
   const [selectedArea, setSelectedArea] = useState<AreaFilter>('전체')
 
@@ -80,7 +83,7 @@ export default function KakaoMapView({ restaurants }: Props) {
   useEffect(() => {
     const key = process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY
     if (!key) {
-      setStatus('no-key')
+      // status 초기값이 이미 'no-key' (위 useState initializer) — setState 불필요.
       return
     }
 

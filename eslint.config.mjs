@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // .claude/worktrees 하위는 각각 독립된 git worktree(별도 작업본, claude/* 브랜치)다.
+    // 메인 작업본 lint 대상에서 전체 제외 — 각 worktree 는 자체적으로 lint 한다.
+    // (현재 메인 src 는 계속 lint 대상이므로 오류 은폐가 아님)
+    ".claude/worktrees/**",
   ]),
 ]);
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useTransition } from 'react'
+import { useState, useTransition } from 'react'
 import Link from 'next/link'
 import {
   RESTAURANT_SOURCE_TYPES,
@@ -57,7 +57,9 @@ export default function EditForm({ restaurantId, isPublished, prefill }: Props) 
   const [form, setForm] = useState<FormState>({ ...prefill })
   // 원본 slug 를 최초 prefill 값으로 캡처(폼 입력으로 바뀌어도 원본 유지).
   // edit 은 "변경 시에만" 형식 검증하므로 원본과의 비교 기준이 필요하다.
-  const originalSlug = useRef(prefill.slug.trim())
+  // 원본 slug 는 최초 prefill 값으로 1회 캡처(폼 입력으로 바뀌어도 원본 유지).
+  // ref 가 아니라 useState 초기값으로 보관 → 렌더 중 안전하게 읽을 수 있다.
+  const [originalSlug] = useState(() => prefill.slug.trim())
   const [pasteText, setPasteText] = useState('')
   const [pasteIgnored, setPasteIgnored] = useState<string[]>([])
   const [error, setError] = useState<string | null>(null)
@@ -107,7 +109,7 @@ export default function EditForm({ restaurantId, isPublished, prefill }: Props) 
     }
     // slug 형식 검증은 "변경 시에만". 원본과 같으면(한글 slug 유지) 통과.
     if (
-      form.slug.trim() !== originalSlug.current &&
+      form.slug.trim() !== originalSlug &&
       form.slug.trim() &&
       !isValidSlug(form.slug.trim())
     ) {
@@ -175,7 +177,7 @@ export default function EditForm({ restaurantId, isPublished, prefill }: Props) 
   // slug 형식 위반 경고용 파생값 — "원본과 다르고, 비어있지 않고, 형식 위반"일 때만.
   // 원본과 같으면(한글 slug 유지) 경고하지 않는다.
   const slugInvalid =
-    form.slug.trim() !== originalSlug.current &&
+    form.slug.trim() !== originalSlug &&
     form.slug.trim() !== '' &&
     !isValidSlug(form.slug.trim())
 
