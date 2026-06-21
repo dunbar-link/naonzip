@@ -1,0 +1,139 @@
+{
+  "report": "postoffice-batch3-candidates",
+  "mode": "read-only-selection",
+  "generated_at": "2026-06-22",
+  "base_head": "dbae8c2",
+  "source_csv": "reports/postoffice-guide-audit/postoffice-busan-2026.csv",
+  "tool": "scripts/register-postoffice-candidates.mjs (dry-run)",
+  "data_safety": {
+    "db_write": 0,
+    "storage_write": 0,
+    "new_restaurants": 0,
+    "new_trust_sources": 0,
+    "apply_executed": false,
+    "robots_txt": "untouched"
+  },
+  "already_registered_woosulleng": [
+    "금강 복아구전문점",
+    "팔팔연제장어",
+    "해녀조씨할매집",
+    "윤가네산오징어",
+    "조방낙지 가야점"
+  ],
+  "woosulleng_current_gap": {
+    "categories_present": { "해산물": 4, "한식": 1 },
+    "categories_missing": ["고기", "회"],
+    "areas_present": ["광안리", "서면", "기타", "연제", "기장"],
+    "areas_missing_added_by_batch3": ["남포동", "동래", "해운대"]
+  },
+  "ready_summary": {
+    "csv_total": 92,
+    "review_excluded": 12,
+    "ready_for_image": 80,
+    "already_registered": 5,
+    "ready_remaining_unregistered": 75,
+    "cafe_bakery_excluded_approx": 11,
+    "meal_restaurant_pool_approx": 64
+  },
+  "final_recommendations": [
+    {
+      "rank": 1,
+      "name": "된장한상",
+      "post_office": "부산우체국",
+      "district": "중구",
+      "address": "부산광역시 중구 대청로141번길 17",
+      "phone": "051-442-3006",
+      "kakao_place_id": "715154557",
+      "kakao_url": "http://place.map.kakao.com/715154557",
+      "lat": 35.1043462714426,
+      "lng": 129.035055842391,
+      "main_menu": "한우육회비빔밥 된장한상 ₩12,000 | 청국장한상 ₩10,000 | 제육볶음된장한상 ₩9,500",
+      "proposed_slug": "postoffice-nampodong-doenjang-hansang",
+      "proposed_image_filename": "postoffice-nampodong-doenjang-hansang.jpg",
+      "proposed_area": "남포동",
+      "proposed_category": "한식",
+      "dry_run_status": "NEW_READY",
+      "image_status": "IMAGE_PENDING",
+      "db_duplicate": 0,
+      "slug_collision": false,
+      "grade": "A",
+      "reason": "우슐랭에 드문 한식 정식/백반 정통형(된장·청국장·한우육회비빔밥). 중구 독립 노포, 동명복수 없음, 남포동 area 신규.",
+      "risk": "토 단축·일 휴무 — 촬영 시간대 주의"
+    },
+    {
+      "rank": 2,
+      "name": "영남식육식당 동래점",
+      "post_office": "동래우체국",
+      "district": "동래구",
+      "address": "부산광역시 동래구 명륜로112번가길 51",
+      "phone": "0507-1332-2228",
+      "kakao_place_id": "21965019",
+      "kakao_url": "http://place.map.kakao.com/21965019",
+      "lat": 35.2057710116254,
+      "lng": 129.082985393124,
+      "main_menu": "깍둑등심(110g) ₩40,000 | 소금정식(110g) ₩36,000 | 양념진갈비(150g) ₩33,000",
+      "proposed_slug": "postoffice-dongnae-yeongnam-sigyuk",
+      "proposed_image_filename": "postoffice-dongnae-yeongnam-sigyuk.jpg",
+      "proposed_area": "동래",
+      "proposed_category": "고기",
+      "dry_run_status": "NEW_READY",
+      "image_status": "IMAGE_PENDING",
+      "db_duplicate": 0,
+      "slug_collision": false,
+      "grade": "A",
+      "reason": "우슐랭 고기 카테고리 0 → 신규. 동래 area는 공개 DB 전체 1곳뿐 → area 다양성 최대. 명륜동 한우 노포.",
+      "risk": "이름 '동래점'+CSV 동명복수 → 지점 혼동 가능. slug에 dongnae 고정, apply 전 단일 확정 권장."
+    },
+    {
+      "rank": 3,
+      "name": "송정횟집",
+      "post_office": "해운대우체국",
+      "district": "해운대구",
+      "address": "부산광역시 해운대구 송정중앙로33번길 10",
+      "phone": "0507-1495-1085",
+      "kakao_place_id": "1300768661",
+      "kakao_url": "http://place.map.kakao.com/1300768661",
+      "lat": 35.1826832201469,
+      "lng": 129.204425715884,
+      "main_menu": "모듬회 ₩45,000~ | 고급모듬회 ₩53,000~ | 제철회 시세",
+      "proposed_slug": "postoffice-haeundae-songjeong-hoetjip",
+      "proposed_image_filename": "postoffice-haeundae-songjeong-hoetjip.jpg",
+      "proposed_area": "해운대",
+      "proposed_category": "회",
+      "dry_run_status": "NEW_READY",
+      "image_status": "IMAGE_PENDING",
+      "db_duplicate": 0,
+      "slug_collision": false,
+      "grade": "A-",
+      "reason": "우슐랭 해산물 4곳은 복/장어/전복/오징어 — 회는 0 → 신규 서브타입. 회는 공개 DB 전체 3곳 희소. 송정 해안, 동명복수 없음.",
+      "risk": "회는 흔한 카테고리(기준 9)이나 한식·고기와 섞여 무방. 디너 전용(16:00~) — 촬영 시간대 주의."
+    }
+  ],
+  "held_candidates": [
+    { "name": "동래밀면", "dry_run": "NEW_READY", "reason": "밀면 DB 6곳·기준9 주의 + 동래 area 중복. 향후 '면' 배치 1순위" },
+    { "name": "황태를벗삼아", "dry_run": "REVIEW", "reason": "좌표 120m 내 중앙곰탕 근접 → 재확인 필요" },
+    { "name": "유림정/한우지존/봉래화로/소달구지", "dry_run": "NEW_READY", "reason": "고기 슬롯 영남식육식당으로 충족 → 다음 고기 배치" },
+    { "name": "황령산 보쌈", "dry_run": "NEW_READY", "reason": "광안리 area 중복(기존 16곳)" },
+    { "name": "순풍삼계탕", "dry_run": "NEW_READY", "reason": "삼계탕 향후 탕 다양성 후보" },
+    { "name": "남해영양보리밥/화반", "dry_run": "NEW_READY", "reason": "한식 백반 슬롯 된장한상과 중복" },
+    { "name": "수연이네", "dry_run": "NEW_READY", "reason": "문어 distinctive하나 동명복수+랍스터코스 upscale → 송정횟집이 더 clean" }
+  ],
+  "photos_to_prepare": [
+    "postoffice-nampodong-doenjang-hansang.jpg",
+    "postoffice-dongnae-yeongnam-sigyuk.jpg",
+    "postoffice-haeundae-songjeong-hoetjip.jpg"
+  ],
+  "next_steps": {
+    "note": "CLI --slugs는 CSV placeholder proposed_slug로 매칭. 확정 slug/category는 batch JSON으로 적용(name 매칭).",
+    "dry_run_recheck_command": "node scripts/register-postoffice-candidates.mjs --names \"된장한상,영남식육식당 동래점,송정횟집\"",
+    "batch_dry_run_command": "node scripts/register-postoffice-candidates.mjs --batch reports/postoffice-guide-audit/postoffice-batch3-register.json",
+    "apply_command": "node scripts/register-postoffice-candidates.mjs --batch reports/postoffice-guide-audit/postoffice-batch3-register.json --apply --confirm APPLY_POSTOFFICE_BATCH",
+    "apply_conditions": [
+      "사진 3장 IMAGE_OK",
+      "category 확정(한식·고기·회)",
+      "slug 확정",
+      "영남식육식당 동래점 단일 확정",
+      "대장 명시 승인"
+    ]
+  }
+}
