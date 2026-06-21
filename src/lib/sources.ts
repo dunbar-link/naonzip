@@ -250,18 +250,19 @@ export function resolveTrustSourceViews(
 //   다중 출처: 한 식당이 여러 탭에 동시 노출될 수 있다(배타적 아님).
 // ─────────────────────────────────────────────
 
-export type SourceTab = 'all' | 'tv' | 'michelin' | 'busan' | 'youtube'
+export type SourceTab = 'all' | 'tv' | 'michelin' | 'busan' | 'youtube' | 'postoffice'
 
+// 펼침 목록(표시 순서). all 은 펼침에 노출하지 않고 내부 상태로만 유지(× 로 해제).
 export const SOURCE_TABS: ReadonlyArray<{ key: SourceTab; label: string }> = [
-  { key: 'all', label: '전체' },
   { key: 'tv', label: '방송' },
   { key: 'michelin', label: '미슐랭' },
   { key: 'busan', label: '부산공식' },
   { key: 'youtube', label: '유튜브' },
+  { key: 'postoffice', label: '우슐랭' },
 ]
 
 export function isSourceTab(v: string | null | undefined): v is SourceTab {
-  return v === 'all' || v === 'tv' || v === 'michelin' || v === 'busan' || v === 'youtube'
+  return v === 'all' || v === 'tv' || v === 'michelin' || v === 'busan' || v === 'youtube' || v === 'postoffice'
 }
 
 /**
@@ -295,6 +296,18 @@ export function restaurantHasBusanOfficial(r: Restaurant): boolean {
   return (r.trustSources ?? []).some(isBusanOfficialTrust)
 }
 
+/** 우슐랭(우체국 추천 맛집가이드) 출처 판정 — 공개 trust_source 의 source_name 기준.
+ *  guide 종류엔 미쉐린/부산의맛도 섞여 있으므로 source_type 이 아니라 출처명으로 판정한다.
+ *  source_url 이 null 이어도 is_public 이면 포함한다. */
+function isPostofficeTrust(t: TrustSource): boolean {
+  if (!t.isPublic) return false
+  return t.sourceName.includes('우체국 추천 맛집가이드')
+}
+
+export function restaurantHasPostoffice(r: Restaurant): boolean {
+  return (r.trustSources ?? []).some(isPostofficeTrust)
+}
+
 /** 식당이 해당 출처 탭에 노출되는지. 대표 source_type 우선, 없으면 appearances 보조. */
 export function restaurantMatchesSourceTab(r: Restaurant, tab: SourceTab): boolean {
   switch (tab) {
@@ -310,6 +323,8 @@ export function restaurantMatchesSourceTab(r: Restaurant, tab: SourceTab): boole
       return restaurantHasMichelin(r)
     case 'busan':
       return restaurantHasBusanOfficial(r)
+    case 'postoffice':
+      return restaurantHasPostoffice(r)
     default:
       return true
   }

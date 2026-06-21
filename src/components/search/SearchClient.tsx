@@ -254,13 +254,14 @@ export default function SearchClient({ restaurants }: Props) {
   // 탭별 결과 수(필터 칩 배지). 검색어 미반영(탭 자체 식당 수).
   const tabCounts = useMemo(() => {
     const counts: Record<SourceTab, number> = {
-      all: restaurants.length, tv: 0, michelin: 0, busan: 0, youtube: 0,
+      all: restaurants.length, tv: 0, michelin: 0, busan: 0, youtube: 0, postoffice: 0,
     }
     for (const r of restaurants) {
       if (restaurantMatchesSourceTab(r, 'tv')) counts.tv += 1
       if (restaurantMatchesSourceTab(r, 'michelin')) counts.michelin += 1
       if (restaurantMatchesSourceTab(r, 'busan')) counts.busan += 1
       if (restaurantMatchesSourceTab(r, 'youtube')) counts.youtube += 1
+      if (restaurantMatchesSourceTab(r, 'postoffice')) counts.postoffice += 1
     }
     return counts
   }, [restaurants])
@@ -397,27 +398,48 @@ export default function SearchClient({ restaurants }: Props) {
         )}
       </section>
 
-      {/* 3. 방송 검색 — 추천 검색어와 같은 접힘 토글. 펼치면 5개 출처 필터 한 줄(저장 안 함). */}
+      {/* 3. 출처 검색 — 접힘 토글. 펼치면 5개 출처 필터 한 줄(저장 안 함). all 은 펼침에 없고 × 로 해제. */}
       <section className="px-4 pt-2">
-        <button
-          type="button"
-          onClick={() => setShowSourceFilter((v) => !v)}
-          aria-expanded={showSourceFilter}
-          aria-controls="source-filter-panel"
-          className="flex w-full items-center justify-between min-h-[38px] text-[14px] font-medium text-gray-600"
-        >
-          <span>방송 검색</span>
-          <span className="flex items-center gap-1">
-            <span className="text-[13px] font-semibold text-orange-600">{activeTabLabel}</span>
-            <span className="text-[12px] text-gray-400">{tabCounts[tab]}</span>
+        <div className="flex w-full items-center min-h-[38px] text-[14px] font-medium text-gray-600">
+          <button
+            type="button"
+            onClick={() => setShowSourceFilter((v) => !v)}
+            aria-expanded={showSourceFilter}
+            aria-controls="source-filter-panel"
+            className="flex flex-1 items-center justify-between"
+          >
+            <span>출처 검색</span>
+            <span className="flex items-center gap-1">
+              <span className="text-[13px] font-semibold text-orange-600">{activeTabLabel}</span>
+              <span className="text-[12px] text-gray-400">{tabCounts[tab]}</span>
+            </span>
+          </button>
+          {tab !== 'all' && (
+            <button
+              type="button"
+              onClick={() => handleTabChange('all')}
+              aria-label="출처 필터 해제"
+              className="ml-1 w-7 h-7 flex items-center justify-center rounded text-gray-400 active:bg-gray-100"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden>
+                <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={() => setShowSourceFilter((v) => !v)}
+            aria-label={showSourceFilter ? '출처 필터 접기' : '출처 필터 펼치기'}
+            className="w-5 h-5 ml-0.5 flex items-center justify-center text-gray-400"
+          >
             <svg
-              className={`w-3.5 h-3.5 text-gray-400 transition-transform ${showSourceFilter ? 'rotate-90' : ''}`}
+              className={`w-3.5 h-3.5 transition-transform ${showSourceFilter ? 'rotate-90' : ''}`}
               viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden
             >
               <path d="m9 18 6-6-6-6" />
             </svg>
-          </span>
-        </button>
+          </button>
+        </div>
         {showSourceFilter && (
           <div id="source-filter-panel" className="mt-1.5 grid grid-cols-5 gap-1">
             {SOURCE_TABS.map(renderTab)}
