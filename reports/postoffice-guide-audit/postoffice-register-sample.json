@@ -1,0 +1,20 @@
+{
+  "_comment": "우슐랭 후보 등록 batch 샘플. 실제 3차 후보가 아니라 형식 예시(여기 2곳은 1·2차에 이미 등록됨 → dry-run 시 ALREADY_REGISTERED).",
+  "source": "우체국 추천 맛집가이드 2026",
+  "candidates": [
+    {
+      "name": "윤가네산오징어",
+      "slug": "postoffice-bukgu-yungane-san-ojingeo",
+      "image": "postoffice-bukgu-yungane-san-ojingeo.jpg",
+      "area": "기타",
+      "category": "해산물"
+    },
+    {
+      "name": "조방낙지 가야점",
+      "slug": "postoffice-busanjin-jobang-nakji-gaya",
+      "image": "postoffice-busanjin-jobang-nakji-gaya.jpg",
+      "area": "서면",
+      "category": "한식"
+    }
+  ]
+}
