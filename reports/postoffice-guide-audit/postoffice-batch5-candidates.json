@@ -1,0 +1,83 @@
+{
+  "report": "postoffice-batch5-candidates",
+  "mode": "read-only-selection",
+  "generated_at": "2026-06-22",
+  "base_head": "5d101b0",
+  "source_csv": "reports/postoffice-guide-audit/postoffice-busan-2026.csv",
+  "tool": "scripts/register-postoffice-candidates.mjs (dry-run)",
+  "data_safety": { "db_write": 0, "storage_write": 0, "new_restaurants": 0, "new_trust_sources": 0, "app_code_change": 0, "apply_executed": false, "robots_txt": "untouched" },
+  "current_woosulleng_11": {
+    "category": { "해산물": 4, "한식": 3, "고기": 2, "회": 1, "밀면": 1 },
+    "area_unused": ["남구"],
+    "missing_categories_busan_core": ["돼지국밥", "중식", "분식"]
+  },
+  "ready_summary": { "csv_total": 92, "review": 12, "ready_for_image": 80, "already_registered": 11, "ready_remaining": 69, "cafe_bakery_excluded_approx": 11, "meal_pool_approx": 58 },
+  "final_recommendations": [
+    {
+      "rank": 1, "name": "연돼지국밥", "post_office": "부산진우체국", "district": "부산진구",
+      "address": "부산광역시 부산진구 범일로192번길 33", "phone": "0507-1301-1376",
+      "kakao_place_id": "1415088420", "kakao_url": "http://place.map.kakao.com/1415088420",
+      "main_menu": "돼지국밥 ₩9,000 | 순대국밥 ₩9,000 | 모듬국밥 ₩10,000",
+      "business_hours": "10:00-21:00 (일 휴무)",
+      "proposed_slug": "postoffice-busanjin-yeon-dwaeji-gukbap", "proposed_image_filename": "postoffice-busanjin-yeon-dwaeji-gukbap.jpg",
+      "proposed_area": "서면", "proposed_category": "돼지국밥",
+      "dry_run_status": "NEW_READY", "image_status": "IMAGE_PENDING", "dup": 0, "name_confusion": false, "grade": "A",
+      "reason": "돼지국밥 = 우슐랭 신규 category(0→1), 부산 대표 서민 국밥. 단일업장·동명복수 없음·가격 명확·영업시간 김.",
+      "risk": "낮음 (서면 area는 조방낙지와 중복이나 category 완전 신규)"
+    },
+    {
+      "rank": 2, "name": "공항족발", "post_office": "부산강서우체국", "district": "강서구",
+      "address": "부산광역시 강서구 공항앞길 12, 1층", "phone": "0507-1402-1781",
+      "kakao_place_id": "1688432879", "kakao_url": "http://place.map.kakao.com/1688432879",
+      "main_menu": "삼미리앞발 ₩42,000 | 반반족발(소) ₩45,000 | (점심특선)두루치기정식 ₩12,000",
+      "business_hours": "11:00-14:00 / 17:00-22:00 (일 휴무)",
+      "proposed_slug": "postoffice-gangseo-gonghang-jokbal", "proposed_image_filename": "postoffice-gangseo-gonghang-jokbal.jpg",
+      "proposed_area": "기타", "proposed_category": "고기",
+      "dry_run_status": "NEW_READY", "image_status": "IMAGE_PENDING", "dup": 0, "name_confusion": false, "grade": "A-",
+      "reason": "우슐랭 고기 2곳이 모두 한우구이 → 족발(수육)로 메뉴성 차별화. 점심특선 두루치기정식으로 식사식당성↑. 강서 실지역 신규.",
+      "risk": "canonical area 기타라 윤가네·해주냉면과 중복. 메뉴·실지역 차별로 보완."
+    },
+    {
+      "rank": 3, "name": "동래밀면", "post_office": "동래우체국", "district": "동래구",
+      "address": "부산광역시 동래구 명륜로 47", "phone": "051-552-3092",
+      "kakao_place_id": "12519573", "kakao_url": "http://place.map.kakao.com/12519573",
+      "main_menu": "밀면 ₩8,000 | 비빔밀면 ₩8,000 | 왕만두 ₩7,000 | 들깨손칼국수 ₩8,000",
+      "business_hours": "10:30-24:00",
+      "proposed_slug": "postoffice-dongnae-milmyeon", "proposed_image_filename": "postoffice-dongnae-milmyeon.jpg",
+      "proposed_area": "동래", "proposed_category": "밀면",
+      "dry_run_status": "NEW_READY", "image_status": "IMAGE_PENDING", "dup": 0, "name_confusion": false, "grade": "B+",
+      "reason": "면/밀면 슬롯. 부산 대표 면(밀면·비빔밀면) 전문점, 동명복수 없음, 늦은 영업.",
+      "risk": "밀면 1곳(해주냉면)·동래 area(영남식육) 중복. 다양성 가중치 낮음 → 3곳 부담 시 2곳으로 축소 가능."
+    }
+  ],
+  "held_candidates": [
+    { "name": "부산돼지국밥", "dry_run": "REVIEW", "reason": "금강복아구 34m 근접" },
+    { "name": "대성각(중식)", "dry_run": "REVIEW", "reason": "조방낙지 100m 근접. 중식(0) 신규 가치, 재확인 후 차기" },
+    { "name": "충무김밥 김치수제비(분식)", "dry_run": "REVIEW", "reason": "할매국밥 109m 근접. 분식(0) 신규 가치, 재확인 후 차기" },
+    { "name": "좋은집(삼겹살)", "dry_run": "NEW_READY", "reason": "CSV 동명복수(지점혼동) → 공항족발이 clean" },
+    { "name": "황령산 보쌈", "dry_run": "NEW_READY", "reason": "광안리 area 중복, 고기 슬롯은 공항족발 우선" },
+    { "name": "한우지존", "dry_run": "NEW_READY", "reason": "한우 우슐랭 2곳 중복, 메뉴성 약함" },
+    { "name": "대박손칼국수/화반", "dry_run": "NEW_READY", "reason": "한식 이미 3곳" },
+    { "name": "첸차이나(중식)", "dry_run": "미검증", "reason": "중식 신규 후보, 차기 dry-run" }
+  ],
+  "automation_review": {
+    "candidates_apply_impl": "불필요(보류) — batchN 검증됨",
+    "use_batchN": "유지 — register-postoffice-batch5.mjs(batch4 복제)",
+    "selection_automation": "반자동 유지 — 큐레이션은 사람 판단",
+    "npm_script": "제안 강화(ROI 상승, 3·4·5차 반복) — package.json postoffice:dry(승인 후)",
+    "allowlist_candidates_readonly": ["node scripts/ops-check-summary.mjs", "npm run ops:summary", "candidates dry-run(--apply 없음)", "node -e run-report 조회"],
+    "allowlist_forbidden_auto": ["batch*.mjs --apply", "--confirm APPLY_...", "DB/Storage write", "git push", "vercel deploy", "reset/clean/delete", "env 변경"],
+    "allowlist_action": "스크린샷 누적 후 일괄 판정·추가 권장(이번 미수정)"
+  },
+  "photos_to_prepare": [
+    "postoffice-busanjin-yeon-dwaeji-gukbap.jpg",
+    "postoffice-gangseo-gonghang-jokbal.jpg",
+    "postoffice-dongnae-milmyeon.jpg"
+  ],
+  "next_steps": {
+    "dry_run_recheck": "node scripts/register-postoffice-candidates.mjs --names \"연돼지국밥,공항족발,동래밀면\"",
+    "batch5_script": "register-postoffice-batch5.mjs (batch4 복제, ROWS 3곳, 토큰 APPLY_POSTOFFICE_BATCH5)",
+    "apply_conditions": ["사진 3장 IMAGE_OK", "category 확정(돼지국밥·고기·밀면)", "slug 확정", "대장 명시 승인"],
+    "expected_after": "전체 122→125 / 공개 105→108 / 공개 우슐랭 11→14 / 돼지국밥 신규"
+  }
+}
