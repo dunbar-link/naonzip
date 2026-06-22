@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "audit:coords": "node scripts/audit-restaurant-coordinates.mjs",
+    "ops:summary": "node scripts/ops-check-summary.mjs",
     "test:e2e": "playwright test e2e/search-detail.spec.ts",
     "test:e2e:headed": "playwright test e2e/search-detail.spec.ts --headed",
     "test:e2e:ui": "playwright test e2e/search-detail.spec.ts --ui",

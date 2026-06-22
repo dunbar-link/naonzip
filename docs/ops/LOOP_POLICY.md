@@ -2,6 +2,8 @@
 
 읽기 전용 운영 점검 MVP의 고정 정책. skill(`naonzip-ops-check`)과 `scripts/ops-check.mjs`는 이 문서를 따른다.
 
+> **빠른 요약(read-only)**: 긴 ops-check 파이프 명령(`node scripts/ops-check.mjs 2>&1 | node -e "..."`)을 매번 입력하면 권한 프롬프트가 반복된다. 대신 고정 명령 `node scripts/ops-check-summary.mjs`(또는 `npm run ops:summary`)로 핵심 요약만 본다. 이 래퍼는 `ops-check.mjs`를 내부 실행해 JSON을 파싱·요약할 뿐, DB/Storage write·파일 쓰기·git·배포는 하지 않는다.
+
 ## 목적
 
 - 나온집 운영 상태(코드 헬스 + 공개 DB 정합성 + 운영 URL)를 **반복 가능하게 1회 점검**한다.
