@@ -1,0 +1,67 @@
+{
+  "report": "postoffice-quality-check-8",
+  "checked_at": "2026-06-22",
+  "head": "7d7b994",
+  "production_url": "https://naonzip.vercel.app",
+  "mode": "read-only",
+  "overall": "PASS",
+  "immediate_fix_required": false,
+  "data_safety": {
+    "db_write": 0, "storage_write": 0, "app_code_change": 0,
+    "new_restaurants": 0, "new_trust_sources": 0, "robots_txt": "untouched"
+  },
+  "counts": {
+    "total": 119, "published": 102, "unpublished": 17,
+    "woosulleng_published": 8, "guide_trust_sources": 8,
+    "orphan_trust": 0, "dup_slug": 0, "dup_place_id_real": 0
+  },
+  "section_verdicts": {
+    "data_integrity": "PASS",
+    "detail_pages": "PASS",
+    "search_filter": "PASS",
+    "mobile": "PASS",
+    "card_thumbnails": "PASS",
+    "console_network": "PASS"
+  },
+  "woosulleng_8": [
+    { "name": "금강 복아구전문점", "slug": "postoffice-gwangalli-geumgang-bokagu", "area": "광안리", "category": "해산물", "detail_http": 200, "thumb_dim": "900x933", "card": "PASS", "detail": "PASS" },
+    { "name": "팔팔연제장어", "slug": "postoffice-yeonje-palpal-jangeo", "area": "연제", "category": "해산물", "detail_http": 200, "thumb_dim": "900x675", "card": "PASS", "detail": "PASS" },
+    { "name": "해녀조씨할매집", "slug": "postoffice-gijang-haenyeo-jossi-halmaejip", "area": "기장", "category": "해산물", "detail_http": 200, "thumb_dim": "960x1200", "card": "PASS", "detail": "PASS" },
+    { "name": "윤가네산오징어", "slug": "postoffice-bukgu-yungane-san-ojingeo", "area": "기타", "category": "해산물", "detail_http": 200, "thumb_dim": "1200x900", "card": "PASS", "detail": "PASS" },
+    { "name": "조방낙지 가야점", "slug": "postoffice-busanjin-jobang-nakji-gaya", "area": "서면", "category": "한식", "detail_http": 200, "thumb_dim": "1080x1080", "card": "PASS", "detail": "PASS" },
+    { "name": "된장한상", "slug": "postoffice-nampodong-doenjang-hansang", "area": "남포동", "category": "한식", "detail_http": 200, "thumb_dim": "1200x1200", "card": "PASS", "detail": "PASS" },
+    { "name": "영남식육식당 동래점", "slug": "postoffice-dongnae-yeongnam-sigyuk", "area": "동래", "category": "고기", "detail_http": 200, "thumb_dim": "900x1200", "card": "PASS", "detail": "PASS" },
+    { "name": "송정횟집", "slug": "postoffice-haeundae-songjeong-hoetjip", "area": "해운대", "category": "회", "detail_http": 200, "thumb_dim": "1173x846", "card": "PASS", "detail": "PASS" }
+  ],
+  "search": {
+    "search_http": 200, "tab_postoffice_http": 200, "woosulleng_count": 8,
+    "new3_included": true, "all_button_hidden": true, "auto_focus": false,
+    "recommend_collapsed": true, "clear_to_total_102": "confirmed by data+build+code (preview headless timeout on 102-card render)",
+    "source_options": { "방송": 65, "미슐랭": 6, "부산공식": 11, "유튜브": 28, "우슐랭": 8 },
+    "q_combos_http200": ["복탕", "장어", "전복죽", "오징어", "낙곱새", "된장", "고기", "회"]
+  },
+  "mobile": {
+    "360x640": { "horizontal_scroll": false, "cards": 8, "source_filters_one_row": true, "truncation": false },
+    "375x667": { "horizontal_scroll": false, "cards": 8, "source_filters_one_row": true, "truncation": false },
+    "390x844": { "horizontal_scroll": false, "cards": 8, "source_filters_one_row": true, "truncation": false }
+  },
+  "thumbnails": {
+    "all_force_loaded": true, "broken": 0, "storage_http_all_200_webp": true,
+    "note": "lazy + headless preview는 자동표시 안 됨(환경). 강제로드 8/8 성공, 운영 정상."
+  },
+  "console_network": { "console_errors": 0, "network_failures_real": 0, "note": "rsc ERR_ABORTED는 강제 navigate 부작용·무해" },
+  "distribution": {
+    "area": { "광안리": 1, "연제": 1, "기장": 1, "기타": 1, "서면": 1, "남포동": 1, "동래": 1, "해운대": 1 },
+    "area_unused": ["사상", "영도", "남구"],
+    "category": { "해산물": 4, "한식": 2, "고기": 1, "회": 1 },
+    "seafood_share": { "before_5": "80% (4/5)", "after_8": "50% (4/8)" }
+  },
+  "batch4_direction": {
+    "prefer_area": ["사상", "영도", "남구"],
+    "prefer_category": ["고기", "회", "면/밀면", "탕/삼계탕"],
+    "avoid": ["해산물 추가", "광안리·해산물 중복"]
+  },
+  "image_issues": [],
+  "source_chip_issues": [],
+  "note_unrelated": "전체 공개 식당 phone 누락 13·trust 0개 78은 기존 방송·유튜브 이슈(우슐랭 무관, 별건)"
+}
