@@ -1,0 +1,86 @@
+{
+  "report": "postoffice-batch4-candidates",
+  "mode": "read-only-selection",
+  "generated_at": "2026-06-22",
+  "base_head": "41ecada",
+  "source_csv": "reports/postoffice-guide-audit/postoffice-busan-2026.csv",
+  "tool": "scripts/register-postoffice-candidates.mjs (dry-run)",
+  "data_safety": { "db_write": 0, "storage_write": 0, "new_restaurants": 0, "new_trust_sources": 0, "app_code_change": 0, "apply_executed": false, "robots_txt": "untouched" },
+  "current_woosulleng_8": {
+    "area_used": ["광안리", "연제", "기장", "기타", "서면", "남포동", "동래", "해운대"],
+    "area_unused": ["사상", "영도", "남구"],
+    "category": { "해산물": 4, "한식": 2, "고기": 1, "회": 1 }
+  },
+  "notes": {
+    "namgu": "CSV 남구 업장은 카페만(구름고개카페·지밀레니얼) → 식사식당 후보 없음",
+    "tang_category": "canonical category에 '탕'·'면' 없음 → 삼계탕=한식, 냉면/밀면=밀면"
+  },
+  "ready_summary": { "csv_total": 92, "review": 12, "ready_for_image": 80, "already_registered": 8, "ready_remaining": 72, "cafe_bakery_excluded_approx": 11, "meal_pool_approx": 61 },
+  "final_recommendations": [
+    {
+      "rank": 1, "name": "봉래화로", "post_office": "부산영도우체국", "district": "영도구",
+      "address": "부산광역시 영도구 대교로 1, 101호", "phone": "0507-1416-7930",
+      "kakao_place_id": "1972140778", "kakao_url": "http://place.map.kakao.com/1972140778",
+      "lat": 35.0926737511788, "lng": 129.044243249941,
+      "main_menu": "보석살(130g) ₩16,900 | 황제갈비살(130g) ₩14,900 | (평일런치)보석살정식 ₩14,500",
+      "business_hours": "11:30-14:30 / 16:30-21:30 (21:00 LO)",
+      "proposed_slug": "postoffice-yeongdo-bongnae-hwaro", "proposed_image_filename": "postoffice-yeongdo-bongnae-hwaro.jpg",
+      "proposed_area": "영도", "proposed_category": "고기",
+      "dry_run_status": "NEW_READY", "image_status": "IMAGE_PENDING", "dup": 0, "name_confusion": false, "grade": "A",
+      "reason": "미사용 area(영도)+부족 category(고기) 동시 충족. 한우구이 독립업장, 런치정식으로 촬영 용이.",
+      "risk": "낮음 (브레이크타임 촬영 시간대만 주의)"
+    },
+    {
+      "rank": 2, "name": "순풍삼계탕", "post_office": "부산사상우체국", "district": "사상구",
+      "address": "부산광역시 사상구 사상로181번길 33", "phone": "051-324-6622",
+      "kakao_place_id": "16669936", "kakao_url": "http://place.map.kakao.com/16669936",
+      "lat": 35.1597563884913, "lng": 128.985443217797,
+      "main_menu": "삼계탕 ₩15,000 | 전복삼계탕 ₩19,000",
+      "business_hours": "10:00-22:00",
+      "proposed_slug": "postoffice-sasang-sunpung-samgyetang", "proposed_image_filename": "postoffice-sasang-sunpung-samgyetang.jpg",
+      "proposed_area": "사상", "proposed_category": "한식",
+      "dry_run_status": "NEW_READY", "image_status": "IMAGE_PENDING", "dup": 0, "name_confusion": false, "grade": "A-",
+      "reason": "미사용 area(사상) 충족. 삼계탕·전복삼계탕 보양식으로 기존 한식과 메뉴 차별화. 단일업장, 영업시간 김.",
+      "risk": "'탕' 전용 category 없어 한식(이미 2곳)으로 분류 → category 다양성 기여는 약함(area 기여가 주)"
+    },
+    {
+      "rank": 3, "name": "해주냉면", "post_office": "부산사하우체국", "district": "사하구",
+      "address": "부산광역시 사하구 낙동대로324번길 5", "phone": "051-291-4841",
+      "kakao_place_id": "21295360", "kakao_url": "http://place.map.kakao.com/21295360",
+      "lat": 35.1006494109164, "lng": 128.981723291788,
+      "main_menu": "비빔냉면 ₩12,000 | 물냉면 ₩12,000 | 물밀면 ₩9,000 | 밀비빔 ₩9,000",
+      "business_hours": "11:00-18:30 (월 휴무)",
+      "proposed_slug": "postoffice-saha-haeju-naengmyeon", "proposed_image_filename": "postoffice-saha-haeju-naengmyeon.jpg",
+      "proposed_area": "기타", "proposed_category": "밀면",
+      "dry_run_status": "NEW_READY", "image_status": "IMAGE_PENDING", "dup": 0, "name_confusion": false, "grade": "A-",
+      "reason": "밀면 category 우슐랭 신규(0→1). 냉면+밀면(물밀면·밀비빔) 부산 로컬성. 단일업장.",
+      "risk": "사하구→canonical '기타'라 윤가네산오징어(기타)와 area 중복. category 신규성으로 보완."
+    }
+  ],
+  "held_candidates": [
+    { "name": "등대횟집", "area": "영도", "dry_run": "REVIEW", "reason": "사또분식 81m 근접 → 재확인 필요. 회 보강 가치, 재확인 후 차기 1순위" },
+    { "name": "육미당찬", "area": "영도", "dry_run": "REVIEW", "reason": "삼진어묵 본점 110m 근접 + 메뉴(시그니처/프리미엄) 불명확" },
+    { "name": "설화회초밥", "area": "사상", "dry_run": "NEW_READY", "reason": "회 코스만 있는 초밥집 → category 회/일식 애매" },
+    { "name": "밥짓는부엌 한식뷔페", "area": "사상", "dry_run": "NEW_READY", "reason": "한식뷔페 메뉴 가변 → 대표메뉴·사진 표준화 어려움, 동명복수" },
+    { "name": "동래밀면", "area": "동래", "dry_run": "NEW_READY", "reason": "밀면 후보지만 동래 area 이미 사용. 해주냉면 우위" },
+    { "name": "수연이네/호포장어마을/장어마을/모디포차/우리이모집", "dry_run": "READY", "reason": "해산물 계열 → 이번 자제(해산물 4 충분)" }
+  ],
+  "automation_review": {
+    "candidates_apply_impl": "불필요(보류) — batchN 등록 검증됨, candidates는 dry-run 전용 유지가 안전",
+    "use_batchN": "유지 — register-postoffice-batch4.mjs(batch3 복제)",
+    "selection_full_automation": "반자동 유지 — area/category 큐레이션은 사람 판단 영역",
+    "npm_script": "제안(ROI 중) — package.json에 postoffice:dry 스크립트(대장 승인 후)",
+    "allowlist": "검토 제안 — candidates dry-run(--apply/--confirm 없는 호출)·read-only node 조회를 read 권한으로. --apply·batch·push 자동허용 금지"
+  },
+  "photos_to_prepare": [
+    "postoffice-yeongdo-bongnae-hwaro.jpg",
+    "postoffice-sasang-sunpung-samgyetang.jpg",
+    "postoffice-saha-haeju-naengmyeon.jpg"
+  ],
+  "next_steps": {
+    "dry_run_recheck": "node scripts/register-postoffice-candidates.mjs --names \"봉래화로,순풍삼계탕,해주냉면\"",
+    "batch4_script": "register-postoffice-batch4.mjs (batch3 복제, ROWS 3곳 교체)",
+    "apply_conditions": ["사진 3장 IMAGE_OK", "category 확정(고기·한식·밀면)", "slug 확정", "대장 명시 승인"],
+    "expected_after": "전체 119→122 / 공개 102→105 / 공개 우슐랭 8→11 / area 영도·사상 신규 / category 밀면 신규"
+  }
+}
