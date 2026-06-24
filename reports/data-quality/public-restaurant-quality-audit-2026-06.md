@@ -24,8 +24,8 @@ PLACE_LOOKUP_FAILED: 4
 
 ## 전화 보강(phone_status, 누락분만)
 ```text
-(none): 125
-PHONE_BACKFILL_READY: 8
+(none): 129
+PHONE_BACKFILL_READY: 4
 PHONE_NOT_AVAILABLE: 3
 PHONE_LOOKUP_FAILED: 1
 ```
@@ -45,9 +45,9 @@ P0: 5
 
 ## 권장 조치(recommended_action)
 ```text
-SOURCE_BACKFILL: 65
+SOURCE_BACKFILL: 69
 NO_ACTION: 59
-PHONE_BACKFILL: 8
+PHONE_BACKFILL: 4
 ADDRESS_FIX_REVIEW: 3
 COORDINATE_FIX_REVIEW: 2
 ```
@@ -62,12 +62,8 @@ COORDINATE_FIX_REVIEW: 2
 ## P1 — source 보강 우선 (0)
 - 없음
 
-## phone 보강 가능(PHONE_BACKFILL_READY) (8)
-- ansungjae-yeonje-mapobonga (마포본가) | kakao_phone=051-867-9252
-- hanyakbang-gukbap-hyeongje-food (한약방돼지국밥 형제식품) | kakao_phone=051-646-3102
-- jeonhyun-gwangalli-biwa-suljan (비와술잔) | kakao_phone=051-621-2540
+## phone 보강 가능(PHONE_BACKFILL_READY) (4)
 - saengdal-gwangalli-boulangerie-lassence (블랑제리 라센) | kakao_phone=051-710-1417
-- saengsaeng-sasang-jurye-suyuk-kalguksu (주례수육칼국수 2호점) | kakao_phone=0502-5553-2589
 - sungsik-gwangalli-geumson-1983 (금손1983) | kakao_phone=051-711-1983
 - sungsik-gwangalli-haejin-anago (해진아나고) | kakao_phone=010-8599-1090
 - tzuyang-haeundae-sanggukine (상국이네) | kakao_phone=051-742-9001
