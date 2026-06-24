@@ -24,8 +24,7 @@ PLACE_LOOKUP_FAILED: 4
 
 ## 전화 보강(phone_status, 누락분만)
 ```text
-(none): 129
-PHONE_BACKFILL_READY: 4
+(none): 133
 PHONE_NOT_AVAILABLE: 3
 PHONE_LOOKUP_FAILED: 1
 ```
@@ -45,9 +44,8 @@ P0: 5
 
 ## 권장 조치(recommended_action)
 ```text
-SOURCE_BACKFILL: 69
+SOURCE_BACKFILL: 73
 NO_ACTION: 59
-PHONE_BACKFILL: 4
 ADDRESS_FIX_REVIEW: 3
 COORDINATE_FIX_REVIEW: 2
 ```
@@ -62,11 +60,8 @@ COORDINATE_FIX_REVIEW: 2
 ## P1 — source 보강 우선 (0)
 - 없음
 
-## phone 보강 가능(PHONE_BACKFILL_READY) (4)
-- saengdal-gwangalli-boulangerie-lassence (블랑제리 라센) | kakao_phone=051-710-1417
-- sungsik-gwangalli-geumson-1983 (금손1983) | kakao_phone=051-711-1983
-- sungsik-gwangalli-haejin-anago (해진아나고) | kakao_phone=010-8599-1090
-- tzuyang-haeundae-sanggukine (상국이네) | kakao_phone=051-742-9001
+## phone 보강 가능(PHONE_BACKFILL_READY) (0)
+- 없음
 
 ## 주소/좌표 수정 검토 (5)
 - baekban-haeundae-yangs-yanggopchang (양가네 양곱창) | db=부산 해운대구 구남로8번길 7-3(35.1615796,129.1565308) | kakao=부산 수영구 감포로 106(35.167940650076716,129.1178399233333)
