@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "audit:coords": "node scripts/audit-restaurant-coordinates.mjs",
+    "quality:audit": "node scripts/audit-public-restaurant-quality.mjs",
     "ops:summary": "node scripts/ops-check-summary.mjs",
     "restaurants:check": "node scripts/check-restaurant-pages.mjs",
     "thumbs:check": "node scripts/check-thumbnail-inputs.mjs",
