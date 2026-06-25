@@ -1,13 +1,13 @@
 # 나온집 공개 식당 품질 감사 — 2026-06 (read-only)
 
 - 생성일: 2026-06-23 (KST)
-- 공개 식당: 137곳 (Kakao place_id 대조 + trust_source 분류)
+- 공개 식당: 138곳 (Kakao place_id 대조 + trust_source 분류)
 - read-only: DB SELECT + Kakao keyword GET 만. 데이터 수정 없음(수정 후보 분류만).
 - CSV: reports/data-quality/public-restaurant-quality-audit-2026-06.csv
 
 ## 주소 정합성(address_status)
 ```text
-EXACT_CURRENT: 92
+EXACT_CURRENT: 93
 SAME_PLACE_ADDRESS_VARIANT: 36
 PLACE_LOOKUP_FAILED: 4
 ADDRESS_MISMATCH: 3
@@ -16,7 +16,7 @@ BUSINESS_REVIEW: 2
 
 ## 좌표 정합성(coordinate_status)
 ```text
-EXACT_CURRENT: 114
+EXACT_CURRENT: 115
 SAME_PLACE_ADDRESS_VARIANT: 14
 COORDINATE_MISMATCH: 5
 PLACE_LOOKUP_FAILED: 4
@@ -24,7 +24,7 @@ PLACE_LOOKUP_FAILED: 4
 
 ## 전화 보강(phone_status, 누락분만)
 ```text
-(none): 133
+(none): 134
 PHONE_NOT_AVAILABLE: 3
 PHONE_LOOKUP_FAILED: 1
 ```
@@ -32,20 +32,20 @@ PHONE_LOOKUP_FAILED: 1
 ## trust_source 0개 원인(trust_source_status)
 ```text
 BROADCAST_SOURCE_MISSING: 78
-(none): 59
+(none): 60
 ```
 
 ## 우선순위(priority)
 ```text
 P2: 73
-P3: 59
+P3: 60
 P0: 5
 ```
 
 ## 권장 조치(recommended_action)
 ```text
 SOURCE_BACKFILL: 73
-NO_ACTION: 59
+NO_ACTION: 60
 ADDRESS_FIX_REVIEW: 3
 COORDINATE_FIX_REVIEW: 2
 ```
