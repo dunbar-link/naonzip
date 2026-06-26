@@ -1,0 +1,8 @@
+slug,name,area,category,kind,source_name,title,source_url,label,status,basis
+sungsik-gwangalli-haejin-anago,해진아나고,광안리,회/해산물,youtube,성시경,부산 해진아나고,https://www.youtube.com/watch?v=VkW3eo6C0fA,YouTube 출연,to_insert,slug 'sungsik-' + source_title '성시경' 일치
+tzuyang-gangseo-samseong-galmijogae,삼성갈미조개,기타,회/해산물,youtube,쯔양,명지 갈삼구이 먹방,https://www.busan.com/view/busan/view.php?code=2025081316134398280,YouTube 출연,to_insert,slug 'tzuyang-' + source_title '쯔양' 일치
+tzuyang-gwangalli-darijip,다리집,광안리,분식/길거리,youtube,쯔양,부산 3대 떡볶이 투어,https://www.busan.com/view/busan/view.php?code=2025080714534416582,YouTube 출연,to_insert,slug 'tzuyang-' + source_title '쯔양' 일치
+tzuyang-haeundae-sanggukine,상국이네,해운대,분식/길거리,youtube,쯔양,부산 3대 떡볶이 투어,https://www.busan.com/view/busan/view.php?code=2025080714534416582,YouTube 출연,to_insert,slug 'tzuyang-' + source_title '쯔양' 일치
+tzuyang-seomyeon-dongchuni-mandu,동춘이만두,서면,분식/길거리,youtube,쯔양,당감동 가성비 맛집 먹방,https://www.busan.com/view/busan/view.php?code=2025081316134398280,YouTube 출연,to_insert,slug 'tzuyang-' + source_title '쯔양' 일치
+tzuyang-yeongdo-dongbang-milmyeon,동방밀면,영도,밀면,youtube,쯔양,부산 밀면 먹방,https://www.busan.com/view/busan/view.php?code=2025080714534416582,YouTube 출연,to_insert,slug 'tzuyang-' + source_title '쯔양' 일치
+tzuyang-yeongdo-dongsamdong-buljjampong,동삼동불짬뽕,영도,중식,youtube,쯔양,영도 불짬뽕 매운맛 도전,https://www.busan.com/view/busan/view.php?code=2025080714534416582,YouTube 출연,to_insert,slug 'tzuyang-' + source_title '쯔양' 일치
