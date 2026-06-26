@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getRestaurantSlugs, getProgramSlugs, getAreaSlugs, getCreatorSlugs, getCategorySlugs } from '@/lib/restaurants'
 
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 
 const BASE_URL = 'https://naonzip.vercel.app'
 
