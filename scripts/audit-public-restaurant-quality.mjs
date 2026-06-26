@@ -6,7 +6,8 @@
  * - 분류만 한다. DB/Storage/이미지 변경 없음, 데이터 수정 없음(수정 후보로만 분류).
  * - 리포트: reports/data-quality/public-restaurant-quality-audit-2026-06.{csv,md}
  *
- * 실행: npm run quality:audit   (= node scripts/audit-public-restaurant-quality.mjs)
+ * 실행: npm run quality:audit            (= node scripts/audit-public-restaurant-quality.mjs)
+ *       npm run quality:audit:no-report  (= --no-report: 콘솔 summary만, reports/data-quality 파일 생성 0)
  * 안전: read-only 고정. DB 는 SELECT 만(insert/update/delete/upsert/rpc 없음), Storage 없음,
  *       Kakao 는 keyword GET 만, 파일은 reports/data-quality 결과만 생성. env 값 미출력.
  * 종료코드: 0 정상 / 2 env·조회 오류.
@@ -17,6 +18,8 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
 const here = dirname(fileURLToPath(import.meta.url))
+// --no-report: DB 조회/판정/콘솔 summary 는 그대로, reports/data-quality 파일 생성만 스킵(검증용).
+const NO_REPORT = process.argv.slice(2).includes('--no-report')
 function loadEnv() {
   let raw; try { raw = readFileSync(join(here, '..', '.env.local'), 'utf8') } catch { return }
   for (const line of raw.split(/\r?\n/)) {
@@ -172,6 +175,11 @@ async function main() {
   console.log(`trust_source_status: ${JSON.stringify(trustT)}`)
   console.log(`priority: ${JSON.stringify(priT)}`)
   console.log(`recommended_action: ${JSON.stringify(actT)}`)
+
+  if (NO_REPORT) {
+    console.log('\n(--no-report) reports/data-quality 파일 생성/수정 스킵 — 콘솔 summary 만.')
+    return
+  }
 
   const outDir = join(here, '..', 'reports', 'data-quality')
   mkdirSync(outDir, { recursive: true })
