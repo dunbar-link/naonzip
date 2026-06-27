@@ -35,6 +35,22 @@ function exec(file, args) {
   catch (e) { return { code: typeof e.status === 'number' ? e.status : 1, out: String(e.stdout || '') + String(e.stderr || '') } }
 }
 const num = (re, s, d = -1) => { const m = s.match(re); return m ? parseInt(m[1], 10) : d }
+// 동기 대기(외부 의존 0).
+function sleepSync(ms) { Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms) }
+// 운영/네트워크 fetch 단계용 1회 재시도 — transient(일시 fetch 실패) false FAIL 완화.
+//   실패를 숨기지 않는다: 재시도 후에도 exit!=0 이면 그 결과를 그대로 반환해 FAIL 처리한다.
+function execRetry(label, file, args, { retries = 1, waitMs = 1500 } = {}) {
+  let r = exec(file, args)
+  if (r.code === 0) return r
+  for (let i = 0; i < retries; i++) {
+    console.log(`    ↻ ${label}: first attempt failed (exit ${r.code}) — retrying once after ${waitMs}ms...`)
+    sleepSync(waitMs)
+    r = exec(file, args)
+    console.log(`    ${r.code === 0 ? '✓' : '✗'} ${label}: ${r.code === 0 ? 'retry passed' : 'retry failed (exit ' + r.code + ')'}`)
+    if (r.code === 0) return r
+  }
+  return r
+}
 
 const results = []
 const step = (label, ok, detail) => { results.push({ label, ok }); console.log(`  [${ok ? 'PASS' : 'FAIL'}] ${label} — ${detail}`) }
@@ -49,7 +65,7 @@ step('quality:audit P0=0 / trust source 0개=0', qa.code === 0 && p0 === 0 && tr
   `P0=${p0}, trust_missing=${trustMissing}, exit=${qa.code}`)
 
 // 2) ops:summary — thumbMiss=0, slugDup=0, sitemap PASS
-const ops = exec('node', ['scripts/ops-check-summary.mjs'])
+const ops = execRetry('ops:summary', 'node', ['scripts/ops-check-summary.mjs'])
 const pub = num(/pub (\d+)/, ops.out)
 const thumbMiss = num(/thumbMiss (\d+)/, ops.out)
 const slugDup = num(/slugDup (\d+)/, ops.out)
@@ -58,18 +74,18 @@ step('ops thumbMiss=0 / slugDup=0 / sitemap PASS', ops.code === 0 && thumbMiss =
   `pub=${pub}, thumbMiss=${thumbMiss}, slugDup=${slugDup}, sitemapPASS=${sitemapPass}, exit=${ops.code}`)
 
 // 3) sitemap:check — restaurantUrls == pub
-const sm = exec('node', ['scripts/check-sitemap-slugs.mjs', '--url', SITEMAP, '--slugs', SAMPLE_SLUG])
+const sm = execRetry('sitemap:check', 'node', ['scripts/check-sitemap-slugs.mjs', '--url', SITEMAP, '--slugs', SAMPLE_SLUG])
 const restUrls = num(/restaurantUrls=(\d+)/, sm.out)
 step('sitemap restaurantUrls == 공개 식당 수', sm.code === 0 && pub > 0 && restUrls === pub,
   `restaurantUrls=${restUrls}, pub=${pub}, exit=${sm.code}`)
 
 // 4) restaurants:check — 대표 상세 200
-const rc = exec('node', ['scripts/check-restaurant-pages.mjs', '--base', BASE, '--items', REST_ITEMS])
+const rc = execRetry('restaurants:check', 'node', ['scripts/check-restaurant-pages.mjs', '--base', BASE, '--items', REST_ITEMS])
 step('대표 상세 페이지 200', rc.code === 0,
   rc.code === 0 ? '대표 식당 status=200' : `exit=${rc.code} — 운영(${BASE}) 네트워크/ISR 확인 필요`)
 
 // 5) search:check — 대표 검색
-const scr = exec('node', ['scripts/check-search-results.mjs', '--base', BASE, '--tab', 'broadcast', '--items', SEARCH_ITEMS])
+const scr = execRetry('search:check', 'node', ['scripts/check-search-results.mjs', '--base', BASE, '--tab', 'broadcast', '--items', SEARCH_ITEMS])
 step('대표 식당 검색 노출', scr.code === 0,
   scr.code === 0 ? '검색/필터 노출 확인' : `exit=${scr.code} — 운영(${BASE}) 네트워크 확인 필요`)
 
