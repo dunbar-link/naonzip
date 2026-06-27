@@ -248,19 +248,6 @@ export default async function RestaurantDetailPage({ params }: Props) {
   })()
 
   const pageUrl = `${SITE_URL}/restaurants/${restaurant.slug}`
-  // 정보 오류 신고 mailto — 사용자가 직접 DB 수정/업로드하지 않고, 운영자가 확인 후 반영하는 대안 채널.
-  const reportMailtoHref = (() => {
-    const subject = `[나온집 정보 오류 신고] ${restaurant.name}`
-    const body = [
-      `식당명: ${restaurant.name}`,
-      `페이지 URL: ${pageUrl}`,
-      `오류 유형: 주소 / 전화번호 / 영업상태 / 지도위치 / 기타`,
-      `신고 내용: `,
-      `확인 가능한 근거: `,
-      `연락처(선택): `,
-    ].join('\n')
-    return `mailto:duria2002@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-  })()
   const jsonLd = buildRestaurantJsonLd(restaurant)
   const isYoutubeCreator =
     restaurant.sourceType === 'youtube' && !!restaurant.creatorName
@@ -559,16 +546,6 @@ export default async function RestaurantDetailPage({ params }: Props) {
       <div className="h-2 bg-gray-50" />
       <section className="px-4 py-4 bg-white text-center">
         <ReportButton slug={restaurant.slug} />
-        {/* 이메일 신고(mailto) — 인앱 제보 외 대안 채널. 직접 수정 아님, 운영자가 확인 후 반영. */}
-        <div className="mt-2">
-          <a
-            href={reportMailtoHref}
-            className="text-[11px] text-gray-400 underline underline-offset-2 hover:text-gray-600"
-          >
-            정보가 다르다면 이메일로 알려주세요
-          </a>
-          <p className="mt-1 text-[10px] text-gray-300">운영자가 확인 후 반영합니다.</p>
-        </div>
         {reportFormUrl && (
           <div className="mt-2">
             <a
