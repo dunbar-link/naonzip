@@ -57,3 +57,6 @@ next-env.d.ts
 
 # 우슐랭 등록 자동화: 매 실행 생성되는 dry-run/apply 리포트(런타임 산출물)
 /reports/postoffice-guide-audit/postoffice-register-run-*
+
+# claude 최종보고: 매 작업 덮어쓰는 로컬 보고서(Report Bridge 수집용, ops-loop/latest.md 와 동급)
+/reports/claude-final-latest.md
