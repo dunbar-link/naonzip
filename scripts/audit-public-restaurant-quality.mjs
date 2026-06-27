@@ -73,8 +73,9 @@ function classifyAddress(r, lk) {
   const exact = dbA && (dbA === kRoad || dbA === kJi)
   const dbBase = addrBase(r.address)
   const baseSame = dbBase && (dbBase === addrBase(d.road_address_name) || dbBase === addrBase(d.address_name))
-  // place_id 불일치 + 위치도 멂(>400m) → 다른 업장/이전 의심
-  if (lk.matched === 'name' && dist > 400) return 'BUSINESS_REVIEW'
+  // matched='name'(place_id 미확정 이름 fallback) + 위치 멂(>400m): 동명 다른 업장 위험
+  //   → 자동 P0(BUSINESS_REVIEW) 단정 금지. 사람 검토용 NAME_MATCH_UNVERIFIED 로 분류.
+  if (lk.matched === 'name' && dist > 400) return 'NAME_MATCH_UNVERIFIED'
   if (exact) return 'EXACT_CURRENT'
   if (dist <= 120 || baseSame) return 'SAME_PLACE_ADDRESS_VARIANT'
   if (dist > 400) return 'ADDRESS_MISMATCH'
@@ -86,6 +87,8 @@ function classifyCoord(r, lk) {
   const dist = distM(r.lat, r.lng, +lk.d.y, +lk.d.x)
   if (dist <= 120) return 'EXACT_CURRENT'
   if (dist <= 400) return 'SAME_PLACE_ADDRESS_VARIANT'
+  // matched='name' 후보 기준 거리는 동명 오매칭 위험 → 자동 COORDINATE_MISMATCH 단정 금지(matched='id'만 유지).
+  if (lk.matched === 'name') return 'NAME_MATCH_UNVERIFIED'
   return 'COORDINATE_MISMATCH'
 }
 function classifyPhone(r, lk) {
@@ -106,6 +109,8 @@ function recommend(addrS, coordS, phoneS, trustS) {
   if (addrS === 'ADDRESS_MISMATCH') return ['ADDRESS_FIX_REVIEW', 'P0']
   if (coordS === 'COORDINATE_MISMATCH') return ['COORDINATE_FIX_REVIEW', 'P0']
   if (addrS === 'BUSINESS_REVIEW') return ['BUSINESS_STATUS_REVIEW', 'P0']
+  // 이름 fallback 매칭(place_id 미확정): 동명 오매칭 위험 → 자동 P0 아님, 사람 검토(P2). 가시성은 유지.
+  if (addrS === 'NAME_MATCH_UNVERIFIED' || coordS === 'NAME_MATCH_UNVERIFIED') return ['NAME_MATCH_REVIEW', 'P2']
   if (trustS === 'GUIDE_SOURCE_MISSING' || trustS === 'LEGACY_MANUAL') return ['SOURCE_BACKFILL', 'P1']
   if (phoneS === 'PHONE_BACKFILL_READY') return ['PHONE_BACKFILL', 'P2']
   if (trustS === 'BROADCAST_SOURCE_MISSING') return ['SOURCE_BACKFILL', 'P2']
