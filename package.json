@@ -15,6 +15,7 @@
     "thumbs:check": "node scripts/check-thumbnail-inputs.mjs",
     "sitemap:check": "node scripts/check-sitemap-slugs.mjs",
     "search:check": "node scripts/check-search-results.mjs",
+    "verify:regression": "node scripts/verify-regression.mjs",
     "candidates:summary": "node scripts/check-candidates-summary.mjs",
     "candidates:run": "node scripts/summarize-postoffice-run.mjs",
     "test:e2e": "playwright test e2e/search-detail.spec.ts",
