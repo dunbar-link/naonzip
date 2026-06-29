@@ -36,6 +36,8 @@ const BASE = String(opt('base', 'http://localhost:3000')).replace(/\/+$/, '')
 const TAB = String(opt('tab', 'postoffice'))
 const TIMEOUT = parseInt(opt('timeout', '10000'), 10) || 10000
 const ITEMS = String(opt('items', '') || '').split(',').map((s) => s.trim()).filter(Boolean)
+  // "검색어=기대식당명" 지원: q!==expect 면 검색 확장 케이스(예: 밀면맛집=원조가야밀면). '=' 없으면 q=expect(식당명).
+  .map((s) => { const i = s.indexOf('='); return i === -1 ? { q: s, expect: s } : { q: s.slice(0, i).trim(), expect: s.slice(i + 1).trim() } })
 
 if (!ITEMS.length) {
   console.error('BLOCKED: 검사 대상 없음 — --items "식당명1,식당명2" 필요')
@@ -72,13 +74,15 @@ if (pf.error || pf.status !== 200) {
 
 // 2) 각 식당명: 필터 포함 + 검색 페이지 포함
 const results = []
-for (const name of ITEMS) {
-  const inFilter = pf.body.includes(name)
-  const sr = await getUrl(`${BASE}/search?q=${encodeURIComponent(name)}`)
+for (const item of ITEMS) {
+  // q===expect: 식당명 케이스(filter 페이지 + 검색 둘 다). q!==expect: 검색 확장 케이스(검색만; filter는 tab 무관이라 생략).
+  const isExpansion = item.q !== item.expect
+  const inFilter = isExpansion ? true : pf.body.includes(item.expect)
+  const sr = await getUrl(`${BASE}/search?q=${encodeURIComponent(item.q)}`)
   let inSearch = false, searchErr = null
   if (sr.error || sr.status !== 200) searchErr = sr.error ? sr.error : `status=${sr.status}`
-  else inSearch = sr.body.includes(name)
-  results.push({ name, inFilter, inSearch, searchErr, verdict: (inFilter && inSearch) ? 'PASS' : 'BLOCKED' })
+  else inSearch = sr.body.includes(item.expect)
+  results.push({ name: isExpansion ? `${item.q}→${item.expect}` : item.q, inFilter, inSearch, searchErr, verdict: (inFilter && inSearch) ? 'PASS' : 'BLOCKED' })
 }
 
 const filterOk = results.filter((r) => r.inFilter).length

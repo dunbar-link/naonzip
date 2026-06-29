@@ -27,7 +27,7 @@ const SITEMAP = `${BASE}/sitemap.xml`
 const SAMPLE_SLUG = '2tv-haeundae-sundori-boribap'
 // 대표 샘플: 신규등록·이전보정·false-positive 각 케이스 커버
 const REST_ITEMS = '2tv-haeundae-sundori-boribap=순돌이 보리밥,baekban-haeundae-yangs-yanggopchang=양가네 양곱창,hibab-cheongsa-hoe-center=청사포 도희네 조개구이'
-const SEARCH_ITEMS = '순돌이 보리밥,양가네 양곱창'
+const SEARCH_ITEMS = '순돌이 보리밥,양가네 양곱창,밀면맛집=원조가야밀면,국밥집=신창국밥,돼지국밥맛집=신창국밥,돼지=신창국밥,고기=양가네,회맛집=연합횟집'
 const TRUST_MISSING_KEYS = ['BROADCAST_SOURCE_MISSING', 'GUIDE_SOURCE_MISSING', 'LEGACY_MANUAL', 'SOURCE_NOT_REQUIRED_REVIEW']
 
 function exec(file, args) {

@@ -53,13 +53,21 @@ const SYNONYMS: Record<string, string[]> = {
   '노포': ['노포', '전통', '원조', '40년', '50년', '60년'],
   '또간집': ['또간집', '풍자'],
   '횟집': ['횟집', '회', '회센터'],
-  '회': ['회', '회센터', '횟집'],
+  '회': ['회', '회센터', '횟집', '아나고', '해산물', '조개구이'],
   '분식': ['분식', '떡볶이', '김밥', '순대'],
   '갈비집': ['갈비', '돼지갈비', '소갈비'],
   '카페': ['카페', '커피', '디저트'],
   '센텀': ['해운대', '센텀'],
   '남포': ['남포동'],
   '곱창전골': ['곱창', '양곱창'],
+  // 음식 자연어 확장 — 접미어 제거(stripSearchSuffix)와 함께 "밀면맛집/국밥집/돼지/고기/회맛집" 흡수.
+  //   확장폭은 1차(직접 관련어)만 — "돼지"가 모든 고기집을 무작정 끌어오지 않게 제한.
+  '밀면': ['밀면'],
+  '돼지국밥': ['돼지국밥', '국밥'],
+  '돼지': ['돼지국밥', '수육', '삼겹살', '돼지갈비'],
+  '수육': ['수육', '돼지국밥'],
+  '고기': ['고기', '삼겹살', '갈비', '돼지갈비', '양곱창', '수육', '불고기'],
+  '해장': ['국밥', '곰탕', '복국'],
   // 출처 동의어 — 표기 흔들림(미슐랭/미쉐린/미쉘린)을 모두 출처명에 매칭시킨다.
   '미슐랭': ['미슐랭', '미쉐린', 'michelin'],
   '미쉐린': ['미슐랭', '미쉐린', 'michelin'],
@@ -118,8 +126,21 @@ function normalize(value: string | undefined | null): string {
   return (value ?? '').toString().toLowerCase().normalize('NFC')
 }
 
+// 검색 접미어(맛집/집/식당) 제거 — "밀면맛집"→"밀면", "국밥집"→"국밥", "회맛집"→"회". 제거 후 1자 이상 남을 때만.
+const SEARCH_SUFFIXES = ['맛집', '집', '식당']
+function stripSearchSuffix(token: string): string {
+  for (const suf of SEARCH_SUFFIXES) {
+    if (token.length > suf.length && token.endsWith(suf)) return token.slice(0, -suf.length)
+  }
+  return token
+}
+
 function expandToken(token: string): string[] {
-  return SYNONYMS[token] ?? [token]
+  // 원형이 사전에 있으면 우선 — '또간집'·'갈비집'·'곱창전골' 등 '집' 포함 상호/출처 보호.
+  if (SYNONYMS[token]) return SYNONYMS[token]
+  const stripped = stripSearchSuffix(token)
+  if (stripped !== token) return SYNONYMS[stripped] ?? [stripped, token]
+  return [token]
 }
 
 function trustSourceText(r: Restaurant): string {
