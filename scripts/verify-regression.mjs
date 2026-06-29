@@ -12,6 +12,7 @@
  *   3) sitemap:check         → sitemap restaurantUrls == 공개 식당 수(pub)
  *   4) restaurants:check     → 대표 상세 페이지 200 (운영 GET smoke)
  *   5) search:check          → 대표 식당 검색 노출 (운영 GET smoke)
+ *   5b) search:unit          → 검색 정확도 유닛(실데이터 직접 호출, 브라우저 없이)
  *   6) git diff --check      → 공백/충돌 마커 0
  *   7) git status            → reports/data-quality 의도 외 변경 없음(no-report 게이트)
  *
@@ -88,6 +89,12 @@ step('대표 상세 페이지 200', rc.code === 0,
 const scr = execRetry('search:check', 'node', ['scripts/check-search-results.mjs', '--base', BASE, '--tab', 'broadcast', '--items', SEARCH_ITEMS])
 step('대표 식당 검색 노출', scr.code === 0,
   scr.code === 0 ? '검색/필터 노출 확인' : `exit=${scr.code} — 운영(${BASE}) 네트워크 확인 필요`)
+
+// 5b) search:unit — 검색 정확도 유닛(실데이터 직접 호출, 브라우저/DOM 없이)
+const su = exec('node', ['--env-file=.env.local', 'scripts/check-search-unit.mjs'])
+const suPass = /검색 유닛: PASS/.test(su.out)
+step('검색 정확도 유닛(밀면맛집/국밥집/zzz=0)', su.code === 0 && suPass,
+  su.code === 0 ? '실데이터 직접 검증 PASS' : `exit=${su.code} — 검색 정확도 회귀/데이터 로드 실패`)
 
 // 6) git diff --check
 const gd = exec('git', ['diff', '--check'])
