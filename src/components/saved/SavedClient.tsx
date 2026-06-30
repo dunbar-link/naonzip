@@ -40,7 +40,7 @@ export function SavedClient({ restaurants }: SavedClientProps) {
             href="/"
             className="mt-2 px-6 py-3 bg-orange-500 text-white text-sm font-bold rounded-xl"
           >
-            맛집 둘러보기
+            맛집 찾으러 가기
           </Link>
         </div>
       ) : (

@@ -128,7 +128,7 @@ export default function RestaurantCard({ restaurant, variant = 'vertical' }: Pro
             </div>
           </div>
           <div className="mt-2 flex items-center justify-between gap-2">
-            <p className="text-[13px] text-orange-500 font-bold truncate">{restaurant.priceText}</p>
+            <p className="text-[13px] text-orange-500 font-semibold truncate">{restaurant.priceText}</p>
             {dateText && (
               <p className="text-[10px] text-gray-400 flex-shrink-0">{dateText} 방영</p>
             )}

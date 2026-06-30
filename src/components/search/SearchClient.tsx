@@ -18,6 +18,9 @@ const SUGGESTED_QUERIES = [
   '해운대', '광안리', '곱창', '회',
 ]
 
+// 첫 진입(빈 상태)에서 바로 누르는 핵심 추천 — 첫 행동 유도용. 전체 목록은 위 '추천 검색어' 토글에 있다.
+const EMPTY_SUGGESTIONS = ['밀면', '돼지국밥', '고기', '회', '해운대', '광안리']
+
 // 마지막으로 선택한 출처 탭 저장 키 — 목록 페이지(naonzip:last-area-filter)와 동일한 네이밍 규칙.
 const LS_TAB_KEY = 'naonzip:last-source-tab'
 // 추천 검색어 펼침/접힘 상태 저장 키.
@@ -330,11 +333,21 @@ export default function SearchClient({ restaurants }: Props) {
           )}
         </section>
       ) : (
-        <section className="px-4 pt-8 flex flex-col items-center text-center">
-          <span className="text-3xl">🔍</span>
-          <p className="mt-2 text-sm text-gray-400">
-            검색어를 입력하거나 위 출처로 골라보세요
-          </p>
+        <section className="px-4 pt-6 flex flex-col items-center text-center">
+          <span className="text-4xl">🍜</span>
+          <p className="mt-3 text-sm font-medium text-gray-600">찾는 맛집을 검색해보세요</p>
+          <p className="mt-1 text-xs text-gray-400">아래 추천이나 위 출처로 바로 시작할 수 있어요</p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+            {EMPTY_SUGGESTIONS.map((q) => (
+              <button
+                key={q}
+                onClick={() => handleSuggest(q)}
+                className="min-h-[40px] text-sm font-medium px-4 py-2 rounded-full border border-orange-200 bg-orange-50 text-orange-700 active:bg-orange-100 transition-colors"
+              >
+                {q}
+              </button>
+            ))}
+          </div>
         </section>
       )}
     </main>
