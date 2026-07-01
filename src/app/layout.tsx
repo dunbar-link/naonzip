@@ -3,6 +3,7 @@ import { Geist } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import BottomNav from '@/components/layout/BottomNav'
+import Footer from '@/components/layout/Footer'
 
 const geist = Geist({ subsets: ['latin'] })
 
@@ -54,6 +55,7 @@ export default function RootLayout({
       <body className={`${geist.className} bg-gray-50 max-w-[430px] mx-auto min-h-screen`}>
         <Header />
         {children}
+        <Footer />
         <BottomNav />
       </body>
     </html>
