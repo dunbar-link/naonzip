@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import { Restaurant, AreaType } from '@/types/restaurant'
 
@@ -13,6 +13,32 @@ type AreaFilter = '전체' | AreaType
 const AREA_FILTERS: AreaFilter[] = [
   '전체', '해운대', '서면', '광안리', '남포동', '기장', '동래', '사상', '기타',
 ]
+
+// 지도 지역 필터의 최근 선택값 유지 — 목록 필터(naonzip:last-area-filter)와 같은
+// useSyncExternalStore 패턴이되, 값 범위가 달라 키를 공유하지 않고 별도 키를 쓴다.
+// 탭 재진입/새로고침에도 마지막 선택 지역이 유지된다.
+const LS_MAP_AREA_KEY = 'naonzip:last-map-area'
+const MAP_AREA_CHANGE_EVENT = 'naonzip:map-area-change'
+function subscribeMapArea(onChange: () => void) {
+  window.addEventListener(MAP_AREA_CHANGE_EVENT, onChange)
+  return () => window.removeEventListener(MAP_AREA_CHANGE_EVENT, onChange)
+}
+function readMapArea(): AreaFilter {
+  try {
+    const saved = window.localStorage.getItem(LS_MAP_AREA_KEY)
+    // 저장값이 현재 AREA_FILTERS 에 없으면 '전체' fallback (구버전/오염값 방어).
+    if (saved && (AREA_FILTERS as string[]).includes(saved)) return saved as AreaFilter
+  } catch {
+    // localStorage 미지원(시크릿 브라우저 등) — 무시하고 기본값
+  }
+  return '전체'
+}
+function writeMapArea(area: AreaFilter) {
+  try {
+    window.localStorage.setItem(LS_MAP_AREA_KEY, area)
+  } catch {}
+  window.dispatchEvent(new Event(MAP_AREA_CHANGE_EVENT))
+}
 
 function getAreaCount(area: AreaFilter, restaurants: Restaurant[]): number {
   if (area === '전체') return restaurants.length
@@ -77,7 +103,9 @@ export default function KakaoMapView({ restaurants }: Props) {
     process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY ? 'loading' : 'no-key',
   )
   const [selected, setSelected] = useState<Restaurant | null>(null)
-  const [selectedArea, setSelectedArea] = useState<AreaFilter>('전체')
+  // 최근 선택 지도 지역을 localStorage 외부 스토어로 구독 — 탭 재진입/새로고침에도 유지.
+  // 서버/최초 렌더는 '전체'(getServerSnapshot), 마운트 후 저장값으로 복원(hydration 안전).
+  const selectedArea = useSyncExternalStore<AreaFilter>(subscribeMapArea, readMapArea, () => '전체')
 
   // 지도 초기화 (1회)
   useEffect(() => {
@@ -162,7 +190,8 @@ export default function KakaoMapView({ restaurants }: Props) {
   }, [selectedArea, status])
 
   const handleAreaSelect = (area: AreaFilter) => {
-    setSelectedArea(area)
+    // 선택 즉시 localStorage 저장(+이벤트) → 외부 스토어 구독자 갱신. '전체'도 그대로 저장.
+    writeMapArea(area)
   }
 
   return (
