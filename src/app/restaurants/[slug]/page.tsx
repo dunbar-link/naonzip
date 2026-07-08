@@ -108,19 +108,16 @@ function buildRestaurantJsonLd(r: Restaurant): Record<string, unknown> {
     Number.isFinite(r.lng) &&
     !(r.lat === 0 && r.lng === 0)
 
+  // subjectOf: 나온집은 영상 재생(watch) 페이지가 아니라 방송/유튜브 "출처"만 연결한다.
+  //   VideoObject 는 thumbnailUrl/contentUrl/embedUrl/ISO uploadDate 를 요구하는데
+  //   이 사이트 성격상 신뢰 가능한 값을 채울 수 없어(더미 금지) 항상 CreativeWork 로 통일한다.
+  //   videoUrl 은 CreativeWork.url + Restaurant.sameAs 로 연결이 유지된다.
   let subjectOf: Record<string, unknown> | undefined
-  if (r.videoUrl) {
-    subjectOf = {
-      '@type': 'VideoObject',
-      name:
-        r.episodeTitle ?? r.programName ?? r.creatorName ?? r.sourceTitle,
-      url: r.videoUrl,
-      ...(r.broadcastDate && { uploadDate: r.broadcastDate }),
-    }
-  } else if (r.programName || r.episodeTitle || r.broadcastDate) {
+  if (r.videoUrl || r.programName || r.episodeTitle || r.broadcastDate) {
     subjectOf = {
       '@type': 'CreativeWork',
-      name: r.episodeTitle ?? r.programName ?? r.sourceTitle,
+      name: r.episodeTitle ?? r.programName ?? r.creatorName ?? r.sourceTitle,
+      ...(r.videoUrl && { url: r.videoUrl }),
       ...(r.broadcastDate && { datePublished: r.broadcastDate }),
     }
   }
