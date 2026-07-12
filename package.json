@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
     "audit:coords": "node scripts/audit-restaurant-coordinates.mjs",
     "quality:audit": "node scripts/audit-public-restaurant-quality.mjs",
     "quality:audit:no-report": "node scripts/audit-public-restaurant-quality.mjs --no-report",
