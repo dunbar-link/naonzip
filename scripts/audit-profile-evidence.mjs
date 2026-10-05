@@ -62,7 +62,7 @@ async function main() {
   const ids = (restaurants ?? []).map((restaurant) => restaurant.id)
   const { data: sources, error: sourceError } = await supabase
     .from('restaurant_trust_sources')
-    .select('restaurant_id,source_kind,source_name,source_url,verified_at,is_public')
+    .select('restaurant_id,source_kind,source_name,source_title,source_url,verified_at,is_public')
     .in('restaurant_id', ids)
     .eq('is_public', true)
     .order('restaurant_id')
@@ -80,7 +80,7 @@ async function main() {
       source_name: source.source_name,
       has_url: hasUrl ? 'yes' : 'no',
       has_verified_at: hasVerifiedAt ? 'yes' : 'no',
-      status: hasUrl && hasVerifiedAt ? 'READY' : hasUrl ? 'VERIFIED_AT_MISSING' : hasVerifiedAt && (source.source_kind === 'tv' || source.source_kind === 'youtube') ? 'LINK_UNAVAILABLE' : hasVerifiedAt ? 'SOURCE_URL_MISSING' : 'EVIDENCE_INCOMPLETE',
+      status: hasUrl && hasVerifiedAt ? 'READY' : hasUrl ? 'VERIFIED_AT_MISSING' : hasVerifiedAt && (source.source_kind === 'tv' || source.source_kind === 'youtube') && Boolean(source.source_title?.trim()) ? 'LINK_UNAVAILABLE' : hasVerifiedAt ? 'SOURCE_URL_MISSING' : 'EVIDENCE_INCOMPLETE',
     }
   })
 
