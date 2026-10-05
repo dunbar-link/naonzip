@@ -431,14 +431,14 @@ export async function getProgramSlugs(): Promise<string[]> {
   const slugSet = new Set<string>()
 
   for (const r of restaurants) {
-    const candidates: Array<string | undefined> = [
-      r.sourceTitle,
-      r.programName,
-      r.creatorName,
-    ]
-    for (const candidate of candidates) {
-      const slug = getProgramSlugFromName(candidate)
-      if (slug) slugSet.add(slug)
+    const appearances = r.appearances?.length
+      ? r.appearances
+      : [{ sourceTitle: r.sourceTitle, programName: r.programName, creatorName: r.creatorName }]
+    for (const appearance of appearances) {
+      for (const candidate of [appearance.sourceTitle, appearance.programName, appearance.creatorName]) {
+        const slug = getProgramSlugFromName(candidate)
+        if (slug) slugSet.add(slug)
+      }
     }
   }
 
@@ -468,15 +468,14 @@ export async function getRestaurantsByProgramSlug(
   if (!name) return { name: null, restaurants: [] }
 
   const all = await getRestaurants()
-  const matched = all.filter((r) => {
-    const fromSource = getProgramSlugFromName(r.sourceTitle)
-    if (fromSource === slug) return true
-    const fromProgram = getProgramSlugFromName(r.programName)
-    if (fromProgram === slug) return true
-    const fromCreator = getProgramSlugFromName(r.creatorName)
-    if (fromCreator === slug) return true
-    return false
-  })
+  const matched = all.filter((r) => (r.appearances?.length ? r.appearances : [{
+    sourceTitle: r.sourceTitle,
+    programName: r.programName,
+    creatorName: r.creatorName,
+  }]).some((appearance) =>
+    [appearance.sourceTitle, appearance.programName, appearance.creatorName]
+      .some((candidate) => getProgramSlugFromName(candidate) === slug),
+  ))
 
   return { name, restaurants: matched }
 }
@@ -595,10 +594,14 @@ export async function getCreatorSlugs(): Promise<string[]> {
   const slugSet = new Set<string>()
 
   for (const r of restaurants) {
-    if (r.sourceType !== 'youtube') continue
-    if (!r.creatorName) continue
-    const slug = getProgramSlugFromName(r.creatorName)
-    if (slug) slugSet.add(slug)
+    const appearances = r.appearances?.length
+      ? r.appearances
+      : [{ sourceType: r.sourceType, creatorName: r.creatorName }]
+    for (const appearance of appearances) {
+      if (appearance.sourceType !== 'youtube' || !appearance.creatorName) continue
+      const slug = getProgramSlugFromName(appearance.creatorName)
+      if (slug) slugSet.add(slug)
+    }
   }
 
   return Array.from(slugSet).sort()
@@ -622,12 +625,12 @@ export async function getRestaurantsByCreatorSlug(
   slug: string,
 ): Promise<{ name: string | null; restaurants: Restaurant[] }> {
   const all = await getRestaurants()
-  const matched = all.filter(
-    (r) =>
-      r.sourceType === 'youtube' &&
-      r.creatorName &&
-      getProgramSlugFromName(r.creatorName) === slug,
-  )
+  const matched = all.filter((r) => (r.appearances?.length ? r.appearances : [{
+    sourceType: r.sourceType,
+    creatorName: r.creatorName,
+  }]).some((appearance) =>
+    appearance.sourceType === 'youtube' && getProgramSlugFromName(appearance.creatorName) === slug,
+  ))
 
   if (matched.length === 0) return { name: null, restaurants: [] }
 

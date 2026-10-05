@@ -69,12 +69,12 @@ export default function HomeClient({ restaurants }: Props) {
         </form>
 
         <Link
-          href="/restaurants"
+          href="/from"
           className="mt-2 flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3 active:bg-gray-50"
         >
           <span className="text-sm font-medium text-gray-800">
-            부산 맛집 전체{' '}
-            <span className="text-orange-500 font-bold">{restaurants.length}곳</span> 보기
+            방송·유튜브에서 본 부산 맛집{' '}
+            <span className="text-orange-500 font-bold">{restaurants.length}곳</span> 찾기
           </span>
           <svg
             className="w-4 h-4 text-gray-400 flex-shrink-0"
