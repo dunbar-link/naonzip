@@ -59,9 +59,14 @@
 - `quality:audit`, `evidence:audit`, 상세 프로필의 원천 링크/JSON-LD, PC·390px 흐름을 확인한다.
 - 완료 조건: 코드 회귀와 공개 노출 오류가 없고, 새 보완 데이터의 출처 링크가 실제 열리는 것을 확인한다.
 
-**현재 검증 한계:** 전체 Kakao 품질감사는 140곳을 순차 조회한다. 이번 실행은 100번째 완료 표식 뒤 실행 결과가 종료코드 없이 반환되어 140곳 전체 PASS/FAIL을 확정하지 못했다. 원인은 실행 시간 제한일 가능성이 있으나 확정하지 않았다. 완료된 100건을 재조회하지 않도록 감사 도구에 범위 실행(`--offset`, `--limit`)을 추가하며, 마지막 40건만 별도 완료 확인한다. 범위별 결과는 전체 PASS를 대체하지 않는다.
+**완료 — 2026-10-05 19:33 KST:** 대장의 직접 승인 뒤 `259fb1aaae55110b3e983b86c9c51972fac4dc3f`까지의 9개 신뢰 프로필 범위 커밋을 `origin/master`에 정상 반영했다. 공개 readback은 `https://naonzip.vercel.app/restaurants/saengsaeng-sasang-jurye-suyuk-kalguksu`에서 PC와 390px 모두 `원천 링크 미등록` 표시, 가로 넘침 없음, 콘솔 오류 없음을 확인했다. `https://naonzip.vercel.app/restaurants/2tv-haeundae-sundori-boribap`의 KBS 공식 링크(`https://iaudience.kbs.co.kr/broadcast/11290`)도 유지됨을 확인했다.
+
+**빌드 증거 한계:** 권한 환경에서 Next build의 최종 `next-build`·`telemetry-flush` trace와 산출물은 확인했지만, 실행 도구가 쉘 종료코드를 반환하지 않아 `BUILD_EXIT_UNAVAILABLE`로 보존한다. 이는 공개 페이지 readback 성공이나 품질감사 결론을 대체하지 않는다.
+
+**Kakao 감사 한계:** 전체 Kakao 품질감사는 140곳을 순차 조회한다. 이번 실행은 100번째 완료 표식 뒤 실행 결과가 종료코드 없이 반환되어 140곳 전체 PASS/FAIL을 확정하지 못했다. 원인은 실행 시간 제한일 가능성이 있으나 확정하지 않았다. 완료된 100건을 재조회하지 않도록 감사 도구에 범위 실행(`--offset`, `--limit`)을 추가하며, 마지막 40건만 별도 완료 확인한다. 범위별 결과는 전체 PASS를 대체하지 않는다.
 
 ## 이번 범위 제외
 
-- 운영 DB 대량 수정, 새 식당 등록, 유료 API, 고객 연락, 광고/수익화, 외부 배포
+- 운영 DB 대량 수정, 새 식당 등록, 유료 API, 고객 연락, 광고/수익화
+- 외부 배포는 원칙적으로 제외한다. 단, 2026-10-05 대장의 직접 승인에 따른 위 9개 커밋의 `origin/master` 반영과 공개 readback만 이 범위의 완료 예외다.
 - AI 노출 빈도·검색 순위·문의·매출에 대한 보장

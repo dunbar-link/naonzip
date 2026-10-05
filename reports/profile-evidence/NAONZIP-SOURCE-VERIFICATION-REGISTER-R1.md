@@ -62,3 +62,10 @@
 - 영상 URL이 존재하는 것만으로 신뢰 출처를 충족으로 보지 않는다.
 - `restaurant_appearances.program_name`이 프로필의 선언 `source_title`과 정확히 일치하고, 해당 appearance에 HTTP(S) 영상 URL이 있을 때만 별도 사용자 추적 근거로 인정한다.
 - 이번 18건은 영상 URL이 모두 없어 위 예외에 해당하지 않는다.
+
+## 공개 반영·검수 기록 — 2026-10-05 19:33 KST
+
+- 대장의 직접 승인에 따라 신뢰 프로필 범위 9개 커밋을 `origin/master`에 반영했다. 최종 revision은 `259fb1aaae55110b3e983b86c9c51972fac4dc3f`다.
+- 공개 검수 URL: `https://naonzip.vercel.app/restaurants/saengsaeng-sasang-jurye-suyuk-kalguksu`. PC와 390px에서 `원천 링크 미등록` 표시, 가로 넘침 없음, 콘솔 오류 없음을 확인했다.
+- 기존 출처 보존 검수 URL: `https://naonzip.vercel.app/restaurants/2tv-haeundae-sundori-boribap`. KBS 공식 링크 `https://iaudience.kbs.co.kr/broadcast/11290`가 유지됨을 확인했다.
+- `BUILD_EXIT_UNAVAILABLE`: Next build의 종료 trace와 산출물은 확인했으나 실행 도구가 쉘 종료코드를 반환하지 않았다. 전체 140건 Kakao 감사 PASS/FAIL은 별도 미확정 상태로 유지한다.
