@@ -32,6 +32,31 @@
 | 전현무계획3 | 1 | 없음 | 회차·방영일은 DB에 있으나 원천 페이지 미확인 |
 | 풍자 또간집 | 1 | 없음 | 프로그램 표기만 있고 방영일·원천 페이지 미확인 |
 
+### 2026-10-05 공식 원천 선별 검색 결과
+
+아래 검사는 프로그램명·식당명·회차(있는 경우)를 결합해 공식 방송사 또는 제작자 도메인으로 한정했다. `OFFICIAL_SEARCH_NO_RESULT`는 검색 결과가 없었다는 사실이며, 방송 사실의 부정이나 원천 부재의 확정 판정이 아니다. 제3자 정리글·검색 스니펫은 공개 출처로 반영하지 않았다.
+
+| slug | 출처 | DB 회차·방영일 | 상태 | 다음 근거 |
+| --- | --- | --- | --- | --- |
+| saengsaeng-sasang-jurye-suyuk-kalguksu | 2TV 생생정보 | 가격파괴 WHY - 4000원 수육칼국수 / 2017-08-09 | OFFICIAL_SEARCH_NO_RESULT | KBS 회차·영상에서 식당명과 부산 사상구 동일성 |
+| matnyuk-sasang-doejigalbi | 맛있는녀석들 | 부산 돼지갈비 원정대 / 2024-07-17 | OFFICIAL_SEARCH_NO_RESULT | 제작자 공식 회차·영상에서 식당 동일성 |
+| michinmatjip-seogu-sinchang-gukbap | 미친맛집 | 부산 편 / 날짜 없음 | OFFICIAL_SEARCH_NO_RESULT | 넷플릭스·제작자 원천에서 회차와 식당 동일성 |
+| samdae-haeundae-wonjo-halmae-gukbap | 백종원의 3대 천왕 | 회차 없음 / 2016-07-30 | OFFICIAL_SEARCH_NO_RESULT | SBS 공식 회차·영상에서 식당 동일성 |
+| saengbang-gwangalli-sanhae-hoejip | 생방송투데이 | 회차 없음 / 2018-12-04 | OFFICIAL_SEARCH_NO_RESULT | SBS 공식 회차·영상에서 식당 동일성 |
+| wonjo-gaya-milmyeon | 생활의 달인 | 은둔식당 - 가야 밀면 달인 / 2026-05-25 | OFFICIAL_SEARCH_NO_RESULT | SBS 공식 회차·영상에서 식당 동일성 |
+| saengdal-jeonpo-toda-park | 생활의 달인 | 부산 오코노미야키·몬자야키 달인 / 2026-05-04 | OFFICIAL_SEARCH_NO_RESULT | SBS 공식 회차·영상에서 식당 동일성 |
+| saengdal-sasang-peanut-bbangatgan | 생활의달인 | 빵의 전쟁 1026회 부산 소금빵 / 2026-04-13 | OFFICIAL_SEARCH_NO_RESULT | SBS 공식 회차·영상에서 식당 동일성 |
+| saengdal-suyeong-sushibashiku | 생활의달인 | 1027회 오사카에서 온 초밥 달인 / 2026-04-20 | OFFICIAL_SEARCH_NO_RESULT | SBS 공식 회차·영상에서 식당 동일성 |
+| saengdal-suyeong-dongyang-sarada-namcheon | 생활의달인 | 989회 부산 샐러드빵 달인 / 2025-06-30 | OFFICIAL_SEARCH_NO_RESULT | SBS 공식 회차·영상에서 식당 동일성 |
+| saengdal-gwangalli-jin-doejigomtang | 생활의달인 | M슐랭 돼지곰탕 달인 1022회 / 2026-03-23 | OFFICIAL_SEARCH_NO_RESULT | SBS 공식 회차·영상에서 식당 동일성 |
+| saengdal-haeundae-amisan | 생활의달인 | 996회 양수평 대사부 중식 / 2025-08-18 | OFFICIAL_SEARCH_NO_RESULT | SBS 공식 회차·영상에서 식당 동일성 |
+| baekban-seomyeon-masan-sikdang | 식객 허영만의 백반기행 | 맑게 우려낸 국물 깊은 맛의 돼지국밥 336회 / 2026-02-22 | OFFICIAL_SEARCH_NO_RESULT | TV조선 공식 회차·영상에서 식당 동일성 |
+| baekban-yeongdo-jungri-haenyeochon | 식객 허영만의 백반기행 | 부산 속살 맛보러 오이소! 진짜배기 부산 밥상 61회 / 2020-07-24 | OFFICIAL_SEARCH_NO_RESULT | TV조선 공식 회차·영상에서 식당 동일성 |
+| baekban-haeundae-yangs-yanggopchang | 식객 허영만의 백반기행 | 찐 부산인 정우가 알려주는 부산사투리 145회 / 2022-03-25 | OFFICIAL_SEARCH_NO_RESULT | TV조선 공식 회차·영상에서 식당 동일성 |
+| baekban-yeongdo-jinju-sikdang | 식객 허영만의 백반기행 | 부산 속살 맛보러 오이소! 진짜배기 부산 밥상 61회 / 2020-07-24 | OFFICIAL_SEARCH_NO_RESULT | TV조선 공식 회차·영상에서 식당 동일성 |
+| jeonhyun-gijang-haenyeo-halmaejib | 전현무계획3 | 시즌3 부산 기장 해녀촌 편 / 2026-01-09 | OFFICIAL_SEARCH_NO_RESULT | 채널S·제작자 공식 영상에서 식당 동일성 |
+| ddoganjip-pungnyeon-gopchang | 풍자 또간집 | 부산편 / 날짜 없음 | OFFICIAL_SEARCH_NO_RESULT | 제작자 공식 영상에서 식당 동일성 |
+
 ## 감사 기준 교정
 
 - 영상 URL이 존재하는 것만으로 신뢰 출처를 충족으로 보지 않는다.
