@@ -40,6 +40,11 @@ export default function TrustSources({ trustSources }: Props) {
                 출처 보기 →
               </a>
             )}
+            {!v.url && (
+              <span className="ml-auto flex-shrink-0 text-xs text-gray-400">
+                원천 링크 미등록
+              </span>
+            )}
           </li>
         ))}
       </ul>

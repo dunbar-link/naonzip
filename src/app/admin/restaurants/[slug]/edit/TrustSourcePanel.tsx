@@ -89,7 +89,9 @@ function validate(f: FormState): string | null {
   if (date && !isIsoDate(date)) return '확인일은 YYYY-MM-DD 형식이어야 해요.'
   return validatePublicTrustEvidence({
     isPublic: f.is_public,
+    sourceKind: f.source_kind,
     sourceUrl: u,
+    sourceTitle: f.source_title,
     verifiedAt: date,
   })
 }
@@ -190,14 +192,16 @@ export default function TrustSourcePanel({ restaurantId, slug, initial }: Props)
           />
         </div>
         <div>
-          <label className={labelClass}>출처 URL {f.is_public ? '*' : '(선택)'}</label>
+          <label className={labelClass}>
+            출처 URL {f.is_public && f.source_kind !== 'tv' && f.source_kind !== 'youtube' ? '*' : '(선택)'}
+          </label>
           <input
             className={inputClass}
             type="url"
             value={f.source_url}
             disabled={pending}
             onChange={(e) => upd('source_url', e.target.value)}
-            placeholder={f.is_public ? 'https:// (공개 필수)' : 'https:// (비공개 초안은 선택)'}
+            placeholder={f.is_public && (f.source_kind === 'tv' || f.source_kind === 'youtube') ? 'https:// (없으면 링크 미등록 표시)' : 'https://'}
           />
         </div>
         <div>
@@ -266,7 +270,7 @@ export default function TrustSourcePanel({ restaurantId, slug, initial }: Props)
         로컬 추천”처럼 사실 관계만 입력하세요.
       </p>
       <p className="mt-1 text-[11px] leading-relaxed text-gray-500">
-        공개 출처는 원천 URL과 확인일이 모두 있어야 저장됩니다. 아직 확인 전이면 비공개 초안으로 남기세요.
+        공개 출처는 확인일이 필요합니다. 방송·유튜브는 회차/영상 제목이 있으면 URL 없이도 공개할 수 있지만, 상세페이지에 “원천 링크 미등록”으로 표시됩니다. 그 밖의 출처는 URL도 필요합니다.
       </p>
 
       {/* 기존 목록 */}

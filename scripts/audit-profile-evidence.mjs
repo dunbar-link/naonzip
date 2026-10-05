@@ -80,7 +80,7 @@ async function main() {
       source_name: source.source_name,
       has_url: hasUrl ? 'yes' : 'no',
       has_verified_at: hasVerifiedAt ? 'yes' : 'no',
-      status: hasUrl && hasVerifiedAt ? 'READY' : hasUrl ? 'VERIFIED_AT_MISSING' : hasVerifiedAt ? 'SOURCE_URL_MISSING' : 'EVIDENCE_INCOMPLETE',
+      status: hasUrl && hasVerifiedAt ? 'READY' : hasUrl ? 'VERIFIED_AT_MISSING' : hasVerifiedAt && (source.source_kind === 'tv' || source.source_kind === 'youtube') ? 'LINK_UNAVAILABLE' : hasVerifiedAt ? 'SOURCE_URL_MISSING' : 'EVIDENCE_INCOMPLETE',
     }
   })
 
@@ -88,13 +88,15 @@ async function main() {
   const ready = asCount(rows, (row) => row.status === 'READY')
   const missingUrl = asCount(rows, (row) => row.has_url === 'no')
   const missingVerifiedAt = asCount(rows, (row) => row.has_verified_at === 'no')
-  const incomplete = rows.filter((row) => row.status !== 'READY')
+  const linkUnavailable = asCount(rows, (row) => row.status === 'LINK_UNAVAILABLE')
+  const incomplete = rows.filter((row) => row.status === 'VERIFIED_AT_MISSING' || row.status === 'SOURCE_URL_MISSING' || row.status === 'EVIDENCE_INCOMPLETE')
   const summary = {
     public_profiles: restaurants?.length ?? 0,
     profiles_with_public_source: profileIds.size,
     public_source_rows: rows.length,
     ready_source_rows: ready,
     source_url_missing: missingUrl,
+    public_link_unavailable_rows: linkUnavailable,
     verified_at_missing: missingVerifiedAt,
     evidence_incomplete_rows: incomplete.length,
   }
@@ -120,16 +122,17 @@ async function main() {
       `- 공개 프로필: ${summary.public_profiles}`,
       `- 공개 출처 행: ${summary.public_source_rows}`,
       `- URL과 확인일 완결: ${summary.ready_source_rows}`,
-      `- 원천 URL 보완 필요: ${summary.source_url_missing}`,
+      `- 원천 URL 미등록: ${summary.source_url_missing}`,
+      `- 방송·유튜브 공개 링크 미등록(회차/확인일 보존): ${summary.public_link_unavailable_rows}`,
       `- 확인일 보완 필요: ${summary.verified_at_missing}`,
       '',
       '## 보완 큐',
       ...(backlog.length > 0 ? backlog : ['- 없음']),
       '',
       '## 운영 규칙',
-      '- 원천 URL과 확인일이 모두 확인될 때만 공개 출처로 저장한다.',
-      '- 미확인 출처는 사실을 추정하거나 자동 공개하지 않고 비공개 초안 또는 보완 큐로 남긴다.',
-      '- 이 감사의 READY는 URL/날짜 필드 완결 상태이며, 검색 순위·AI 인용·방문·매출 성과가 아니다.',
+      '- 공개 출처에는 확인일이 필요하다. 방송·유튜브는 회차/영상 제목과 확인일이 있으면 URL 없이도 링크 미등록 상태로 공개할 수 있다.',
+      '- 가이드·운영자 확인 등은 URL·확인일이 모두 없으면 공개하지 않는다. 미확인 출처를 사실로 추정하지 않는다.',
+      '- READY는 URL/날짜 필드 완결, LINK_UNAVAILABLE은 공개되지만 원천 링크가 보존되지 않은 상태이며, 어느 쪽도 검색 순위·AI 인용·방문·매출 성과가 아니다.',
       '',
     ].join('\n'),
   )

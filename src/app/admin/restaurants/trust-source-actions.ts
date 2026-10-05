@@ -86,7 +86,9 @@ function buildPayload(
   const isPublic = input.is_public !== false
   const publicEvidenceError = validatePublicTrustEvidence({
     isPublic,
+    sourceKind: input.source_kind,
     sourceUrl,
+    sourceTitle: trimToNull(input.source_title),
     verifiedAt,
   })
   if (publicEvidenceError) return { ok: false, error: publicEvidenceError }

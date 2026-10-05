@@ -1,9 +1,9 @@
 /**
  * 신뢰 출처의 최소 공개 증거 규칙.
  *
- * 공개 노출은 출처명만으로 충분하지 않다. 사용자가 확인할 수 있는 http(s) 원천과
- * 확인일이 함께 있어야 한다. 비공개 초안은 운영자가 검토를 계속할 수 있도록
- * 이 두 값이 비어 있어도 허용한다.
+ * 공개 노출에는 확인일이 필요하다. 원천 URL은 기본으로 요구하되, 방송·유튜브는
+ * 프로그램/영상 출처와 회차 정보가 남아 있으면 링크 미등록 상태를 명시해 공개할 수
+ * 있다. 비공개 초안은 운영자가 검토를 계속할 수 있도록 이 값들이 비어 있어도 허용한다.
  */
 export function isHttpUrl(value: string | null | undefined): boolean {
   if (!value) return false
@@ -21,15 +21,18 @@ export function isIsoDate(value: string | null | undefined): boolean {
 
 export function validatePublicTrustEvidence(input: {
   isPublic: boolean
+  sourceKind: string
   sourceUrl: string | null | undefined
+  sourceTitle: string | null | undefined
   verifiedAt: string | null | undefined
 }): string | null {
   if (!input.isPublic) return null
-  if (!isHttpUrl(input.sourceUrl)) {
-    return '공개 출처는 확인 가능한 http/https 원천 URL이 필요해요. 아직 확인 전이면 공개를 해제하세요.'
-  }
   if (!isIsoDate(input.verifiedAt)) {
     return '공개 출처는 확인일(YYYY-MM-DD)이 필요해요. 아직 확인 전이면 공개를 해제하세요.'
   }
-  return null
+  if (isHttpUrl(input.sourceUrl)) return null
+  const linklessBroadcast = (input.sourceKind === 'tv' || input.sourceKind === 'youtube')
+    && Boolean(input.sourceTitle?.trim())
+  if (linklessBroadcast) return null
+  return '공개 출처는 http/https 원천 URL이 필요해요. 방송·유튜브 출처만 회차/영상 제목과 확인일이 있으면 링크 미등록으로 공개할 수 있어요.'
 }
