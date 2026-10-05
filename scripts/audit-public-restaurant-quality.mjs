@@ -99,10 +99,24 @@ function classifyPhone(r, lk) {
   if (kPhone) return 'PHONE_BACKFILL_READY'
   return 'PHONE_NOT_AVAILABLE'
 }
-function classifyTrust(r, trustCount, hasApp) {
+function isHttpUrl(value) {
+  try {
+    const url = new URL(value)
+    return url.protocol === 'http:' || url.protocol === 'https:'
+  } catch {
+    return false
+  }
+}
+
+function classifyTrust(r, trustCount, hasApp, hasAppearanceLink) {
   if (trustCount > 0) return ''
   if (r.source_type === 'guide') return 'GUIDE_SOURCE_MISSING'
-  if (r.source_type === 'tv' || r.source_type === 'youtube' || r.source_type === 'sns') return hasApp ? 'BROADCAST_SOURCE_MISSING' : 'LEGACY_MANUAL'
+  // A valid appearance video is already a user-visible source trace. Do not
+  // require a duplicate public trust badge merely to satisfy this audit.
+  if (r.source_type === 'tv' || r.source_type === 'youtube' || r.source_type === 'sns') {
+    if (hasAppearanceLink) return ''
+    return hasApp ? 'BROADCAST_SOURCE_MISSING' : 'LEGACY_MANUAL'
+  }
   return 'SOURCE_NOT_REQUIRED_REVIEW'
 }
 function recommend(addrS, coordS, phoneS, trustS) {
@@ -130,12 +144,13 @@ async function main() {
   if (e1) { console.error('FAIL restaurants', e1.message); process.exitCode = 2; return }
   const { data: ts, error: e2 } = await sb.from('restaurant_trust_sources').select('restaurant_id,is_public')
   if (e2) { console.error('FAIL trust_sources', e2.message); process.exitCode = 2; return }
-  const { data: apps, error: e3 } = await sb.from('restaurant_appearances').select('restaurant_id')
+  const { data: apps, error: e3 } = await sb.from('restaurant_appearances').select('restaurant_id,video_url')
   if (e3) { console.error('FAIL appearances', e3.message); process.exitCode = 2; return }
 
   const trustCount = new Map()
   for (const t of ts ?? []) if (t.is_public) trustCount.set(t.restaurant_id, (trustCount.get(t.restaurant_id) ?? 0) + 1)
   const hasApp = new Set((apps ?? []).map((a) => a.restaurant_id))
+  const hasAppearanceLink = new Set((apps ?? []).filter((a) => isHttpUrl(a.video_url)).map((a) => a.restaurant_id))
 
   console.log(`공개 식당 ${pub.length}곳 Kakao 대조 시작...`)
   const rows = []
@@ -150,7 +165,7 @@ async function main() {
     const addrS = classifyAddress(r, lk)
     const coordS = classifyCoord(r, lk)
     const phoneS = classifyPhone(r, lk)
-    const trustS = classifyTrust(r, tc, hasApp.has(r.id))
+    const trustS = classifyTrust(r, tc, hasApp.has(r.id), hasAppearanceLink.has(r.id))
     const [action, priority] = recommend(addrS, coordS, phoneS, trustS)
     const note = []
     if (lk.matched === 'name') note.push('Kakao 검색 id≠db_place_id(이름매칭)')

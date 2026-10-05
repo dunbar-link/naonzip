@@ -2,10 +2,10 @@
 
 - 성격: DB SELECT만 수행한 read-only 감사. 외부 URL 요청·DB 수정·공개 전환·배포는 하지 않음.
 - 공개 프로필: 140
-- 공개 출처 행: 143
+- 공개 출처 행: 142
 - URL과 확인일 완결: 84
-- 원천 URL 보완 필요: 59
-- 확인일 보완 필요: 1
+- 원천 URL 보완 필요: 58
+- 확인일 보완 필요: 0
 
 ## 보완 큐
 - postoffice-busanjin-yeon-dwaeji-gukbap (연돼지국밥) · guide/우체국 추천 맛집가이드 2026 · SOURCE_URL_MISSING
@@ -57,7 +57,6 @@
 - postoffice-gangseo-bogone (복오네) · guide/우체국 추천 맛집가이드 2026 · SOURCE_URL_MISSING
 - matnyuk-sasang-doejigalbi (시골집명품석갈비) · tv/맛있는녀석들 · SOURCE_URL_MISSING
 - postoffice-haeundae-songjeong-hoetjip (송정횟집) · guide/우체국 추천 맛집가이드 2026 · SOURCE_URL_MISSING
-- 2tv-sasang-yeonghui-halmae-jaecheopguk (할매재첩국) · operator/운영자 확인 · EVIDENCE_INCOMPLETE
 - postoffice-yeongdo-bongnae-hwaro (봉래화로) · guide/우체국 추천 맛집가이드 2026 · SOURCE_URL_MISSING
 - postoffice-saha-namhae-boribap (남해영양보리밥) · guide/우체국 추천 맛집가이드 2026 · SOURCE_URL_MISSING
 - postoffice-saha-haeju-naengmyeon (해주냉면) · guide/우체국 추천 맛집가이드 2026 · SOURCE_URL_MISSING
