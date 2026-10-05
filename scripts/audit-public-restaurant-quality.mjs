@@ -167,7 +167,7 @@ async function main() {
   if (e1) { console.error('FAIL restaurants', e1.message); process.exitCode = 2; return }
   const { data: ts, error: e2 } = await sb.from('restaurant_trust_sources').select('restaurant_id,is_public')
   if (e2) { console.error('FAIL trust_sources', e2.message); process.exitCode = 2; return }
-  const { data: apps, error: e3 } = await sb.from('restaurant_appearances').select('restaurant_id,video_url')
+  const { data: apps, error: e3 } = await sb.from('restaurant_appearances').select('restaurant_id,program_name,video_url')
   if (e3) { console.error('FAIL appearances', e3.message); process.exitCode = 2; return }
 
   const trustCount = new Map()
