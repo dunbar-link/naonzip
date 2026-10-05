@@ -19,7 +19,16 @@ import { dirname, join } from 'node:path'
 
 const here = dirname(fileURLToPath(import.meta.url))
 // --no-report: DB 조회/판정/콘솔 summary 는 그대로, reports/data-quality 파일 생성만 스킵(검증용).
-const NO_REPORT = process.argv.slice(2).includes('--no-report')
+const args = process.argv.slice(2)
+const NO_REPORT = args.includes('--no-report')
+const integerArg = (name) => {
+  const index = args.indexOf(name)
+  if (index === -1) return null
+  const value = Number.parseInt(args[index + 1], 10)
+  return Number.isInteger(value) && value >= 0 ? value : NaN
+}
+const OFFSET = integerArg('--offset') ?? 0
+const LIMIT = integerArg('--limit')
 function loadEnv() {
   let raw; try { raw = readFileSync(join(here, '..', '.env.local'), 'utf8') } catch { return }
   for (const line of raw.split(/\r?\n/)) {
@@ -108,11 +117,20 @@ function isHttpUrl(value) {
   }
 }
 
+function hasMatchedAppearanceLink(r, appearancesByRestaurant) {
+  const source = norm(r.source_title)
+  if (!source) return false
+  return (appearancesByRestaurant.get(r.id) ?? []).some((appearance) =>
+    isHttpUrl(appearance.video_url) && norm(appearance.program_name) === source,
+  )
+}
+
 function classifyTrust(r, trustCount, hasApp, hasAppearanceLink) {
   if (trustCount > 0) return ''
   if (r.source_type === 'guide') return 'GUIDE_SOURCE_MISSING'
-  // A valid appearance video is already a user-visible source trace. Do not
-  // require a duplicate public trust badge merely to satisfy this audit.
+  // A video URL is evidence only when its appearance program exactly matches
+  // the restaurant's declared source title. An arbitrary appearance link must
+  // not satisfy a missing public-source check.
   if (r.source_type === 'tv' || r.source_type === 'youtube' || r.source_type === 'sns') {
     if (hasAppearanceLink) return ''
     return hasApp ? 'BROADCAST_SOURCE_MISSING' : 'LEGACY_MANUAL'
@@ -133,6 +151,11 @@ function recommend(addrS, coordS, phoneS, trustS) {
 }
 
 async function main() {
+  if (!Number.isFinite(OFFSET) || (LIMIT !== null && !Number.isFinite(LIMIT))) {
+    console.error('FAIL: --offset/--limit은 0 이상의 정수여야 합니다.')
+    process.exitCode = 2
+    return
+  }
   loadEnv()
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL, key = process.env.SUPABASE_SERVICE_ROLE_KEY, kakaoKey = process.env.KAKAO_REST_API_KEY
   console.log(`env: SUPABASE_URL ${url ? '✓' : '✗'}, SERVICE_ROLE_KEY ${key ? '✓' : '✗'}, KAKAO_REST_API_KEY ${kakaoKey ? '✓' : '✗'}`)
@@ -140,7 +163,7 @@ async function main() {
   if (!kakaoKey) { console.error('FAIL: KAKAO_REST_API_KEY 없음'); process.exitCode = 2; return }
   const sb = createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } })
 
-  const { data: pub, error: e1 } = await sb.from('restaurants').select('id,slug,name,area,category,address,phone,lat,lng,kakao_map_url,source_type').eq('is_published', true).order('slug')
+  const { data: pub, error: e1 } = await sb.from('restaurants').select('id,slug,name,area,category,address,phone,lat,lng,kakao_map_url,source_type,source_title').eq('is_published', true).order('slug')
   if (e1) { console.error('FAIL restaurants', e1.message); process.exitCode = 2; return }
   const { data: ts, error: e2 } = await sb.from('restaurant_trust_sources').select('restaurant_id,is_public')
   if (e2) { console.error('FAIL trust_sources', e2.message); process.exitCode = 2; return }
@@ -150,12 +173,18 @@ async function main() {
   const trustCount = new Map()
   for (const t of ts ?? []) if (t.is_public) trustCount.set(t.restaurant_id, (trustCount.get(t.restaurant_id) ?? 0) + 1)
   const hasApp = new Set((apps ?? []).map((a) => a.restaurant_id))
-  const hasAppearanceLink = new Set((apps ?? []).filter((a) => isHttpUrl(a.video_url)).map((a) => a.restaurant_id))
+  const appearancesByRestaurant = new Map()
+  for (const appearance of apps ?? []) {
+    const existing = appearancesByRestaurant.get(appearance.restaurant_id) ?? []
+    existing.push(appearance)
+    appearancesByRestaurant.set(appearance.restaurant_id, existing)
+  }
 
-  console.log(`공개 식당 ${pub.length}곳 Kakao 대조 시작...`)
+  const auditTargets = pub.slice(OFFSET, LIMIT === null ? undefined : OFFSET + LIMIT)
+  console.log(`공개 식당 ${pub.length}곳 중 ${OFFSET}..${OFFSET + auditTargets.length - 1} (${auditTargets.length}곳) Kakao 대조 시작...`)
   const rows = []
   let done = 0
-  for (const r of pub) {
+  for (const r of auditTargets) {
     const dbPlaceId = extractPlaceId(r.kakao_map_url)
     const gu = extractGu(r.address)
     let lk = { matched: null }
@@ -165,7 +194,7 @@ async function main() {
     const addrS = classifyAddress(r, lk)
     const coordS = classifyCoord(r, lk)
     const phoneS = classifyPhone(r, lk)
-    const trustS = classifyTrust(r, tc, hasApp.has(r.id), hasAppearanceLink.has(r.id))
+    const trustS = classifyTrust(r, tc, hasApp.has(r.id), hasMatchedAppearanceLink(r, appearancesByRestaurant))
     const [action, priority] = recommend(addrS, coordS, phoneS, trustS)
     const note = []
     if (lk.matched === 'name') note.push('Kakao 검색 id≠db_place_id(이름매칭)')
@@ -180,7 +209,7 @@ async function main() {
       trust_source_status: trustS, recommended_action: action, priority, notes: note.join(' / '),
     })
     done += 1
-    if (done % 25 === 0) console.log(`  ...${done}/${pub.length}`)
+    if (done % 25 === 0) console.log(`  ...${done}/${auditTargets.length}`)
   }
 
   // 집계
@@ -188,6 +217,7 @@ async function main() {
   const addrT = tally('address_status'), coordT = tally('coordinate_status'), phoneT = tally('phone_status'), trustT = tally('trust_source_status'), priT = tally('priority'), actT = tally('recommended_action')
 
   console.log('\n=== 공개 식당 품질 감사 요약 ===')
+  console.log(`감사 범위: ${OFFSET}..${OFFSET + auditTargets.length - 1} / 전체 ${pub.length}`)
   console.log(`공개 식당: ${rows.length}`)
   console.log(`address_status: ${JSON.stringify(addrT)}`)
   console.log(`coordinate_status: ${JSON.stringify(coordT)}`)
@@ -198,6 +228,12 @@ async function main() {
 
   if (NO_REPORT) {
     console.log('\n(--no-report) reports/data-quality 파일 생성/수정 스킵 — 콘솔 summary 만.')
+    return
+  }
+
+  if (OFFSET !== 0 || auditTargets.length !== pub.length) {
+    console.error('FAIL: 부분 감사는 --no-report로만 실행할 수 있습니다. 전체 리포트를 덮어쓰지 않았습니다.')
+    process.exitCode = 2
     return
   }
 
