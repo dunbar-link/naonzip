@@ -16,6 +16,15 @@ import { resolveSourceBadges, sourceToneClass, toDisplayLabel } from '@/lib/sour
 
 const SITE_URL = 'https://naonzip.vercel.app'
 
+// 운영 DB를 변경하지 않고, 공개 원천과 항목별 사실 대조가 끝난 프로필만 연결한다.
+// 새 항목은 원천 URL과 현재 공개 프로필의 이름·주소·방영 정보를 먼저 대조한 뒤 추가한다.
+const VERIFIED_OFFICIAL_SOURCE_BY_SLUG: Record<string, { name: string; url: string }> = {
+  '2tv-haeundae-sundori-boribap': {
+    name: 'KBS 2TV 생생정보 방송 정보',
+    url: 'https://iaudience.kbs.co.kr/broadcast/11290',
+  },
+}
+
 export const revalidate = 3600
 
 function getContentLabel(r: { creatorName?: string; programName?: string; sourceTitle: string }): string {
@@ -94,6 +103,7 @@ function toAbsoluteUrl(value: string): string {
 function buildRestaurantJsonLd(r: Restaurant): Record<string, unknown> {
   const url = `${SITE_URL}/restaurants/${r.slug}`
   const description = buildDescription(r)
+  const officialSource = VERIFIED_OFFICIAL_SOURCE_BY_SLUG[r.slug]
 
   const servesCuisine = Array.from(
     new Set([r.category, r.mainMenu].filter((v): v is string => Boolean(v))),
@@ -113,11 +123,11 @@ function buildRestaurantJsonLd(r: Restaurant): Record<string, unknown> {
   //   이 사이트 성격상 신뢰 가능한 값을 채울 수 없어(더미 금지) 항상 CreativeWork 로 통일한다.
   //   videoUrl 은 CreativeWork.url + Restaurant.sameAs 로 연결이 유지된다.
   let subjectOf: Record<string, unknown> | undefined
-  if (r.videoUrl || r.programName || r.episodeTitle || r.broadcastDate) {
+  if (r.videoUrl || officialSource || r.programName || r.episodeTitle || r.broadcastDate) {
     subjectOf = {
       '@type': 'CreativeWork',
       name: r.episodeTitle ?? r.programName ?? r.creatorName ?? r.sourceTitle,
-      ...(r.videoUrl && { url: r.videoUrl }),
+      ...((r.videoUrl || officialSource) && { url: r.videoUrl ?? officialSource?.url }),
       ...(r.broadcastDate && { datePublished: r.broadcastDate }),
     }
   }
@@ -246,6 +256,7 @@ export default async function RestaurantDetailPage({ params }: Props) {
 
   const pageUrl = `${SITE_URL}/restaurants/${restaurant.slug}`
   const jsonLd = buildRestaurantJsonLd(restaurant)
+  const officialSource = VERIFIED_OFFICIAL_SOURCE_BY_SLUG[restaurant.slug]
   const isYoutubeCreator =
     restaurant.sourceType === 'youtube' && !!restaurant.creatorName
   const creatorSlug = isYoutubeCreator
@@ -456,7 +467,7 @@ export default async function RestaurantDetailPage({ params }: Props) {
           </span>
         </div>
 
-        {(restaurant.videoUrl || programHref) && (
+        {(restaurant.videoUrl || officialSource || programHref) && (
           <div className="mt-3 flex flex-col gap-2">
             {restaurant.videoUrl && (
               <a
@@ -466,6 +477,16 @@ export default async function RestaurantDetailPage({ params }: Props) {
                 className="text-sm text-red-500 font-semibold underline underline-offset-2"
               >
                 유튜브에서 영상 보기 →
+              </a>
+            )}
+            {officialSource && (
+              <a
+                href={officialSource.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-orange-500 font-semibold underline underline-offset-2"
+              >
+                {officialSource.name} 확인 →
               </a>
             )}
             {programHref && (
