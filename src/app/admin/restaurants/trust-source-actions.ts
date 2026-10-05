@@ -15,6 +15,7 @@ import { revalidatePath } from 'next/cache'
 import { getSupabaseAdminClient } from '@/lib/supabase-admin'
 import { ADMIN_COOKIE_NAME, verifyAdminSessionToken } from '@/lib/admin-auth'
 import { TRUST_SOURCE_KINDS, type TrustSourceKind } from '@/types/supabase'
+import { isHttpUrl, isIsoDate, validatePublicTrustEvidence } from '@/lib/trust-source-validation'
 
 type Result = { ok: true } | { ok: false; error: string }
 
@@ -38,17 +39,6 @@ function trimToNull(v: unknown): string | null {
 
 function isValidKind(s: unknown): s is TrustSourceKind {
   return typeof s === 'string' && (TRUST_SOURCE_KINDS as readonly string[]).includes(s)
-}
-
-/** 비어 있으면 OK, 있으면 http/https URL 만 허용. */
-function isValidOptionalHttpUrl(v: string | null): boolean {
-  if (!v) return true
-  try {
-    const u = new URL(v)
-    return u.protocol === 'http:' || u.protocol === 'https:'
-  } catch {
-    return false
-  }
 }
 
 async function isAuthed(): Promise<boolean> {
@@ -86,13 +76,20 @@ function buildPayload(
     return { ok: false, error: '출처명(source_name)을 입력하세요.' }
   }
   const sourceUrl = trimToNull(input.source_url)
-  if (!isValidOptionalHttpUrl(sourceUrl)) {
+  if (sourceUrl && !isHttpUrl(sourceUrl)) {
     return { ok: false, error: '출처 URL은 http/https 형식이어야 해요. (비워두면 생략됩니다)' }
   }
   const verifiedAt = trimToNull(input.verified_at)
-  if (verifiedAt && !/^\d{4}-\d{2}-\d{2}$/.test(verifiedAt)) {
+  if (verifiedAt && !isIsoDate(verifiedAt)) {
     return { ok: false, error: '확인일(verified_at)은 YYYY-MM-DD 형식이어야 해요.' }
   }
+  const isPublic = input.is_public !== false
+  const publicEvidenceError = validatePublicTrustEvidence({
+    isPublic,
+    sourceUrl,
+    verifiedAt,
+  })
+  if (publicEvidenceError) return { ok: false, error: publicEvidenceError }
   return {
     ok: true,
     payload: {
@@ -103,7 +100,7 @@ function buildPayload(
       source_note: trimToNull(input.source_note),
       trust_label: trimToNull(input.trust_label),
       verified_at: verifiedAt,
-      is_public: input.is_public !== false, // 기본 공개(true)
+      is_public: isPublic, // 기본 공개(true)
     },
   }
 }

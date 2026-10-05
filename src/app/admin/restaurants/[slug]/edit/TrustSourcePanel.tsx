@@ -13,6 +13,11 @@ import {
   deleteTrustSource,
   type TrustSourceInput,
 } from '../../trust-source-actions'
+import {
+  isHttpUrl,
+  isIsoDate,
+  validatePublicTrustEvidence,
+} from '@/lib/trust-source-validation'
 
 const KIND_LABELS: Record<TrustSourceKind, string> = {
   tv: '방송(TV)',
@@ -77,17 +82,16 @@ function toInput(f: FormState): TrustSourceInput {
 function validate(f: FormState): string | null {
   if (!f.source_name.trim()) return '출처명을 입력하세요.'
   const u = f.source_url.trim()
-  if (u) {
-    try {
-      const parsed = new URL(u)
-      if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
-        return '출처 URL은 http/https 형식이어야 해요.'
-      }
-    } catch {
-      return '출처 URL은 http/https 형식이어야 해요.'
-    }
+  if (u && !isHttpUrl(u)) {
+    return '출처 URL은 http/https 형식이어야 해요.'
   }
-  return null
+  const date = f.verified_at.trim()
+  if (date && !isIsoDate(date)) return '확인일은 YYYY-MM-DD 형식이어야 해요.'
+  return validatePublicTrustEvidence({
+    isPublic: f.is_public,
+    sourceUrl: u,
+    verifiedAt: date,
+  })
 }
 
 const inputClass =
@@ -186,14 +190,14 @@ export default function TrustSourcePanel({ restaurantId, slug, initial }: Props)
           />
         </div>
         <div>
-          <label className={labelClass}>출처 URL (선택)</label>
+          <label className={labelClass}>출처 URL {f.is_public ? '*' : '(선택)'}</label>
           <input
             className={inputClass}
             type="url"
             value={f.source_url}
             disabled={pending}
             onChange={(e) => upd('source_url', e.target.value)}
-            placeholder="https:// (비워둬도 됨)"
+            placeholder={f.is_public ? 'https:// (공개 필수)' : 'https:// (비공개 초안은 선택)'}
           />
         </div>
         <div>
@@ -216,7 +220,7 @@ export default function TrustSourcePanel({ restaurantId, slug, initial }: Props)
           />
         </div>
         <div>
-          <label className={labelClass}>확인일 (verified_at, 선택)</label>
+          <label className={labelClass}>확인일 {f.is_public ? '(필수)' : '(선택)'}</label>
           <input
             className={inputClass}
             type="date"
@@ -260,6 +264,9 @@ export default function TrustSourcePanel({ restaurantId, slug, initial }: Props)
       <p className="mt-1 rounded-md bg-amber-50 px-2 py-1.5 text-[11px] leading-relaxed text-amber-700">
         “검증 완료 · 최고 · 믿을 수 있는” 같은 과장 표현은 피하고, “가이드 수록 · 운영자 확인 ·
         로컬 추천”처럼 사실 관계만 입력하세요.
+      </p>
+      <p className="mt-1 text-[11px] leading-relaxed text-gray-500">
+        공개 출처는 원천 URL과 확인일이 모두 있어야 저장됩니다. 아직 확인 전이면 비공개 초안으로 남기세요.
       </p>
 
       {/* 기존 목록 */}
