@@ -1,9 +1,9 @@
 slug,name,source_kind,source_name,has_url,has_verified_at,status
 jeonhyun-gwangalli-biwa-suljan,비와술잔,youtube,전현무계획2,yes,yes,READY
-postoffice-busanjin-yeon-dwaeji-gukbap,연돼지국밥,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
-postoffice-busanjin-jobang-nakji-gaya,조방낙지 가야점,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
-postoffice-geumjeong-daebak-son-kalguksu,대박손칼국수,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
-postoffice-yeongdo-uri-imojip,우리이모집,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-busanjin-yeon-dwaeji-gukbap,연돼지국밥,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
+postoffice-busanjin-jobang-nakji-gaya,조방낙지 가야점,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
+postoffice-geumjeong-daebak-son-kalguksu,대박손칼국수,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
+postoffice-yeongdo-uri-imojip,우리이모집,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 baekban-seomyeon-marathon-jib,마라톤집,tv,식객 허영만의 백반기행,yes,yes,READY
 michinmatjip-seogu-sinchang-gukbap,신창국밥 본점,tv,미친맛집,no,yes,SOURCE_URL_MISSING
 sokssiwonhan-daegutang-haeundae,속씨원한 대구탕 해운대 본점,tv,맛있는녀석들,yes,yes,READY
@@ -14,10 +14,10 @@ saengdal-namgu-daeyeon-milmyeon,대연밀면,tv,생활의달인,yes,yes,READY
 live-today-donggu-halme-gimbap,할매김밥,tv,생방송 투데이,yes,yes,READY
 kimyusun-daegu-bbol-jjim,김유순대구뽈찜전문점,guide,2026 부산의 맛,yes,yes,READY
 iganae-tteokbokki,이가네떡볶이 본점,tv,백종원의 3대천왕,yes,yes,READY
-postoffice-gangseo-gogwigwan,고귀관,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-gangseo-gogwigwan,고귀관,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 michinmatjip-dongnae-seungha-jip,승하집,tv,미친맛집: 미식가 친구의 맛집,yes,yes,READY
 live-today-samjin-eomuk,삼진어묵 본점,tv,생방송 투데이,yes,yes,READY
-postoffice-bukgu-babo-eomma-kalguksu,바보엄마칼국수,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-bukgu-babo-eomma-kalguksu,바보엄마칼국수,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 hibab-cheongsa-hoe-center,청사포 도희네 조개구이,youtube,히밥,yes,yes,READY
 bapsang-gijang-haebyeon-jipbul-gomjangeo,해변짚불곰장어,guide,2026 부산의 맛,yes,yes,READY
 2tv-gwangan-kuromatsu,구로마쯔,tv,2TV 생생정보,yes,yes,READY
@@ -25,29 +25,29 @@ saengdal-sasang-peanut-bbangatgan,피넛빵앗간,tv,생활의달인,no,yes,SOUR
 baekban-dongnae-pajeon,동래할매파전,tv,백반기행,yes,yes,READY
 tzuyang-nampo-ijaemo-pizza,이재모피자 본점,local,비짓부산,yes,yes,READY
 tzuyang-nampo-ijaemo-pizza,이재모피자 본점,guide,2026 부산의 맛,yes,yes,READY
-postoffice-bukgu-chen-china,첸차이나,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-bukgu-chen-china,첸차이나,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 saengdal-bukgu-shunsaikubo,슌사이쿠보 화명,tv,생활의달인,yes,yes,READY
 saengbang-gwangalli-sanhae-hoejip,산해횟집,tv,생방송투데이,no,yes,SOURCE_URL_MISSING
-postoffice-bukgu-geumyong-mandu,금용만두,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-bukgu-geumyong-mandu,금용만두,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 jeonhyun-gijang-haenyeo-halmaejib,5번 친구해녀할매집,tv,전현무계획3,no,yes,SOURCE_URL_MISSING
-postoffice-gwangalli-geumgang-bokagu,금강 복아구전문점,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-gwangalli-geumgang-bokagu,금강 복아구전문점,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 2tv-haeundae-sundori-boribap,순돌이 보리밥,tv,2TV 생생정보,yes,yes,READY
-postoffice-dongnae-milmyeon,동래밀면,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-dongnae-milmyeon,동래밀면,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 ansungjae-yeonje-mapobonga,마포본가,youtube,안성재 셰프 유튜브,yes,yes,READY
-postoffice-dongnae-yeongnam-sigyuk,영남식육식당 동래점,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-dongnae-yeongnam-sigyuk,영남식육식당 동래점,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 baekban-namgu-chossijib,궁중해물탕 조씨집 대연본점,tv,식객 허영만의 백반기행,yes,yes,READY
 baekban-nampo-18-wandang,18번완당집,tv,식객 허영만의 백반기행,yes,yes,READY
 sungsik-seomyeon-yanggopchang,문화양곱창,youtube,먹을텐데,yes,yes,READY
 hoeguksu-halmaejip,회국수할매집,tv,식객 허영만의 백반기행,yes,yes,READY
 tzuyang-seomyeon-dongchuni-mandu,동춘이만두,youtube,쯔양,yes,yes,READY
-postoffice-gangseo-gonghang-jokbal,공항족발,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-gangseo-gonghang-jokbal,공항족발,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 ddoganjip-pungnyeon-gopchang,풍년곱창,youtube,풍자 또간집,no,yes,SOURCE_URL_MISSING
-postoffice-bukgu-anakchon,아낙촌,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
-postoffice-haeundae-bian-rian,비안리안,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-bukgu-anakchon,아낙촌,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
+postoffice-haeundae-bian-rian,비안리안,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 saengdal-geumjeong-songs-bakery,송스 베이커리,tv,생활의달인,yes,yes,READY
 jeonhyun-gwangalli-yeonhap-hoejip,연합횟집,tv,전현무계획2,yes,yes,READY
 wonjo-gaya-milmyeon,원조가야밀면,tv,생활의 달인,no,yes,SOURCE_URL_MISSING
-postoffice-gangseo-ogi-gamjatang,옥이감자탕,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-gangseo-ogi-gamjatang,옥이감자탕,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 subyeon-choego-doejigukbap-minrak,수변최고돼지국밥 민락본점,tv,수요미식회,yes,yes,READY
 saengdal-haeundae-amisan,아미산,tv,생활의달인,no,yes,SOURCE_URL_MISSING
 jeonhyun-nampo-yeosongje,여송제,tv,전현무계획2,yes,yes,READY
@@ -58,17 +58,17 @@ hanyakbang-gukbap-hyeongje-food,한약방돼지국밥 형제식품,tv,전현무�
 tzuyang-haeundae-ppalgan-tteokbokki,빨간떡볶이,youtube,쯔양,yes,yes,READY
 saengdal-gijang-jeil-bunsik,제일분식,tv,생활의달인,yes,yes,READY
 pungja-namgu-hapcheon-gukbap,합천국밥집,youtube,또간집,yes,yes,READY
-postoffice-gijang-haenyeo-jossi-halmaejip,해녀조씨할매집,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
-postoffice-yeonje-keunbawi-hoetjip,큰바위횟집,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-gijang-haenyeo-jossi-halmaejip,해녀조씨할매집,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
+postoffice-yeonje-keunbawi-hoetjip,큰바위횟집,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 2tv-gumjeong-geumjukheon,금죽헌 금정산성점,tv,2TV 생생정보,yes,yes,READY
-postoffice-gangseo-juhwa-hoetjip,주화횟집,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-gangseo-juhwa-hoetjip,주화횟집,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 baekban-seomyeon-masan-sikdang,마산식당,tv,식객 허영만의 백반기행,no,yes,SOURCE_URL_MISSING
-postoffice-geumjeong-bukmun-guksu,북문국수,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-geumjeong-bukmun-guksu,북문국수,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 sungsik-gaegeum-milmyeon,개금 밀면 본점,youtube,먹을텐데,yes,yes,READY
-postoffice-haeundae-haseonjip,해운대 하선집,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-haeundae-haseonjip,해운대 하선집,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 pungja-nampo-milyangjib,밀양집,youtube,또간집,yes,yes,READY
 tzuyang-yeonje-yeonji-yanggopchang,연지가양곱창,youtube,쯔양,yes,yes,READY
-postoffice-suyeong-hwangnyeongsan-bossam,황령산 보쌈,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-suyeong-hwangnyeongsan-bossam,황령산 보쌈,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 saengdal-suyeong-sushibashiku,스시바시쿠,tv,생활의달인,no,yes,SOURCE_URL_MISSING
 tzuyang-gangseo-samseong-galmijogae,삼성갈미조개,youtube,쯔양,yes,yes,READY
 michelin-bukgu-pyeongyangjip,평양집,guide,미쉐린 가이드 부산 2026,yes,yes,READY
@@ -77,18 +77,18 @@ naeho-naengmyeon,내호냉면,tv,맛있는녀석들,yes,yes,READY
 oneuln-nampo-sammi-jip,삼미집,tv,오늘N,yes,yes,READY
 tzuyang-yeongdo-dongsamdong-buljjampong,동삼동불짬뽕,youtube,쯔양,yes,yes,READY
 matnyuk-seomyeon-songjeong-3dae-gukbap,송정3대국밥,tv,맛있는녀석들,yes,yes,READY
-postoffice-gijang-gamasot-saengbok,가마솥생복집,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
-postoffice-sasang-bapjitneun-bueok,밥짓는부엌 한식뷔페,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-gijang-gamasot-saengbok,가마솥생복집,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
+postoffice-sasang-bapjitneun-bueok,밥짓는부엌 한식뷔페,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 baekban-yeonje-godeungeo-datchi,고등어다찌 연산본점,guide,2026 부산의 맛,yes,yes,READY
 saengdal-ssangdungyi-doejigukbap,쌍둥이돼지국밥 본점,guide,2026 부산의 맛,yes,yes,READY
 tzuyang-yeongdo-dongbang-milmyeon,동방밀면,youtube,쯔양,yes,yes,READY
 baekban-yeongdo-gamasot-doejigukbap,가마솥돼지국밥 영도점,tv,식객 허영만의 백반기행,yes,yes,READY
-postoffice-bukgu-yungane-san-ojingeo,윤가네산오징어,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
-postoffice-gijang-hanyang-hoetjip,한양횟집,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-bukgu-yungane-san-ojingeo,윤가네산오징어,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
+postoffice-gijang-hanyang-hoetjip,한양횟집,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 saengdal-haeundae-missaem-ssalbbang,미쌤쌀빵,tv,생활의달인,yes,yes,READY
 saengdal-suyeong-dongyang-sarada-namcheon,동양사라다 남천본점,tv,생활의달인,no,yes,SOURCE_URL_MISSING
 sungsik-gwangalli-haejin-anago,해진아나고,youtube,성시경,yes,yes,READY
-postoffice-yeonje-palpal-jangeo,팔팔연제장어,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-yeonje-palpal-jangeo,팔팔연제장어,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 michinmatjip-saha-yeongseongbang,영성방,tv,미친맛집: 미식가 친구의 맛집,yes,yes,READY
 samdae-seomyeon-gijang-son-kalguksu,기장손칼국수,tv,백종원의 3대 천왕,yes,yes,READY
 baekban-seogu-yetnal-guksujip,옛날국수집,tv,식객 허영만의 백반기행,yes,yes,READY
@@ -97,8 +97,8 @@ saengdal-yeongdo-sato-bunsik,사또분식,tv,생활의달인,yes,yes,READY
 saengsaeng-sasang-jurye-suyuk-kalguksu,주례수육칼국수 2호점,tv,2TV 생생정보,no,yes,SOURCE_URL_MISSING
 michelin-gwangalli-songheonjip,송헌집,guide,미쉐린 가이드 부산 2026,yes,yes,READY
 mulkkong-sikdang,물꽁식당,guide,2026 부산의 맛,yes,yes,READY
-postoffice-haeundae-banggalo-kkeutjip,방갈로끝집,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
-postoffice-donggu-maparam-haemul,마파람해물찜해물탕,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-haeundae-banggalo-kkeutjip,방갈로끝집,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
+postoffice-donggu-maparam-haemul,마파람해물찜해물탕,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 jeonhyun-yeongdo-watda-sikdang,왔다식당,tv,전현무계획2,yes,yes,READY
 tzuyang-gwangalli-darijip,다리집,youtube,쯔양,yes,yes,READY
 2tv-bupyeong-kkang-dwaehu,깡돼후,tv,2TV 생생정보,yes,yes,READY
@@ -108,13 +108,13 @@ baekban-haeundae-yangs-yanggopchang,양가네 양곱창,tv,식객 허영만의 �
 baekban-yeongdo-jungri-haenyeochon,영도 중리해녀촌,tv,식객 허영만의 백반기행,no,yes,SOURCE_URL_MISSING
 michinmatjip-jung-seomjingang-jaecheop,섬진강재첩전문점,tv,미친맛집: 미식가 친구의 맛집,yes,yes,READY
 tzuyang-haeundae-chopilsal,초필살돼지구이 해운대본점,youtube,쯔양,yes,yes,READY
-postoffice-sasang-sunpung-samgyetang,순풍삼계탕,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-sasang-sunpung-samgyetang,순풍삼계탕,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 saengdal-yeonje-gukje-milmyeon,국제밀면 본점,guide,2026 부산의 맛,yes,yes,READY
 tzuyang-haeundae-sanggukine,상국이네,youtube,쯔양,yes,yes,READY
 saengdal-gwangalli-jin-doejigomtang,진돼지곰탕,tv,생활의달인,no,yes,SOURCE_URL_MISSING
 saengdal-gijang-ilgwangdang,일광당,tv,생활의달인,yes,yes,READY
 baekban-yeongdo-jinju-sikdang,진주식당,tv,식객 허영만의 백반기행,no,yes,SOURCE_URL_MISSING
-postoffice-gangseo-bogone,복오네,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-gangseo-bogone,복오네,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 ddoganjip-gwangalli-samo-bulgogi,삼오불고기,youtube,또간집,yes,yes,READY
 matnyuk-sasang-doejigalbi,시골집명품석갈비,tv,맛있는녀석들,no,yes,SOURCE_URL_MISSING
 baekhwa-yanggopchang-1ho,백화양곱창 1호,youtube,쯔양,yes,yes,READY
@@ -123,21 +123,21 @@ saengdal-gwangalli-baegil-pyeongnaeng,백일평냉,guide,미쉐린 가이드,yes
 samdaecheonwang-shinbalwon,신발원,guide,2026 부산의 맛,yes,yes,READY
 hibab-haeundae-amsogalbi,해운대 암소갈비집,local,비짓부산,yes,yes,READY
 hibab-haeundae-amsogalbi,해운대 암소갈비집,guide,미쉐린 가이드,yes,yes,READY
-postoffice-haeundae-songjeong-hoetjip,송정횟집,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-haeundae-songjeong-hoetjip,송정횟집,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 saengdal-gwangalli-boulangerie-lassence,블랑제리 라센,tv,생활의 달인,yes,yes,READY
 saengdal-saha-cheramie,쉐라미과자점,tv,생활의달인,yes,yes,READY
 jeonhyun-nampo-mullebanga-jeukseokgui,물레방아 즉석구이,youtube,전현무계획2,yes,yes,READY
-postoffice-yeongdo-bongnae-hwaro,봉래화로,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
-postoffice-saha-namhae-boribap,남해영양보리밥,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
-postoffice-saha-haeju-naengmyeon,해주냉면,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
-postoffice-busanjin-simcheongi-wang-jokbal,심청이왕족발,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
-postoffice-saha-hwaban,화반,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-yeongdo-bongnae-hwaro,봉래화로,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
+postoffice-saha-namhae-boribap,남해영양보리밥,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
+postoffice-saha-haeju-naengmyeon,해주냉면,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
+postoffice-busanjin-simcheongi-wang-jokbal,심청이왕족발,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
+postoffice-saha-hwaban,화반,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 saengdal-seomyeon-dammiok,담미옥,guide,미쉐린 가이드,yes,yes,READY
-postoffice-nampodong-doenjang-hansang,된장한상,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
-postoffice-sasang-suyeonine,수연이네,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-nampodong-doenjang-hansang,된장한상,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
+postoffice-sasang-suyeonine,수연이네,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 saengdal-centum-bulbaek-gosurak,불백고수락 센텀본점,tv,생활의 달인,yes,yes,READY
 sungsik-gwangalli-geumson-1983,금손1983,youtube,성시경의 먹을텐데,yes,yes,READY
 tzuyang-nampo-ssiat-hotteok,남포동 씨앗호떡,youtube,쯔양,yes,yes,READY
-postoffice-suyeong-soba-jaewuujae,소바재우재,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-suyeong-soba-jaewuujae,소바재우재,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
 sungsik-gwangalli-jinmi-eonyang-bulgogi,진미언양불고기,youtube,성시경의 먹을텐데,yes,yes,READY
-postoffice-yeonje-manpojang-hoe,만포장회전문점,guide,우체국 추천 맛집가이드 2026,no,yes,SOURCE_URL_MISSING
+postoffice-yeonje-manpojang-hoe,만포장회전문점,guide,우체국 추천 맛집가이드 2026,yes,yes,READY
