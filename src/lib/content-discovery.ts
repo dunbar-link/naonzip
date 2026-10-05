@@ -1,5 +1,5 @@
 import type { Appearance, Restaurant } from '@/types/restaurant'
-import { getProgramNameFromSlug, getProgramSlugFromName } from '@/lib/programs'
+import { getProgramNameFromSlug, getProgramSlugFromName } from './programs.ts'
 
 export type ContentSource = {
   slug: string
@@ -82,7 +82,11 @@ export function getContentSources(restaurants: Restaurant[]): ContentSource[] {
   )
 }
 
-/** 같은 출처의 식당을 회차·영상 단위로 묶는다. 제목이 없으면 날짜만 표시하며, 사실을 추정하지 않는다. */
+/**
+ * 소비자가 실제로 같은 원천을 열 수 있을 때만 한 묶음으로 표시한다.
+ * 제목·방영일은 중복되거나 비어 있을 수 있어 식별자로 쓰지 않는다. URL 없는 출연은
+ * 각 기록을 분리해 다른 식당의 영상에 잘못 귀속되는 일을 막는다.
+ */
 export function getContentGroups(
   restaurants: Restaurant[],
   slug: string,
@@ -95,12 +99,13 @@ export function getContentGroups(
       if (!appearanceMatches(appearance, slug, kind)) continue
       const date = appearance.broadcastDate
       const title = appearance.episodeTitle?.trim() || (date ? `${date} 출연 기록` : '출연 기록')
-      const key = `${title}\u0000${date ?? ''}`
+      const sourceUrl = appearance.videoUrl?.trim() || undefined
+      const key = sourceUrl ? `url:${sourceUrl}` : `record:${appearance.id}`
       const current = groups.get(key) ?? {
         key,
         title,
         date,
-        sourceUrl: appearance.videoUrl,
+        sourceUrl,
         restaurants: [],
       }
       if (!current.sourceUrl && appearance.videoUrl) current.sourceUrl = appearance.videoUrl

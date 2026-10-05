@@ -13,6 +13,7 @@
     "quality:audit:no-report": "node scripts/audit-public-restaurant-quality.mjs --no-report",
     "evidence:audit": "node scripts/audit-profile-evidence.mjs",
     "evidence:audit:no-report": "node scripts/audit-profile-evidence.mjs --no-report",
+    "content:unit": "node scripts/check-content-discovery-unit.mjs",
     "ops:summary": "node scripts/ops-check-summary.mjs",
     "restaurants:check": "node scripts/check-restaurant-pages.mjs",
     "thumbs:check": "node scripts/check-thumbnail-inputs.mjs",

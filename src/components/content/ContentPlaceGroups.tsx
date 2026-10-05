@@ -17,7 +17,7 @@ export default function ContentPlaceGroups({ restaurants, slug, kind }: Props) {
   return (
     <section className="px-4 pt-5 pb-2">
       <h2 className="text-sm font-bold text-gray-900 mb-1">어디서 봤는지 따라보기</h2>
-      <p className="text-xs text-gray-500 mb-4">회차·영상 정보가 있는 출연 기록부터 묶어 보여드려요.</p>
+      <p className="text-xs text-gray-500 mb-4">같은 등록 링크가 있는 출연 기록만 함께 보여드려요.</p>
       <div className="space-y-6">
         {groups.map((group) => (
           <section key={group.key} className="rounded-2xl border border-gray-200 bg-white overflow-hidden">
@@ -34,7 +34,7 @@ export default function ContentPlaceGroups({ restaurants, slug, kind }: Props) {
                     rel="noopener noreferrer"
                     className="shrink-0 text-xs font-semibold text-orange-600 underline underline-offset-2"
                   >
-                    출처 보기
+                    등록된 관련 링크
                   </a>
                 ) : (
                   <span className="shrink-0 text-xs text-gray-400">출처 링크 미등록</span>
